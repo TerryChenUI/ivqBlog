@@ -1,0 +1,440 @@
+/***
+Responsive Theme. 
+Based on http://getbootstrap.com/css/#responsive-utilities-classes
+***/
+
+/***
+From Medium Devices Up To Larger Devices
+***/
+
+@media (min-width: 992px) {
+
+  /***
+  Page sidebar
+  ***/
+  .page-sidebar {
+    width: 225px;
+    float: left;
+    position: relative;
+    margin-right: -100%;
+  }
+
+  .page-sidebar.navbar-collapse {
+    max-height: none !important;
+  }
+
+  /***
+  Page content
+  ***/
+  .page-content-wrapper {
+    float: left;
+    width: 100%;
+  }
+
+  .page-content {
+    margin-left: 225px;
+    margin-top: 0px;
+    min-height: 760px;
+    padding: 25px 20px 20px 20px;
+  }
+
+  .page-content.no-min-height {
+    min-height: auto;
+  }
+
+  /***
+  Footer
+  ***/
+  .footer {
+    clear: left;
+  }
+}
+
+/***
+Up To Medium Devices
+***/
+
+@media (max-width: 991px) {
+
+  /***
+   Page header
+   ***/
+  .header {
+    padding: 0 20px 0 20px;
+    position: relative;
+    clear: both;
+  }
+
+  .header .navbar-toggle {
+    display: inline-block;
+  }
+
+  .page-sidebar.navbar-collapse {
+    max-height: 340px;
+  }
+
+  .page-sidebar.navbar-collapse.collapse {
+    display: none !important;
+  }
+
+  .page-sidebar.navbar-collapse.in {
+    overflow: hidden !important;
+    overflow-y: auto !important;
+  }
+
+  .header .nav li.dropdown i {
+    display: inline-block;
+    position: relative;
+    top: 1px;
+    right: 0px;
+  }
+
+  .header .navbar-nav {
+    display: block;
+    margin-bottom: 0px !important;
+  }
+
+  .header .navbar-nav .open .dropdown-menu {
+    position: absolute;
+  }
+
+  .header .navbar-nav {
+    display: inline-block;
+    float: right;
+    margin: 0;
+  }
+
+  .header .navbar-nav > li {
+    float: left;
+  }
+
+  .header .navbar-brand {
+    margin-left: 0px !important;
+    padding-left: 0px !important;
+  }
+
+  .header .navbar-brand img {
+    margin-left: 4px !important;
+  }
+
+  /***
+  Page container
+  ***/
+  .page-container {
+    margin: 0 !important;
+    padding: 0 !important;
+  }
+
+  /***
+    Page content
+    ***/
+  .page-content {
+    margin: 0px !important;
+    padding: 20px 20px 20px 20px !important;
+    min-height: 280px;
+  }
+
+  /***
+  Page sidebar
+  ***/
+  .page-sidebar {
+    border-top: 0 !important;
+    margin: 20px;
+  }
+
+  .page-sidebar.in {
+    border-top: 0 !important;
+    margin: 20px;
+    position: relative;
+    z-index: 5;
+  }
+
+  .header .sidebar-toggler,
+  .page-sidebar .sidebar-toggler {
+    display: none;
+  }
+
+  .page-sidebar ul {
+    margin-top: 0px;
+    width: 100%;
+  }
+
+  .page-sidebar .selected {
+    display: none !important;
+  }
+
+  .page-sidebar .sidebar-search .input-box {
+    width: 220px;
+  }
+}
+
+/***
+From Small Devices Up To Medium Devices
+***/
+
+@media (min-width: 768px) and (max-width: 991px) {
+
+  /***
+  Body
+  ***/
+  body {
+    padding-top: 0px;
+  }
+
+  /***
+  Page sidebar
+  ***/
+  .page-sidebar .btn-navbar.collapsed .arrow {
+    display: none;
+  }
+
+  .page-sidebar .btn-navbar .arrow {
+    position: absolute;
+    right: 25px;
+    width: 0;
+    height: 0;
+    top: 50px;
+    border-bottom: 15px solid #5f646b;
+    border-left: 15px solid transparent;
+    border-right: 15px solid transparent;
+  }
+
+  /***
+  Boxed Layout
+  ***/
+  .page-boxed .header > .container,
+  .page-boxed > .container {
+    margin: auto !important;
+  }
+
+  .page-boxed .header {
+    margin: auto !important;
+    padding: 0;
+  }
+
+  .page-boxed .footer {
+    padding-left: 0;
+    padding-right: 0;
+  }
+
+}
+
+/***
+Extra Small Devices Only
+***/
+
+@media (max-width: 767px) {
+
+  /***
+  Page header
+  ***/
+
+  .header {
+    padding: 0 10px 0 10px;
+  }
+
+  .header .top-nav .nav {
+    margin-top: 0px;
+    margin-right: 5px;
+  }
+
+  .header .nav > li > .dropdown-menu.notification:after,
+  .header .nav > li > .dropdown-menu.notification:before {
+    margin-right: 180px;
+  }
+
+  .header .nav > li > .dropdown-menu.notification {
+    margin-right: -180px;
+  }
+
+  .header .nav > li > .dropdown-menu.inbox:after,
+  .header .nav > li > .dropdown-menu.inbox:before {
+    margin-right: 140px;
+  }
+
+  .header .nav > li > .dropdown-menu.inbox {
+    margin-right: -140px;
+  }
+
+  .header .nav > li > .dropdown-menu.tasks:after,
+  .header .nav > li > .dropdown-menu.tasks:before {
+    margin-right: 90px;
+  }
+
+  .header .nav > li > .dropdown-menu.tasks {
+    margin-right: -90px;
+  }
+
+  /* Header logo */
+  .header .navbar-brand {
+    margin-left: 0px !important;
+    width: 110px;
+  }
+
+  /***
+  Page content
+  ***/
+  .page-content {
+    padding: 20px 10px 10px 10px !important;
+    overflow: hidden;
+  }
+
+  /***
+  Page title
+  ***/
+  .page-title {
+    margin-bottom: 20px;
+    font-size: 18px;
+  }
+
+  .page-title small {
+    font-size: 13px;
+    padding-top: 3px;
+  }
+
+  /***
+  Page breadcrumb
+  ***/
+  .breadcrumb {
+    padding-left: 10px;
+    padding-right: 10px;
+  }
+
+  /***
+  Portlet form action
+  ***/
+  .portlet-body.form .form-actions {
+    padding-left: 15px;
+  }
+
+  /***
+  Form input validation states
+  ***/
+  .input-icon .input-error,
+  .input-icon .input-warning,
+  .input-icon .input-success {
+    top: -27px;
+    float: right;
+    right: 10px !important;
+  }
+
+  /***
+  Footer
+  ***/
+  .footer {
+    padding-left: 10px;
+    padding-right: 10px;
+  }
+
+  .footer .go-top {
+    float: right;
+    display: block;
+    margin-right: 0px;
+  }
+
+  /***
+  Vertical inline menu
+  ***/
+  .ver-inline-menu li.active:after {
+    display: none;
+  }
+
+  /***
+  Form controls
+  ***/
+  .form-horizontal .form-actions {
+    padding-left: 180px;
+  }
+
+  .portlet .form-horizontal .form-actions {
+    padding-left: 190px;
+  }
+}
+
+/***
+The Most Extra Small Devices Landscape Mode Only
+***/
+
+@media (max-width: 480px) {
+
+  /***
+  Header navbar
+  ***/
+
+  .header .navbar-nav {
+    display: block !important;
+    margin-top: 0px !important;
+  }
+
+  .header .navbar-nav > li.dropdown .dropdown-toggle {
+    margin-top: -1px;
+    padding-left: 8px;
+    padding-right: 8px;
+  }
+
+  .header .navbar-nav > li.dropdown.user .dropdown-toggle,
+  .header .navbar-nav > li.dropdown.language .dropdown-toggle {
+    padding-right: 6px;
+    padding-left: 6px;
+  }
+
+  .header .navbar-nav li.dropdown .dropdown-toggle .badge {
+    top: 8px;
+  }
+
+  /***
+Page sidebar
+***/
+  .page-sidebar,
+  .page-sidebar.in {
+    margin: 0 10px 10px 10px;
+  }
+
+  /***
+  Page title
+  ***/
+  .page-title small {
+    display: block;
+    clear: both;
+  }
+
+  /***
+  Forms
+  ***/
+  .portlet .form-horizontal .form-actions {
+    padding-left: 10px;
+  }
+
+  /***
+  Hidden phone
+  ***/
+  .hidden-480 {
+    display: none !important;
+  }
+
+  .search-form .form-body {
+    padding: 10px;
+  }
+}
+
+/***
+The Most Extra Small Devices Portrait Mode Only
+***/
+
+@media (max-width: 320px) {
+
+  /***
+  Hidden phone
+  ***/
+  .hidden-320 {
+    display: none;
+  }
+
+  .header .navbar-brand {
+    width: 100px;
+  }
+
+  .search-form .form-body {
+    padding: 10px;
+  }
+}	

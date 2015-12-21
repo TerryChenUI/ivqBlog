@@ -1,0 +1,65 @@
+<div class="fluid">
+    <div class="row">
+        <div class="col-md-4">
+            <div class="table-toolbar">
+                <div class="btn-group">
+                    <a ui-sref="editCategory({id:0})" class="btn blue"><i class="fa fa-plus"></i> 添加</a>
+                </div>
+            </div>
+        </div>
+        <div class="col-md-8">
+            <form class="search-form">
+                <!--<label>-->
+                    <!--<button type="button" class="btn dark btn-search" onclick=""><i class="fa fa-search"></i> 搜索</button>-->
+                <!--</label>-->
+                <label>
+                    <span>父类别：</span>
+                    <select class="form-control" ng-model="filterBy.ParentId"
+                            ng-options="option.value as option.name for option in categoryOptions"></select>
+                </label>
+            </form>
+        </div>
+    </div>
+</div>
+
+<div tasty-table bind-resource-callback="getResource" bind-init="paginationSetting" bind-filters="filterBy">
+    <table class="table datatable table-striped table-bordered table-hover">
+        <thead>
+        <tr>
+            <th width="80">
+                序号
+            </th>
+            <th width="160">
+                类别
+            </th>
+            <th width="160">
+                父类别
+            </th>
+            <th>
+                描述
+            </th>
+            <th width="80">
+                状态
+            </th>
+            <th width="80">
+                操作
+            </th>
+            <th width="80">
+                操作
+            </th>
+        </tr>
+        </thead>
+        <tbody>
+        <tr ng-repeat="row in rows">
+            <td>{{row.Id}}</td>
+            <td>{{row.Name}}</td>
+            <td>{{row.ParentName}}</td>
+            <td>{{row.Description}}</td>
+            <td>{{row.EnabledText}}</td>
+            <td><a class="btn btn-xs purple" ui-sref="editCategory({id:row.Id})"><i class="fa fa-edit"></i>编辑</a></td>
+            <td><a class="btn btn-xs red" href="javascript:void(0)" ng-click="remove(row.Id)"><i class="fa fa-times"></i>删除</a></td>
+        </tr>
+        </tbody>
+    </table>
+    <div tasty-pagination></div>
+</div>

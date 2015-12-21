@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html ng-app="app.admin" ng-controller="AppAdminCtrl">
+<head>
+    <title>ivqBlog</title>
+    <!-- inject:css -->
+    <!-- endinject -->
+</head>
+
+<body class="page-header-fixed">
+<div class="header navbar navbar-inverse navbar-fixed-top">
+    <div class="header-inner">
+        <a class="navbar-brand" href="index.html">
+            <img src="assets/img/logo.png" alt="logo" class="img-responsive" />
+        </a>
+        <a href="javascript:void(0);" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
+            <img src="assets/img/menu-toggler.png" alt="" />
+        </a>
+        <header-menu></header-menu>
+    </div>
+</div>
+<div class="clearfix">
+</div>
+
+<div class="page-container">
+    <sidebar-menu></sidebar-menu>
+    <div class="page-content-wrapper">
+        <div class="page-content">
+            <breadcrumb></breadcrumb>
+            <div ui-view></div>
+        </div>
+    </div>
+</div>
+
+<footer></footer>
+
+<!-- inject:js -->
+<!-- endinject -->
+</body>
+</html>

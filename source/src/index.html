@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html ng-app="app" ng-controller="AppCtrl">
+<head>
+    <title>ivqBlog</title>
+    <!--<base href="/">-->
+    <!-- inject:css -->
+    <!-- endinject -->
+</head>
+<body>
+<nav-menu></nav-menu>
+
+<div class="jumbotron">
+    <div class="container">
+        <h1>Hello, world!</h1>
+
+        <p>This is a template for a simple marketing or informational website. It includes a large callout called a
+            jumbotron and three supporting pieces of content. Use it as a starting point to create something more
+            unique.</p>
+
+        <p><a class="btn btn-primary btn-lg" href="#" role="button">Learn more »</a></p>
+    </div>
+</div>
+
+<div class="container">
+    <div class="row">
+        <div class="col-sm-8">
+            <div class="main">
+                <div ui-view></div>
+            </div>
+        </div>
+        <div class="col-sm-3 col-sm-offset-1 sidebar">
+            <div ui-view="about"></div>
+            <div ui-view="archives"></div>
+        </div>
+    </div>
+</div>
+
+<footer class="footer">
+    <div class="container">
+        <div class="row">
+            <div class="col-md-6">
+                <p><a ui-sref="home">Single UI</a> by <a
+                        href="https://github.com/TerryChenUI/ivqBlog">Terry Chen</a>.</p>
+            </div>
+        </div>
+    </div>
+</footer>
+
+<!-- inject:js -->
+<!-- endinject -->
+</body>
+</html>

@@ -1,0 +1,47 @@
+.footer {
+  padding: 8px 20px 5px 20px;
+  font-size: 12px;
+
+  .footer-inner {
+    float: left;
+    display: inline-block;
+  }
+
+  .footer-tools {
+    float: right;
+    display: inline-block;
+
+    .go-top {
+      background-color: #4f4f4f;
+      display: block;
+      text-decoration: none;
+      cursor: pointer;
+      margin-top: -2px;
+      margin-right: 0px;
+      margin-bottom: 0px;
+      font-size: 16px;
+      padding: 0px 6px 0px 6px;
+
+      i {
+        color: #8a8a8a;
+        font-size: 22px;
+        margin-bottom: 5px;
+      }
+
+      &:hover {
+        opacity: 0.7;
+        filter: alpha(opacity=70);
+      }
+    }
+  }
+
+  &:after {
+    clear: both;
+  }
+
+  &:after, :before {
+    content: "";
+    display: table;
+    line-height: 0;
+  }
+}

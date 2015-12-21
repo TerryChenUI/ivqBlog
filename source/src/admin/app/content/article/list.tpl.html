@@ -1,0 +1,69 @@
+<div class="fluid">
+    <div class="row">
+        <div class="col-md-4">
+            <div class="table-toolbar">
+                <div class="btn-group">
+                    <a ui-sref="editArticle({id:0})" class="btn blue"><i class="fa fa-plus"></i> 添加</a>
+                </div>
+            </div>
+        </div>
+        <div class="col-md-8">
+            <form class="search-form">
+                <!--<label>-->
+                    <!--<button type="button" class="btn dark btn-search" onclick=""><i class="fa fa-search"></i> 搜索</button>-->
+                <!--</label>-->
+                <label>
+                    <span>类别：</span>
+                    <select class="form-control" ng-model="filterBy.CategoryId"
+                            ng-options="option.value as option.name for option in categoryOptions"></select>
+                </label>
+                <label>
+                    <span>标题：</span>
+                    <input class="form-control" name="title" ng-model="filterBy.Title"/>
+                </label>
+            </form>
+        </div>
+    </div>
+</div>
+
+<div tasty-table bind-resource-callback="getResource" bind-init="paginationSetting" bind-filters="filterBy">
+    <table class="table datatable table-striped table-bordered table-hover">
+        <thead>
+        <tr>
+            <th width="80">
+                序号
+            </th>
+            <th>
+                标题
+            </th>
+            <th width="100">
+                发布状态
+            </th>
+            <th width="100">
+                页面浏览
+            </th>
+            <th width="150">
+                创建时间
+            </th>
+            <th width="80">
+                操作
+            </th>
+            <th width="80">
+                操作
+            </th>
+        </tr>
+        </thead>
+        <tbody>
+        <tr ng-repeat="row in rows">
+            <td>{{row.Id}}</td>
+            <td>{{row.Title}}</td>
+            <td>{{row.PublishText}}</td>
+            <td>{{row.Views}}</td>
+            <td>{{row.CreateTime}}</td>
+            <td><a class="btn btn-xs purple" ui-sref="editArticle({id:row.Id})"><i class="fa fa-edit"></i>编辑</a></td>
+            <td><a class="btn btn-xs red" href="javascript:void(0)" ng-click="remove(row.Id)"><i class="fa fa-times"></i>删除</a></td>
+        </tr>
+        </tbody>
+    </table>
+    <div tasty-pagination></div>
+</div>

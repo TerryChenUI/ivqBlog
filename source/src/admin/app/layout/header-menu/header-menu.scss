@@ -1,0 +1,141 @@
+.header {
+  width: 100%;
+  padding: 0 20px 0 20px;
+  margin: 0;
+  border: 0px;
+  padding: 0px;
+  box-shadow: none;
+  height: 42px;
+  min-height: 42px;
+  &.navbar-fixed-top {
+    z-index: 9995 !important;
+  }
+  .navbar-brand {
+    display: inline-block;
+    margin-top: -1px;
+    margin-right: 0;
+    padding-left: 0;
+    padding-right: 0;
+    width: 225px;
+
+    img {
+      margin-left: 20px;
+    }
+
+    &.text-logo {
+      padding-left: 20px;
+      padding-top: 12px;
+    }
+  }
+  .navbar-toggle {
+    margin: 8px 6px 4px 6px;
+    padding: 0;
+    padding-top: 2px;
+    padding-bottom: 6px;
+    background-image: none;
+    filter: none;
+    box-shadow: none;
+    color: #fff;
+    border: 0;
+
+    &:hover {
+      text-decoration: none;
+      background: none;
+    }
+
+    .navbar-nav {
+      margin-right: 20px;
+      display: block;
+
+      & > li {
+        margin: 0px;
+        padding: 0px;
+
+        &.dropdown, .dropdown > a {
+          padding-left: 4px;
+          padding-right: 4px;
+        }
+
+        &.dropdown {
+          & > a:last-child {
+            padding-right: 0;
+          }
+          &:last-child {
+            padding-right: 2px;
+          }
+
+          .dropdown-toggle {
+            margin: 0px;
+            padding: 15px 10px 7px 10px;
+
+            & > i {
+              font-size: 18px;
+            }
+
+            .badge {
+              position: absolute;
+              top: 8px;
+              right: 20px;
+            }
+          }
+
+          .dropdown-menu > li > a > i {
+            font-size: 14px;
+          }
+
+          &.user {
+            .dropdown-toggle {
+              padding: 7px 4px 6px 9px;
+
+              &:hover {
+                text-decoration: none;
+              }
+
+              .username {
+                color: #ddd;
+              }
+
+              i {
+                display: inline-block;
+                margin-top: 5px;
+                margin: 0;
+                font-size: 16px;
+              }
+            }
+            .dropdown-menu i {
+              width: 15px;
+              display: inline-block;
+            }
+          }
+        }
+      }
+    }
+  }
+
+  /* enable arrow for dropdown menu */
+  .nav {
+    & > li > .dropdown-menu {
+      &:before {
+        position: absolute;
+        top: -7px;
+        right: 9px;
+        display: inline-block !important;
+        border-right: 7px solid transparent;
+        border-bottom: 7px solid #ccc;
+        border-left: 7px solid transparent;
+        border-bottom-color: rgba(0, 0, 0, 0.2);
+        content: '';
+      }
+      &:after {
+        position: absolute;
+        top: -6px;
+        right: 10px;
+        display: inline-block !important;
+        border-right: 6px solid transparent;
+        border-bottom: 6px solid #fff;
+        border-left: 6px solid transparent;
+        content: '';
+      }
+    }
+  }
+}

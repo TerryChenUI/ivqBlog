@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html ng-app="app.admin">
+<head>
+    <meta charset="utf-8"/>
+    <title>ivqBlog</title>
+    <!-- inject:css -->
+    <!-- endinject -->
+</head>
+
+<body class="login" ng-controller="LoginCtrl">
+
+<div class="logo">
+    <img src="assets/img/logo-big.png" alt=""/>
+</div>
+
+<div class="content">
+    <form class="login-form">
+        <h3 class="form-title">登录您的帐户</h3>
+
+        <div class="alert alert-danger" ng-if="errorMessage">
+            <button class="close" data-close="alert"></button>
+                <span>
+                    {{errorMessage}}
+                </span>
+        </div>
+
+        <div class="form-group">
+            <div class="input-icon">
+                <i class="fa fa-user"></i>
+                <input type="text" ng-model="model.username" class="form-control placeholder-no-fix"
+                       placeholder="用户名或邮箱地址" autocomplete="off"/>
+            </div>
+        </div>
+        <div class="form-group">
+            <div class="input-icon">
+                <i class="fa fa-lock"></i>
+                <input type="password" ng-model="model.password" class="form-control placeholder-no-fix"
+                       placeholder="密码" autocomplete="off"/>
+            </div>
+        </div>
+        <div class="form-actions">
+            <label class="checkbox">
+                <input type="checkbox"/>记住我
+            </label>
+            <button type="button" class="btn green pull-right" ng-click="Login()">
+                登录 <i class="m-icon-swapright m-icon-white"></i>
+            </button>
+        </div>
+    </form>
+</div>
+
+<div class="copyright">
+    2015 &copy; ivqBlog by Terry Chen.
+</div>
+
+<!-- inject:js -->
+<!-- endinject -->
+</body>
+</html>

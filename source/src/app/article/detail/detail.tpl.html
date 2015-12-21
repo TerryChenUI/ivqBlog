@@ -1,0 +1,17 @@
+<div class="row post-detail">
+    <h2 class="post-title">{{article.Title}}</h2>
+
+    <p class="post-meta">{{article.PublishTime}} | 分类：<a
+            ui-sref="list({categoryId:article.CategoryId})">{{article.CategoryName}}</a> |
+        作者：{{article.Author}} | 评论：{{article.Views}}</p>
+
+    <div class="post-description">
+        {{article.Description}}
+    </div>
+
+    <div class="post-content">
+        {{article.Content}}
+    </div>
+</div>
+
+
