@@ -16,7 +16,4 @@ gulp.task('watch', function () {
     gulp.watch(setting.path.js.common, ['copy:js_common']);
     gulp.watch(setting.path.js.front, ['copy:js_front']);
     gulp.watch(setting.path.js.admin, ['copy:js_admin']);
-
-    // gulp.watch(['./src/**/*.spec.js'], ['karma:unit']);
-    // gulp.watch(['./src/**/*.scenario.js'], ['karma:e2e']);
 });

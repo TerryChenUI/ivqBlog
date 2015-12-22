@@ -1,21 +1,19 @@
-/**
- * Created by tchen on 2015/7/24.
- */
-var mongoose = require('mongoose');
-var UserSchema = new mongoose.Schema({
-    UserName: {type: String, default: ''},
-    Password: {type: String, default: ''}
+var mongoose = require('mongoose')
+    autoIncrement = require('mongoose-auto-increment');
+
+var categorySchema = new mongoose.Schema({
+    name: String,
+    description: String,
+    displayOrder: String,
+    enabled: Boolean,
+    parentId: {type: Number, default: 0}
 });
 
-UserSchema.methods = {
-    //create: function(cb){
-    //    console.log(this);
-    //    this.save()
-    //        .exec(cb);
-    //}
-};
+categorySchema.plugin(autoIncrement.plugin, 'Category');
 
-UserSchema.statics = {
+categorySchema.methods = {};
+
+categorySchema.statics = {
 
     list: function(options, cb){
         var filter = options.filter || {};
@@ -26,7 +24,7 @@ UserSchema.statics = {
             .exec(cb);
     },
 
-    getById: function (id, cb) {
+    get: function (id, cb) {
         this.findOne({ _id : id })
             .exec(cb);
     },
@@ -42,4 +40,4 @@ UserSchema.statics = {
     }
 };
 
-module.exports = mongoose.model('User', UserSchema);
+module.exports = mongoose.model('Category', categorySchema);

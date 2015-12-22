@@ -14,7 +14,6 @@
     "devDependencies": {
         "bower": "^1.4.1",
         "browser-sync": "^2.10.1",
-        "connect-livereload": "^0.5.3",
         "del": "^2.0.2",
         "gulp": "^3.9.0",
         "gulp-angular-templatecache": "^1.8.0",
@@ -36,7 +35,6 @@
         "karma-coverage": "^0.5.3",
         "karma-jasmine": "^0.3.6",
         "karma-junit-reporter": "^0.3.8",
-        "method-override": "^2.3.3",
         "nodemon": "^1.8.1",
         "require-dir": "^0.3.0",
         "requirejs": "^2.1.18",

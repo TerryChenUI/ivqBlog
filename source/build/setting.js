@@ -2,10 +2,10 @@
 
 module.exports = {
     dest: {
-        rootOg: 'www',
-        root: 'www/',
-        lib: 'www/lib/',
-        admin: 'www/admin/'
+        rootOg: 'dist',
+        root: 'dist/',
+        lib: 'dist/lib/',
+        admin: 'dist/admin/'
     },
     path: {
         js: {

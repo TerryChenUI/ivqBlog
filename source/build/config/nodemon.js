@@ -16,7 +16,7 @@ gulp.task('nodemon', function () {
             cb();
         })
         .on('restart', function () {
-            console.log('restarted!');
+            console.log('restarted');
         })
         .on('error', function (err) {
             // Make sure failure causes gulp to exit
