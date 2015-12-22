@@ -11,57 +11,51 @@ router
     .get('/api/categories', function (req, res, next) {
         var options = {
             filter: {},
-            page: req.query.page,
+            page: req.query.page - 1,
             count: req.query.count
         };
+
         Category.list(options, function (err, categories) {
-            res.json({
-                rows: categories,
-                pagination: {
-                    count: parseInt(req.query.count),
-                    page: parseInt(req.query.page)
-                    //pages: Math.round(Category.count() / req.query.count),
-                    //size: Category.count()
-                }
+            Category.count({}, function (err, total) {
+                res.send({
+                    rows: categories,
+                    pagination: {
+                        count: parseInt(req.query.count),
+                        page: parseInt(req.query.page),
+                        pages: Math.round(total / req.query.count),
+                        size: total
+                    }
+                });
             });
         });
-        //var options = {};
-        //if (req.query.pageIndex != null) {
-        //    var pageIndex = (req.query.pageIndex > 0 ? req.query.pageIndex : 1) - 1;
-        //    var pageSize = 10;
-        //    options = {
-        //        pageIndex: pageIndex,
-        //        pageSize: pageSize
-        //    };
-        //}
-        //Category.list(options, function (err, categories) {
-        //    res.send(categories);
-        //});
     })
     .get('/api/categories/:id', function (req, res, next) {
         Category.get(req.params.id, function (err, category) {
-            res.send(category);
+            res.send({
+                error: err,
+                data: category
+            });
         });
     })
     .post('/api/categories', function (req, res, next) {
         var category = new Category(req.body);
         category.save(function (err) {
             if (err)
-                return res.send(err);
+                return res.send(error);
             res.sendStatus(200);
         });
     })
     .put('/api/categories', function (req, res, next) {
         Category.update(function (err) {
             if (err)
-                return res.send(err);
+                return res.send(error);
             res.sendStatus(200);
         });
     })
     .delete('/api/categories/:id', function (req, res, next) {
         Category.delete(req.params.id, function (err) {
             if (err)
-                return res.send(err);
+                return res.send(error);
             res.sendStatus(200);
         });
     });

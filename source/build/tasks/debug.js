@@ -3,12 +3,12 @@ var gulp = require("gulp"),
     runSequence = require('run-sequence').use(gulp);
 
 /**
- * gulp default
+ * gulp debug
+ * 在WebStorm调用启动serverDebug后，不需要再调用nodemon task
  */
-gulp.task("default", function () {
+gulp.task("debug", function () {
     runSequence(
         ['dev'],
-        ['nodemon'],
         ['watch', 'browser-sync']
     );
 });

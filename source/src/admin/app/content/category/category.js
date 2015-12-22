@@ -7,14 +7,14 @@ angular.module('app.admin.content')
             var actionParams = {
                 parentId: 0
             };
-            CategoryService.getCategories(actionParams).then(function (response) {
-                _.each(response.data, function (data) {
-                    $scope.categoryOptions.push({
-                        name: data.name,
-                        value: data._id
-                    });
-                });
-            });
+            //CategoryService.getCategories(actionParams).then(function (response) {
+            //    _.each(response.data, function (data) {
+            //        $scope.categoryOptions.push({
+            //            name: data.name,
+            //            value: data._id
+            //        });
+            //    });
+            //});
         };
 
         $scope.getResource = function (params, paramsObj) {

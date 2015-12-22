@@ -1,9 +1,12 @@
 "use strict";
 var gulp = require("gulp"),
+    browserSync = require('browser-sync'),
     setting = require('../setting'),
     nodemon = require('gulp-nodemon');
 
+
 gulp.task('nodemon', function () {
+
     nodemon({
         script: setting.dest.root + 'bin/www',
         ext: 'html css js',
@@ -23,6 +26,9 @@ gulp.task('nodemon', function () {
         })
         .on('restart', function () {
             console.log('restarted');
+            setTimeout(function () {
+                browserSync.reload({ stream: false });
+            }, 1000);
         })
         .on('error', function (err) {
             // Make sure failure causes gulp to exit

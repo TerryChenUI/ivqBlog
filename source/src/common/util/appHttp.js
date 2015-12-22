@@ -8,7 +8,7 @@ angular.module('common.util')
             request: function(config) {
                 var deferred = $q.defer();
                 $http(config).success(function(response, status) {
-                    if (response.error.length > 0) {
+                    if (response.error != null) {
                         return deferred.reject(response.error);
                     } else {
                         return deferred.resolve(response.data);
