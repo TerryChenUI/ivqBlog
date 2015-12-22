@@ -1,6 +1,3 @@
-/**
- * Created by tchen on 2015/7/24.
- */
 var express = require('express'),
     router = express.Router(),
     mongoose = require('mongoose'),
@@ -12,18 +9,34 @@ var express = require('express'),
 
 router
     .get('/api/categories', function (req, res, next) {
-        var options = {};
-        if (req.query.pageIndex != null) {
-            var pageIndex = (req.query.pageIndex > 0 ? req.query.pageIndex : 1) - 1;
-            var pageSize = 10;
-            options = {
-                pageIndex: pageIndex,
-                pageSize: pageSize
-            };
-        }
+        var options = {
+            filter: {},
+            page: req.query.page,
+            count: req.query.count
+        };
         Category.list(options, function (err, categories) {
-            res.send(categories);
+            res.json({
+                rows: categories,
+                pagination: {
+                    count: parseInt(req.query.count),
+                    page: parseInt(req.query.page)
+                    //pages: Math.round(Category.count() / req.query.count),
+                    //size: Category.count()
+                }
+            });
         });
+        //var options = {};
+        //if (req.query.pageIndex != null) {
+        //    var pageIndex = (req.query.pageIndex > 0 ? req.query.pageIndex : 1) - 1;
+        //    var pageSize = 10;
+        //    options = {
+        //        pageIndex: pageIndex,
+        //        pageSize: pageSize
+        //    };
+        //}
+        //Category.list(options, function (err, categories) {
+        //    res.send(categories);
+        //});
     })
     .get('/api/categories/:id', function (req, res, next) {
         Category.get(req.params.id, function (err, category) {
@@ -32,31 +45,24 @@ router
     })
     .post('/api/categories', function (req, res, next) {
         var category = new Category(req.body);
-        //var category = new Category({
-        //    Name : 'category1',
-        //    Description: "description",
-        //    DisplayOrder: 1,
-        //    Enabled: true,
-        //    ParentId: 0
-        //});
         category.save(function (err) {
             if (err)
                 return res.send(err);
-            //return res.render('500');
-            res.send('/categories/' + category.Id);
+            res.sendStatus(200);
         });
     })
     .put('/api/categories', function (req, res, next) {
         Category.update(function (err) {
             if (err)
                 return res.send(err);
-            //return res.render('500');
-            res.send('/categories/' + category.Id);
+            res.sendStatus(200);
         });
     })
     .delete('/api/categories/:id', function (req, res, next) {
         Category.delete(req.params.id, function (err) {
-
+            if (err)
+                return res.send(err);
+            res.sendStatus(200);
         });
     });
 

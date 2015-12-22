@@ -1,18 +1,17 @@
 angular.module('app.admin.content')
     .controller('ListCategoryCtrl', ['$scope', 'SweetAlert', 'CategoryService', function ($scope, SweetAlert, CategoryService) {       
-        $scope.filterBy = {'ParentId': 0};
+        $scope.filterBy = {'parentId': 0};
         $scope.categoryOptions = [{name: '--请选择--', value: 0}];
 
         $scope.initController = function(){
-            //category filter
             var actionParams = {
                 parentId: 0
             };
             CategoryService.getCategories(actionParams).then(function (response) {
                 _.each(response.data, function (data) {
                     $scope.categoryOptions.push({
-                        name: data.Name,
-                        value: data.Id
+                        name: data.name,
+                        value: data._id
                     });
                 });
             });
@@ -21,13 +20,9 @@ angular.module('app.admin.content')
         $scope.getResource = function (params, paramsObj) {
             return CategoryService.getCategories(paramsObj).then(function (response) {
                 response.data.rows = _.each(response.data.rows, function (data) {
-                    data.EnabledText = data.Enabled ? "已启用" : "禁用";
+                    data.status = data.enabled ? "已启用" : "禁用";
                     if (data.ParentId == 0) {
                         data.ParentName = "父类别"
-                    } else {
-                        CategoryService.getCategoryById(data.ParentId).then(function (response) {
-                            data.ParentName = response.Name;
-                        });
                     }
                 });
                 return {
@@ -75,11 +70,11 @@ angular.module('app.admin.content')
             CategoryService.getCategories(actionParams).then(function (response) {
                 _.each(response.data, function (data) {
                     $scope.categoryOptions.push({
-                        name: data.Name,
-                        value: data.Id
+                        name: data.name,
+                        value: data._id
                     });
                 });
-                $scope.model.ParentId = $scope.categoryOptions[0].value;
+                $scope.model.parentId = $scope.categoryOptions[0].value;
             });
 
             if (id > 0) {

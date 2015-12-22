@@ -18,7 +18,7 @@ module.exports = {
         css: [
             './src/plugins/font-awesome/css/font-awesome.min.css',
             './lib/bootstrap/css/bootstrap.min.css',
-            './lib/sweetalert/sweetalert.min.css'
+            './lib/sweetalert/sweetalert.css'
         ],
         js: [
             './lib/jquery/jquery.min.js',

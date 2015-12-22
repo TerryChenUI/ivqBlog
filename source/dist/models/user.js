@@ -10,13 +10,13 @@ var userSchema = new mongoose.Schema({
     lastLoginTime: Date
 });
 
-userSchema.plugin(autoIncrement.plugin, 'User');
+userSchema.plugin(autoIncrement.plugin, {model: 'User', startAt: 1});
 
 userSchema.methods = {};
 
 userSchema.statics = {
 
-    list: function(options, cb){
+    list: function (options, cb) {
         var filter = options.filter || {};
 
         this.find(filter)
@@ -26,17 +26,17 @@ userSchema.statics = {
     },
 
     getById: function (id, cb) {
-        this.findOne({ _id : id })
+        this.findOne({_id: id})
             .exec(cb);
     },
 
-    update: function(id, user, cb){
-        this.update({ _id : id }, {$set: user})
+    update: function (id, user, cb) {
+        this.update({_id: id}, {$set: user})
             .exec(cb);
     },
 
-    delete: function(id, cb){
-        this.remove({ _id : id })
+    delete: function (id, cb) {
+        this.remove({_id: id})
             .exec(cb);
     }
 };

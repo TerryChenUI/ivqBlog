@@ -51,13 +51,13 @@
         </thead>
         <tbody>
         <tr ng-repeat="row in rows">
-            <td>{{row.Id}}</td>
-            <td>{{row.Name}}</td>
-            <td>{{row.ParentName}}</td>
-            <td>{{row.Description}}</td>
-            <td>{{row.EnabledText}}</td>
-            <td><a class="btn btn-xs purple" ui-sref="editCategory({id:row.Id})"><i class="fa fa-edit"></i>编辑</a></td>
-            <td><a class="btn btn-xs red" href="javascript:void(0)" ng-click="remove(row.Id)"><i class="fa fa-times"></i>删除</a></td>
+            <td>{{row._id}}</td>
+            <td>{{row.name}}</td>
+            <td>{{row.parentName}}</td>
+            <td>{{row.description}}</td>
+            <td>{{row.status}}</td>
+            <td><a class="btn btn-xs purple" ui-sref="editCategory({id:row._id})"><i class="fa fa-edit"></i>编辑</a></td>
+            <td><a class="btn btn-xs red" href="javascript:void(0)" ng-click="remove(row._id)"><i class="fa fa-times"></i>删除</a></td>
         </tr>
         </tbody>
     </table>

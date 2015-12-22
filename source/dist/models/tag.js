@@ -6,13 +6,13 @@ var tagSchema = new mongoose.Schema({
     value: String
 });
 
-tagSchema.plugin(autoIncrement.plugin, 'Tag');
+tagSchema.plugin(autoIncrement.plugin, {model: 'Tag', startAt: 1});
 
 tagSchema.methods = {};
 
 tagSchema.statics = {
 
-    list: function(options, cb){
+    list: function (options, cb) {
         var filter = options.filter || {};
 
         this.find(filter)
@@ -22,17 +22,17 @@ tagSchema.statics = {
     },
 
     getById: function (id, cb) {
-        this.findOne({ _id : id })
+        this.findOne({_id: id})
             .exec(cb);
     },
 
-    update: function(id, tag, cb){
-        this.update({ _id : id }, {$set: tag})
+    update: function (id, tag, cb) {
+        this.update({_id: id}, {$set: tag})
             .exec(cb);
     },
 
-    delete: function(id, cb){
-        this.remove({ _id : id })
+    delete: function (id, cb) {
+        this.remove({_id: id})
             .exec(cb);
     }
 };

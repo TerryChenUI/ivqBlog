@@ -6,13 +6,13 @@ var settingSchema = new mongoose.Schema({
     value: String
 });
 
-settingSchema.plugin(autoIncrement.plugin, 'Setting');
+settingSchema.plugin(autoIncrement.plugin, {model: 'Setting', startAt: 1});
 
 settingSchema.methods = {};
 
 settingSchema.statics = {
 
-    list: function(options, cb){
+    list: function (options, cb) {
         var filter = options.filter || {};
 
         this.find(filter)
@@ -22,17 +22,17 @@ settingSchema.statics = {
     },
 
     getById: function (id, cb) {
-        this.findOne({ _id : id })
+        this.findOne({_id: id})
             .exec(cb);
     },
 
-    update: function(id, setting, cb){
-        this.update({ _id : id }, {$set: setting})
+    update: function (id, setting, cb) {
+        this.update({_id: id}, {$set: setting})
             .exec(cb);
     },
 
-    delete: function(id, cb){
-        this.remove({ _id : id })
+    delete: function (id, cb) {
+        this.remove({_id: id})
             .exec(cb);
     }
 };
