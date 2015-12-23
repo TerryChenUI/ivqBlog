@@ -1,22 +1,5 @@
 angular.module('app.admin.content')
     .controller('ListCategoryCtrl', ['$scope', 'SweetAlert', 'CategoryService', function ($scope, SweetAlert, CategoryService) {       
-        $scope.filterBy = {'parentId': 0};
-        $scope.categoryOptions = [{name: '--请选择--', value: 0}];
-
-        $scope.initController = function(){
-            var actionParams = {
-                parentId: 0
-            };
-            //CategoryService.getCategories(actionParams).then(function (response) {
-            //    _.each(response.data, function (data) {
-            //        $scope.categoryOptions.push({
-            //            name: data.name,
-            //            value: data._id
-            //        });
-            //    });
-            //});
-        };
-
         $scope.getResource = function (params, paramsObj) {
             return CategoryService.getCategories(paramsObj).then(function (response) {
                 response.data.rows = _.each(response.data.rows, function (data) {
@@ -55,7 +38,6 @@ angular.module('app.admin.content')
                 });
         };
 
-        $scope.initController();
     }])
     .controller('EditCategoryCtrl', ['$scope', '$stateParams', '$state', 'SweetAlert', 'CategoryService', function ($scope, $stateParams, $state, SweetAlert, CategoryService) {
         var id = ($stateParams.id) ? parseInt($stateParams.id) : 0;
@@ -64,14 +46,11 @@ angular.module('app.admin.content')
         $scope.categoryOptions = [{name: '--请选择--', value: 0}];
 
         $scope.initController = function () {
-            var actionParams = {
-                parentId: 0
-            };
-            CategoryService.getCategories(actionParams).then(function (response) {
-                _.each(response.data, function (data) {
+            CategoryService.getParentCategories().then(function (data) {
+                _.each(data, function (obj) {
                     $scope.categoryOptions.push({
-                        name: data.name,
-                        value: data._id
+                        name: obj.name,
+                        value: obj._id
                     });
                 });
                 $scope.model.parentId = $scope.categoryOptions[0].value;

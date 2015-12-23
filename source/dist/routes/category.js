@@ -14,7 +14,6 @@ router
             page: req.query.page - 1,
             count: req.query.count
         };
-
         Category.list(options, function (err, categories) {
             Category.count({}, function (err, total) {
                 res.send({
@@ -29,8 +28,17 @@ router
             });
         });
     })
+    .get('/api/categories/parents', function (req, res, next) {
+        var filter = {parentId: 0};
+        Category.getAllByFilters(filter, function (err, categories) {
+            res.send({
+                error: err,
+                data: categories
+            });
+        });
+    })
     .get('/api/categories/:id', function (req, res, next) {
-        Category.get(req.params.id, function (err, category) {
+        Category.getById(req.params.id, function (err, category) {
             res.send({
                 error: err,
                 data: category

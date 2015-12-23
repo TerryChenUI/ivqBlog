@@ -7,22 +7,10 @@
                 </div>
             </div>
         </div>
-        <div class="col-md-8">
-            <form class="search-form">
-                <!--<label>-->
-                    <!--<button type="button" class="btn dark btn-search" onclick=""><i class="fa fa-search"></i> 搜索</button>-->
-                <!--</label>-->
-                <label>
-                    <span>父类别：</span>
-                    <select class="form-control" ng-model="filterBy.ParentId"
-                            ng-options="option.value as option.name for option in categoryOptions"></select>
-                </label>
-            </form>
-        </div>
     </div>
 </div>
 
-<div tasty-table bind-resource-callback="getResource" bind-init="paginationSetting" bind-filters="filterBy">
+<div tasty-table bind-resource-callback="getResource" bind-init="paginationSetting">
     <table class="table datatable table-striped table-bordered table-hover">
         <thead>
         <tr>

@@ -4,9 +4,9 @@ var mongoose = require('mongoose'),
 var commentSchema = new mongoose.Schema({
     userName: String,
     email: String,
-    content: Boolean,
+    content: String,
     createTime: {type: Date, default: Date.now()},
-    articleId: Date
+    articleId: {type: mongoose.Schema.Types.ObjectId, ref: 'Article'}
 });
 
 commentSchema.plugin(autoIncrement.plugin, {model: 'Comment', startAt: 1});

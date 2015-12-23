@@ -4,15 +4,20 @@ var mongoose = require('mongoose'),
 var articleSchema = new mongoose.Schema({
     title: String,
     description: String,
+    meta: {
+        title: String,
+        description: String,
+        keyword: String
+    },
     author: String,
     views: {type: Number, default: 0},
-    publishTime: Date,
     coverImgPath: String,
     content: String,
     publish: Boolean,
     createTime: {type: Date, default: Date.now()},
     updateTime: {type: Date, default: Date.now()},
-    categoryId: Number
+    publishTime: Date,
+    category: {type: mongoose.Schema.Types.ObjectId, ref: 'Category'}
 });
 
 articleSchema.plugin(autoIncrement.plugin, {model: 'Article', startAt: 1});
@@ -23,7 +28,6 @@ articleSchema.statics = {
 
     list: function (options, cb) {
         var filter = options.filter || {};
-        console.log(filter);
         this.find(filter)
             .limit(options.pageSize)
             .skip(options.pageSize * options.pageIndex)

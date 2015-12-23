@@ -24,7 +24,11 @@ categorySchema.statics = {
             .exec(cb);
     },
 
-    get: function (id, cb) {
+    getAllByFilters: function (filter, cb){
+        this.find(filter).exec(cb);
+    },
+
+    getById: function (id, cb) {
         this.findOne({_id: id})
             .exec(cb);
     },

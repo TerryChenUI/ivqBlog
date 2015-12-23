@@ -16,6 +16,14 @@
             return this.$http(config);
         };
 
+        CategoryService.prototype.getParentCategories = function () {
+            var config = {
+                method: 'GET',
+                url: this.serviceEndpoint + "categories/parents"
+            };
+            return this.appHttp.request(config);
+        };
+
         CategoryService.prototype.getCategoryById = function (id) {
             var config = {
                 method: 'GET',
