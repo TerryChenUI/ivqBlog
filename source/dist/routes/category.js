@@ -15,6 +15,16 @@ router
             count: req.query.count
         };
         Category.list(options, function (err, categories) {
+            categories.forEach(function (category) {
+                if (category.parentId == 0) {
+                    category.parentName = '父类别';
+                } else {
+                    Category.getById(category.parentId, function (err, parentCategory) {
+                        category.parentName = parentCategory.name;
+                    });
+                }
+                return category;
+            });
             Category.count({}, function (err, total) {
                 res.send({
                     rows: categories,
@@ -53,8 +63,9 @@ router
             res.sendStatus(200);
         });
     })
-    .put('/api/categories', function (req, res, next) {
-        Category.update(function (err) {
+    .put('/api/categories/:id', function (req, res, next) {
+        var model = req.body;
+        Category.update(req.params.id, model, function (err) {
             if (err)
                 return res.send(error);
             res.sendStatus(200);

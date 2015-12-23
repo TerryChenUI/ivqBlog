@@ -33,8 +33,8 @@ categorySchema.statics = {
             .exec(cb);
     },
 
-    update: function (id, category, cb) {
-        this.update({_id: id}, {$set: category})
+    update: function (id, model, cb) {
+        this.update({_id: id}, {$set: model})
             .exec(cb);
     },
 

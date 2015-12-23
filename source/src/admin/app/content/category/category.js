@@ -4,9 +4,6 @@ angular.module('app.admin.content')
             return CategoryService.getCategories(paramsObj).then(function (response) {
                 response.data.rows = _.each(response.data.rows, function (data) {
                     data.status = data.enabled ? "已启用" : "禁用";
-                    if (data.ParentId == 0) {
-                        data.ParentName = "父类别"
-                    }
                 });
                 return {
                     'rows': response.data.rows,
@@ -41,6 +38,7 @@ angular.module('app.admin.content')
     }])
     .controller('EditCategoryCtrl', ['$scope', '$stateParams', '$state', 'SweetAlert', 'CategoryService', function ($scope, $stateParams, $state, SweetAlert, CategoryService) {
         var id = ($stateParams.id) ? parseInt($stateParams.id) : 0;
+        $scope.originModel = {};
         $scope.model = {};
         $scope.title = id > 0 ? '编辑类别' : '添加类别';
         $scope.categoryOptions = [{name: '--请选择--', value: 0}];
@@ -59,6 +57,7 @@ angular.module('app.admin.content')
             if (id > 0) {
                 CategoryService.getCategoryById(id).then(function (data) {
                     $scope.model = data;
+                    $scope.originModel = $.extend(true, {}, $scope.model);
                 });
             }
         };
