@@ -10,6 +10,7 @@ var db = require('./db');
 var articles = require('./routes/article');
 var categories = require('./routes/category');
 var users = require('./routes/user');
+var plugins = require('./routes/plugin');
 
 var app = express();
 
@@ -34,6 +35,7 @@ app.get('/', function (req, res) {
 app.use(articles);
 app.use(categories);
 app.use(users);
+app.use(plugins);
 
 // catch 404 and forward to error handler
 //app.use(function (req, res, next) {

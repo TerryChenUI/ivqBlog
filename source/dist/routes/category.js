@@ -1,6 +1,5 @@
 var express = require('express'),
     router = express.Router(),
-    async = require('async'),
     mongoose = require('mongoose'),
     Category = require('../models/category');
 
