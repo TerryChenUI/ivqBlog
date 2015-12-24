@@ -6,11 +6,11 @@ angular.module('app.admin.content')
                     data.status = data.enabled ? "已启用" : "禁用";
                 });
                 return {
-                    'rows': response.data.rows,
-                    'header': [],
-                    'pagination': response.data.pagination,
-                    'sortBy': '',
-                    'sortOrder': ''
+                    rows: response.data.rows,
+                    header: [],
+                    pagination: response.data.pagination,
+                    sortBy: '',
+                    sortOrder: ''
                 }
             });
         };
@@ -32,24 +32,24 @@ angular.module('app.admin.content')
         $scope.originModel = {};
         $scope.model = {};
         $scope.title = id > 0 ? '编辑类别' : '添加类别';
-        $scope.categoryOptions = [{name: '[父类别]', value: 0}];
+        $scope.categories = [{name: '[父类别]', value: 0}];
 
         $scope.initController = function () {
             CategoryService.getParentCategories().then(function (data) {
                 data.forEach(function (obj) {
-                    $scope.categoryOptions.push({
+                    $scope.categories.push({
                         name: obj.name,
                         value: obj._id
                     });
                 });
-                $scope.model.parentId = $scope.categoryOptions[0].value;
             });
-
             if (id > 0) {
                 CategoryService.getCategoryById(id).then(function (data) {
                     $scope.model = data;
                     $scope.originModel = tool.deepCopy($scope.model);
                 });
+            } else {
+                $scope.model.parentId = $scope.categories[0].value;
             }
         };
 

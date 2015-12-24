@@ -14,12 +14,12 @@
                 <!--</label>-->
                 <label>
                     <span>类别：</span>
-                    <select class="form-control" ng-model="filterBy.CategoryId"
+                    <select class="form-control" ng-model="filterBy.categoryId"
                             ng-options="option.value as option.name for option in categoryOptions"></select>
                 </label>
                 <label>
                     <span>标题：</span>
-                    <input class="form-control" name="title" ng-model="filterBy.Title"/>
+                    <input class="form-control" name="title" ng-model="filterBy.title"/>
                 </label>
             </form>
         </div>
@@ -42,7 +42,7 @@
             <th width="100">
                 页面浏览
             </th>
-            <th width="150">
+            <th width="180">
                 创建时间
             </th>
             <th width="80">
@@ -55,13 +55,13 @@
         </thead>
         <tbody>
         <tr ng-repeat="row in rows">
-            <td>{{row.Id}}</td>
-            <td>{{row.Title}}</td>
-            <td>{{row.PublishText}}</td>
-            <td>{{row.Views}}</td>
-            <td>{{row.CreateTime}}</td>
-            <td><a class="btn btn-xs purple" ui-sref="editArticle({id:row.Id})"><i class="fa fa-edit"></i>编辑</a></td>
-            <td><a class="btn btn-xs red" href="javascript:void(0)" ng-click="remove(row.Id)"><i class="fa fa-times"></i>删除</a></td>
+            <td>{{row._id}}</td>
+            <td>{{row.title}}</td>
+            <td>{{row.status}}</td>
+            <td>{{row.views}}</td>
+            <td>{{row.time.create}}</td>
+            <td><a class="btn btn-xs purple" ui-sref="editArticle({id:row._id})"><i class="fa fa-edit"></i>编辑</a></td>
+            <td><a class="btn btn-xs red" href="javascript:void(0)" ng-click="remove(row._id)"><i class="fa fa-times"></i>删除</a></td>
         </tr>
         </tbody>
     </table>

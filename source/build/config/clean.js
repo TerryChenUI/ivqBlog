@@ -8,6 +8,7 @@ gulp.task('clean', function () {
         [
             setting.dest.root + '**/*',
             '!' + setting.dest.root + 'bin/**',
+            '!' + setting.dest.root + 'config/**',
             '!' + setting.dest.root + 'models/**',
             '!' + setting.dest.root + 'node_modules/**',
             '!' + setting.dest.root + 'routes/**',

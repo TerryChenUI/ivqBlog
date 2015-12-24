@@ -11,7 +11,8 @@ module.exports = {
             './lib/angular-ui-router/angular-ui-router.min.js',
             './lib/angular-bootstrap/ui-bootstrap.min.js',
             './lib/angular-bootstrap/ui-bootstrap-tpls.min.js',
-            './lib/underscore/underscore-min.js'
+            './lib/underscore/underscore-min.js',
+            './lib/moment/moment.js'
         ]
     },
     admin: {
@@ -30,7 +31,8 @@ module.exports = {
             './lib/ng-tasty/ng-tasty-tpls.min.js',
             './lib/sweetalert/sweetalert.min.js',
             './lib/angular-breadcrumb/angular-breadcrumb.min.js',
-            './lib/underscore/underscore-min.js'
+            './lib/underscore/underscore-min.js',
+            './lib/moment/moment.js'
         ]
     }
 };

@@ -3,58 +3,22 @@
  */
 var express = require('express'),
     fs = require('fs'),
+    ueConfig = require('../config/ueConfig.js'),
     router = express.Router();
 
 router
-    .get('/api/ue/uploads', function (req, res) {
+    .post('/api/uploads', function (req, res, next) {
+        data = {
+            "success": true,
+            "imgUrl": "/assets/upload/images/16433e01-c.jpg"
+        };
+        res.json(data);
+    })
+    .get('/api/ue/uploads', function (req, res, next) {
         var action = req.query.action;
         switch (action) {
             case "config":
-                res.send({
-                    "imageActionName": "uploadimage",
-                    "imageFieldName": "upfile",
-                    "imageMaxSize": 2048000,
-                    "imageAllowFiles": [".png", ".jpg", ".jpeg", ".gif", ".bmp"],
-                    "imageCompressEnable": true,
-                    "imageCompressBorder": 1600,
-                    "imageInsertAlign": "none",
-                    "imageUrlPrefix": "",
-                    "imagePathFormat": "/assets/upload/ue/images/{yyyy}{mm}{dd}/{time}{rand:6}",
-
-                    "fileActionName": "uploadfile",
-                    "fileFieldName": "upfile",
-                    "filePathFormat": "/assets/upload/ue/files/{yyyy}{mm}{dd}/{time}{rand:6}",
-                    "fileUrlPrefix": "",
-                    "fileMaxSize": 51200000,
-                    "fileAllowFiles": [
-                        ".png", ".jpg", ".jpeg", ".gif", ".bmp",
-                        ".flv", ".swf", ".mkv", ".avi", ".rm", ".rmvb", ".mpeg", ".mpg",
-                        ".ogg", ".ogv", ".mov", ".wmv", ".mp4", ".webm", ".mp3", ".wav", ".mid",
-                        ".rar", ".zip", ".tar", ".gz", ".7z", ".bz2", ".cab", ".iso",
-                        ".doc", ".docx", ".xls", ".xlsx", ".ppt", ".pptx", ".pdf", ".txt", ".md", ".xml"
-                    ],
-
-
-                    "imageManagerActionName": "listimage",
-                    "imageManagerListPath": "/assets/upload/ue/images/",
-                    "imageManagerListSize": 20,
-                    "imageManagerUrlPrefix": "",
-                    "imageManagerInsertAlign": "none",
-                    "imageManagerAllowFiles": [".png", ".jpg", ".jpeg", ".gif", ".bmp"],
-
-
-                    "fileManagerActionName": "listfile",
-                    "fileManagerListPath": "/assets/upload/ue/file/",
-                    "fileManagerUrlPrefix": "",
-                    "fileManagerListSize": 20,
-                    "fileManagerAllowFiles": [
-                        ".png", ".jpg", ".jpeg", ".gif", ".bmp",
-                        ".flv", ".swf", ".mkv", ".avi", ".rm", ".rmvb", ".mpeg", ".mpg",
-                        ".ogg", ".ogv", ".mov", ".wmv", ".mp4", ".webm", ".mp3", ".wav", ".mid",
-                        ".rar", ".zip", ".tar", ".gz", ".7z", ".bz2", ".cab", ".iso",
-                        ".doc", ".docx", ".xls", ".xlsx", ".ppt", ".pptx", ".pdf", ".txt", ".md", ".xml"
-                    ]
-                });
+                res.send(ueConfig);
                 break;
             case "uploadimage":
                 // var fstream;

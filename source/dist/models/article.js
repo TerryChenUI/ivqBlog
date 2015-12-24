@@ -14,13 +14,28 @@ var articleSchema = new mongoose.Schema({
     coverImgPath: String,
     content: String,
     publish: Boolean,
-    createTime: {type: Date, default: Date.now()},
-    updateTime: {type: Date, default: Date.now()},
-    publishTime: Date,
-    category: {type: mongoose.Schema.Types.ObjectId, ref: 'Category'}
+    time: {
+        create: {type: Date, default: Date.now()},
+        update: {type: Date, default: Date.now()},
+        publish: Date
+    },
+    //category: {type: mongoose.Schema.Types.ObjectId, ref: 'Category'}
+    categoryId: Number
 }, {versionKey: false});
 
 articleSchema.plugin(autoIncrement.plugin, {model: 'Article', startAt: 1});
+
+articleSchema.pre('save', function (next) {
+    if (this.isNew) {
+        this.time.create = this.time.update = Date.now();
+        if (this.publish) {
+            this.time.publish = Date.now();
+        }
+    } else {
+        this.time.update = Date.now();
+    }
+    next();
+});
 
 articleSchema.methods = {};
 
@@ -29,6 +44,7 @@ articleSchema.statics = {
     list: function (options, cb) {
         var filter = options.filter || {};
         this.find(filter)
+            .populate('category')
             .limit(options.pageSize)
             .skip(options.pageSize * options.pageIndex)
             .exec(cb);
@@ -39,8 +55,8 @@ articleSchema.statics = {
             .exec(cb);
     },
 
-    update: function (id, article, cb) {
-        this.update({_id: id}, {$set: article})
+    update2: function (id, modify, cb) {
+        this.update({_id: id}, {$set: modify})
             .exec(cb);
     },
 

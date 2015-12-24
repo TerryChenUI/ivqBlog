@@ -41,6 +41,14 @@ router
             });
         });
     })
+    .get('/api/categories/all', function (req, res, next) {
+        Category.getAllByFilters({}, function (err, categories) {
+            res.send({
+                error: err,
+                data: categories
+            });
+        });
+    })
     .get('/api/categories/parents', function (req, res, next) {
         var filter = {parentId: 0};
         Category.getAllByFilters(filter, function (err, categories) {
