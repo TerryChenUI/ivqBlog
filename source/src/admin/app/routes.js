@@ -29,7 +29,7 @@ angular.module('app.admin')
                 }
             })
             .state('editCategory', {
-                url: '/category/edit/:id',
+                url: '/category/edit/:id?',
                 templateUrl: 'app/content/category/edit.tpl.html',
                 controller: 'EditCategoryCtrl',
                 ncyBreadcrumb: {
@@ -51,7 +51,7 @@ angular.module('app.admin')
                 }
             })
             .state('editArticle', {
-                url: '/article/edit/:id',
+                url: '/article/edit/:id?',
                 templateUrl: 'app/content/article/edit.tpl.html',
                 controller: 'EditArticleCtrl',
                 ncyBreadcrumb: {

@@ -1,5 +1,6 @@
 var express = require('express'),
     router = express.Router(),
+    async = require('async'),
     mongoose = require('mongoose'),
     Category = require('../models/category');
 
@@ -15,19 +16,22 @@ router
             count: req.query.count
         };
         Category.list(options, function (err, categories) {
-            categories.forEach(function (category) {
+            var rows = [];
+            categories.forEach(function (obj) {
+                var category = obj.toObject();
                 if (category.parentId == 0) {
-                    category.parentName = '父类别';
+                    category.parentName = '';
+                    rows.push(category);
                 } else {
                     Category.getById(category.parentId, function (err, parentCategory) {
                         category.parentName = parentCategory.name;
+                        rows.push(category);
                     });
                 }
-                return category;
             });
             Category.count({}, function (err, total) {
                 res.send({
-                    rows: categories,
+                    rows: rows,
                     pagination: {
                         count: parseInt(req.query.count),
                         page: parseInt(req.query.page),
@@ -64,8 +68,8 @@ router
         });
     })
     .put('/api/categories/:id', function (req, res, next) {
-        var model = req.body;
-        Category.update(req.params.id, model, function (err) {
+        var modify = req.body;
+        Category.update2(req.params.id, modify, function (err) {
             if (err)
                 return res.send(error);
             res.sendStatus(200);

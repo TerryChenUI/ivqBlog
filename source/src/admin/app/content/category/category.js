@@ -1,5 +1,5 @@
 angular.module('app.admin.content')
-    .controller('ListCategoryCtrl', ['$scope', 'SweetAlert', 'CategoryService', function ($scope, SweetAlert, CategoryService) {       
+    .controller('ListCategoryCtrl', ['$scope', '$state', 'SweetAlert', 'CategoryService', function ($scope, $state, SweetAlert, CategoryService) {
         $scope.getResource = function (params, paramsObj) {
             return CategoryService.getCategories(paramsObj).then(function (response) {
                 response.data.rows = _.each(response.data.rows, function (data) {
@@ -16,36 +16,27 @@ angular.module('app.admin.content')
         };
 
         $scope.remove = function (id) {
-            SweetAlert.swal({
-                    title: "你确认要删除此数据?",
-                    type: "warning",
-                    showCancelButton: true,
-                    confirmButtonColor: "#DD6B55",
-                    confirmButtonText: "删除",
-                    cancelButtonText: "取消",
-                    closeOnConfirm: false,
-                    closeOnCancel: true
-                },
+            SweetAlert.deleteConfirm(
                 function (isConfirm) {
                     if (isConfirm) {
                         CategoryService.deleteCategory(id, function () {
-                            SweetAlert.swal("删除成功");
+                            SweetAlert.deleteSuccessfully();
+                            $state.reload();
                         });
                     }
                 });
         };
-
     }])
-    .controller('EditCategoryCtrl', ['$scope', '$stateParams', '$state', 'SweetAlert', 'CategoryService', function ($scope, $stateParams, $state, SweetAlert, CategoryService) {
+    .controller('EditCategoryCtrl', ['$scope', '$stateParams', '$state', 'SweetAlert', 'CategoryService', 'tool', function ($scope, $stateParams, $state, SweetAlert, CategoryService, tool) {
         var id = ($stateParams.id) ? parseInt($stateParams.id) : 0;
         $scope.originModel = {};
         $scope.model = {};
         $scope.title = id > 0 ? '编辑类别' : '添加类别';
-        $scope.categoryOptions = [{name: '--请选择--', value: 0}];
+        $scope.categoryOptions = [{name: '[父类别]', value: 0}];
 
         $scope.initController = function () {
             CategoryService.getParentCategories().then(function (data) {
-                _.each(data, function (obj) {
+                data.forEach(function (obj) {
                     $scope.categoryOptions.push({
                         name: obj.name,
                         value: obj._id
@@ -57,20 +48,21 @@ angular.module('app.admin.content')
             if (id > 0) {
                 CategoryService.getCategoryById(id).then(function (data) {
                     $scope.model = data;
-                    $scope.originModel = $.extend(true, {}, $scope.model);
+                    $scope.originModel = tool.deepCopy($scope.model);
                 });
             }
         };
 
         $scope.saveCategory = function () {
             if (id > 0) {
-                CategoryService.updateCategory(id, $scope.model, function () {
-                    SweetAlert.swal("更新成功");
+                var modifyModel = tool.trimSameProperties($scope.originModel, $scope.model);
+                CategoryService.updateCategory(id, modifyModel, function () {
+                    SweetAlert.updateSuccessfully();
                     $state.go('category');
                 });
             } else {
                 CategoryService.insertCategory($scope.model, function () {
-                    SweetAlert.swal("新增成功");
+                    SweetAlert.addSuccessfully();
                     $state.go('category');
                 });
             }

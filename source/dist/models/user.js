@@ -8,7 +8,7 @@ var userSchema = new mongoose.Schema({
     enabled: Boolean,
     createTime: {type: Date, default: Date.now()},
     lastLoginTime: Date
-});
+}, {versionKey: false});
 
 userSchema.plugin(autoIncrement.plugin, {model: 'User', startAt: 1});
 

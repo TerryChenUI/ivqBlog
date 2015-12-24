@@ -1,13 +1,13 @@
 var mongoose = require('mongoose'),
-autoIncrement = require('mongoose-auto-increment');
+    autoIncrement = require('mongoose-auto-increment');
 
 var categorySchema = new mongoose.Schema({
     name: String,
     description: String,
-    displayOrder: String,
+    displayOrder: Number,
     enabled: Boolean,
-    parentId: {type: Number, default: 0}
-});
+    parentId: Number
+}, {versionKey: false});
 
 categorySchema.plugin(autoIncrement.plugin, {model: 'Category', startAt: 1});
 
@@ -24,7 +24,7 @@ categorySchema.statics = {
             .exec(cb);
     },
 
-    getAllByFilters: function (filter, cb){
+    getAllByFilters: function (filter, cb) {
         this.find(filter).exec(cb);
     },
 
@@ -33,8 +33,8 @@ categorySchema.statics = {
             .exec(cb);
     },
 
-    update: function (id, model, cb) {
-        this.update({_id: id}, {$set: model})
+    update2: function (id, modify, cb) {
+        this.update({_id: id}, {$set: modify})
             .exec(cb);
     },
 

@@ -1,6 +1,3 @@
-/**
- * Created by tchen on 7/9/2015.
- */
 'use strict';
 angular.module('common.util')
     .factory('appHttp', ['$http', '$q', function($http, $q) {
@@ -18,6 +15,7 @@ angular.module('common.util')
                 });
                 return deferred.promise;
             }
+
         };
     }
 ]);

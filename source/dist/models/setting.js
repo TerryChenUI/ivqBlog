@@ -4,7 +4,7 @@ var mongoose = require('mongoose'),
 var settingSchema = new mongoose.Schema({
     key: String,
     value: String
-});
+}, {versionKey: false});
 
 settingSchema.plugin(autoIncrement.plugin, {model: 'Setting', startAt: 1});
 

@@ -18,7 +18,7 @@ var articleSchema = new mongoose.Schema({
     updateTime: {type: Date, default: Date.now()},
     publishTime: Date,
     category: {type: mongoose.Schema.Types.ObjectId, ref: 'Category'}
-});
+}, {versionKey: false});
 
 articleSchema.plugin(autoIncrement.plugin, {model: 'Article', startAt: 1});
 

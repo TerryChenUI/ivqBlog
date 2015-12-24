@@ -32,35 +32,41 @@
             return this.appHttp.request(config);
         };
 
-        CategoryService.prototype.insertCategory = function (category, successCallback) {
+        CategoryService.prototype.insertCategory = function (category, successCB, errorCB) {
             var config = {
                 method: 'POST',
                 url: this.serviceEndpoint + "categories",
                 data: category
             };
-            return this.$http(config).success(function (res) {
-                return successCallback(res);
+            return this.$http(config).then(function (res) {
+                return successCB(res);
+            }).then(function(error){
+                return errorCB(res);
             });
         };
 
-        CategoryService.prototype.updateCategory = function (id, category, successCallback) {
+        CategoryService.prototype.updateCategory = function (id, category, successCB, errorCB) {
             var config = {
                 method: 'PUT',
                 url: this.serviceEndpoint + "categories/" + id,
                 data: category
             };
-            return this.$http(config).success(function (res) {
-                return successCallback(res);
+            return this.$http(config).then(function (res) {
+                return successCB(res);
+            }).then(function(error){
+                return errorCB(res.data);
             });
         };
 
-        CategoryService.prototype.deleteCategory = function (id, successCallback) {
+        CategoryService.prototype.deleteCategory = function (id, successCB, errorCB) {
             var config = {
                 method: 'DELETE',
                 url: this.serviceEndpoint + "categories/" + id
             };
-            return this.$http(config).success(function (res) {
-                return successCallback(res);
+            return this.$http(config).then(function (res) {
+                return successCB(res);
+            }).then(function(error){
+                return errorCB(res);
             });
         };
 

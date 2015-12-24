@@ -7,7 +7,7 @@ var commentSchema = new mongoose.Schema({
     content: String,
     createTime: {type: Date, default: Date.now()},
     articleId: {type: mongoose.Schema.Types.ObjectId, ref: 'Article'}
-});
+}, {versionKey: false});
 
 commentSchema.plugin(autoIncrement.plugin, {model: 'Comment', startAt: 1});
 
