@@ -1,9 +1,5 @@
-/**
- * Created by tchen on 2015/7/24.
- */
 var express = require('express'),
     router = express.Router(),
-    mongoose = require('mongoose'),
     User = require('../models/user');
 
 router

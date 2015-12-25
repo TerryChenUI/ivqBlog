@@ -18,13 +18,19 @@ categorySchema.statics = {
         var filter = options.filter || {};
 
         this.find(filter)
-            .limit(options.page)
+            .sort(options.sortBy)
+            .limit(options.count)
             .skip(options.page * options.count)
             .exec(cb);
     },
 
-    getAllByFilters: function (filter, cb) {
-        this.find(filter).exec(cb);
+    getAllByFilters: function (options, cb) {
+        var filter = options.filter || {};
+        var sortBy = options.sortBy || {};
+
+        this.find(filter)
+            .sort(sortBy)
+            .exec(cb);
     },
 
     getById: function (id, cb) {

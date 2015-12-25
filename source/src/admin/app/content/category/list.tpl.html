@@ -14,13 +14,10 @@
     <table class="table datatable table-striped table-bordered table-hover">
         <thead>
         <tr>
-            <th width="80">
-                序号
-            </th>
             <th width="200">
                 类别
             </th>
-            <th width="80">
+            <th width="50">
                 排序
             </th>
             <th>
@@ -39,7 +36,6 @@
         </thead>
         <tbody>
         <tr ng-repeat="row in rows">
-            <td>{{row._id}}</td>
             <td>{{row.name}}</td>
             <td>{{row.displayOrder}}</td>
             <td>{{row.description}}</td>

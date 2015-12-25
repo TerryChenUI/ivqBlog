@@ -1,11 +1,11 @@
 var express = require('express'),
     router = express.Router(),
-    mongoose = require('mongoose'),
     Category = require('../models/category');
 
 router
     .get('/api/categories', function (req, res, next) {
         var options = {
+            sortBy: {displayOrder:1},
             page: req.query.page - 1,
             count: req.query.count
         };
@@ -24,7 +24,11 @@ router
         });
     })
     .get('/api/categories/all', function (req, res, next) {
-        Category.getAllByFilters({enabled:true}, function (err, categories) {
+        var options = {
+            filter: {enabled: true},
+            sortBy: {displayOrder:1}
+        };
+        Category.getAllByFilters(options, function (err, categories) {
             res.send({
                 error: err,
                 data: categories

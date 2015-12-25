@@ -15,10 +15,12 @@ angular.module('app.admin.content')
         };
 
         $scope.getResource = function (params, paramsObj) {
+            paramsObj.sortBy = {'_id': -1};
             return ArticleService.getArticles(paramsObj).then(function (response) {
                 response.data.rows = _.each(response.data.rows, function (data) {
                     data.status = data.publish ? "已发布" : "未发布";
                     data.time.create = Tool.convertTime(data.time.create);
+                    data.time.publish = Tool.convertTime(data.time.publish);
                 });
                 return {
                     'rows': response.data.rows,

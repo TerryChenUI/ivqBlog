@@ -43,8 +43,9 @@ articleSchema.statics = {
         var filter = options.filter || {};
         this.find(filter)
             .populate('category')
-            .limit(options.pageSize)
-            .skip(options.pageSize * options.pageIndex)
+            .sort(options.sortBy)
+            .limit(options.count)
+            .skip(options.page * options.count)
             .exec(cb);
     },
 

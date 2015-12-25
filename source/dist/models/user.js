@@ -20,8 +20,8 @@ userSchema.statics = {
         var filter = options.filter || {};
 
         this.find(filter)
-            .limit(options.pageSize)
-            .skip(options.pageSize * options.pageIndex)
+            .limit(options.count)
+            .skip(options.page * options.count)
             .exec(cb);
     },
 

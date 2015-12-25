@@ -3,9 +3,9 @@ angular.module('app.article')
     .controller('ListCtrl', ['$scope', '$stateParams', 'ArticleService', 'CategoryService', 'Tool', function ($scope, $stateParams, ArticleService, CategoryService, Tool) {
         $scope.articles = [];
         $scope.currentPage = 1;
-        $scope.itemsPerPage = 2;
+        $scope.itemsPerPage = 15;
         //$scope.maxSize = 5;
-        //$scope.totalItems = 5;
+
 
         $scope.initController = function () {
             getData();
@@ -20,12 +20,17 @@ angular.module('app.article')
         function getData() {
             var paramsObj = {
                 filters: {
-                    categoryId: $stateParams.categoryId
+                    categoryId: $stateParams.categoryId,
+                    publish: true
+                },
+                sortBy: {
+                    'time.publish': -1
                 },
                 page: $scope.currentPage,
                 count: $scope.itemsPerPage
             };
             ArticleService.getArticles(paramsObj).then(function (res) {
+                $scope.totalItems = res.pagination.size;
                 $scope.articles = res.data.rows;
                 $scope.articles.forEach(function (obj) {
                     obj.time.publish = Tool.convertTime(obj.time.publish, 'YYYY-MM-DD');

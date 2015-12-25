@@ -1,16 +1,13 @@
 var express = require('express'),
     router = express.Router(),
-    mongoose = require('mongoose'),
-//Article = mongoose.model('Article');
     Article = require('../models/article');
-
 
 router
     .get('/api/articles', function (req, res, next) {
         var filter = {};
         if (req.query.filters) {
             filter = JSON.parse(req.query.filters);
-            if (filter.title == '' || filter.title == undefined) {
+            if (filter.title == '' || !filter.title) {
                 delete filter.title;
             } else {
                 filter.title = new RegExp(filter.title, "i");
@@ -21,6 +18,7 @@ router
         }
         var options = {
             filter: filter,
+            sortBy: req.query.sortBy,
             page: req.query.page - 1,
             count: req.query.count
         };
@@ -59,10 +57,6 @@ router
         if (modify.publish) {
             modify.time = {
                 publish: Date.now()
-            };
-        } else {
-            modify.time = {
-                publish: undefined
             };
         }
         Article.update2(req.params.id, modify, function (err) {

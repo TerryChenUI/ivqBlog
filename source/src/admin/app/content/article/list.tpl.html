@@ -30,20 +30,23 @@
     <table class="table datatable table-striped table-bordered table-hover">
         <thead>
         <tr>
-            <th width="80">
+            <th width="50">
                 序号
             </th>
             <th>
                 标题
             </th>
-            <th width="100">
+            <th width="80">
                 发布状态
             </th>
-            <th width="100">
+            <th width="80">
                 页面浏览
             </th>
-            <th width="180">
+            <th width="160">
                 创建时间
+            </th>
+            <th width="160">
+                发布时间
             </th>
             <th width="80">
                 操作
@@ -60,6 +63,7 @@
             <td>{{row.status}}</td>
             <td>{{row.views}}</td>
             <td>{{row.time.create}}</td>
+            <td>{{row.time.publish}}</td>
             <td><a class="btn btn-xs purple" ui-sref="editArticle({id:row._id})"><i class="fa fa-edit"></i>编辑</a></td>
             <td><a class="btn btn-xs red" href="javascript:void(0)" ng-click="remove(row._id)"><i class="fa fa-times"></i>删除</a></td>
         </tr>
