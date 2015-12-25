@@ -3,9 +3,10 @@ angular.module('common.util')
     .factory('tool', function () {
         return {
             trimSameProperties: function (initial, modified) {
+                var that = this;
                 $.each(modified, function (name) {
                     if (initial.hasOwnProperty(name) && _.isObject(modified[name])) {
-                        $scope.trimSameProperties(initial[name], modified[name]);
+                        that.trimSameProperties(initial[name], modified[name]);
                     } else if (modified[name] == initial[name]) {
                         delete modified[name];
                     }

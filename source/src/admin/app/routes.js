@@ -4,7 +4,7 @@
 'use strict';
 angular.module('app.admin')
     .config(["$locationProvider", '$stateProvider', '$urlRouterProvider', function ($locationProvider, $stateProvider, $urlRouterProvider) {
-        //$locationProvider.html5Mode(true);
+        //$locationProvider.html5Mode(true).hashPrefix('!');
         $urlRouterProvider.otherwise('/home');
 
         $stateProvider

@@ -1,14 +1,14 @@
 angular.module('app.admin.content')
     .controller('ListArticleCtrl', ['$scope', '$state', 'SweetAlert', 'CategoryService', 'ArticleService', function ($scope, $state, SweetAlert, CategoryService, ArticleService) {
         $scope.filterBy = {'categoryId': 0};
-        $scope.categoryOptions = [{name: '--请选择--', value: 0}];
+        $scope.categories = [{name: '--请选择--', value: 0}];
 
         $scope.initController = function () {
-            CategoryService.getCategories().then(function (response) {
-                _.each(response.data.rows, function (data) {
-                    $scope.categoryOptions.push({
-                        name: data.name,
-                        value: data._id
+            CategoryService.getAllCategories().then(function (data) {
+                data.forEach(function (obj) {
+                    $scope.categories.push({
+                        name: obj.name,
+                        value: obj._id
                     });
                 });
             });
@@ -52,11 +52,11 @@ angular.module('app.admin.content')
         $scope.categories = [{name: '--请选择--', value: 0}];
 
         $scope.initController = function () {
-            CategoryService.getCategories().then(function (response) {
-                response.data.rows.forEach(function (data) {
+            CategoryService.getAllCategories().then(function (data) {
+                data.forEach(function (obj) {
                     $scope.categories.push({
-                        name: data.name,
-                        value: data._id
+                        name: obj.name,
+                        value: obj._id
                     });
                 });
             });

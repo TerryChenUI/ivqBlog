@@ -50,8 +50,7 @@ router
         });
     })
     .get('/api/categories/parents', function (req, res, next) {
-        var filter = {parentId: 0};
-        Category.getAllByFilters(filter, function (err, categories) {
+        Category.getAllByFilters({parentId: 0}, function (err, categories) {
             res.send({
                 error: err,
                 data: categories

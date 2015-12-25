@@ -50,6 +50,7 @@ appAdmin.run(['$rootScope', '$window', '$location', '$cookieStore', '$http', fun
             //$window.location.href = 'login.html'
         }
     });
+
 }]);
 
 appAdmin.controller("AppAdminCtrl", ["$scope", "$window", "AuthenService", function ($scope, $window, AuthenService) {

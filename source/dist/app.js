@@ -27,11 +27,11 @@ app.use(bodyParser.urlencoded({extended: false}));
 app.use(cookieParser());
 app.use(express.static(path.join(__dirname, '')));//TODO:屏蔽访问后端文件
 
-//routes
 app.get('/', function (req, res) {
-    res.render('index.html')
+    res.render('index.html');
 });
 
+//routes
 app.use(articles);
 app.use(categories);
 app.use(users);
