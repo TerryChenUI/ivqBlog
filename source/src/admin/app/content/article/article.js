@@ -1,6 +1,6 @@
 angular.module('app.admin.content')
-    .controller('ListArticleCtrl', ['$scope', '$state', 'SweetAlert', 'CategoryService', 'ArticleService', function ($scope, $state, SweetAlert, CategoryService, ArticleService) {
-        $scope.filterBy = {'categoryId': 0};
+    .controller('ListArticleCtrl', ['$scope', '$state', 'SweetAlert', 'CategoryService', 'ArticleService', 'Tool', function ($scope, $state, SweetAlert, CategoryService, ArticleService, Tool) {
+        $scope.filterBy = {'title':'', 'categoryId': 0};
         $scope.categories = [{name: '--请选择--', value: 0}];
 
         $scope.initController = function () {
@@ -18,7 +18,7 @@ angular.module('app.admin.content')
             return ArticleService.getArticles(paramsObj).then(function (response) {
                 response.data.rows = _.each(response.data.rows, function (data) {
                     data.status = data.publish ? "已发布" : "未发布";
-                    data.time.create = moment(data.time.create).format('YYYY-MM-DD HH:mm:ss');
+                    data.time.create = Tool.convertTime(data.time.create);
                 });
                 return {
                     'rows': response.data.rows,
@@ -44,10 +44,12 @@ angular.module('app.admin.content')
 
         $scope.initController();
     }])
-    .controller('EditArticleCtrl', ['$scope', '$stateParams', '$state', '$timeout', 'SweetAlert', 'CategoryService', 'ArticleService', 'Upload', 'tool', function ($scope, $stateParams, $state, $timeout, SweetAlert, CategoryService, ArticleService, Upload, tool) {
+    .controller('EditArticleCtrl', ['$scope', '$stateParams', '$state', '$timeout', 'SweetAlert', 'CategoryService', 'ArticleService', 'Upload', 'Tool', function ($scope, $stateParams, $state, $timeout, SweetAlert, CategoryService, ArticleService, Upload, Tool) {
         var id = ($stateParams.id) ? parseInt($stateParams.id) : 0;
         $scope.originModel = {};
-        $scope.model = {};
+        $scope.model = {
+            author: 'ivqBlog'
+        };
         $scope.title = id > 0 ? '编辑文章' : '添加文章';
         $scope.categories = [{name: '--请选择--', value: 0}];
 
@@ -62,11 +64,12 @@ angular.module('app.admin.content')
             });
             if (id > 0) {
                 ArticleService.getArticleById(id).then(function (data) {
-                    data.time.create = moment(data.time.create).format('YYYY-MM-DD HH:mm:ss');
-                    data.time.update = moment(data.time.update).format('YYYY-MM-DD HH:mm:ss');
-                    data.time.publish = moment(data.time.publish).format('YYYY-MM-DD HH:mm:ss');
+                    data.time.create = Tool.convertTime(data.time.create);
+                    data.time.update = Tool.convertTime(data.time.update);
+                    if(data.time.publish)
+                        data.time.publish = Tool.convertTime(data.time.publish);
                     $scope.model = data;
-                    $scope.originModel = tool.deepCopy($scope.model);
+                    $scope.originModel = Tool.deepCopy($scope.model);
                 });
             } else {
                 $scope.model.categoryId = $scope.categories[0].value;
@@ -76,7 +79,7 @@ angular.module('app.admin.content')
         $scope.saveArticle = function () {
             $scope.model.content = UE.getEditor('editor').getContent();
             if (id > 0) {
-                var modifyModel = tool.trimSameProperties($scope.originModel, $scope.model);
+                var modifyModel = Tool.trimSameProperties($scope.originModel, $scope.model);
                 ArticleService.updateArticle(id, modifyModel, function () {
                     SweetAlert.updateSuccessfully();
                     $state.go('article');

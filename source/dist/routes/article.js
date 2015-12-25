@@ -7,8 +7,20 @@ var express = require('express'),
 
 router
     .get('/api/articles', function (req, res, next) {
+        var filter = {};
+        if (req.query.filters) {
+            filter = JSON.parse(req.query.filters);
+            if (filter.title == '' || filter.title == undefined) {
+                delete filter.title;
+            } else {
+                filter.title = new RegExp(filter.title, "i");
+            }
+            if (filter.categoryId == 0) {
+                delete filter.categoryId;
+            }
+        }
         var options = {
-            filter: {},
+            filter: filter,
             page: req.query.page - 1,
             count: req.query.count
         };
@@ -44,6 +56,15 @@ router
     })
     .put('/api/articles/:id', function (req, res, next) {
         var modify = req.body;
+        if (modify.publish) {
+            modify.time = {
+                publish: Date.now()
+            };
+        } else {
+            modify.time = {
+                publish: undefined
+            };
+        }
         Article.update2(req.params.id, modify, function (err) {
             if (err)
                 return res.send(err);

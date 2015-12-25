@@ -22,7 +22,6 @@ module.exports = {
         ".doc", ".docx", ".xls", ".xlsx", ".ppt", ".pptx", ".pdf", ".txt", ".md", ".xml"
     ],
 
-
     "imageManagerActionName": "listimage",
     "imageManagerListPath": "/assets/upload/ue/images/",
     "imageManagerListSize": 20,

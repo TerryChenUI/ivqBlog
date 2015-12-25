@@ -27,9 +27,9 @@ app.use(bodyParser.urlencoded({extended: false}));
 app.use(cookieParser());
 app.use(express.static(path.join(__dirname, '')));//TODO:屏蔽访问后端文件
 
-app.get('/', function (req, res) {
-    res.render('index.html');
-});
+//app.get('/', function (req, res) {
+//    res.render('index.html');
+//});
 
 //routes
 app.use(articles);
@@ -67,6 +67,5 @@ app.use(plugins);
 //        error: {}
 //    });
 //});
-
 
 module.exports = app;

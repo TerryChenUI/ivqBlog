@@ -8,22 +8,25 @@
                 <span class="icon-bar"></span>
                 <span class="icon-bar"></span>
             </button>
-            <a class="navbar-brand" ui-sref="home">Single UI</a>
+            <a class="navbar-brand" ui-sref="home">ivqBlog</a>
         </div>
         <div id="navbar" class="navbar-collapse collapse">
             <ul class="nav navbar-nav">
                 <li class="active">
                     <a href="javascript:void(0)" class="blog-nav-item" ui-sref="home">首页</a>
                 </li>
-                <li ng-repeat="menu in menus">
-                    <a ng-if="menu.subMenu.length == 0" class="blog-nav-item" ui-sref="{{menu.Link}}">{{menu.Name}}</a>
-                    <a ng-if="menu.subMenu.length != 0" href="javascript:void(0)" class="dropdown-toggle blog-nav-item"
-                       data-toggle="dropdown" role="button" aria-expanded="false">{{menu.Name}}<span class="caret"></span></a>
-                    <ul ng-if="menu.subMenu.length != 0" class="dropdown-menu" role="menu">
-                        <li ng-repeat="subMenu in menu.subMenu"><a ui-sref="list({categoryId:subMenu.Id})">{{subMenu.Name}}</a>
-                        </li>
-                    </ul>
+                <li ng-repeat="category in categories">
+                    <a class="blog-nav-item" href="javascript:void(0)" ui-sref="list({categoryId:category._id})">{{category.name}}</a>
                 </li>
+                <!--<li ng-repeat="menu in menus">-->
+                <!--<a ng-if="menu.subMenu.length == 0" class="blog-nav-item" ui-sref="{{menu.Link}}">{{menu.Name}}</a>-->
+                <!--<a ng-if="menu.subMenu.length != 0" href="javascript:void(0)" class="dropdown-toggle blog-nav-item"-->
+                <!--data-toggle="dropdown" role="button" aria-expanded="false">{{menu.Name}}<span class="caret"></span></a>-->
+                <!--<ul ng-if="menu.subMenu.length != 0" class="dropdown-menu" role="menu">-->
+                <!--<li ng-repeat="subMenu in menu.subMenu"><a ui-sref="list({categoryId:subMenu.Id})">{{subMenu.Name}}</a>-->
+                <!--</li>-->
+                <!--</ul>-->
+                <!--</li>-->
             </ul>
         </div>
     </div>

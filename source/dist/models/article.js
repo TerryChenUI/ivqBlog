@@ -31,8 +31,6 @@ articleSchema.pre('save', function (next) {
         if (this.publish) {
             this.time.publish = Date.now();
         }
-    } else {
-        this.time.update = Date.now();
     }
     next();
 });

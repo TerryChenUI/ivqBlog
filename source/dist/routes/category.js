@@ -3,34 +3,16 @@ var express = require('express'),
     mongoose = require('mongoose'),
     Category = require('../models/category');
 
-//req.params.xxxxx
-//req.query.xxxxx
-//req.body.xxxxx
-
 router
     .get('/api/categories', function (req, res, next) {
         var options = {
-            filter: {},
             page: req.query.page - 1,
             count: req.query.count
         };
         Category.list(options, function (err, categories) {
-            var rows = [];
-            categories.forEach(function (obj) {
-                var category = obj.toObject();
-                if (category.parentId == 0) {
-                    category.parentName = '';
-                    rows.push(category);
-                } else {
-                    Category.getById(category.parentId, function (err, parentCategory) {
-                        category.parentName = parentCategory.name;
-                        rows.push(category);
-                    });
-                }
-            });
             Category.count({}, function (err, total) {
                 res.send({
-                    rows: rows,
+                    rows: categories,
                     pagination: {
                         count: parseInt(req.query.count),
                         page: parseInt(req.query.page),
@@ -42,15 +24,7 @@ router
         });
     })
     .get('/api/categories/all', function (req, res, next) {
-        Category.getAllByFilters({}, function (err, categories) {
-            res.send({
-                error: err,
-                data: categories
-            });
-        });
-    })
-    .get('/api/categories/parents', function (req, res, next) {
-        Category.getAllByFilters({parentId: 0}, function (err, categories) {
+        Category.getAllByFilters({enabled:true}, function (err, categories) {
             res.send({
                 error: err,
                 data: categories

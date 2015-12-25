@@ -17,11 +17,11 @@
             <th width="80">
                 序号
             </th>
-            <th width="160">
+            <th width="200">
                 类别
             </th>
-            <th width="160">
-                父类别
+            <th width="80">
+                排序
             </th>
             <th>
                 描述
@@ -41,7 +41,7 @@
         <tr ng-repeat="row in rows">
             <td>{{row._id}}</td>
             <td>{{row.name}}</td>
-            <td>{{row.parentName}}</td>
+            <td>{{row.displayOrder}}</td>
             <td>{{row.description}}</td>
             <td>{{row.status}}</td>
             <td><a class="btn btn-xs purple" ui-sref="editCategory({id:row._id})"><i class="fa fa-edit"></i>编辑</a></td>

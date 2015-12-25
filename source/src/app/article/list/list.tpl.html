@@ -1,39 +1,27 @@
 <a name="post-top"></a>
-<div class="row post-item" ng-repeat="article in articles">
-    <div class="col-md-4">
-        <div class="post-item-thumb">
-            <a ui-sref="detail({articleId:article.Id})" title="{{article.Title}}" target="_blank">
-                <img ng-src="{{article.CoverImgPath}}" alt="{{article.Title}}"/>
-            </a>
+<div class="post-list">
+    <div class="post-item" ng-repeat="article in articles">
+        <div class="info">
+            分类：<a ui-sref="list({categoryId:article.CategoryId})">{{article.categoryName}}</a> |
+            <span>作者：</span>{{article.author}} | <span>评论：</span>{{article.views}}
+        </div>
+        <div class="title">
+            <span>[{{article.time.publish}}]</span>
+            <a ui-sref="detail({articleId:article._id})" title="{{article.title}}">{{article.title}}</a>
         </div>
     </div>
-    <div class="col-md-8">
-        <h2 class="post-title">
-            <a ui-sref="detail({articleId:article.Id})" title="{{article.Title}}"
-               target="_blank">{{article.Title}}</a>
-        </h2>
-        <p class="post-meta">{{article.PublishTime}} | <span>分类：</span><a
-                ui-sref="list({categoryId:article.CategoryId})" target="_blank">{{article.CategoryName}}</a> |
-            <span>作者：</span>{{article.Author}} | <span>评论：</span>{{article.Views}}</p>
-
-        <div class="post-item-description">
-            {{article.Description}}
-        </div>
-    </div>
-</div>
-<div class="row">
     <div class="page-container">
-    <pagination
-            boundary-links="true"
-            total-items="totalItems"
-            ng-model="currentPage"
-            items-per-page="itemsPerPage"
-            class="pagination-sm"
-            ng-change="pageChanged()"
-            previous-text="&lsaquo;"
-            next-text="&rsaquo;"
-            first-text="&laquo;"
-            last-text="&raquo;">
-    </pagination>
+        <pagination
+                boundary-links="true"
+                total-items="totalItems"
+                ng-model="currentPage"
+                items-per-page="itemsPerPage"
+                class="pagination-sm"
+                ng-change="pageChanged()"
+                previous-text="&lsaquo;"
+                next-text="&rsaquo;"
+                first-text="&laquo;"
+                last-text="&raquo;">
+        </pagination>
     </div>
 </div>

@@ -27,35 +27,24 @@ angular.module('app.admin.content')
                 });
         };
     }])
-    .controller('EditCategoryCtrl', ['$scope', '$stateParams', '$state', 'SweetAlert', 'CategoryService', 'tool', function ($scope, $stateParams, $state, SweetAlert, CategoryService, tool) {
+    .controller('EditCategoryCtrl', ['$scope', '$stateParams', '$state', 'SweetAlert', 'CategoryService', 'Tool', function ($scope, $stateParams, $state, SweetAlert, CategoryService, Tool) {
         var id = ($stateParams.id) ? parseInt($stateParams.id) : 0;
         $scope.originModel = {};
         $scope.model = {};
         $scope.title = id > 0 ? '编辑类别' : '添加类别';
-        $scope.categories = [{name: '[父类别]', value: 0}];
 
         $scope.initController = function () {
-            CategoryService.getParentCategories().then(function (data) {
-                data.forEach(function (obj) {
-                    $scope.categories.push({
-                        name: obj.name,
-                        value: obj._id
-                    });
-                });
-            });
             if (id > 0) {
                 CategoryService.getCategoryById(id).then(function (data) {
                     $scope.model = data;
-                    $scope.originModel = tool.deepCopy($scope.model);
+                    $scope.originModel = Tool.deepCopy($scope.model);
                 });
-            } else {
-                $scope.model.parentId = $scope.categories[0].value;
             }
         };
 
         $scope.saveCategory = function () {
             if (id > 0) {
-                var modifyModel = tool.trimSameProperties($scope.originModel, $scope.model);
+                var modifyModel = Tool.trimSameProperties($scope.originModel, $scope.model);
                 CategoryService.updateCategory(id, modifyModel, function () {
                     SweetAlert.updateSuccessfully();
                     $state.go('category');

@@ -51,26 +51,26 @@
                                                   name="description"></textarea>
                                     </div>
                                 </div>
-                                <div class="form-group">
-                                    <label class="control-label col-md-2">封面图</label>
-                                    <div class="col-md-4">
-                                        <button type="file" ngf-select="uploadImage($file, $invalidFiles)"
-                                                accept="image/*" ngf-max-height="1000" ngf-max-size="1MB">
-                                            上传图片
-                                        </button>
-                                        <div ng-if="showImg">
-                                            <img ng-src="{{imgUrl}}" width="200"/>
-                                        </div>
-                                        <!--File:-->
-                                        <!--<div>{{f.name}} {{errFile.name}} {{errFile.$error}}-->
-                                        <!--{{errFile.$errorParam}}-->
-                                        <!--<span class="progress" ng-show="f.progress >= 0">-->
-                                        <!--<div style="width:{{f.progress}}%"-->
-                                        <!--ng-bind="f.progress + '%'"></div>-->
-                                        <!--</span>-->
-                                    </div>
-                                    {{errorMsg}}
-                                </div>
+                                <!--<div class="form-group">-->
+                                    <!--<label class="control-label col-md-2">封面图</label>-->
+                                    <!--<div class="col-md-4">-->
+                                        <!--<button type="file" ngf-select="uploadImage($file, $invalidFiles)"-->
+                                                <!--accept="image/*" ngf-max-height="1000" ngf-max-size="1MB">-->
+                                            <!--上传图片-->
+                                        <!--</button>-->
+                                        <!--<div ng-if="showImg">-->
+                                            <!--<img ng-src="{{imgUrl}}" width="200"/>-->
+                                        <!--</div>-->
+                                        <!--&lt;!&ndash;File:&ndash;&gt;-->
+                                        <!--&lt;!&ndash;<div>{{f.name}} {{errFile.name}} {{errFile.$error}}&ndash;&gt;-->
+                                        <!--&lt;!&ndash;{{errFile.$errorParam}}&ndash;&gt;-->
+                                        <!--&lt;!&ndash;<span class="progress" ng-show="f.progress >= 0">&ndash;&gt;-->
+                                        <!--&lt;!&ndash;<div style="width:{{f.progress}}%"&ndash;&gt;-->
+                                        <!--&lt;!&ndash;ng-bind="f.progress + '%'"></div>&ndash;&gt;-->
+                                        <!--&lt;!&ndash;</span>&ndash;&gt;-->
+                                    <!--</div>-->
+                                    <!--{{errorMsg}}-->
+                                <!--</div>-->
                             </div>
                             <div class="form-group">
                                 <label class="control-label col-md-2">正文</label>
@@ -86,19 +86,19 @@
                                     </label>
                                 </div>
                             </div>
-                            <div class="form-group" ng-if="model._id">
+                            <div class="form-group" ng-if="model.time.create">
                                 <label class="control-label col-md-2">创建时间</label>
                                 <div class="col-md-4">
                                     <label class="form-label">{{model.time.create}}</label>
                                 </div>
                             </div>
-                            <div class="form-group" ng-if="model._id">
+                            <div class="form-group" ng-if="model.time.update">
                                 <label class="control-label col-md-2">更新时间</label>
                                 <div class="col-md-4">
                                     <label class="form-label">{{model.time.update}}</label>
                                 </div>
                             </div>
-                            <div class="form-group" ng-if="model._id">
+                            <div class="form-group" ng-if="model.time.publish">
                                 <label class="control-label col-md-2">发布时间</label>
                                 <div class="col-md-4">
                                     <label class="form-label">{{model.time.publish}}</label>

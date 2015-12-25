@@ -21,6 +21,6 @@ var app = angular.module('app', [
     'app.article'
 ]);
 
-app.controller('AppCtrl', [function () {
-
+app.controller('AppCtrl', ['$rootScope', function ($rootScope) {
+    $rootScope.currentYear = new Date().getFullYear();
 }]);

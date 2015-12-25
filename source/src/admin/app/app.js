@@ -53,7 +53,8 @@ appAdmin.run(['$rootScope', '$window', '$location', '$cookieStore', '$http', fun
 
 }]);
 
-appAdmin.controller("AppAdminCtrl", ["$scope", "$window", "AuthenService", function ($scope, $window, AuthenService) {
+appAdmin.controller("AppAdminCtrl", ["$rootScope", "$scope", "$window", "AuthenService", function ($rootScope, $scope, $window, AuthenService) {
+    $rootScope.currentYear = new Date().getFullYear();
     //$scope.logout = function(){
     //    AuthenService.clearCredentials();
     //    $window.location.href = "login.html";

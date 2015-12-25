@@ -1,7 +1,6 @@
 "use strict";
 angular.module('app.article')
-    .controller('ListCtrl', ['$scope', '$stateParams', 'ArticleService', 'CategoryService', function ($scope, $stateParams, ArticleService, CategoryService) {
-        //console.log($stateParams.categoryId);
+    .controller('ListCtrl', ['$scope', '$stateParams', 'ArticleService', 'CategoryService', 'Tool', function ($scope, $stateParams, ArticleService, CategoryService, Tool) {
         $scope.articles = [];
         $scope.currentPage = 1;
         $scope.itemsPerPage = 2;
@@ -20,12 +19,17 @@ angular.module('app.article')
 
         function getData() {
             var paramsObj = {
-                categoryId: $stateParams.categoryId,
+                filters: {
+                    categoryId: $stateParams.categoryId
+                },
                 page: $scope.currentPage,
                 count: $scope.itemsPerPage
             };
             ArticleService.getArticles(paramsObj).then(function (res) {
                 $scope.articles = res.data.rows;
+                $scope.articles.forEach(function (obj) {
+                    obj.time.publish = Tool.convertTime(obj.time.publish, 'YYYY-MM-DD');
+                });
                 $scope.totalItems = res.data.pagination.size;
             });
         }

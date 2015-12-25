@@ -1,17 +1,14 @@
 <div class="row post-detail">
-    <h2 class="post-title">{{article.Title}}</h2>
+    <h2 class="post-title">{{article.title}}</h2>
 
-    <p class="post-meta">{{article.PublishTime}} | 分类：<a
-            ui-sref="list({categoryId:article.CategoryId})">{{article.CategoryName}}</a> |
-        作者：{{article.Author}} | 评论：{{article.Views}}</p>
+    <p class="post-meta">{{article.time.publish}} | 分类：<a
+            ui-sref="list({categoryId:article.categoryId})">{{article.CategoryName}}</a> |
+        作者：{{article.author}} | 评论：{{article.views}}</p>
 
     <div class="post-description">
-        {{article.Description}}
+        {{article.description}}
     </div>
 
-    <div class="post-content">
-        {{article.Content}}
+    <div class="post-content" ng-bind-html="article.content">
     </div>
 </div>
-
-

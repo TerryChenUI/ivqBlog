@@ -5,8 +5,7 @@ var categorySchema = new mongoose.Schema({
     name: String,
     description: String,
     displayOrder: Number,
-    enabled: Boolean,
-    parentId: Number
+    enabled: Boolean
 }, {versionKey: false});
 
 categorySchema.plugin(autoIncrement.plugin, {model: 'Category', startAt: 1});
