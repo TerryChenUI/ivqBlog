@@ -40,8 +40,6 @@
             };
             return this.$http(config).then(function (res) {
                 return successCB(res);
-            }).then(function(error){
-                return errorCB(res);
             });
         };
 
@@ -53,8 +51,6 @@
             };
             return this.$http(config).then(function (res) {
                 return successCB(res);
-            }).then(function(error){
-                return errorCB(res.data);
             });
         };
 
@@ -65,8 +61,6 @@
             };
             return this.$http(config).then(function (res) {
                 return successCB(res);
-            }).then(function(error){
-                return errorCB(res);
             });
         };
 

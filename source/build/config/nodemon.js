@@ -8,17 +8,17 @@ var gulp = require("gulp"),
 gulp.task('nodemon', function () {
 
     nodemon({
-        script: setting.dest.root + 'bin/www',
+        script: setting.dest.server + 'bin/www',
         ext: 'html css js',
         watch: [
-            setting.dest.root + 'bin',
-            setting.dest.root + 'models',
-            setting.dest.root + 'routes',
-            setting.dest.root + 'app.js',
-            setting.dest.root + 'db.js'
+            setting.dest.server + 'bin',
+            setting.dest.server + 'models',
+            setting.dest.server + 'routes',
+            setting.dest.server + 'app.js',
+            setting.dest.server + 'db.js'
         ],
         ignore: [
-            setting.dest.root + 'node_modules/**'
+            setting.dest.server + 'node_modules/**'
         ]
     })
         .on('start', function () {

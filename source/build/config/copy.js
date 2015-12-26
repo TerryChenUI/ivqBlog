@@ -4,7 +4,12 @@ var gulp = require('gulp'),
     browserSync = require('browser-sync'),
     setting = require('../setting');
 
-gulp.task('copy', ['copy:lib', 'copy:plugins', 'copy:assets', 'copy:js']);
+gulp.task('copy', ['copy:favicon', 'copy:lib', 'copy:plugins', 'copy:assets', 'copy:js']);
+
+gulp.task('copy:favicon', function () {
+    return gulp.src('favicon.ico', {base: 'src'})
+        .pipe(gulp.dest(setting.dest.root));
+});
 
 gulp.task('copy:lib', function () {
     return gulp.src('lib/**/*', {base: 'src'})

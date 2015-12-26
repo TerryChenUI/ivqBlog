@@ -55,9 +55,20 @@ router
     .put('/api/articles/:id', function (req, res, next) {
         var modify = req.body;
         if (modify.publish) {
-            modify.time = {
-                publish: Date.now()
-            };
+            modify["time.publish"] = Date.now();
+            delete modify.publish;
+        }
+        if (modify.meta != undefined) {
+            if (modify.meta.title != undefined) {
+                modify["meta.title"] = modify.meta.title;
+            }
+            if (modify.meta.keyword != undefined) {
+                modify["meta.keyword"] = modify.meta.keyword;
+            }
+            if (modify.meta.description != undefined) {
+                modify["meta.description"] = modify.meta.description;
+            }
+            delete modify.meta;
         }
         Article.update2(req.params.id, modify, function (err) {
             if (err)
