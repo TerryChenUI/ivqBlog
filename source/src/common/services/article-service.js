@@ -28,10 +28,11 @@
             return this.$http(config);
         };
 
-        ArticleService.prototype.getArticleById = function (id, successCallback) {
+        ArticleService.prototype.getArticleById = function (id, params, successCallback) {
             var config = {
                 method: 'GET',
-                url: this.serviceEndpoint + "articles/" + id
+                url: this.serviceEndpoint + "articles/" + id,
+                params: params
             };
             return this.appHttp.request(config);
         };

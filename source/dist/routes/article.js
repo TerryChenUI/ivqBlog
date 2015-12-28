@@ -38,6 +38,18 @@ router
     })
     .get('/api/articles/:id', function (req, res, next) {
         Article.get(req.params.id, function (err, article) {
+            var action = req.query.action;
+            if(action == 'updateView'){
+                article.views += 1;
+                article.save(function(err){
+                    if (err)
+                        return res.send(err);
+                    res.send({
+                        error: err,
+                        data: article
+                    });
+                });
+            }
             res.send({
                 error: err,
                 data: article

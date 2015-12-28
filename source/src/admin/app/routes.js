@@ -17,6 +17,17 @@ angular.module('app.admin')
                     label: '首页'
                 }
             })
+            .state('account', {
+                url: '/account',
+                templateUrl: 'app/setting/account/account.tpl.html',
+                controller: 'AccountCtrl',
+                ncyBreadcrumb: {
+                    parent: function($scope) {
+                        return 'home';
+                    },
+                    label: '账号设置'
+                }
+            })
             .state('category', {
                 url: '/category/list',
                 templateUrl: 'app/content/category/list.tpl.html',
