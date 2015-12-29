@@ -1,11 +1,11 @@
 var express = require('express'),
+    router = express.Router(),
     fs = require('fs'),
     gm = require('gm'),
     path = require('path'),
     Busboy = require('busboy'),
     ueConfig = require('../config/ueConfig.js'),
-    setting = require('../config/setting.js'),
-    router = express.Router();
+    setting = require('../config/setting.js');
 
 router
     .post('/api/uploads', function (req, res, next) {

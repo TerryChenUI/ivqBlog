@@ -49,9 +49,9 @@ articleSchema.statics = {
             .exec(cb);
     },
 
-    get: function (id, cb) {
+    get: function (id) {
         this.findOne({_id: id})
-            .exec(cb);
+            .exec();
     },
 
     update2: function (id, modify, cb) {

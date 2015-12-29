@@ -39,7 +39,7 @@ appAdmin.run(['$rootScope', '$window', '$location', '$cookieStore', '$http', fun
     //cookie
     $rootScope.globals = $cookieStore.get('globals') || {};
     if ($rootScope.globals.currentUser) {
-        $http.defaults.headers.common['Authorization'] = 'Basic ' + $rootScope.globals.currentUser.authdata; // jshint ignore:line
+        $http.defaults.headers.common['Authorization'] = $rootScope.globals.currentUser.token;
     }
     $rootScope.$on('$locationChangeStart', function (event, next, current) {
         if($window.location.href.indexOf('login') > -1){

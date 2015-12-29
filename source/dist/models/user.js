@@ -12,7 +12,12 @@ var userSchema = new mongoose.Schema({
 
 userSchema.plugin(autoIncrement.plugin, {model: 'User', startAt: 1});
 
-userSchema.methods = {};
+userSchema.methods = {
+    //validPassword: function (password) {
+    //    var user = this.findOne({password:password}).exec(cb);
+    //    return user != null;
+    //}
+};
 
 userSchema.statics = {
 
@@ -30,8 +35,13 @@ userSchema.statics = {
             .exec(cb);
     },
 
-    update: function (id, user, cb) {
-        this.update({_id: id}, {$set: user})
+    getByFilter: function (filter, cb) {
+        this.findOne(filter)
+            .exec(cb);
+    },
+
+    update2: function (id, modify, cb) {
+        this.update({_id: id}, {$set: modify})
             .exec(cb);
     },
 

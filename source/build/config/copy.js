@@ -7,7 +7,7 @@ var gulp = require('gulp'),
 gulp.task('copy', ['copy:favicon', 'copy:lib', 'copy:plugins', 'copy:assets', 'copy:js']);
 
 gulp.task('copy:favicon', function () {
-    return gulp.src('favicon.ico', {base: 'src'})
+    return gulp.src('src/favicon.ico', {base: 'src'})
         .pipe(gulp.dest(setting.dest.root));
 });
 
