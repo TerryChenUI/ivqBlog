@@ -10,8 +10,8 @@ angular.module('app.admin.common')
 
             AuthenService.Login($scope.model.username, $scope.model.password, function (response) {
                 if(response.token){
-                    AuthenService.setCredentials(token, $scope.data);
-                    $window.location.href = "index.html";
+                    AuthenService.setCredentials(response.token, response.data);
+                    $window.location.href = "/admin";
                 } else {
                     $scope.errorMessage = "用户名或密码错误";
                 }

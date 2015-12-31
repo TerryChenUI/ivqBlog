@@ -50,7 +50,7 @@ articleSchema.statics = {
     },
 
     get: function (id) {
-        this.findOne({_id: id})
+        return this.findOne({_id: id})
             .exec();
     },
 

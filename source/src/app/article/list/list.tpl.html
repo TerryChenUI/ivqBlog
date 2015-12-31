@@ -2,7 +2,7 @@
 <div class="post-list">
     <div class="post-item" ng-repeat="article in articles">
         <div class="info">
-            分类：<a ui-sref="list({categoryId:article.CategoryId})">{{article.categoryName}}</a> |
+            分类：<a ui-sref="list({categoryId:article.categoryId})">{{article.categoryName}}</a> |
             <span>作者：{{article.author}}</span> | <span>浏览：{{article.views}}</span> | <span>评论：</span>
         </div>
         <div class="title">

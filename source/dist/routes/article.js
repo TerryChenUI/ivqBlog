@@ -1,6 +1,7 @@
 var express = require('express'),
     router = express.Router(),
-    Article = require('../models/article');
+    Article = require('../models/article'),
+    Category = require('../models/category');
 
 router
     .get('/api/articles', function (req, res, next) {
@@ -37,32 +38,57 @@ router
         });
     })
     .get('/api/articles/:id', function (req, res, next) {
-        var promise = new Promise(Article.get(req.params.id));
+        var promise = Article.get(req.params.id);
         promise.then(function (article) {
-            var action = req.query.action;
-            if (action == 'updateView') {
-                resolve(article);
-            } else {
-                res.send({
-                    error: null,
-                    data: article
-                });
-            }
-        }).then(function (article) {
-            article.views += 1;
-            article.save(function (err) {
-                if (err)
-                    return res.send(err);
-                res.send({
-                    error: err,
-                    data: article
-                });
+            Category.getById(article.categoryId, function (err, category) {
+                var action = req.query.action;
+                if (action == 'updateView') {
+                    article.views += 1;
+                    article.save(function (err) {
+                        var article = article.toObject();
+                        article.categoryName = category.name;
+                        res.send({
+                            data: article
+                        });
+                    });
+                } else {
+                    var article = article.toObject();
+                    article.categoryName = category.name;
+                    res.send({
+                        data: article
+                    });
+                }
             });
-        }).catch(function (err) {
+        }, function (err) {
             res.send({
                 error: err
             });
         });
+        //var promise = Article.get(req.params.id);
+        //promise.then(function (article) {
+        //    var action = req.query.action;
+        //    if (action == 'updateView') {
+        //        resolve(article);
+        //    } else {
+        //        res.send({
+        //            data: article
+        //        });
+        //    }
+        //}, function (err) {
+        //    res.send({
+        //        error: err
+        //    });
+        //}).then(function (article) {
+        //    article.views += 1;
+        //    article.save(function (err) {
+        //        if (err)
+        //            return res.send(err);
+        //        res.send({
+        //            error: err,
+        //            data: article
+        //        });
+        //    });
+        //});
         //Article.get(req.params.id, function (err, article) {
         //    var action = req.query.action;
         //    if(action == 'updateView'){

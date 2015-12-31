@@ -51,15 +51,16 @@ router
         User.getByFilter({userName:req.body.userName}, function (err, user) {
             if (err)
                 return res.send(err);
+
             if (!user)
                 return res.send(err);
 
             var password = md5(req.body.password);
-            if (!user.validPassword(password))
+            if (password != user.password)
                 return res.send(err);
 
             //token
-            var expires = moment().add('days', 7).valueOf();
+            var expires = moment().add(7, 'days').valueOf();
             var token = jwt.encode({
                 iss: user.id,
                 exp: expires
