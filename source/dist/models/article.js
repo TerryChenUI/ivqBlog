@@ -5,7 +5,7 @@ var articleSchema = new mongoose.Schema({
     title: String,
     description: String,
     meta: {
-        title: String,
+        author: String,
         description: String,
         keyword: String
     },
@@ -49,9 +49,9 @@ articleSchema.statics = {
             .exec(cb);
     },
 
-    get: function (id) {
+    get: function (id, cb) {
         return this.findOne({_id: id})
-            .exec();
+            .exec(cb);
     },
 
     update2: function (id, modify, cb) {

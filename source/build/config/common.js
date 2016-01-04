@@ -9,6 +9,7 @@ module.exports = {
             './lib/bootstrap/js/bootstrap.min.js',
             './lib/angular/angular.min.js',
             './lib/angular-ui-router/angular-ui-router.min.js',
+            './lib/ui-router-metatags/ui-router-metatags.min.js',
             './lib/angular-bootstrap/ui-bootstrap.min.js',
             './lib/angular-bootstrap/ui-bootstrap-tpls.min.js',
             './lib/underscore/underscore-min.js',

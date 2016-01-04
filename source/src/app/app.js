@@ -10,6 +10,7 @@ angular.module('app.article', ['ui.bootstrap', 'common.services']);
 
 var app = angular.module('app', [
     'ui.router',
+    'ui.router.metatags',
     'ui.bootstrap',
     'common.directives',
     'common.config',
@@ -24,3 +25,9 @@ var app = angular.module('app', [
 app.controller('AppCtrl', ['$rootScope', function ($rootScope) {
     $rootScope.currentYear = new Date().getFullYear();
 }]);
+
+function runBlock($rootScope, MetaTags) {
+    $rootScope.MetaTags = MetaTags;
+}
+
+app.run(['$rootScope', 'MetaTags', runBlock]);

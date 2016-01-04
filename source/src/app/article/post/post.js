@@ -1,6 +1,6 @@
 "use strict";
 angular.module('app.article')
-    .controller('DetailCtrl', ['$scope', '$stateParams', '$sce', 'ArticleService', 'Tool', function ($scope, $stateParams, $sce, ArticleService, Tool) {
+    .controller('PostCtrl', ['$scope', '$stateParams', '$sce', 'ArticleService', 'Tool', function ($scope, $stateParams, $sce, ArticleService, Tool) {
 
         $scope.initController = function () {
             ArticleService.getArticleById($stateParams.articleId, {action: 'updateView'}).then(function (data) {

@@ -1,7 +1,8 @@
 var express = require('express'),
     router = express.Router(),
     Article = require('../models/article'),
-    Category = require('../models/category');
+    Category = require('../models/category'),
+    async = require('async');
 
 router
     .get('/api/articles', function (req, res, next) {
@@ -38,75 +39,33 @@ router
         });
     })
     .get('/api/articles/:id', function (req, res, next) {
-        var promise = Article.get(req.params.id);
-        promise.then(function (article) {
+        var action = req.query.action;
+        var categoryName = null;
+        Article.get(req.params.id, function (err, article) {
+            if (err)
+                return res.send({error: err});
             Category.getById(article.categoryId, function (err, category) {
-                var action = req.query.action;
+                if (err)
+                    return res.send({error: err});
+                categoryName = category.name;
                 if (action == 'updateView') {
                     article.views += 1;
-                    article.save(function (err) {
-                        var article = article.toObject();
-                        article.categoryName = category.name;
+                    article.save(function (err, article) {
+                        if (err)
+                            return res.send({error: err});
+                        article = article.toObject();
+                        article.categoryName = categoryName;
                         res.send({
                             data: article
                         });
                     });
                 } else {
-                    var article = article.toObject();
-                    article.categoryName = category.name;
                     res.send({
                         data: article
                     });
                 }
             });
-        }, function (err) {
-            res.send({
-                error: err
-            });
         });
-        //var promise = Article.get(req.params.id);
-        //promise.then(function (article) {
-        //    var action = req.query.action;
-        //    if (action == 'updateView') {
-        //        resolve(article);
-        //    } else {
-        //        res.send({
-        //            data: article
-        //        });
-        //    }
-        //}, function (err) {
-        //    res.send({
-        //        error: err
-        //    });
-        //}).then(function (article) {
-        //    article.views += 1;
-        //    article.save(function (err) {
-        //        if (err)
-        //            return res.send(err);
-        //        res.send({
-        //            error: err,
-        //            data: article
-        //        });
-        //    });
-        //});
-        //Article.get(req.params.id, function (err, article) {
-        //    var action = req.query.action;
-        //    if(action == 'updateView'){
-        //        article.views += 1;
-        //        article.save(function(err){
-        //            if (err)
-        //                return res.send(err);
-        //            res.send({
-        //                error: err,
-        //                data: article
-        //            });
-        //        });
-        //    }
-        //    res.send({
-        //        error: err,
-        //        data: article
-        //    });
-        //});
     })
     .post('/api/articles', function (req, res, next) {
         var article = new Article(req.body);

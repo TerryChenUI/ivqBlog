@@ -22,6 +22,7 @@
     "ng-tasty": "~0.5.8",
     "angular-breadcrumb": "~0.4.1",
     "sweetalert": "~1.1.3",
-    "moment": "~2.10.6"
+    "moment": "~2.10.6",
+    "ui-router-metatags": "~1.0.3"
   }
 }

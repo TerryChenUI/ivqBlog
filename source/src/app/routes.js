@@ -1,35 +1,68 @@
 'use strict';
 angular.module('app')
-    .config(["$locationProvider", '$stateProvider', '$urlRouterProvider', function ($locationProvider, $stateProvider, $urlRouterProvider) {
+    .config(["$locationProvider", '$stateProvider', '$urlRouterProvider', function ($locationProvider, $stateProvider, $urlRouterProvider, UIRouterMetatagsProvider) {
         //$locationProvider.html5Mode(true);
-        //$urlRouterProvider
-        //    .when('/admin', '/admin')
-        //    .otherwise('/home');
+        //$locationProvider.hashPrefix('!');
+
         $urlRouterProvider.otherwise('/home');
+
 
         $stateProvider
             .state('home', {
                 url: '/home',
-                views: {
-                    '': {templateUrl: 'article/list/list.tpl.html', controller: 'ListCtrl'}
-                    //'': {templateUrl: 'home/home.tpl.html'},
-                    //'post@home': {templateUrl: 'article/list/post.tpl.html', controller: 'ListCtrl'},
-                    //'about@home': {templateUrl: 'sidebar/about.tpl.html'},
-                    //'archives@home': {templateUrl: 'sidebar/archives.tpl.html'}
+                templateUrl: 'article/list/list.tpl.html',
+                controller: 'ListCtrl',
+                metaTags: {
+                    title: 'ivqBlog - show you code',
+                    description: 'This is the ivqBlog blog',
+                    keywords: 'ivqBlog blog develop',
+                    author: 'ivqBlog'
                 }
             })
             .state('list', {
                 url: '/list/:categoryId',
-                views: {
-                    '': {templateUrl: 'article/list/list.tpl.html', controller: 'ListCtrl'}
-                    //'post@list': {templateUrl: 'article/list/post.tpl.html', controller: 'ListCtrl'},
-                    //'about@list': {templateUrl: 'sidebar/about.tpl.html'},
-                    //'archives@list': {templateUrl: 'sidebar/archives.tpl.html'}
+                templateUrl: 'article/list/list.tpl.html',
+                controller: 'ListCtrl',
+                resolve: {
+                    category: function (CategoryService, $stateParams) {
+                        return CategoryService.getCategoryById($stateParams.categoryId);
+                    }
+                },
+                metaTags: {
+                    title: function (category) {
+                        return category.name;
+                    },
+                    description: function (category) {
+                        return category.name;
+                    },
+                    keywords: function (category) {
+                        return category.name;
+                    },
+                    author: 'ivqBlog'
                 }
             })
-            .state('detail', {
-                url: '/detail/:articleId',
-                templateUrl: 'article/detail/detail.tpl.html',
-                controller: 'DetailCtrl'
+            .state('post', {
+                url: '/post/:articleId',
+                templateUrl: 'article/post/post.tpl.html',
+                controller: 'PostCtrl',
+                resolve: {
+                    article: function (ArticleService, $stateParams) {
+                        return ArticleService.getArticleById($stateParams.articleId);
+                    }
+                },
+                metaTags: {
+                    title: function (article) {
+                        return article.title;
+                    },
+                    description: function (article) {
+                        return article.meta.description;
+                    },
+                    keywords: function (article) {
+                        return article.meta.keyword;
+                    },
+                    author: function (article) {
+                        return article.meta.author;
+                    }
+                }
             });
     }]);
