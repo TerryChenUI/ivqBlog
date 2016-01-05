@@ -15,14 +15,14 @@
                                     <label class="control-label col-md-2">用户名</label>
 
                                     <div class="col-md-4">
-                                        {{model.userName}}
+                                        <label class="form-text">{{model.userName}}</label>
                                     </div>
                                 </div>
                                 <div class="form-group">
                                     <label class="control-label col-md-2">电子邮箱</label>
 
                                     <div class="col-md-4">
-                                        {{model.email}}
+                                        <label class="form-text">{{model.email}}</label>
                                     </div>
                                 </div>
                                 <div class="form-group">
@@ -30,7 +30,7 @@
 
                                     <div class="col-md-4">
                                         <input type="password" name="oldPassword" class="form-control"
-                                               ng-model="model.oldPwd"/>
+                                               ng-model="model.pwd"/>
                                     </div>
                                 </div>
                                 <div class="form-group">
@@ -38,7 +38,7 @@
 
                                     <div class="col-md-4">
                                         <input type="password" name="newPassword" class="form-control"
-                                               ng-model="model.newPwd"/>
+                                               ng-model="model.newPassword"/>
                                     </div>
                                 </div>
                                 <div class="form-group">
@@ -46,7 +46,7 @@
 
                                     <div class="col-md-4">
                                         <input type="password" name="confirmPassword" class="form-control"
-                                               ng-model="model.newConfirmPwd"/>
+                                               ng-model="model.newConfirmPassword"/>
                                     </div>
                                 </div>
                                 <div class="form-group">
@@ -62,14 +62,14 @@
                                     <label class="control-label col-md-2">注册时间</label>
 
                                     <div class="col-md-4">
-                                        {{model.createTime}}
+                                        <label class="form-text">{{model.createTime}}</label>
                                     </div>
                                 </div>
                                 <div class="form-group">
                                     <label class="control-label col-md-2">最后登录时间</label>
 
                                     <div class="col-md-4">
-                                        {{model.lastLoginTime}}
+                                        <label class="form-text">{{model.lastLoginTime}}</label>
                                     </div>
                                 </div>
                             </div>
@@ -80,7 +80,7 @@
             <div class="form-actions fluid">
                 <div class="col-md-offset-2 col-md-9">
                     <input type="button" name="cancel" class="btn dark" value="取消" ui-sref="category"/>
-                    <input type="submit" name="updatePassword" ng-disabled="form.$invalid" class="btn blue" value="修改密码"
+                    <input type="submit" name="updatePassword" ng-disabled="form.$invalid" class="btn green" value="修改密码"
                            ng-click="updatePassword()"/>
                     <input type="submit" name="save" ng-disabled="form.$invalid" class="btn blue" value="保存"
                            ng-click="saveAccount()"/>

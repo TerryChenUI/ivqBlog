@@ -35,6 +35,21 @@ angular.module('app.admin.layout')
                                 "active": false
                             }
                         ]
+                    },
+                    {
+                        "title": "设置管理",
+                        "route": "account",
+                        "icon": "",
+                        "active": false,
+                        "expanded": false,
+                        "childs": [
+                            {
+                                "title": "个人设置",
+                                "route": "account",
+                                "icon": "",
+                                "active": false
+                            }
+                        ]
                     }
                 ];
 

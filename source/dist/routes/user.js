@@ -74,22 +74,44 @@ router
             });
         });
     })
-    .put('/api/users', jwtAuth, function (req, res, next) {
+    .put('/api/users/:id', jwtAuth, function (req, res, next) {
         var modify = req.body;
-        if (modify.password != undefined) {
-            modify.password = md5(modify.password);
-        }
-        User.update2(req.param.id, modify, function (err) {
+        User.update2(req.params.id, modify, function (err) {
             if (err)
                 return res.send(err);
-            res.send(200);
+            res.sendStatus(200);
+        });
+    })
+    .put('/api/users/updatePassword/:id', jwtAuth, function (req, res, next) {
+        var modify = req.body;
+        User.get(req.params.id, function (err, user) {
+            if (err)
+                return res.send(err);
+
+            if (modify.password != undefined)
+                modify.password = md5(modify.password);
+
+            if(user.password != modify.password)
+                return res.send("旧密码不正确");
+
+            if(modify.newPassword != undefined){
+                modify.password = md5(modify.newPassword);
+                delete modify.newPassword;
+            }
+
+            User.update2(req.param.id, modify, function (err) {
+                if (err)
+                    return res.send(err);
+                res.sendStatus(200);
+            });
+
         });
     })
     .delete('/api/users/:id', jwtAuth, function (req, res, next) {
         User.delete(req.params.id, function (err) {
             if (err)
                 return res.send(err);
-            res.send(200);
+            res.sendStatus(200);
         });
     });
 

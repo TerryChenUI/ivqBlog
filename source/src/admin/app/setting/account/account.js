@@ -1,17 +1,21 @@
 angular.module('app.admin.setting')
-    .controller('AccountCtrl', ['$scope', '$state', 'SweetAlert', 'UserService', 'Tool', function ($scope, $state, SweetAlert, UserService, Tool) {
-        $scope.model = {};
-
-        $scope.initController = function(){
-
-        };
+    .controller('AccountCtrl', ['$rootScope', '$scope', '$state', 'SweetAlert', 'UserService', 'Tool', function ($rootScope, $scope, $state, SweetAlert, UserService, Tool) {
+        $scope.model = $rootScope.globals.currentUser.data;
+        $scope.originModel = Tool.deepCopy($scope.model);
 
         $scope.updatePassword = function(){
 
         };
 
         $scope.saveAccount = function(){
-
+        	var modifyModel = {};
+            if($scope.originModel.enabled != $scope.model.enabled){
+            	modifyModel["enabled"] = $scope.model.enabled;
+            }
+            if(Object.keys(modifyModel).length){
+            	UserService.updateUser($scope.model._id, modifyModel, function () {
+                	SweetAlert.updateSuccessfully();
+            	});
+            }
         };
-
     }]);

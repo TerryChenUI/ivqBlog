@@ -4,14 +4,13 @@
             return {
                 Login: function (userName, password, callback) {
                     UserService.authenticate(userName, password, function (response) {
-                        callback(response);
+                        callback(response.data);
                     });
                 },
                 setCredentials: function (res) {
                     $rootScope.globals = {
                         currentUser: {
-                            id: res.data._id,
-                            userName: res.data.userName,
+                            data: res.data,
                             token: res.token
                         }
                     };
