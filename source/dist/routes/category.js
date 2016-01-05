@@ -1,6 +1,8 @@
 var express = require('express'),
     router = express.Router(),
-    Category = require('../models/category');
+    Category = require('../models/category'),
+    jwtAuth = require('../config/jwtAuth.js'),
+    setting = require('../config/setting.js');
 
 router
     .get('/api/categories', function (req, res, next) {
@@ -43,7 +45,7 @@ router
             });
         });
     })
-    .post('/api/categories', function (req, res, next) {
+    .post('/api/categories', jwtAuth, function (req, res, next) {
         var category = new Category(req.body);
         category.save(function (err) {
             if (err)
@@ -51,7 +53,7 @@ router
             res.sendStatus(200);
         });
     })
-    .put('/api/categories/:id', function (req, res, next) {
+    .put('/api/categories/:id', jwtAuth, function (req, res, next) {
         var modify = req.body;
         Category.update2(req.params.id, modify, function (err) {
             if (err)
@@ -59,7 +61,7 @@ router
             res.sendStatus(200);
         });
     })
-    .delete('/api/categories/:id', function (req, res, next) {
+    .delete('/api/categories/:id', jwtAuth, function (req, res, next) {
         Category.delete(req.params.id, function (err) {
             if (err)
                 return res.send(error);

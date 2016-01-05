@@ -1,8 +1,9 @@
 /**
  * Created by tchen on 2015/7/24.
  */
-var mongoose = require('mongoose')
-	autoIncrement = require('mongoose-auto-increment');
+var mongoose = require('mongoose'),
+	autoIncrement = require('mongoose-auto-increment'),
+    setting = require('./config/setting.js');
 //var options = {
 //    db: { native_parser: true },
 //    server: { poolSize: 5 },
@@ -11,8 +12,7 @@ var mongoose = require('mongoose')
 //    pass: 'myPassword'
 //}
 autoIncrement.initialize(mongoose.connection);
-
-mongoose.connect('mongodb://localhost:27017/ivqBlog');
+mongoose.connect(setting.dbConnection);
 db = mongoose.connection;
 
 db.once('open', function callback () {

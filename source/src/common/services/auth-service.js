@@ -1,28 +1,26 @@
 (function () {
     angular.module('common.services')
-        .factory('AuthenService', ['$rootScope', '$cookieStore', '$http', 'UserService', function ($rootScope, $cookieStore, $http, UserService) {
+        .factory('AuthService', ['$rootScope', '$cookies', '$http', 'UserService', function ($rootScope, $cookies, $http, UserService) {
             return {
                 Login: function (userName, password, callback) {
                     UserService.authenticate(userName, password, function (response) {
                         callback(response);
                     });
                 },
-                setCredentials: function (token, data) {
+                setCredentials: function (res) {
                     $rootScope.globals = {
                         currentUser: {
-                            id: data._id,
-                            userName: data.userName,
-                            token: token
+                            id: res.data._id,
+                            userName: res.data.userName,
+                            token: res.token
                         }
                     };
 
-                    $http.defaults.headers.common['Authorization'] = token;
-                    $cookieStore.put('globals', $rootScope.globals);
+                    $cookies.putObject('globals', $rootScope.globals, {'expires': moment.utc(res.expires).format()});
                 },
                 clearCredentials: function () {
                     $rootScope.globals = {};
-                    $cookieStore.remove('globals');
-                    $http.defaults.headers.common.Authorization = '';
+                    $cookies.remove('globals');
                 }
             };
         }]);

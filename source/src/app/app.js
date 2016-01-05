@@ -1,8 +1,8 @@
 'use strict';
 angular.module('common.config', []);
-angular.module('common.util', []);
 angular.module('common.directives', []);
 angular.module('common.services', ['common.config', 'common.util']);
+angular.module('common.util', []);
 angular.module('app.templates', []);
 angular.module('app.home', []);
 angular.module('app.nav', []);
@@ -12,18 +12,18 @@ var app = angular.module('app', [
     'ui.router',
     'ui.router.metatags',
     'ui.bootstrap',
-    'common.directives',
     'common.config',
-    'common.util',
+    'common.directives',
     'common.services',
+    'common.util',
     'app.templates',
     'app.home',
     'app.nav',
     'app.article'
 ]);
 
-app.controller('AppCtrl', ['$rootScope', function ($rootScope) {
-    $rootScope.currentYear = new Date().getFullYear();
+app.controller('AppCtrl', ['$rootScope', 'PackageInfo', function ($rootScope, PackageInfo) {
+    $rootScope.packageInfo = PackageInfo;
 }]);
 
 function runBlock($rootScope, MetaTags) {

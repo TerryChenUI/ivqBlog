@@ -2,7 +2,7 @@ var express = require('express'),
     router = express.Router(),
     Article = require('../models/article'),
     Category = require('../models/category'),
-    async = require('async');
+    jwtAuth = require('../config/jwtAuth.js');
 
 router
     .get('/api/articles', function (req, res, next) {
@@ -67,7 +67,7 @@ router
             });
         });
     })
-    .post('/api/articles', function (req, res, next) {
+    .post('/api/articles', jwtAuth, function (req, res, next) {
         var article = new Article(req.body);
         article.save(function (err) {
             if (err)
@@ -75,7 +75,7 @@ router
             res.sendStatus(200);
         });
     })
-    .put('/api/articles/:id', function (req, res, next) {
+    .put('/api/articles/:id', jwtAuth, function (req, res, next) {
         var modify = req.body;
         if (modify.publish) {
             modify["time.publish"] = Date.now();
@@ -99,7 +99,7 @@ router
             res.sendStatus(200);
         });
     })
-    .delete('/api/articles/:id', function (req, res, next) {
+    .delete('/api/articles/:id', jwtAuth, function (req, res, next) {
         Article.delete(req.params.id, function (err) {
             if (err)
                 return res.send(error);

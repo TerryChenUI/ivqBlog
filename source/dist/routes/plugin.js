@@ -5,10 +5,11 @@ var express = require('express'),
     path = require('path'),
     Busboy = require('busboy'),
     ueConfig = require('../config/ueConfig.js'),
-    setting = require('../config/setting.js');
+    setting = require('../config/setting.js'),
+    jwtAuth = require('../config/jwtAuth.js');
 
 router
-    .post('/api/uploads', function (req, res, next) {
+    .post('/api/uploads', jwtAuth, function (req, res, next) {
         var busboy = new Busboy({headers: req.headers});
         busboy.on('file', function (fieldname, file, filename, encoding, mimetype) {
             var filesize = 0;
@@ -28,7 +29,7 @@ router
         });
         req.pipe(busboy);
     })
-    .use('/api/ue/uploads', function (req, res, next) {
+    .use('/api/ue/uploads', jwtAuth, function (req, res, next) {
         var action = req.query.action;
         switch (action) {
             case "config":

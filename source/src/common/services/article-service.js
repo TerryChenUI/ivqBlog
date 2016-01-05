@@ -28,7 +28,7 @@
             return this.$http(config);
         };
 
-        ArticleService.prototype.getArticleById = function (id, params, successCallback) {
+        ArticleService.prototype.getArticleById = function (id, params) {
             var config = {
                 method: 'GET',
                 url: this.serviceEndpoint + "articles/" + id,
@@ -37,35 +37,41 @@
             return this.appHttp.request(config);
         };
 
-        ArticleService.prototype.insertArticle = function (article, successCallback) {
+        ArticleService.prototype.insertArticle = function (article, successCB, errorCB) {
             var config = {
                 method: 'POST',
                 url: this.serviceEndpoint + "articles",
                 data: article
             };
             return this.$http(config).success(function (res) {
-                return successCallback(res);
+                return successCB(res);
+            }, function (res) {
+                return errorCB(res);
             });
         };
 
-        ArticleService.prototype.updateArticle = function (id, article, successCallback) {
+        ArticleService.prototype.updateArticle = function (id, article, successCB, errorCB) {
             var config = {
                 method: 'PUT',
                 url: this.serviceEndpoint + "articles/" + id,
                 data: article
             };
-            return this.$http(config).success(function (res) {
-                return successCallback(res);
+            return this.$http(config).then(function (res) {
+                return successCB(res);
+            }, function (res) {
+                return errorCB(res);
             });
         };
 
-        ArticleService.prototype.deleteArticle = function (id, successCallback) {
+        ArticleService.prototype.deleteArticle = function (id, successCB, errorCB) {
             var config = {
                 method: 'DELETE',
                 url: this.serviceEndpoint + "articles/" + id
             };
-            return this.$http(config).success(function (res) {
-                return successCallback(res);
+            return this.$http(config).then(function (res) {
+                return successCB(res);
+            }, function (res) {
+                return errorCB(res);
             });
         };
 

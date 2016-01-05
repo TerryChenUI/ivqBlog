@@ -15,14 +15,16 @@
             return this.appHttp.request(config);
         };
 
-        UserService.prototype.authenticate = function (userName, password, successCallback) {
+        UserService.prototype.authenticate = function (userName, password, successCB) {
             var config = {
                 method: 'POST',
                 url: this.serviceEndpoint + "users/authenticate",
                 data: {userName: userName, password: password}
             };
-            return this.$http(config).success(function (res) {
-                return successCallback(res);
+            return this.$http(config).then(function (res) {
+                return successCB(res);
+            }, function (res) {
+                return errorCB(res);
             });
         };
 
@@ -34,35 +36,41 @@
             return this.appHttp.request(config);
         };
 
-        UserService.prototype.insertUser = function (user, successCallback) {
+        UserService.prototype.insertUser = function (user, successCB, errorCB) {
             var config = {
                 method: 'POST',
                 url: this.serviceEndpoint + "users",
                 data: user
             };
-            return this.$http(config).success(function (res) {
-                return successCallback(res);
+            return this.$http(config).then(function (res) {
+                return successCB(res);
+            }, function (res) {
+                return errorCB(res);
             });
         };
 
-        UserService.prototype.updateUser = function (id, user, successCallback) {
+        UserService.prototype.updateUser = function (id, user, successCB, errorCB) {
             var config = {
                 method: 'PUT',
                 url: this.serviceEndpoint + "users/" + id,
                 data: user
             };
-            return this.$http(config).success(function (res) {
-                return successCallback(res);
+            return this.$http(config).then(function (res) {
+                return successCB(res);
+            }, function (res) {
+                return errorCB(res);
             });
         };
 
-        UserService.prototype.deleteUser = function (id, successCallback) {
+        UserService.prototype.deleteUser = function (id, successCB, errorCB) {
             var config = {
                 method: 'DELETE',
                 url: this.serviceEndpoint + "users/" + id
             };
-            return this.$http(config).success(function (res) {
-                return successCallback(res);
+            return this.$http(config).then(function (res) {
+                return successCB(res);
+            }, function (res) {
+                return errorCB(res);
             });
         };
 

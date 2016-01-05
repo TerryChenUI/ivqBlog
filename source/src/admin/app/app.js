@@ -1,8 +1,9 @@
 'use strict';
 angular.module('common.config', []);
-angular.module('common.util', []);
 angular.module('common.directives', []);
+angular.module('common.interceptors', []);
 angular.module('common.services', ['common.config', 'common.util']);
+angular.module('common.util', []);
 angular.module('app.admin.templates', []);
 angular.module('app.admin.common', ['common.services']);
 angular.module('app.admin.layout', ['common.services']);
@@ -16,9 +17,10 @@ var appAdmin = angular.module('app.admin', [
     'ngSweetAlert',
     'ncy-angular-breadcrumb',
     'ui.router',
-    'common.services',
-    'common.directives',
     'common.config',
+    'common.directives',
+    'common.interceptors',
+    'common.services',
     'common.util',
     'app.admin.templates',
     'app.admin.common',
@@ -27,7 +29,7 @@ var appAdmin = angular.module('app.admin', [
     'app.admin.setting'
 ]);
 
-appAdmin.run(['$rootScope', '$window', '$location', '$cookieStore', '$http', function($rootScope, $window, $location, $cookieStore, $http){
+appAdmin.run(['$rootScope', '$window', '$location', '$cookies', '$http', function ($rootScope, $window, $location, $cookies, $http) {
     //pagination setting
     $rootScope.paginationSetting = {
         'count': 15,
@@ -37,28 +39,24 @@ appAdmin.run(['$rootScope', '$window', '$location', '$cookieStore', '$http', fun
     };
 
     //cookie
-    $rootScope.globals = $cookieStore.get('globals') || {};
+    $rootScope.globals = $cookies.getObject('globals') || {};
     if ($rootScope.globals.currentUser) {
         $http.defaults.headers.common['Authorization'] = $rootScope.globals.currentUser.token;
     }
     $rootScope.$on('$locationChangeStart', function (event, next, current) {
-        if($window.location.href.indexOf('login') > -1){
+        if ($window.location.href.indexOf('login') > -1) {
             return;
         }
         // redirect to login page if not logged in and trying to access a restricted page
         var restrictedPage = $.inArray($location.path(), ['/login', '/register']) === -1;
         var loggedIn = $rootScope.globals.currentUser;
         if (restrictedPage && !loggedIn) {
-            //$window.location.href = 'login.html'
+            //$window.location.href = 'login.html';
         }
     });
 
 }]);
 
-appAdmin.controller("AppAdminCtrl", ["$rootScope", "$scope", "$window", "AuthenService", function ($rootScope, $scope, $window, AuthenService) {
-    $rootScope.currentYear = new Date().getFullYear();
-    //$scope.logout = function(){
-    //    AuthenService.clearCredentials();
-    //    $window.location.href = "login.html";
-    //}
+appAdmin.controller('AppAdminCtrl', ['$rootScope', '$scope', '$window', 'PackageInfo', function ($rootScope, $scope, $window, PackageInfo) {
+    $rootScope.packageInfo = PackageInfo;
 }]);

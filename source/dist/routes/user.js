@@ -1,10 +1,11 @@
 var express = require('express'),
     router = express.Router(),
     User = require('../models/user'),
-    md5 = require('md5'),
     jwt = require('jwt-simple'),
+    md5 = require('md5'),
     setting = require('../config/setting.js'),
-    moment = require('moment');
+    moment = require('moment'),
+    jwtAuth = require('../config/jwtAuth.js');
 
 router
     .get('/api/users', function (req, res, next) {
@@ -38,7 +39,7 @@ router
             res.send(user);
         });
     })
-    .post('/api/users', function (req, res, next) {
+    .post('/api/users', jwtAuth, function (req, res, next) {
         var user = new User(req.body);
         user.password = md5(user.password);
         user.save(function (err) {
@@ -48,7 +49,7 @@ router
         });
     })
     .post('/api/users/authenticate', function (req, res, next) {
-        User.getByFilter({userName:req.body.userName}, function (err, user) {
+        User.getByFilter({userName: req.body.userName}, function (err, user) {
             if (err)
                 return res.send(err);
 
@@ -67,13 +68,13 @@ router
             }, setting.jwtTokenSecret);
 
             res.send({
-                token : token,
                 expires: expires,
+                token: token,
                 data: user
             });
         });
     })
-    .put('/api/users', function (req, res, next) {
+    .put('/api/users', jwtAuth, function (req, res, next) {
         var modify = req.body;
         if (modify.password != undefined) {
             modify.password = md5(modify.password);
@@ -84,7 +85,7 @@ router
             res.send(200);
         });
     })
-    .delete('/api/users/:id', function (req, res, next) {
+    .delete('/api/users/:id', jwtAuth, function (req, res, next) {
         User.delete(req.params.id, function (err) {
             if (err)
                 return res.send(err);

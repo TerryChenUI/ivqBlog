@@ -55,13 +55,13 @@ angular.module('app')
                         return article.title;
                     },
                     description: function (article) {
-                        return article.meta.description;
+                        return (!_.isUndefined(article.meta) && !_.isUndefined(article.meta.description)) ? article.meta.description : article.title;
                     },
                     keywords: function (article) {
-                        return article.meta.keyword;
+                        return (!_.isUndefined(article.meta) && !_.isUndefined(article.meta.keyword)) ? article.meta.keyword : article.title;
                     },
                     author: function (article) {
-                        return article.meta.author;
+                        return (!_.isUndefined(article.meta) && !_.isUndefined(article.meta.author)) ? article.title : article.meta.keyword;
                     }
                 }
             });

@@ -1,5 +1,5 @@
 angular.module('app.admin.common')
-    .controller('LoginCtrl', ["$scope", "$window", "AuthenService", function ($scope, $window, AuthenService) {
+    .controller('LoginCtrl', ["$scope", "$window", "AuthService", function ($scope, $window, AuthService) {
         $scope.model = {};
 
         $scope.Login = function () {
@@ -8,9 +8,9 @@ angular.module('app.admin.common')
                 return;
             }
 
-            AuthenService.Login($scope.model.username, $scope.model.password, function (response) {
+            AuthService.Login($scope.model.username, $scope.model.password, function (response) {
                 if(response.token){
-                    AuthenService.setCredentials(response.token, response.data);
+                    AuthService.setCredentials(response);
                     $window.location.href = "/admin";
                 } else {
                     $scope.errorMessage = "用户名或密码错误";
