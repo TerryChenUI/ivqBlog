@@ -1,9 +1,9 @@
 (function () {
     angular.module('common.services')
-        .factory('AuthService', ['$rootScope', '$cookies', '$http', 'UserService', function ($rootScope, $cookies, $http, UserService) {
+        .factory('AuthService', ['$rootScope', '$cookies', '$http', 'AccountService', function ($rootScope, $cookies, $http, AccountService) {
             return {
                 Login: function (userName, password, callback) {
-                    UserService.authenticate(userName, password, function (response) {
+                    AccountService.authenticate(userName, password, function (response) {
                         callback(response.data);
                     });
                 },

@@ -45,6 +45,11 @@ userSchema.statics = {
             .exec(cb);
     },
 
+    updateAndReturnNew: function (id, modify, cb) {
+        this.findByIdAndUpdate(id, {$set: modify}, {new: true})
+            .exec(cb);
+    },
+
     delete: function (id, cb) {
         this.remove({_id: id})
             .exec(cb);

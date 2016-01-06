@@ -1,14 +1,14 @@
 var express = require('express'),
     router = express.Router(),
     User = require('../models/user'),
-    jwt = require('jwt-simple'),
     md5 = require('md5'),
     setting = require('../config/setting.js'),
     moment = require('moment'),
-    jwtAuth = require('../config/jwtAuth.js');
+    jwtAuth = require('../config/jwtAuth.js'),
+    jwtToken = require('../config/jwtToken.js');
 
 router
-    .get('/api/users', function (req, res, next) {
+    .get('/api/users', jwtAuth, function (req, res, next) {
         //var options = {};
         //if (req.query.pageIndex != null) {
         //    var pageIndex = (req.query.pageIndex > 0 ? req.query.pageIndex : 1) - 1;
@@ -48,41 +48,42 @@ router
             res.sendStatus(200);
         });
     })
-    .post('/api/users/authenticate', function (req, res, next) {
-        User.getByFilter({userName: req.body.userName}, function (err, user) {
+    .post('/api/account/authenticate', function (req, res, next) {
+        var password = md5(req.body.password);
+        User.getByFilter({userName: req.body.userName, password: password}, function (err, user) {
             if (err)
                 return res.send(err);
 
             if (!user)
-                return res.send(err);
+                return res.send({error: '账号或密码不正确'});
 
-            var password = md5(req.body.password);
-            if (password != user.password)
-                return res.send(err);
+            if (!user.enabled)
+                return res.send({error: '用户账号被禁用'});
 
-            //token
-            var expires = moment().add(7, 'days').valueOf();
-            var token = jwt.encode({
-                iss: user.id,
-                exp: expires
-            }, setting.jwtTokenSecret);
-
+            var jt = new jwtToken(user.id);
             res.send({
-                expires: expires,
-                token: token,
+                expires: jt.expires,
+                token: jt.token,
                 data: user
             });
         });
     })
-    .put('/api/users/:id', jwtAuth, function (req, res, next) {
+    .put('/api/account/:id', jwtAuth, function (req, res, next) {
         var modify = req.body;
-        User.update2(req.params.id, modify, function (err) {
+        User.updateAndReturnNew(req.params.id, modify, function (err, user) {
             if (err)
                 return res.send(err);
-            res.sendStatus(200);
+
+            var jt = new jwtToken(user.id);
+            res.send({
+                expires: jt.expires,
+                token: jt.token,
+                data: user
+            });
+
         });
     })
-    .put('/api/users/updatePassword/:id', jwtAuth, function (req, res, next) {
+    .put('/api/account/updatePassword/:id', jwtAuth, function (req, res, next) {
         var modify = req.body;
         User.get(req.params.id, function (err, user) {
             if (err)
@@ -91,18 +92,25 @@ router
             if (modify.password != undefined)
                 modify.password = md5(modify.password);
 
-            if(user.password != modify.password)
-                return res.send("旧密码不正确");
+            if (user.password != modify.password)
+                return res.send({error: '旧密码不正确'});
 
-            if(modify.newPassword != undefined){
+            if (modify.newPassword != undefined) {
                 modify.password = md5(modify.newPassword);
                 delete modify.newPassword;
             }
 
-            User.update2(req.param.id, modify, function (err) {
+            User.updateAndReturnNew(req.param.id, modify, function (err, user) {
                 if (err)
                     return res.send(err);
-                res.sendStatus(200);
+
+                var jt = new jwtToken(user.id);
+                res.send({
+                    expires: jt.expires,
+                    token: jt.token,
+                    data: user
+                });
+
             });
 
         });

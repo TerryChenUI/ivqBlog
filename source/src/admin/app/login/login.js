@@ -13,7 +13,7 @@ angular.module('app.admin.common')
                     AuthService.setCredentials(response);
                     $window.location.href = "/admin";
                 } else {
-                    $scope.errorMessage = "用户名或密码错误";
+                    $scope.errorMessage = response.error;
                 }
             });
         };
