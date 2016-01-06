@@ -22,7 +22,7 @@ angular.module('app.admin')
                 templateUrl: 'app/setting/account/account.tpl.html',
                 controller: 'AccountCtrl',
                 ncyBreadcrumb: {
-                    parent: function($scope) {
+                    parent: function ($scope) {
                         return 'home';
                     },
                     label: '账号设置'
@@ -33,8 +33,8 @@ angular.module('app.admin')
                 templateUrl: 'app/content/category/list.tpl.html',
                 controller: 'ListCategoryCtrl',
                 ncyBreadcrumb: {
-                    parent: function($scope) {
-                      return 'home';
+                    parent: function ($scope) {
+                        return 'home';
                     },
                     label: '类别管理'
                 }
@@ -44,8 +44,8 @@ angular.module('app.admin')
                 templateUrl: 'app/content/category/edit.tpl.html',
                 controller: 'EditCategoryCtrl',
                 ncyBreadcrumb: {
-                    parent: function($scope) {
-                      return 'category';
+                    parent: function ($scope) {
+                        return 'category';
                     },
                     label: '{{title}}'
                 }
@@ -55,8 +55,8 @@ angular.module('app.admin')
                 templateUrl: 'app/content/article/list.tpl.html',
                 controller: 'ListArticleCtrl',
                 ncyBreadcrumb: {
-                    parent: function($scope) {
-                      return 'home';
+                    parent: function ($scope) {
+                        return 'home';
                     },
                     label: '文章管理'
                 }
@@ -66,8 +66,30 @@ angular.module('app.admin')
                 templateUrl: 'app/content/article/edit.tpl.html',
                 controller: 'EditArticleCtrl',
                 ncyBreadcrumb: {
-                    parent: function($scope) {
-                      return 'article';
+                    parent: function ($scope) {
+                        return 'article';
+                    },
+                    label: '{{title}}'
+                }
+            })
+            .state('tag', {
+                url: '/tag/list',
+                templateUrl: 'app/content/tag/list.tpl.html',
+                controller: 'ListTagCtrl',
+                ncyBreadcrumb: {
+                    parent: function ($scope) {
+                        return 'home';
+                    },
+                    label: '标签管理'
+                }
+            })
+            .state('editTag', {
+                url: '/tag/edit/:id?',
+                templateUrl: 'app/content/tag/edit.tpl.html',
+                controller: 'EditTagCtrl',
+                ncyBreadcrumb: {
+                    parent: function ($scope) {
+                        return 'tag';
                     },
                     label: '{{title}}'
                 }

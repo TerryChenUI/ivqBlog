@@ -2,8 +2,8 @@ var mongoose = require('mongoose'),
     autoIncrement = require('mongoose-auto-increment');
 
 var tagSchema = new mongoose.Schema({
-    key: String,
-    value: String
+    name: String,
+    description: String
 });
 
 tagSchema.plugin(autoIncrement.plugin, {model: 'Tag', startAt: 1});

@@ -1,0 +1,45 @@
+<div class="fluid">
+    <div class="row">
+        <div class="col-md-4">
+            <div class="table-toolbar">
+                <div class="btn-group">
+                    <a ui-sref="editTag()" class="btn blue"><i class="fa fa-plus"></i> 添加</a>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div tasty-table bind-resource-callback="getResource" bind-init="paginationSetting">
+    <table class="table datatable table-striped table-bordered table-hover">
+        <thead>
+        <tr>
+            <th width="50">
+                序号
+            </th>
+            <th width="200">
+                名称
+            </th>
+            <th>
+                描述
+            </th>
+            <th width="80">
+                操作
+            </th>
+            <th width="80">
+                操作
+            </th>
+        </tr>
+        </thead>
+        <tbody>
+        <tr ng-repeat="row in rows">
+            <td>{{row._id}}</td>
+            <td>{{row.name}}</td>
+            <td>{{row.description}}</td>
+            <td><a class="btn btn-xs purple" ui-sref="editTag({id:row._id})"><i class="fa fa-edit"></i>编辑</a></td>
+            <td><a class="btn btn-xs red" href="javascript:void(0)" ng-click="remove(row._id)"><i class="fa fa-times"></i>删除</a></td>
+        </tr>
+        </tbody>
+    </table>
+    <div tasty-pagination></div>
+</div>

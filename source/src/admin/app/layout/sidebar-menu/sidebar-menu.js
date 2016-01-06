@@ -29,6 +29,12 @@ angular.module('app.admin.layout')
                                 "active": false
                             },
                             {
+                                "title": "标签管理",
+                                "route": "tag",
+                                "icon": "",
+                                "active": false
+                            },
+                            {
                                 "title": "文章管理",
                                 "route": "article",
                                 "icon": "",
