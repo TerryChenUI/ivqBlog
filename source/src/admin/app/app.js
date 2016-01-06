@@ -13,6 +13,7 @@ angular.module('app.admin.setting', ['common.services']);
 var appAdmin = angular.module('app.admin', [
     'ngCookies',
     'ngFileUpload',
+    'ng.ueditor',
     'ngTasty',
     'ngSweetAlert',
     'ncy-angular-breadcrumb',

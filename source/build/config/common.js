@@ -33,7 +33,10 @@ module.exports = {
             './lib/sweetalert/sweetalert.min.js',
             './lib/angular-breadcrumb/angular-breadcrumb.min.js',
             './lib/underscore/underscore-min.js',
-            './lib/moment/moment.js'
+            './lib/moment/moment.js',
+            './lib/ueditor/ueditor.config.js',
+            './lib/ueditor/ueditor.all.min.js',
+            './lib/ueditor/angular-ueditor.min.js'
         ]
     }
 };

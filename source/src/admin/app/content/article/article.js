@@ -52,6 +52,9 @@ angular.module('app.admin.content')
         $scope.model = {
             author: 'ivqBlog'
         };
+        $scope.ueConfig = {
+
+        };
         $scope.title = id > 0 ? '编辑文章' : '添加文章';
         $scope.categories = [{name: '--请选择--', value: 0}];
 
@@ -79,7 +82,6 @@ angular.module('app.admin.content')
         };
 
         $scope.saveArticle = function () {
-            $scope.model.content = UE.getEditor('editor').getContent();
             if (id > 0) {
                 var modifyModel = Tool.trimSameProperties($scope.originModel, $scope.model);
                 ArticleService.updateArticle(id, modifyModel, function () {

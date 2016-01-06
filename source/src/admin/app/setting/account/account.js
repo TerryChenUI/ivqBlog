@@ -1,5 +1,5 @@
 angular.module('app.admin.setting')
-    .controller('AccountCtrl', ['$rootScope', '$scope', '$state', 'SweetAlert', 'UserService', 'Tool', function ($rootScope, $scope, $state, SweetAlert, UserService, Tool) {
+    .controller('AccountCtrl', ['$rootScope', '$scope', '$state', 'SweetAlert', 'UserService', 'AuthService', 'Tool', function ($rootScope, $scope, $state, SweetAlert, UserService, AuthService, Tool) {
         $scope.model = $rootScope.globals.currentUser.data;
         $scope.originModel = Tool.deepCopy($scope.model);
 
@@ -15,6 +15,7 @@ angular.module('app.admin.setting')
             if(Object.keys(modifyModel).length){
             	UserService.updateUser($scope.model._id, modifyModel, function () {
                 	SweetAlert.updateSuccessfully();
+
             	});
             }
         };

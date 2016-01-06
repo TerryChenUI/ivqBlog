@@ -5,17 +5,16 @@ var express = require('express'),
     path = require('path'),
     Busboy = require('busboy'),
     ueConfig = require('../config/ueConfig.js'),
-    setting = require('../config/setting.js'),
-    jwtAuth = require('../config/jwtAuth.js');
+    setting = require('../config/setting.js');
 
 router
-    .post('/api/uploads', jwtAuth, function (req, res, next) {
+    .post('/api/uploads', function (req, res, next) {
         var busboy = new Busboy({headers: req.headers});
         busboy.on('file', function (fieldname, file, filename, encoding, mimetype) {
             var filesize = 0;
             var ext = path.extname(filename);
             var newFilename = (new Date() - 0) + ext;
-            var fstream = fs.createWriteStream(setting.coverPath + newFilename);
+            var fstream = fs.createWriteStream(setting.rootPath + setting.coverPath + newFilename);
             file.on('data', function (data) {
                 filesize = data.length;
             });
@@ -29,7 +28,7 @@ router
         });
         req.pipe(busboy);
     })
-    .use('/api/ue/uploads', jwtAuth, function (req, res, next) {
+    .use('/api/ue/uploads', function (req, res, next) {
         var action = req.query.action;
         switch (action) {
             case "config":
@@ -41,7 +40,7 @@ router
                     var filesize = 0;
                     var ext = path.extname(filename);
                     var newFilename = (new Date() - 0) + ext;
-                    var fstream = fs.createWriteStream(setting.ueImagesPath + newFilename);
+                    var fstream = fs.createWriteStream(setting.rootPath + setting.ueImagesPath + newFilename);
                     file.on('data', function (data) {
                         filesize = data.length;
                     });
@@ -65,14 +64,14 @@ router
                 req.pipe(busboy);
                 break;
             case "listimage":
-                fs.readdir(setting.ueImagesPath, function (err, files) {
+                fs.readdir(setting.rootPath + setting.ueImagesPath, function (err, files) {
                     var total = 0, list = [];
                     if (files.length) {
                         files.sort().splice(req.query.start, req.query.size).forEach(function (t, b) {
                             /^.+.\..+$/.test(t) &&
                             list.push({
                                 url: '/' + setting.ueImagesPath + t,
-                                mtime: new Date(fs.statSync(setting.ueImagesPath + t).mtime).getTime()
+                                mtime: new Date(fs.statSync(setting.rootPath + setting.ueImagesPath + t).mtime).getTime()
                             });
                         });
                         total = list.length;

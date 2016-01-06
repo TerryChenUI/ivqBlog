@@ -7,11 +7,11 @@ module.exports = {
     "imageCompressBorder": 1600,
     "imageInsertAlign": "none",
     "imageUrlPrefix": "",
-    "imagePathFormat": "/assets/upload/ue/images/{yyyy}{mm}{dd}/{time}{rand:6}",
+    "imagePathFormat": "/ui/assets/upload/ue/images/{yyyy}{mm}{dd}/{time}{rand:6}",
 
     "fileActionName": "uploadfile",
     "fileFieldName": "upfile",
-    "filePathFormat": "/assets/upload/ue/files/{yyyy}{mm}{dd}/{time}{rand:6}",
+    "filePathFormat": "/ui/assets/upload/ue/files/{yyyy}{mm}{dd}/{time}{rand:6}",
     "fileUrlPrefix": "",
     "fileMaxSize": 51200000,
     "fileAllowFiles": [
@@ -23,7 +23,7 @@ module.exports = {
     ],
 
     "imageManagerActionName": "listimage",
-    "imageManagerListPath": "/assets/upload/ue/images/",
+    "imageManagerListPath": "/ui/assets/upload/ue/images/",
     "imageManagerListSize": 20,
     "imageManagerUrlPrefix": "",
     "imageManagerInsertAlign": "none",
@@ -31,7 +31,7 @@ module.exports = {
 
 
     "fileManagerActionName": "listfile",
-    "fileManagerListPath": "/assets/upload/ue/file/",
+    "fileManagerListPath": "/ui/assets/upload/ue/file/",
     "fileManagerUrlPrefix": "",
     "fileManagerListSize": 20,
     "fileManagerAllowFiles": [

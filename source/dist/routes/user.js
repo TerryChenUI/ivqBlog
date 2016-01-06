@@ -45,7 +45,7 @@ router
         user.save(function (err) {
             if (err)
                 return res.send(err);
-            res.send(200);
+            res.sendStatus(200);
         });
     })
     .post('/api/users/authenticate', function (req, res, next) {
