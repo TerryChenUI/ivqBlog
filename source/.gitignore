@@ -2,7 +2,8 @@
 
 # 
 node_modules/
-
+dist/
+!dist/ui/
 vendor/
 test_out/
 

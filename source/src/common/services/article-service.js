@@ -37,7 +37,7 @@
             return this.appHttp.request(config);
         };
 
-        ArticleService.prototype.insertArticle = function (article, successCB, errorCB) {
+        ArticleService.prototype.insert = function (article, successCB, errorCB) {
             var config = {
                 method: 'POST',
                 url: this.serviceEndpoint + "articles",
@@ -50,7 +50,7 @@
             });
         };
 
-        ArticleService.prototype.updateArticle = function (id, article, successCB, errorCB) {
+        ArticleService.prototype.update = function (id, article, successCB, errorCB) {
             var config = {
                 method: 'PUT',
                 url: this.serviceEndpoint + "articles/" + id,
@@ -63,7 +63,7 @@
             });
         };
 
-        ArticleService.prototype.deleteArticle = function (id, successCB, errorCB) {
+        ArticleService.prototype.delete = function (id, successCB, errorCB) {
             var config = {
                 method: 'DELETE',
                 url: this.serviceEndpoint + "articles/" + id

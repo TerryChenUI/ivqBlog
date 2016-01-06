@@ -15,19 +15,6 @@
             return this.appHttp.request(config);
         };
 
-        UserService.prototype.authenticate = function (userName, password, successCB) {
-            var config = {
-                method: 'POST',
-                url: this.serviceEndpoint + "users/authenticate",
-                data: {userName: userName, password: password}
-            };
-            return this.$http(config).then(function (res) {
-                return successCB(res);
-            }, function (res) {
-                return errorCB(res);
-            });
-        };
-
         UserService.prototype.getUserById = function (id) {
             var config = {
                 method: 'GET',
@@ -36,7 +23,7 @@
             return this.appHttp.request(config);
         };
 
-        UserService.prototype.insertUser = function (user, successCB, errorCB) {
+        UserService.prototype.insert = function (user, successCB, errorCB) {
             var config = {
                 method: 'POST',
                 url: this.serviceEndpoint + "users",
@@ -49,7 +36,7 @@
             });
         };
 
-        UserService.prototype.updateUser = function (id, user, successCB, errorCB) {
+        UserService.prototype.update = function (id, user, successCB, errorCB) {
             var config = {
                 method: 'PUT',
                 url: this.serviceEndpoint + "users/" + id,
@@ -62,7 +49,7 @@
             });
         };
 
-        UserService.prototype.deleteUser = function (id, successCB, errorCB) {
+        UserService.prototype.delete = function (id, successCB, errorCB) {
             var config = {
                 method: 'DELETE',
                 url: this.serviceEndpoint + "users/" + id

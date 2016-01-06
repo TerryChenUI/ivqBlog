@@ -32,7 +32,7 @@
             return this.appHttp.request(config);
         };
 
-        CategoryService.prototype.insertCategory = function (category, successCB, errorCB) {
+        CategoryService.prototype.insert = function (category, successCB, errorCB) {
             var config = {
                 method: 'POST',
                 url: this.serviceEndpoint + "categories",
@@ -45,7 +45,7 @@
             });
         };
 
-        CategoryService.prototype.updateCategory = function (id, category, successCB, errorCB) {
+        CategoryService.prototype.update = function (id, category, successCB, errorCB) {
             var config = {
                 method: 'PUT',
                 url: this.serviceEndpoint + "categories/" + id,
@@ -58,7 +58,7 @@
             });
         };
 
-        CategoryService.prototype.deleteCategory = function (id, successCB, errorCB) {
+        CategoryService.prototype.delete = function (id, successCB, errorCB) {
             var config = {
                 method: 'DELETE',
                 url: this.serviceEndpoint + "categories/" + id

@@ -7,15 +7,18 @@
                         callback(response.data);
                     });
                 },
-                setCredentials: function (res) {
+                setCredentials: function (res, isRemember) {
                     $rootScope.globals = {
                         currentUser: {
                             data: res.data,
                             token: res.token
                         }
                     };
-
-                    $cookies.putObject('globals', $rootScope.globals, {'expires': moment.utc(res.expires).format()});
+                    var option = {};
+                    if (isRemember) {
+                        option = {'expires': moment.utc(res.expires).format()};
+                    }
+                    $cookies.putObject('globals', $rootScope.globals, option);
                 },
                 clearCredentials: function () {
                     $rootScope.globals = {};

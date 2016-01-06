@@ -48,9 +48,21 @@ router
             res.sendStatus(200);
         });
     })
+    .delete('/api/users/:id', jwtAuth, function (req, res, next) {
+        User.delete(req.params.id, function (err) {
+            if (err)
+                return res.send(err);
+            res.sendStatus(200);
+        });
+    })
     .post('/api/account/authenticate', function (req, res, next) {
         var password = md5(req.body.password);
-        User.getByFilter({userName: req.body.userName, password: password}, function (err, user) {
+        User.getByFilter({
+            $and: [
+                {$or: [{userName: req.body.userName}, {email: req.body.userName}]},
+                {password: password}
+            ]
+        }, function (err, user) {
             if (err)
                 return res.send(err);
 
@@ -112,14 +124,6 @@ router
                 });
 
             });
-
-        });
-    })
-    .delete('/api/users/:id', jwtAuth, function (req, res, next) {
-        User.delete(req.params.id, function (err) {
-            if (err)
-                return res.send(err);
-            res.sendStatus(200);
         });
     });
 

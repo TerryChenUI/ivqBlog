@@ -36,7 +36,7 @@ angular.module('app.admin.content')
             SweetAlert.deleteConfirm(
                 function (isConfirm) {
                     if (isConfirm) {
-                        ArticleService.deleteArticle(id, function () {
+                        ArticleService.delete(id, function () {
                             SweetAlert.deleteSuccessfully();
                             $state.reload();
                         });
@@ -84,12 +84,12 @@ angular.module('app.admin.content')
         $scope.saveArticle = function () {
             if (id > 0) {
                 var modifyModel = Tool.trimSameProperties($scope.originModel, $scope.model);
-                ArticleService.updateArticle(id, modifyModel, function () {
+                ArticleService.update(id, modifyModel, function () {
                     SweetAlert.updateSuccessfully();
                     $state.go('article');
                 });
             } else {
-                ArticleService.insertArticle($scope.model, function () {
+                ArticleService.insert($scope.model, function () {
                     SweetAlert.addSuccessfully();
                     $state.go('article');
                 });

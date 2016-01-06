@@ -40,9 +40,9 @@
         </div>
         <div class="form-actions">
             <label class="checkbox">
-                <input type="checkbox"/>记住我
+                <input type="checkbox" ng-model="model.isRemember"/>记住我
             </label>
-            <button type="button" class="btn green pull-right" ng-click="Login()">
+            <button type="button" class="btn green pull-right" ng-keyup="Login()" ng-click="Login()">
                 登录 <i class="m-icon-swapright m-icon-white"></i>
             </button>
         </div>

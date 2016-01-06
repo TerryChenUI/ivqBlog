@@ -19,7 +19,7 @@ angular.module('app.admin.content')
             SweetAlert.deleteConfirm(
                 function (isConfirm) {
                     if (isConfirm) {
-                        CategoryService.deleteCategory(id, function () {
+                        CategoryService.delete(id, function () {
                             SweetAlert.deleteSuccessfully();
                             $state.reload();
                         });
@@ -45,12 +45,12 @@ angular.module('app.admin.content')
         $scope.saveCategory = function () {
             if (id > 0) {
                 var modifyModel = Tool.trimSameProperties($scope.originModel, $scope.model);
-                CategoryService.updateCategory(id, modifyModel, function () {
+                CategoryService.update(id, modifyModel, function () {
                     SweetAlert.updateSuccessfully();
                     $state.go('category');
                 });
             } else {
-                CategoryService.insertCategory($scope.model, function () {
+                CategoryService.insert($scope.model, function () {
                     SweetAlert.addSuccessfully();
                     $state.go('category');
                 });
