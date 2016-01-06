@@ -31,6 +31,9 @@
                                     <div class="col-md-4">
                                         <input type="password" name="oldPassword" class="form-control"
                                                ng-model="model.pwd"/>
+                                        <div ng-show="form.$submitted || form.oldPassword.$touched">
+                                            <span ng-show="form.oldPassword.$error.required" class="help-block">请填写旧密码</span>
+                                        </div>
                                     </div>
                                 </div>
                                 <div class="form-group">
@@ -39,6 +42,9 @@
                                     <div class="col-md-4">
                                         <input type="password" name="newPassword" class="form-control"
                                                ng-model="model.newPassword"/>
+                                        <div ng-show="form.$submitted || form.newPassword.$touched">
+                                            <span ng-show="form.newPassword.$error.required" class="help-block">请填写新密码</span>
+                                        </div>
                                     </div>
                                 </div>
                                 <div class="form-group">
@@ -46,7 +52,10 @@
 
                                     <div class="col-md-4">
                                         <input type="password" name="confirmPassword" class="form-control"
-                                               ng-model="model.newConfirmPassword"/>
+                                               ng-model="model.confirmPassword"/>
+                                        <div ng-show="form.$submitted || form.confirmPassword.$touched">
+                                            <span ng-show="form.confirmPassword.$error.required" class="help-block">请重复新密码</span>
+                                        </div>
                                     </div>
                                 </div>
                                 <div class="form-group">

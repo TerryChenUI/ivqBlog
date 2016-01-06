@@ -1,10 +1,15 @@
 angular.module('app.admin.setting')
     .controller('AccountCtrl', ['$rootScope', '$scope', '$state', 'SweetAlert', 'AccountService', 'AuthService', 'Tool', function ($rootScope, $scope, $state, SweetAlert, AccountService, AuthService, Tool) {
         $scope.model = $rootScope.globals.currentUser.data;
+        $scope.model.createTime = Tool.convertTime($rootScope.globals.currentUser.data.createTime);
+        $scope.model.lastLoginTime = Tool.convertTime($rootScope.globals.currentUser.data.lastLoginTime);
         $scope.originModel = Tool.deepCopy($scope.model);
 
         $scope.updatePassword = function(){
-
+            AccountService.update($scope.model._id, modifyModel, function (response) {
+                AuthService.setCredentials(response.data);
+                SweetAlert.updateSuccessfully();
+            });
         };
 
         $scope.saveAccount = function(){
