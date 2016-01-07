@@ -30,9 +30,13 @@
 
                                     <div class="col-md-4">
                                         <input type="password" name="oldPassword" class="form-control"
-                                               ng-model="model.pwd"/>
+                                               ng-model="model.pwd" required=""/>
+
                                         <div ng-show="form.$submitted || form.oldPassword.$touched">
-                                            <span ng-show="form.oldPassword.$error.required" class="help-block">请填写旧密码</span>
+                                            <span ng-show="form.oldPassword.$error.required"
+                                                  class="help-block">请填写旧密码</span>
+                                            <span ng-show="wrongPassword"
+                                                  class="help-block">旧密码不正确</span>
                                         </div>
                                     </div>
                                 </div>
@@ -41,9 +45,11 @@
 
                                     <div class="col-md-4">
                                         <input type="password" name="newPassword" class="form-control"
-                                               ng-model="model.newPassword"/>
+                                               ng-model="model.newPassword" required=""/>
+
                                         <div ng-show="form.$submitted || form.newPassword.$touched">
-                                            <span ng-show="form.newPassword.$error.required" class="help-block">请填写新密码</span>
+                                            <span ng-show="form.newPassword.$error.required"
+                                                  class="help-block">请填写新密码</span>
                                         </div>
                                     </div>
                                 </div>
@@ -52,9 +58,13 @@
 
                                     <div class="col-md-4">
                                         <input type="password" name="confirmPassword" class="form-control"
-                                               ng-model="model.confirmPassword"/>
+                                               ng-model="model.confirmPassword" equals="{{model.newPassword}}"
+                                               required=""/>
+
                                         <div ng-show="form.$submitted || form.confirmPassword.$touched">
                                             <span ng-show="form.confirmPassword.$error.required" class="help-block">请重复新密码</span>
+                                            <span ng-show="!form.confirmPassword.$error.required && form.confirmPassword.$error.equals && form.newPassword.$dirty"
+                                                  class="help-block">新密码和重复新密码不一致</span>
                                         </div>
                                     </div>
                                 </div>
@@ -89,9 +99,10 @@
             <div class="form-actions fluid">
                 <div class="col-md-offset-2 col-md-9">
                     <input type="button" name="cancel" class="btn dark" value="取消" ui-sref="category"/>
-                    <input type="submit" name="updatePassword" ng-disabled="form.$invalid" class="btn green" value="修改密码"
+                    <input type="submit" name="updatePassword" ng-disabled="form.$invalid" class="btn green"
+                           value="修改密码"
                            ng-click="updatePassword()"/>
-                    <input type="submit" name="save" ng-disabled="form.$invalid" class="btn blue" value="保存"
+                    <input type="submit" name="save" class="btn blue" value="保存"
                            ng-click="saveAccount()"/>
                 </div>
             </div>

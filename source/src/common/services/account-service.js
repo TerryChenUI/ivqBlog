@@ -33,6 +33,19 @@
             });
         };
 
+        AccountService.prototype.updatePassword = function (id, user, successCB, errorCB) {
+            var config = {
+                method: 'PUT',
+                url: this.serviceEndpoint + "account/updatePassword/" + id,
+                data: user
+            };
+            return this.$http(config).then(function (res) {
+                return successCB(res);
+            }, function (res) {
+                return errorCB(res);
+            });
+        };
+
         return AccountService;
     })();
 

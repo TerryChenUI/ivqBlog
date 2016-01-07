@@ -8,6 +8,7 @@ var db = require('./db');
 var jwt = require('jwt-simple');
 
 //routes
+var accounts = require('./routes/account');
 var articles = require('./routes/article');
 var categories = require('./routes/category');
 var users = require('./routes/user');
@@ -39,6 +40,7 @@ app.use(function(req, res, next) {
 //});
 
 //routes
+app.use(accounts);
 app.use(articles);
 app.use(categories);
 app.use(users);
