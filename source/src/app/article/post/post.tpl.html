@@ -2,7 +2,7 @@
     <h2 class="post-title">{{article.title}}</h2>
 
     <p class="post-meta">{{article.time.publish}} | 分类：<a
-            ui-sref="list({categoryId:article.categoryId})">{{article.categoryName}}</a> |
+            ui-sref="list({categoryId:article.category._id})">{{article.category.name}}</a> |
         作者：{{article.author}} | 浏览：{{article.views}} | 评论：</p>
 
     <div class="post-description">

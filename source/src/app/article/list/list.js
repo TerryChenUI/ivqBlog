@@ -6,7 +6,6 @@ angular.module('app.article')
         $scope.itemsPerPage = 15;
         //$scope.maxSize = 5;
 
-
         $scope.initController = function () {
             getData();
         };
@@ -20,7 +19,7 @@ angular.module('app.article')
         function getData() {
             var paramsObj = {
                 filters: {
-                    categoryId: $stateParams.categoryId,
+                    category: $stateParams.categoryId,
                     publish: true
                 },
                 sortBy: {

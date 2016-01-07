@@ -19,8 +19,7 @@ var articleSchema = new mongoose.Schema({
         update: {type: Date, default: Date.now()},
         publish: Date
     },
-    //category: {type: mongoose.Schema.Types.ObjectId, ref: 'Category'}
-    categoryId: Number
+    category: {type: Number, ref: 'Category'}
 }, {versionKey: false});
 
 articleSchema.plugin(autoIncrement.plugin, {model: 'Article', startAt: 1});
@@ -42,15 +41,16 @@ articleSchema.statics = {
     list: function (options, cb) {
         var filter = options.filter || {};
         this.find(filter)
-            .populate('category')
+            .populate('category', '_id name')
             .sort(options.sortBy)
             .limit(options.count)
             .skip(options.page * options.count)
             .exec(cb);
     },
 
-    get: function (id, cb) {
+    getById: function (id, cb) {
         return this.findOne({_id: id})
+            .populate('category', '_id name')
             .exec(cb);
     },
 

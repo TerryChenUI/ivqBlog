@@ -1,6 +1,6 @@
 angular.module('app.admin.content')
     .controller('ListArticleCtrl', ['$scope', '$state', 'SweetAlert', 'CategoryService', 'ArticleService', 'Tool', function ($scope, $state, SweetAlert, CategoryService, ArticleService, Tool) {
-        $scope.filterBy = {'title':'', 'categoryId': 0};
+        $scope.filterBy = {'title':'', 'category': 0};
         $scope.categories = [{name: '--请选择--', value: 0}];
 
         $scope.initController = function () {
@@ -74,10 +74,12 @@ angular.module('app.admin.content')
                     if(data.time.publish)
                         data.time.publish = Tool.convertTime(data.time.publish);
                     $scope.model = data;
+                    $scope.model.category = data.category != null ? data.category._id : 0;
                     $scope.originModel = Tool.deepCopy($scope.model);
+                    $scope.originModel.category = data.category != null ? data.category._id : 0;
                 });
             } else {
-                $scope.model.categoryId = $scope.categories[0].value;
+                $scope.model.category = $scope.categories[0].value;
             }
         };
 

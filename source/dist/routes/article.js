@@ -14,8 +14,8 @@ router
             } else {
                 filter.title = new RegExp(filter.title, "i");
             }
-            if (filter.categoryId == 0) {
-                delete filter.categoryId;
+            if (filter.category == 0) {
+                delete filter.category;
             }
         }
         var options = {
@@ -40,31 +40,26 @@ router
     })
     .get('/api/articles/:id', function (req, res, next) {
         var action = req.query.action;
-        var categoryName = null;
-        Article.get(req.params.id, function (err, article) {
+        Article.getById(req.params.id, function (err, article) {
             if (err)
                 return res.send({error: err});
-            Category.getById(article.categoryId, function (err, category) {
-                if (err)
-                    return res.send({error: err});
-                categoryName = category.name;
-                if (action == 'updateView') {
-                    article.views += 1;
-                    article.save(function (err, article) {
-                        if (err)
-                            return res.send({error: err});
-                        article = article.toObject();
-                        article.categoryName = categoryName;
-                        res.send({
-                            data: article
-                        });
-                    });
-                } else {
+
+            if (action == 'updateView') {
+                article.views += 1;
+                article.save(function (err, article) {
+                    if (err)
+                        return res.send({error: err});
+                    article = article.toObject();
                     res.send({
                         data: article
                     });
-                }
-            });
+                });
+            } else {
+                res.send({
+                    data: article
+                });
+            }
+
         });
     })
     .post('/api/articles', jwtAuth, function (req, res, next) {
@@ -82,8 +77,8 @@ router
             delete modify.publish;
         }
         if (modify.meta != undefined) {
-            if (modify.meta.title != undefined) {
-                modify["meta.title"] = modify.meta.title;
+            if (modify.meta.author != undefined) {
+                modify["meta.author"] = modify.meta.author;
             }
             if (modify.meta.keyword != undefined) {
                 modify["meta.keyword"] = modify.meta.keyword;
