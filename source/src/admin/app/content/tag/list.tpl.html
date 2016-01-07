@@ -14,14 +14,17 @@
     <table class="table datatable table-striped table-bordered table-hover">
         <thead>
         <tr>
-            <th width="50">
-                序号
-            </th>
             <th width="200">
-                名称
+                标签
+            </th>
+            <th width="50">
+                排序
             </th>
             <th>
                 描述
+            </th>
+            <th width="80">
+                状态
             </th>
             <th width="80">
                 操作
@@ -33,9 +36,10 @@
         </thead>
         <tbody>
         <tr ng-repeat="row in rows">
-            <td>{{row._id}}</td>
             <td>{{row.name}}</td>
+            <td>{{row.displayOrder}}</td>
             <td>{{row.description}}</td>
+            <td>{{row.status}}</td>
             <td><a class="btn btn-xs purple" ui-sref="editTag({id:row._id})"><i class="fa fa-edit"></i>编辑</a></td>
             <td><a class="btn btn-xs red" href="javascript:void(0)" ng-click="remove(row._id)"><i class="fa fa-times"></i>删除</a></td>
         </tr>

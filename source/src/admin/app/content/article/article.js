@@ -46,7 +46,7 @@ angular.module('app.admin.content')
 
         $scope.initController();
     }])
-    .controller('EditArticleCtrl', ['$scope', '$stateParams', '$state', '$timeout', 'SweetAlert', 'CategoryService', 'ArticleService', 'Upload', 'Tool', function ($scope, $stateParams, $state, $timeout, SweetAlert, CategoryService, ArticleService, Upload, Tool) {
+    .controller('EditArticleCtrl', ['$scope', '$stateParams', '$state', '$timeout', 'SweetAlert', 'CategoryService', 'ArticleService', 'TagService', 'Upload', 'Tool', function ($scope, $stateParams, $state, $timeout, SweetAlert, CategoryService, ArticleService, TagService, Upload, Tool) {
         var id = ($stateParams.id) ? parseInt($stateParams.id) : 0;
         $scope.originModel = {};
         $scope.model = {
@@ -66,6 +66,9 @@ angular.module('app.admin.content')
                         value: obj._id
                     });
                 });
+            });
+            TagService.getAllTags().then(function(data){
+                $scope.tags = data;
             });
             if (id > 0) {
                 ArticleService.getArticleById(id).then(function (data) {

@@ -15,16 +15,32 @@
                                     <label class="control-label col-md-2">名称</label>
 
                                     <div class="col-md-4">
-                                        <input type="text" name="name" class="form-control" ng-model="model.key"
+                                        <input type="text" name="name" class="form-control" ng-model="model.name"
                                                required=""/>
                                     </div>
                                 </div>
                                 <div class="form-group">
-                                    <label class="control-label col-md-2">描述</label>
-
+                                    <label class="control-label col-md-2">排序</label>
                                     <div class="col-md-4">
-                                        <textarea class="form-control" ng-model="model.description" rows="4" cols="20"
-                                                  name="description"></textarea>
+                                        <input type="text" name="displayOrder" class="form-control" ng-model="model.displayOrder"/>
+                                        <div ng-show="form.$submitted || form.displayOrder.$touched">
+                                            <span ng-show="form.displayOrder.$error.required"
+                                                  class="help-block">请填写排序</span>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    <label class="control-label col-md-2">描述</label>
+                                    <div class="col-md-4">
+                                        <textarea class="form-control" ng-model="model.description"  rows="4" cols="20" name="description"></textarea>
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    <label class="control-label col-md-2">已启用</label>
+                                    <div class="col-md-4">
+                                        <label class="form-checkbox">
+                                            <input type="checkbox" ng-model="model.enabled"/>
+                                        </label>
                                     </div>
                                 </div>
                             </div>
@@ -37,7 +53,7 @@
                     <input type="button" name="cancel" class="btn dark" value="取消" ui-sref="tag"/>
                     <input type="submit" name="save" ng-disabled="form.$pristine || form.$invalid" class="btn blue"
                            value="保存"
-                           ng-click="saveCategory()"/>
+                           ng-click="saveTag()"/>
                 </div>
             </div>
         </form>

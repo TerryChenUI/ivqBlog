@@ -19,7 +19,8 @@ var articleSchema = new mongoose.Schema({
         update: {type: Date, default: Date.now()},
         publish: Date
     },
-    category: {type: Number, ref: 'Category'}
+    category: {type: Number, ref: 'Category'},
+    tags: [{type: Number, ref: 'Tag'}]
 }, {versionKey: false});
 
 articleSchema.plugin(autoIncrement.plugin, {model: 'Article', startAt: 1});
@@ -51,6 +52,7 @@ articleSchema.statics = {
     getById: function (id, cb) {
         return this.findOne({_id: id})
             .populate('category', '_id name')
+            .populate('tags', '_id name')
             .exec(cb);
     },
 

@@ -2,6 +2,10 @@ angular.module('app.admin.content')
     .controller('ListTagCtrl', ['$scope', '$state', 'SweetAlert', 'TagService', function ($scope, $state, SweetAlert, TagService) {
         $scope.getResource = function (params, paramsObj) {
             return TagService.getTags(paramsObj).then(function (response) {
+                response.data.rows = _.each(response.data.rows, function (data) {
+                    data.status = data.enabled ? "已启用" : "禁用";
+                });
+
                 return {
                     rows: response.data.rows,
                     header: [],
@@ -44,12 +48,12 @@ angular.module('app.admin.content')
                 var modifyModel = Tool.trimSameProperties($scope.originModel, $scope.model);
                 TagService.update(id, modifyModel, function () {
                     SweetAlert.updateSuccessfully();
-                    $state.go('Tag');
+                    $state.go('tag');
                 });
             } else {
                 TagService.insert($scope.model, function () {
                     SweetAlert.addSuccessfully();
-                    $state.go('Tag');
+                    $state.go('tag');
                 });
             }
         };

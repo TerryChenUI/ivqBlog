@@ -24,6 +24,7 @@
     "sweetalert": "~1.1.3",
     "moment": "~2.10.6",
     "ui-router-metatags": "~1.0.3",
-    "angular-ueditor": "*"
+    "angular-ueditor": "*",
+    "checklist-model": "~0.9.0"
   }
 }

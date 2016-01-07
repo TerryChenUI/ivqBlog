@@ -36,7 +36,8 @@ module.exports = {
             './lib/moment/moment.js',
             './lib/ueditor/ueditor.config.js',
             './lib/ueditor/ueditor.all.min.js',
-            './lib/ueditor/angular-ueditor.min.js'
+            './lib/ueditor/angular-ueditor.min.js',
+            './lib/checklist-model/checklist-model.js'
         ]
     }
 };

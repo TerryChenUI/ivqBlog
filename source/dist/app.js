@@ -8,11 +8,12 @@ var db = require('./db');
 var jwt = require('jwt-simple');
 
 //routes
-var accounts = require('./routes/account');
-var articles = require('./routes/article');
-var categories = require('./routes/category');
-var users = require('./routes/user');
-var plugins = require('./routes/plugin');
+var accounts = require('./routes/account'),
+    articles = require('./routes/article'),
+    categories = require('./routes/category'),
+    users = require('./routes/user'),
+    plugins = require('./routes/plugin'),
+    tags = require('./routes/tag');
 
 var app = express();
 
@@ -28,9 +29,9 @@ app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({extended: false}));
 app.use(cookieParser());
 app.use(express.static(path.join(__dirname, '/ui')));//TODO:屏蔽访问后端文件
-app.use(function(req, res, next) {
+app.use(function (req, res, next) {
     res.setHeader('Access-Control-Allow-Origin', '*');
-    res.setHeader('Access-Control-Allow-Methods', 'GET, POST');
+    res.setHeader('Access-Control-Allow-Methods', 'GET, POST, PUT, DELETE');
     res.setHeader('Access-Control-Allow-Headers', 'X-Requested-With,content-type, Authorization');
     next();
 });
@@ -45,6 +46,7 @@ app.use(articles);
 app.use(categories);
 app.use(users);
 app.use(plugins);
+app.use(tags);
 
 // catch 404 and forward to error handler
 //app.use(function (req, res, next) {

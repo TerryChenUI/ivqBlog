@@ -3,8 +3,11 @@ var mongoose = require('mongoose'),
 
 var tagSchema = new mongoose.Schema({
     name: String,
-    description: String
-});
+    description: String,
+    displayOrder: Number,
+    enabled: Boolean,
+    articles: [{type: Number, ref: 'Article'}]
+}, {versionKey: false});
 
 tagSchema.plugin(autoIncrement.plugin, {model: 'Tag', startAt: 1});
 
@@ -26,7 +29,7 @@ tagSchema.statics = {
             .exec(cb);
     },
 
-    update: function (id, tag, cb) {
+    update2: function (id, tag, cb) {
         this.update({_id: id}, {$set: tag})
             .exec(cb);
     },
