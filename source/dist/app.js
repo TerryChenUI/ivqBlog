@@ -12,8 +12,9 @@ var accounts = require('./routes/account'),
     articles = require('./routes/article'),
     categories = require('./routes/category'),
     users = require('./routes/user'),
-    plugins = require('./routes/plugin'),
-    tags = require('./routes/tag');
+    tags = require('./routes/tag'),
+    comments = require('./routes/comment'),
+    plugins = require('./routes/plugin');
 
 var app = express();
 
@@ -45,8 +46,9 @@ app.use(accounts);
 app.use(articles);
 app.use(categories);
 app.use(users);
-app.use(plugins);
 app.use(tags);
+app.use(comments);
+app.use(plugins);
 
 // catch 404 and forward to error handler
 //app.use(function (req, res, next) {

@@ -2,11 +2,12 @@ var mongoose = require('mongoose'),
     autoIncrement = require('mongoose-auto-increment');
 
 var commentSchema = new mongoose.Schema({
-    userName: String,
+    name: String,
     email: String,
     content: String,
     createTime: {type: Date, default: Date.now()},
-    articleId: {type: mongoose.Schema.Types.ObjectId, ref: 'Article'}
+    article: {type: Number, ref: 'Article'},
+    reply: {type: Number, ref: 'Comment'}
 }, {versionKey: false});
 
 commentSchema.plugin(autoIncrement.plugin, {model: 'Comment', startAt: 1});

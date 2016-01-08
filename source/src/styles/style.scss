@@ -64,6 +64,14 @@ a:hover {
       border-bottom: 1px #ddd solid;
     }
   }
+
+  .post-comment {
+    margin:30px -15px 0 -15px;
+    border-top: 1px #ddd solid;
+    form{
+      padding:20px 0 0 0;
+    }
+  }
 }
 
 .footer {

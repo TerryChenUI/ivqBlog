@@ -20,7 +20,8 @@ var articleSchema = new mongoose.Schema({
         publish: Date
     },
     category: {type: Number, ref: 'Category'},
-    tags: [{type: Number, ref: 'Tag'}]
+    tags: [{type: Number, ref: 'Tag'}],
+    comments: [{type: Number, ref: 'Comment'}]
 }, {versionKey: false});
 
 articleSchema.plugin(autoIncrement.plugin, {model: 'Article', startAt: 1});
@@ -43,6 +44,7 @@ articleSchema.statics = {
         var filter = options.filter || {};
         this.find(filter)
             .populate('category', '_id name')
+            .populate('comments')
             .sort(options.sortBy)
             .limit(options.count)
             .skip(options.page * options.count)

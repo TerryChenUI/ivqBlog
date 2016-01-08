@@ -19,9 +19,11 @@
                             <div class="form-body">
                                 <div class="form-group">
                                     <label class="control-label col-md-2">标题</label>
+
                                     <div class="col-md-4">
                                         <input type="text" name="title" class="form-control" ng-model="model.title"
                                                required=""/>
+
                                         <div ng-show="form.$submitted || form.title.$touched">
                                             <span ng-show="form.title.$error.required" class="help-block">请填写标题</span>
                                         </div>
@@ -29,6 +31,7 @@
                                 </div>
                                 <div class="form-group">
                                     <label class="control-label col-md-2">类别</label>
+
                                     <div class="col-md-2">
                                         <select class="form-control" ng-model="model.category"
                                                 ng-options="option.value as option.name for option in categories"></select>
@@ -36,17 +39,21 @@
                                 </div>
                                 <div class="form-group">
                                     <label class="control-label col-md-2">标签</label>
+
                                     <div class="col-md-8">
                                         <label ng-repeat="tag in tags">
-                                            <input type="checkbox" checklist-model="model.tags" checklist-value="tag"> {{tag.name}}
+                                            <input type="checkbox" checklist-model="model.tags" checklist-value="tag">
+                                            {{tag.name}}
                                         </label>
                                     </div>
                                 </div>
                                 <div class="form-group">
                                     <label class="control-label col-md-2">作者</label>
+
                                     <div class="col-md-4">
                                         <input type="text" name="author" class="form-control" ng-model="model.author"
                                                required=""/>
+
                                         <div ng-show="form.$submitted || form.author.$touched">
                                             <span ng-show="form.author.$error.required" class="help-block">请填写作者</span>
                                         </div>
@@ -54,40 +61,44 @@
                                 </div>
                                 <div class="form-group">
                                     <label class="control-label col-md-2">简介</label>
+
                                     <div class="col-md-4">
                                         <textarea class="form-control" ng-model="model.description" rows="4" cols="20"
                                                   name="description"></textarea>
                                     </div>
                                 </div>
                                 <!--<div class="form-group">-->
-                                    <!--<label class="control-label col-md-2">封面图</label>-->
-                                    <!--<div class="col-md-4">-->
-                                        <!--<button type="file" ngf-select="uploadImage($file, $invalidFiles)"-->
-                                                <!--accept="image/*" ngf-max-height="1000" ngf-max-size="1MB">-->
-                                            <!--上传图片-->
-                                        <!--</button>-->
-                                        <!--<div ng-if="showImg">-->
-                                            <!--<img ng-src="{{imgUrl}}" width="200"/>-->
-                                        <!--</div>-->
-                                        <!--&lt;!&ndash;File:&ndash;&gt;-->
-                                        <!--&lt;!&ndash;<div>{{f.name}} {{errFile.name}} {{errFile.$error}}&ndash;&gt;-->
-                                        <!--&lt;!&ndash;{{errFile.$errorParam}}&ndash;&gt;-->
-                                        <!--&lt;!&ndash;<span class="progress" ng-show="f.progress >= 0">&ndash;&gt;-->
-                                        <!--&lt;!&ndash;<div style="width:{{f.progress}}%"&ndash;&gt;-->
-                                        <!--&lt;!&ndash;ng-bind="f.progress + '%'"></div>&ndash;&gt;-->
-                                        <!--&lt;!&ndash;</span>&ndash;&gt;-->
-                                    <!--</div>-->
-                                    <!--{{errorMsg}}-->
+                                <!--<label class="control-label col-md-2">封面图</label>-->
+                                <!--<div class="col-md-4">-->
+                                <!--<button type="file" ngf-select="uploadImage($file, $invalidFiles)"-->
+                                <!--accept="image/*" ngf-max-height="1000" ngf-max-size="1MB">-->
+                                <!--上传图片-->
+                                <!--</button>-->
+                                <!--<div ng-if="showImg">-->
+                                <!--<img ng-src="{{imgUrl}}" width="200"/>-->
+                                <!--</div>-->
+                                <!--&lt;!&ndash;File:&ndash;&gt;-->
+                                <!--&lt;!&ndash;<div>{{f.name}} {{errFile.name}} {{errFile.$error}}&ndash;&gt;-->
+                                <!--&lt;!&ndash;{{errFile.$errorParam}}&ndash;&gt;-->
+                                <!--&lt;!&ndash;<span class="progress" ng-show="f.progress >= 0">&ndash;&gt;-->
+                                <!--&lt;!&ndash;<div style="width:{{f.progress}}%"&ndash;&gt;-->
+                                <!--&lt;!&ndash;ng-bind="f.progress + '%'"></div>&ndash;&gt;-->
+                                <!--&lt;!&ndash;</span>&ndash;&gt;-->
+                                <!--</div>-->
+                                <!--{{errorMsg}}-->
                                 <!--</div>-->
                             </div>
                             <div class="form-group">
                                 <label class="control-label col-md-2">正文</label>
+
                                 <div class="col-md-8">
-                                    <div class="ueditor" config="ueConfig" ng-model="model.content" style="height:300px;"></div>
+                                    <div class="ueditor" config="ueConfig" ng-model="model.content"
+                                         style="height:300px;"></div>
                                 </div>
                             </div>
                             <div class="form-group">
                                 <label class="control-label col-md-2">已发布</label>
+
                                 <div class="col-md-4">
                                     <label class="form-checkbox">
                                         <input type="checkbox" ng-model="model.publish"/>
@@ -96,18 +107,21 @@
                             </div>
                             <div class="form-group" ng-if="model.time.create">
                                 <label class="control-label col-md-2">创建时间</label>
+
                                 <div class="col-md-4">
                                     <label class="form-text">{{model.time.create}}</label>
                                 </div>
                             </div>
                             <div class="form-group" ng-if="model.time.update">
                                 <label class="control-label col-md-2">更新时间</label>
+
                                 <div class="col-md-4">
                                     <label class="form-text">{{model.time.update}}</label>
                                 </div>
                             </div>
                             <div class="form-group" ng-if="model.time.publish">
                                 <label class="control-label col-md-2">发布时间</label>
+
                                 <div class="col-md-4">
                                     <label class="form-text">{{model.time.publish}}</label>
                                 </div>
@@ -116,18 +130,22 @@
                         <div class="tab-pane" id="tab_2">
                             <div class="form-group">
                                 <label class="control-label col-md-2">SEO作者</label>
+
                                 <div class="col-md-4">
                                     <input type="text" name="title" class="form-control" ng-model="model.meta.author"/>
                                 </div>
                             </div>
                             <div class="form-group">
                                 <label class="control-label col-md-2">SEO关键字</label>
+
                                 <div class="col-md-4">
-                                    <input type="text" name="keyword" class="form-control" ng-model="model.meta.keyword"/>
+                                    <input type="text" name="keyword" class="form-control"
+                                           ng-model="model.meta.keyword"/>
                                 </div>
                             </div>
                             <div class="form-group">
                                 <label class="control-label col-md-2">SEO描述</label>
+
                                 <div class="col-md-4">
                                     <textarea class="form-control" ng-model="model.meta.description" rows="4" cols="20"
                                               name="description"></textarea>
