@@ -17,6 +17,9 @@ router
             if (filter.category == 0) {
                 delete filter.category;
             }
+            if (filter.tags == 0){
+                delete filter.tags;
+            }
         }
         var options = {
             filter: filter,

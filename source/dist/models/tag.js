@@ -19,8 +19,20 @@ tagSchema.statics = {
         var filter = options.filter || {};
 
         this.find(filter)
+            .sort(options.sortBy)
             .limit(options.count)
             .skip(options.page * options.count)
+            .exec(cb);
+    },
+
+    getAllByFilters: function (options, cb) {
+        var filter = options.filter || {};
+        var sortBy = options.sortBy || {};
+        var fields = options.fields || {};
+
+        this.find(filter)
+            .select(fields)
+            .sort(sortBy)
             .exec(cb);
     },
 

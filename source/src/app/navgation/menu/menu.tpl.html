@@ -12,10 +12,10 @@
         </div>
         <div id="navbar" class="navbar-collapse collapse">
             <ul class="nav navbar-nav">
-                <li>
+                <li ng-class="$state.current.name == 'home' ? 'active' : ''">
                     <a class="blog-nav-item" ui-sref="home">首页</a>
                 </li>
-                <li class="{{category.active}}" ng-repeat="category in categories">
+                <li ng-class="($state.current.name == 'list' || $state.current.name == 'post') && $stateParams.categoryId == category._id ? 'active' : ''" ng-repeat="category in categories">
                     <a class="blog-nav-item" ui-sref="list({categoryId:category._id})">{{category.name}}</a>
                 </li>
             </ul>

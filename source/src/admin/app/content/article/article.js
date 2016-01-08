@@ -1,12 +1,21 @@
 angular.module('app.admin.content')
-    .controller('ListArticleCtrl', ['$scope', '$state', 'SweetAlert', 'CategoryService', 'ArticleService', 'Tool', function ($scope, $state, SweetAlert, CategoryService, ArticleService, Tool) {
-        $scope.filterBy = {'title':'', 'category': 0};
+    .controller('ListArticleCtrl', ['$scope', '$state', 'SweetAlert', 'CategoryService', 'ArticleService', 'TagService', 'Tool', function ($scope, $state, SweetAlert, CategoryService, ArticleService, TagService, Tool) {
+        $scope.filterBy = {'title': '', 'category': 0, 'tags': 0};
         $scope.categories = [{name: '--请选择--', value: 0}];
+        $scope.allTags = [{name: '--请选择--', value: 0}];
 
         $scope.initController = function () {
             CategoryService.getAllCategories().then(function (data) {
                 data.forEach(function (obj) {
                     $scope.categories.push({
+                        name: obj.name,
+                        value: obj._id
+                    });
+                });
+            });
+            TagService.getAllTags().then(function (data) {
+                data.forEach(function (obj) {
+                    $scope.allTags.push({
                         name: obj.name,
                         value: obj._id
                     });
@@ -52,9 +61,7 @@ angular.module('app.admin.content')
         $scope.model = {
             author: 'ivqBlog'
         };
-        $scope.ueConfig = {
-
-        };
+        $scope.ueConfig = {};
         $scope.title = id > 0 ? '编辑文章' : '添加文章';
         $scope.categories = [{name: '--请选择--', value: 0}];
 
@@ -67,16 +74,17 @@ angular.module('app.admin.content')
                     });
                 });
             });
-            TagService.getAllTags().then(function(data){
+            TagService.getAllTags().then(function (data) {
                 $scope.tags = data;
             });
             if (id > 0) {
                 ArticleService.getArticleById(id).then(function (data) {
                     data.time.create = Tool.convertTime(data.time.create);
                     data.time.update = Tool.convertTime(data.time.update);
-                    if(data.time.publish)
+                    if (data.time.publish)
                         data.time.publish = Tool.convertTime(data.time.publish);
                     $scope.model = data;
+                    //$scope.model.tags = [$scope.tags[1]];
                     $scope.model.category = data.category != null ? data.category._id : 0;
                     $scope.originModel = Tool.deepCopy($scope.model);
                     $scope.originModel.category = data.category != null ? data.category._id : 0;
@@ -88,11 +96,20 @@ angular.module('app.admin.content')
 
         $scope.saveArticle = function () {
             if (id > 0) {
+                var selectedTags = _.map($scope.model.tags, function (data) {
+                    return data._id;
+                });
                 var modifyModel = Tool.trimSameProperties($scope.originModel, $scope.model);
+                if (_.isUndefined(modifyModel.tags) && selectedTags.length == 0) {
+                    modifyModel.tags = []
+                } else if (modifyModel.tags.length) {
+                    modifyModel.tags = selectedTags;
+                }
                 ArticleService.update(id, modifyModel, function () {
                     SweetAlert.updateSuccessfully();
                     $state.go('article');
                 });
+
             } else {
                 ArticleService.insert($scope.model, function () {
                     SweetAlert.addSuccessfully();

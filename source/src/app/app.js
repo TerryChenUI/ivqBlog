@@ -26,8 +26,8 @@ app.controller('AppCtrl', ['$rootScope', 'PackageInfo', function ($rootScope, Pa
     $rootScope.packageInfo = PackageInfo;
 }]);
 
-function runBlock($rootScope, MetaTags) {
-    $rootScope.MetaTags = MetaTags;
-}
-
-app.run(['$rootScope', 'MetaTags', runBlock]);
+app.run(['$rootScope', '$state', '$stateParams', 'MetaTags', function($rootScope, $state, $stateParams, MetaTags){
+    $rootScope.metaTags = MetaTags;
+    $rootScope.$state = $state;
+    $rootScope.$stateParams = $stateParams;
+}]);

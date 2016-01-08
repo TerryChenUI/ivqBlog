@@ -13,6 +13,11 @@
                     <!--<button type="button" class="btn dark btn-search" onclick=""><i class="fa fa-search"></i> 搜索</button>-->
                 <!--</label>-->
                 <label>
+                    <span>标签：</span>
+                    <select class="form-control" ng-model="filterBy.tags"
+                            ng-options="option.value as option.name for option in allTags"></select>
+                </label>
+                <label>
                     <span>类别：</span>
                     <select class="form-control" ng-model="filterBy.category"
                             ng-options="option.value as option.name for option in categories"></select>

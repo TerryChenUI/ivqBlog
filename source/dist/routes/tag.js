@@ -7,7 +7,7 @@ var express = require('express'),
 router
     .get('/api/tags', function (req, res, next) {
         var options = {
-            sortBy: {displayOrder:1},
+            sortBy: {displayOrder: 1},
             page: req.query.page - 1,
             count: req.query.count
         };
@@ -27,8 +27,9 @@ router
     })
     .get('/api/tags/all', function (req, res, next) {
         var options = {
+            fields: '_id, name',
             filter: {enabled: true},
-            sortBy: {displayOrder:1}
+            sortBy: {displayOrder: 1}
         };
         Tag.getAllByFilters(options, function (err, tags) {
             res.send({

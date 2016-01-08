@@ -6,17 +6,13 @@ angular.module('app.nav')
             transclude: true,
             replace: true,
             templateUrl: 'navgation/menu/menu.tpl.html',
-            controller: ['$scope', '$stateParams', 'CategoryService', function ($scope, $stateParams, CategoryService) {
+            controller: ['$scope', 'CategoryService', function ($scope, CategoryService) {
                 $scope.initController = function () {
                     CategoryService.getAllCategories().then(function (data) {
-                        $scope.categories = [];
-                        data.forEach(function(obj){
-                            if($stateParams.cateogryId == obj._id)
-                                obj.active = true;
-                            $scope.categories.push(obj);
-                        });
+                        $scope.categories = data;
                     });
                 };
+
                 $scope.initController();
             }]
         };

@@ -6,16 +6,16 @@ angular.module('app')
 
         $urlRouterProvider.otherwise('/home');
 
-
         $stateProvider
             .state('home', {
                 url: '/home',
+                //templateUrl: 'home/home.tpl.html',
                 templateUrl: 'article/list/list.tpl.html',
                 controller: 'ListCtrl',
                 metaTags: {
                     title: 'ivqBlog - show you code',
                     description: 'This is the ivqBlog blog',
-                    keywords: 'ivqBlog blog develop',
+                    keywords: 'ivqLimitBlog blog develop',
                     author: 'ivqBlog'
                 }
             })
@@ -42,7 +42,7 @@ angular.module('app')
                 }
             })
             .state('post', {
-                url: '/post/:articleId',
+                url: '/post/:categoryId/:articleId',
                 templateUrl: 'article/post/post.tpl.html',
                 controller: 'PostCtrl',
                 resolve: {
