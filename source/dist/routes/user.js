@@ -28,7 +28,7 @@ router
         });
         user.password = md5(user.password);
         user.save(function (err) {
-
+			res.send('successfully');
         });
     })
     .get('/api/users/:id', function (req, res, next) {

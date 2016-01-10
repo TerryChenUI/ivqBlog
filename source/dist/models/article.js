@@ -55,6 +55,7 @@ articleSchema.statics = {
         return this.findOne({_id: id})
             .populate('category', '_id name')
             .populate('tags', '_id name')
+            .populate('comments')
             .exec(cb);
     },
 

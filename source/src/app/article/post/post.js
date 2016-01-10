@@ -12,7 +12,6 @@ angular.module('app.article')
                 $scope.model = {
                     article: $scope.article._Id
                 };
-
             });
         };
 

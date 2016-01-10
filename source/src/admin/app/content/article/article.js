@@ -64,6 +64,15 @@ angular.module('app.admin.content')
         $scope.ueConfig = {};
         $scope.title = id > 0 ? '编辑文章' : '添加文章';
         $scope.categories = [{name: '--请选择--', value: 0}];
+        $scope.commentResource = {
+            "header": [],
+            "rows": [{_id: 1,
+                article: 1,
+                content: "3",
+                createTime: "2016-01-09T10:51:14.457Z",
+                email: "123@qq.com",
+                name: "1"}]
+        };
 
         $scope.initController = function () {
             CategoryService.getAllCategories().then(function (data) {
@@ -88,10 +97,15 @@ angular.module('app.admin.content')
                     $scope.model.category = data.category != null ? data.category._id : 0;
                     $scope.originModel = Tool.deepCopy($scope.model);
                     $scope.originModel.category = data.category != null ? data.category._id : 0;
+
+
+
+                    $scope.commentResource.rows = $scope.model.comments;
                 });
             } else {
                 $scope.model.category = $scope.categories[0].value;
             }
+
         };
 
         $scope.saveArticle = function () {

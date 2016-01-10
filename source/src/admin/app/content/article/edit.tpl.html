@@ -153,7 +153,48 @@
                             </div>
                         </div>
                         <div class="tab-pane" id="tab_3">
+                        <div tasty-table bind-resource="commentResource">
+                            <table class="table datatable table-striped table-bordered table-hover">
+                                <thead>
+                                <tr>
+                                    <th width="50">
+                                        序号
+                                    </th>
+                                    <th width="120">
+                                        昵称
+                                    </th>
+                                    <th width="150">
+                                        邮箱
+                                    </th>
+                                    <th>
+                                        内容
+                                    </th>
+                                    <th width="160">
+                                        回复时间
+                                    </th>
+                                    <th width="80">
+                                        操作
+                                    </th>
+                                    <th width="80">
+                                        操作
+                                    </th>
+                                </tr>
+                                </thead>
+                                <tbody>
+                                <tr ng-repeat="row in rows">
+                                    <td>{{row._id}}</td>
+                                    <td>{{row.name}}</td>
+                                    <td>{{row.email}}</td>
+                                    <td>{{row.content}}</td>
+                                    <td>{{row.createTime}}</td>
+                                    <td><a class="btn btn-xs purple" ui-sref="editArticle({id:row._id})"><i class="fa fa-edit"></i>编辑</a></td>
+                                    <td><a class="btn btn-xs red" href="javascript:void(0)" ng-click="remove(row._id)"><i class="fa fa-times"></i>删除</a></td>
+                                </tr>
+                                </tbody>
+                            </table>
+                            <div tasty-pagination></div>
                         </div>
+                    </div>
                     </div>
                 </div>
             </div>

@@ -23,8 +23,8 @@ h6, .h6 {
   }
 }
 
-.jumbotron{
-  margin:0 0 15px 0;
+.jumbotron {
+  margin: 0 0 15px 0;
 }
 
 a:hover {
@@ -51,25 +51,41 @@ a:hover {
       text-align: center;
     }
   }
-  .post-detail{
-    .post-title{
+  .post-detail {
+    .post-title {
       color: #d66c54;
       font-size: 22px;
       text-align: center;
     }
-    .post-meta{
-      padding:15px 0 10px 0;
-      color:#777777;
+    .post-meta {
+      padding: 15px 0 10px 0;
+      color: #777777;
       text-align: center;
       border-bottom: 1px #ddd solid;
     }
   }
 
-  .post-comment {
-    margin:30px -15px 0 -15px;
-    border-top: 1px #ddd solid;
-    form{
-      padding:20px 0 0 0;
+  .post-comments {
+    margin: 30px -15px 0 -15px;
+    .comment-title {
+      font-size: 16px;
+      font-weight: bold;
+      border-bottom: 1px solid #ccc;
+      padding: 0 0 5px 0;
+    }
+    .comment-item {
+      border-bottom: 1px solid #ccc;
+      padding: 5px 0 0 0;
+      span {
+        margin: 0 5px;
+      }
+      .comment-content {
+        padding: 10px;
+      }
+    }
+
+    form {
+      padding: 20px 0 0 0;
     }
   }
 }
