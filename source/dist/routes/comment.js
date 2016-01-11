@@ -50,7 +50,6 @@ router
                 })
             });
 
-
         });
     })
     .put('/api/comments/:id', jwtAuth, function (req, res, next) {

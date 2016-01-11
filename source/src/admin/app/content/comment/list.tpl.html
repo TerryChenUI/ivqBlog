@@ -1,0 +1,38 @@
+<div tasty-table bind-resource-callback="getResource" bind-init="paginationSetting">
+    <table class="table datatable table-striped table-bordered table-hover">
+        <thead>
+        <tr>
+            <th width="350">
+                标题
+            </th>
+            <th>
+                评论内容
+            </th>
+            <th width="150">
+                用户名
+            </th>
+            <th width="150">
+                邮箱
+            </th>
+            <th width="160">
+                回复时间
+            </th>
+            <th width="80">
+                操作
+            </th>
+        </tr>
+        </thead>
+        <tbody>
+        <tr ng-repeat="row in rows">
+            <td>{{row.article.title}}</td>
+            <td>{{row.content}}</td>
+            <td>{{row.userName}}</td>
+            <td>{{row.email}}</td>
+            <td>{{row.createTime}}</td>
+            <td><a class="btn btn-xs red" href="javascript:void(0)" ng-click="remove(row._id)"><i
+                    class="fa fa-times"></i>删除</a></td>
+        </tr>
+        </tbody>
+    </table>
+    <div tasty-pagination></div>
+</div>

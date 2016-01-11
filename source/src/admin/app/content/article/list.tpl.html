@@ -47,6 +47,9 @@
             <th width="80">
                 页面浏览
             </th>
+            <th width="80">
+                评论
+            </th>
             <th width="160">
                 创建时间
             </th>
@@ -67,6 +70,7 @@
             <td>{{row.title}}</td>
             <td>{{row.status}}</td>
             <td>{{row.views}}</td>
+            <td>{{row.comments.length}}</td>
             <td>{{row.time.create}}</td>
             <td>{{row.time.publish}}</td>
             <td><a class="btn btn-xs purple" ui-sref="editArticle({id:row._id})"><i class="fa fa-edit"></i>编辑</a></td>

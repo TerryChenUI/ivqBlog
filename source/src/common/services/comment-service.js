@@ -16,22 +16,6 @@
             return this.$http(config);
         };
 
-        CommentService.prototype.getAllComments = function () {
-            var config = {
-                method: 'GET',
-                url: this.serviceEndpoint + "comments/all"
-            };
-            return this.appHttp.request(config);
-        };
-
-        CommentService.prototype.getCommentById = function (id) {
-            var config = {
-                method: 'GET',
-                url: this.serviceEndpoint + "comments/" + id
-            };
-            return this.appHttp.request(config);
-        };
-
         CommentService.prototype.insert = function (comment, successCB, errorCB) {
             var config = {
                 method: 'POST',

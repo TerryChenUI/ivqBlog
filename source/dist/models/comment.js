@@ -2,7 +2,7 @@ var mongoose = require('mongoose'),
     autoIncrement = require('mongoose-auto-increment');
 
 var commentSchema = new mongoose.Schema({
-    name: String,
+    userName: String,
     email: String,
     content: String,
     createTime: {type: Date, default: Date.now()},
@@ -20,6 +20,7 @@ commentSchema.statics = {
         var filter = options.filter || {};
 
         this.find(filter)
+            .populate('article')
             .limit(options.count)
             .skip(options.page * options.count)
             .exec(cb);

@@ -39,6 +39,12 @@ angular.module('app.admin.layout')
                                 "route": "article",
                                 "icon": "",
                                 "active": false
+                            },
+                            {
+                                "title": "评论管理",
+                                "route": "comment",
+                                "icon": "",
+                                "active": false
                             }
                         ]
                     },

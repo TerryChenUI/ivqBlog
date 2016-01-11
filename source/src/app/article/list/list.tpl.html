@@ -3,10 +3,10 @@
     <div class="post-item" ng-repeat="article in articles">
         <div class="info">
             分类：<a ui-sref="list({categoryId:article.category._id})">{{article.category.name}}</a> |
-            <span>作者：{{article.author}}</span> | <span>浏览：{{article.views}}</span> | <span>评论：</span>
+            <span>作者：{{article.author}}</span> | <span>浏览：{{article.views}}</span> | <span>评论：{{article.comments.length}}</span>
         </div>
         <div class="title">
-            <span>[{{article.time.publish}}]</span>
+            <span>[{{article.time.publish | convertTime}}]</span>
             <a ui-sref="post({categoryId:article.category._id, articleId:article._id})" title="{{article.title}}">{{article.title}}</a>
         </div>
     </div>

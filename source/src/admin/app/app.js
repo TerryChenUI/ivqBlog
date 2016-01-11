@@ -1,6 +1,7 @@
 'use strict';
 angular.module('common.config', []);
 angular.module('common.directives', []);
+angular.module('common.filters', []);
 angular.module('common.interceptors', []);
 angular.module('common.services', ['common.config', 'common.util']);
 angular.module('common.util', []);
@@ -21,6 +22,7 @@ var appAdmin = angular.module('app.admin', [
     'ui.router',
     'common.config',
     'common.directives',
+    'common.filters',
     'common.interceptors',
     'common.services',
     'common.util',

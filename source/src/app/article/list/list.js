@@ -31,9 +31,6 @@ angular.module('app.article')
             ArticleService.getArticles(paramsObj).then(function (res) {
                 $scope.totalItems = res.data.pagination.size;
                 $scope.articles = res.data.rows;
-                _.each($scope.articles, function (obj) {
-                    obj.time.publish = Tool.convertTime(obj.time.publish, 'YYYY-MM-DD');
-                });
                 $scope.totalItems = res.data.pagination.size;
             });
         }

@@ -6,17 +6,25 @@ angular.module('app.article')
         $scope.initController = function () {
             ArticleService.getArticleById($stateParams.articleId, {action: 'updateView'}).then(function (data) {
                 $scope.article = data;
-                $scope.article.time.publish = Tool.convertTime($scope.article.time.publish);
                 $scope.article.content = $sce.trustAsHtml($scope.article.content);
 
                 $scope.model = {
                     article: $scope.article._Id
                 };
+
             });
+        };
+
+        $scope.reply = function(commentId, userName){
+            $scope.model.reply = commentId;
+            $scope.replyKey = "回复" + userName + ":";
+            $scope.model.content = $scope.replyKey;
         };
 
         $scope.submitComment = function(){
             $scope.model.article = $scope.article._id;
+            if($scope.model.content.indexOf($scope.replyKey) == -1)
+                delete $scope.model.reply;
             CommentService.insert($scope.model, function(res){
                 alert('successFully');
             })

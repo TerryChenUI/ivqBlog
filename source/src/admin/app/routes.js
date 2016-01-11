@@ -93,5 +93,16 @@ angular.module('app.admin')
                     },
                     label: '{{title}}'
                 }
-            });
+            })
+            .state('comment', {
+                url: '/comment/list',
+                templateUrl: 'app/content/comment/list.tpl.html',
+                controller: 'ListCommentCtrl',
+                ncyBreadcrumb: {
+                    parent: function ($scope) {
+                        return 'home';
+                    },
+                    label: '评论管理'
+                }
+            })
     }]);
