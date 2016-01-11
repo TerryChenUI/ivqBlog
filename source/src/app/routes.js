@@ -9,9 +9,15 @@ angular.module('app')
         $stateProvider
             .state('home', {
                 url: '/home',
-                //templateUrl: 'home/home.tpl.html',
-                templateUrl: 'article/list/list.tpl.html',
-                controller: 'ListCtrl',
+                views: {
+                    '': {
+                        templateUrl: 'layout/master.tpl.html'
+                    },
+                    'articleList@home': {
+                        templateUrl: 'article/list/list.tpl.html',
+                        controller: 'ListCtrl'
+                    }
+                },
                 metaTags: {
                     title: 'ivqBlog - show you code',
                     description: 'This is the ivqBlog blog',
@@ -21,8 +27,15 @@ angular.module('app')
             })
             .state('list', {
                 url: '/list/:categoryId',
-                templateUrl: 'article/list/list.tpl.html',
-                controller: 'ListCtrl',
+                views: {
+                    '': {
+                        templateUrl: 'layout/master.tpl.html'
+                    },
+                    'articleList@list': {
+                        templateUrl: 'article/list/list.tpl.html',
+                        controller: 'ListCtrl'
+                    }
+                },
                 resolve: {
                     category: function (CategoryService, $stateParams) {
                         return CategoryService.getCategoryById($stateParams.categoryId);

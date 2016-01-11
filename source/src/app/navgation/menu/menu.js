@@ -12,7 +12,6 @@ angular.module('app.nav')
                         $scope.categories = data;
                     });
                 };
-
                 $scope.initController();
             }]
         };

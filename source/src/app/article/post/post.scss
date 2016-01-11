@@ -1,0 +1,40 @@
+.main {
+  .post-detail {
+    margin: 30px 0 0 0;
+    .post-title {
+      color: #d66c54;
+      font-size: 22px;
+      text-align: center;
+    }
+    .post-meta {
+      padding: 20px 0 10px 0;
+      color: #777777;
+      text-align: center;
+      border-bottom: 1px #ddd solid;
+    }
+  }
+
+  .post-comments {
+    margin: 30px 0 0 0;
+    .comment-title {
+      font-size: 16px;
+      font-weight: bold;
+      border-bottom: 1px solid #ccc;
+      padding: 0 0 5px 0;
+    }
+    .comment-item {
+      border-bottom: 1px solid #ccc;
+      padding: 5px 0 0 0;
+      span {
+        margin: 0 5px;
+      }
+      .comment-content {
+        padding: 10px;
+      }
+    }
+
+    form {
+      padding: 20px 0 0 0;
+    }
+  }
+}

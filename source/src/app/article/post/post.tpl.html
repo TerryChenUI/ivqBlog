@@ -1,69 +1,86 @@
-<div class="row post-detail">
-    <h2 class="post-title">{{article.title}}</h2>
+<div class="container">
+    <div class="row">
+        <div class="main">
+            <div class="col-sm-12">
+                <div class="row post-detail">
+                    <h2 class="post-title">{{article.title}}</h2>
 
-    <p class="post-meta">{{article.time.publish | convertTime}} | 分类：<a
-            ui-sref="list({categoryId:article.category._id})">{{article.category.name}}</a> |
-        作者：{{article.author}} | 浏览：{{article.views}} | 评论：{{article.comments.length}}</p>
-    <div class="post-description">
-        {{article.description}}
-    </div>
-    <div class="post-content" ng-bind-html="article.content">
-    </div>
-</div>
+                    <p class="post-meta">{{article.time.publish | convertTime}} | 分类：<a
+                            ui-sref="list({categoryId:article.category._id})">{{article.category.name}}</a> |
+                        作者：{{article.author}} | 浏览：{{article.views}} | 评论：{{article.comments.length}}</p>
 
-<div class="row post-comments">
-    <div class="comment-title">发表评论</div>
-    <div class="comment-item" ng-repeat="comment in article.comments">
-        <div class="comment-sub-title">
-            <span><a href="#" class="layer">#{{$index + 1}}楼</a></span> |
-            <span>{{comment.createTime | convertTime}}</span> |
-            <span>{{comment.userName}}</span> |
-            <span><a href="#" ng-click="reply(comment._id, comment.userName)">回复</a></span>
-        </div>
-        <div class="comment-content">
-            {{comment.content}}
-        </div>
-    </div>
-
-    <div class="col-md-8">
-        <form class="form-horizontal" name="form">
-            <div class="form-group">
-                <label class="col-sm-2 control-label">昵称*</label>
-                <div class="col-sm-4">
-                    <input type="text" class="form-control" name="userName" ng-model="model.userName" required=""/>
-                    <div ng-show="form.$submitted || form.userName.$touched">
-                        <span ng-show="form.userName.$error.required" class="error-block">请填写昵称</span>
+                    <div class="post-description">
+                        {{article.description}}
+                    </div>
+                    <div class="post-content" ng-bind-html="article.content">
                     </div>
                 </div>
-            </div>
-            <div class="form-group">
-                <label class="col-sm-2 control-label">邮箱*</label>
-                <div class="col-sm-4">
-                    <input type="email" class="form-control" name="email" ng-model="model.email" required=""/>
-                    <div ng-show="form.$submitted || form.email.$touched">
-                        <span ng-show="form.email.$error.required" class="error-block">请填写邮箱</span>
-                        <span ng-show="form.email.$error.email" class="error-block">邮箱格式不正确</span>
+                <div class="row post-comments">
+                    <div class="comment-title">发表评论</div>
+                    <div class="comment-item" ng-repeat="comment in article.comments">
+                        <div class="comment-sub-title">
+                            <span><a href="#" class="layer">#{{$index + 1}}楼</a></span> |
+                            <span>{{comment.createTime | convertTime}}</span> |
+                            <span>{{comment.userName}}</span> |
+                            <span><a href="#" ng-click="reply(comment._id, comment.userName)">回复</a></span>
+                        </div>
+                        <div class="comment-content">
+                            {{comment.content}}
+                        </div>
                     </div>
-                </div>
-            </div>
-            <div class="form-group">
-                <label class="col-sm-2 control-label">评论内容*</label>
-                <div class="col-sm-4">
+
+                    <div class="col-md-8">
+                        <form class="form-horizontal" name="form">
+                            <div class="form-group">
+                                <label class="col-sm-2 control-label">昵称*</label>
+
+                                <div class="col-sm-4">
+                                    <input type="text" class="form-control" name="userName" ng-model="model.userName"
+                                           required=""/>
+
+                                    <div ng-show="form.$submitted || form.userName.$touched">
+                                        <span ng-show="form.userName.$error.required" class="error-block">请填写昵称</span>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <label class="col-sm-2 control-label">邮箱*</label>
+
+                                <div class="col-sm-4">
+                                    <input type="email" class="form-control" name="email" ng-model="model.email"
+                                           required=""/>
+
+                                    <div ng-show="form.$submitted || form.email.$touched">
+                                        <span ng-show="form.email.$error.required" class="error-block">请填写邮箱</span>
+                                        <span ng-show="form.email.$error.email" class="error-block">邮箱格式不正确</span>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <label class="col-sm-2 control-label">评论内容*</label>
+
+                                <div class="col-sm-4">
                     <textarea class="form-control" rows="5" name="content" ng-model="model.content" required="">
                     </textarea>
-                    <div ng-show="form.$submitted || form.content.$touched">
-                        <span ng-show="form.content.$error.required" class="error-block">请填写内容</span>
+
+                                    <div ng-show="form.$submitted || form.content.$touched">
+                                        <span ng-show="form.content.$error.required" class="error-block">请填写内容</span>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <div class="col-sm-offset-2 col-sm-10">
+                                    <button type="submit" class="btn btn-default"
+                                            ng-disabled="form.$pristine || form.$invalid"
+                                            ng-click="submitComment()">发表评论
+                                    </button>
+                                </div>
+                            </div>
+                        </form>
                     </div>
                 </div>
             </div>
-            <div class="form-group">
-                <div class="col-sm-offset-2 col-sm-10">
-                    <button type="submit" class="btn btn-default" ng-disabled="form.$pristine || form.$invalid"
-                            ng-click="submitComment()">发表评论
-                    </button>
-                </div>
-            </div>
-        </form>
+        </div>
     </div>
 </div>
 
