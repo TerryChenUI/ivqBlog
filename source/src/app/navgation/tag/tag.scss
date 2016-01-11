@@ -1,0 +1,46 @@
+.nav-tag {
+  width: 100px;
+  position: absolute;
+  top: 50px;
+  left: 0;
+  height: 100%;
+  background: #222;
+  text-align: center;
+
+  .tag-btn{
+    background: #000000;
+    width:50px;
+    height:50px;
+    position: absolute;
+    top:50%;
+    left:100px;
+    margin-top:-15px;
+    color: #FFFFFF;
+    cursor: pointer;
+    vertical-align: middle;
+    text-align: center;
+  }
+
+  h1 {
+    margin: 30px 0 15px 0;
+    font-size: 14px;
+    color: #FFFFFF;
+  }
+
+  ul {
+    li {
+      a {
+        width: 100%;
+        display: block;
+        padding: 10px;
+        color: #9d9d9d;
+
+        &:hover {
+          background: #000000;
+          color: #FFFFFF;
+          text-decoration: none;
+        }
+      }
+    }
+  }
+}

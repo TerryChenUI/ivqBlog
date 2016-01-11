@@ -1,6 +1,9 @@
-<ul>
-   <li ng-repeat="tag in tags">
-       {{tag.name}}
-       ({{tag.articles.lengths}})
-   </li>
-</ul>
+<div class="nav-tag">
+    <a class="tag-btn">点我惊喜</a>
+    <h1>标签</h1>
+    <ul>
+        <li ng-repeat="tag in tags">
+            <a href="#">{{tag.name}}({{tag.articles.lengths}})</a>
+        </li>
+    </ul>
+</div>

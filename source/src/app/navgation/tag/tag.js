@@ -12,6 +12,7 @@ angular.module('app.nav')
                         $scope.tags = data;
                     });
                 };
+
                 $scope.initController();
             }]
         };
