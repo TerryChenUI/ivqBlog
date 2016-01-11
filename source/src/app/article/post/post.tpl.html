@@ -25,6 +25,7 @@
                             <span><a href="#" ng-click="reply(comment._id, comment.userName)">回复</a></span>
                         </div>
                         <div class="comment-content">
+                            <p ng-if="comment.reply">回复:  {{comment.reply.userName}}</p>
                             {{comment.content}}
                         </div>
                     </div>

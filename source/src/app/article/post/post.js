@@ -23,8 +23,10 @@ angular.module('app.article')
 
         $scope.submitComment = function(){
             $scope.model.article = $scope.article._id;
-            if($scope.model.content.indexOf($scope.replyKey) == -1)
+            if($scope.model.content.indexOf($scope.replyKey) == -1){
+                $scope.model.content = $scope.model.content.replace($scope.replyKey, '');
                 delete $scope.model.reply;
+            }
             CommentService.insert($scope.model, function(res){
                 alert('successFully');
             })
