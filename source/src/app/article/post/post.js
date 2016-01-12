@@ -1,6 +1,6 @@
 "use strict";
 angular.module('app.article')
-    .controller('PostCtrl', ['$scope', '$stateParams', '$sce', 'ArticleService', 'CommentService', 'Tool', function ($scope, $stateParams, $sce, ArticleService, CommentService, Tool) {
+    .controller('PostCtrl', ['$rootScope', '$scope', '$stateParams', '$sce', 'ArticleService', 'CommentService', 'Tool', function ($rootScope, $scope, $stateParams, $sce, ArticleService, CommentService, Tool) {
         $scope.model = {};
 
         $scope.initController = function () {
@@ -11,24 +11,32 @@ angular.module('app.article')
                 $scope.model = {
                     article: $scope.article._Id
                 };
-
+                if ($rootScope.currentUser) {
+                    $scope.model.userName = 'ivqBlog';
+                    $scope.model.email = $rootScope.currentUser.email;
+                }
             });
         };
 
-        $scope.reply = function(commentId, userName){
-            $scope.model.reply = commentId;
+        $scope.reply = function (id, userName) {
+            $scope.model.reply = id;
             $scope.replyKey = "回复" + userName + ":";
             $scope.model.content = $scope.replyKey;
         };
 
-        $scope.submitComment = function(){
+        $scope.delete = function (id) {
+            CommentService.delete(id, function (res) {
+                alert('delete successFully');
+            })
+        };
+
+        $scope.submit = function () {
             $scope.model.article = $scope.article._id;
-            if($scope.model.content.indexOf($scope.replyKey) == -1){
+            if ($scope.model.content.indexOf($scope.replyKey) == 0) {
                 $scope.model.content = $scope.model.content.replace($scope.replyKey, '');
-                delete $scope.model.reply;
             }
-            CommentService.insert($scope.model, function(res){
-                alert('successFully');
+            CommentService.insert($scope.model, function (res) {
+                alert('submit successFully');
             })
         };
 

@@ -52,7 +52,7 @@ router
                 article.save(function (err, article) {
                     if (err)
                         return res.send({error: err});
-                    article = article.toObject();
+
                     res.send({
                         data: article
                     });

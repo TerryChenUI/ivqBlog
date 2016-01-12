@@ -19,6 +19,9 @@
                     <a class="blog-nav-item" ui-sref="list({categoryId:category._id})">{{category.name}}</a>
                 </li>
             </ul>
+            <ul class="nav navbar-nav navbar-right" ng-if="$root.currentUser">
+                <li><a class="blog-nav-item admin-link" target="_blank" href="/admin">管理后台</a></li>
+            </ul>
         </div>
     </div>
 </nav>

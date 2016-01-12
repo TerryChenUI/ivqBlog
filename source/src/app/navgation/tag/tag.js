@@ -13,6 +13,16 @@ angular.module('app.nav')
                     });
                 };
 
+                $scope.switchTag = function () {
+                    var tagObj = $(".nav-tag");
+                    var position = tagObj.position();
+                    if (position.left == 0) {
+                        tagObj.css({left: -100});
+                    } else {
+                        tagObj.css({left: 0});
+                    }
+                };
+
                 $scope.initController();
             }]
         };

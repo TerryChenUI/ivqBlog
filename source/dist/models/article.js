@@ -1,6 +1,5 @@
 var mongoose = require('mongoose'),
-    autoIncrement = require('mongoose-auto-increment'),
-    deepPopulate = require('mongoose-deep-populate')(mongoose);
+    autoIncrement = require('mongoose-auto-increment');
 
 var articleSchema = new mongoose.Schema({
     title: String,
@@ -26,7 +25,6 @@ var articleSchema = new mongoose.Schema({
 }, {versionKey: false});
 
 articleSchema.plugin(autoIncrement.plugin, {model: 'Article', startAt: 1});
-articleSchema.plugin(deepPopulate, {});
 
 articleSchema.pre('save', function (next) {
     if (this.isNew) {
@@ -57,8 +55,14 @@ articleSchema.statics = {
         return this.findOne({_id: id})
             .populate('category', '_id name')
             .populate('tags', '_id name')
-            .populate('comments')
-            .deepPopulate('comments.reply')
+            .populate({
+                path: 'comments',
+                model: 'Comment',
+                populate: {
+                    path: 'reply',
+                    model: 'Comment'
+                }
+            })
             .exec(cb);
     },
 

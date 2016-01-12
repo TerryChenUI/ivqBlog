@@ -16,13 +16,13 @@
                     };
                     var option = {};
                     if (isRemember) {
-                        option = {'expires': moment.utc(res.expires).format()};
+                        option = {'expires': moment.utc(res.expires).format(), 'path': '/'};
                     }
                     $cookies.putObject('globals', $rootScope.globals, option);
                 },
                 clearCredentials: function () {
                     $rootScope.globals = {};
-                    $cookies.remove('globals');
+                    $cookies.put('globals', undefined, { 'path': '/' } );
                 }
             };
         }]);

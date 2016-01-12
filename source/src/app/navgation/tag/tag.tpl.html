@@ -1,9 +1,10 @@
 <div class="nav-tag">
-    <a class="tag-btn">点我惊喜</a>
-    <h1>标签</h1>
-    <ul>
-        <li ng-repeat="tag in tags">
-            <a href="#">{{tag.name}}({{tag.articles.lengths}})</a>
-        </li>
-    </ul>
+    <a class="tag-btn" ng-click="switchTag()">标签</a>
+    <div class="tag-list">
+        <ul>
+            <li ng-repeat="tag in tags">
+                <a href="#">{{tag.name}}({{tag.articles.lengths}})</a>
+            </li>
+        </ul>
+    </div>
 </div>
