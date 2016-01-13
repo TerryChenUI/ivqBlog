@@ -21,7 +21,7 @@ router
         var user = new User({
             userName: 'admin',
             password: 'admin',
-            email: 'terrychen.ui@outlook.com',
+            email: 'admin@ivq.com',
             enabled: true,
             createTime: Date.now(),
             lastLoginTime: Date.now()

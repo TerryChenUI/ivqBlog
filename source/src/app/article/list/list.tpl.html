@@ -1,10 +1,17 @@
 <a name="post-top"></a>
 <div class="post-list">
     <div class="post-item" ng-repeat="article in articles">
-        <div class="info">
-            分类：<a ui-sref="list({categoryId:article.category._id})">{{article.category.name}}</a> |
-            <span>作者：{{article.author}}</span> | <span>浏览：{{article.views}}</span> | <span>评论：{{article.comments.length}}</span>
-        </div>
+        <ul class="info">
+            <li>
+                <span class="glyphicon glyphicon glyphicon-tags" aria-hidden="true"></span><a
+                    ui-sref="list({categoryId:article.category._id})">{{article.category.name}}</a> |
+            </li>
+            <li><span class="glyphicon glyphicon-user" aria-hidden="true"></span>{{article.author}} |</li>
+            <li><span class="glyphicon glyphicon-heart-empty" aria-hidden="true"></span>{{article.views}} |</li>
+            <li><span class="glyphicon glyphicon-thumbs-up"
+                      aria-hidden="true"></span> {{article.comments.length}}
+            </li>
+        </ul>
         <div class="title">
             <span>[{{article.time.publish | convertTime}}]</span>
             <a ui-sref="post({categoryId:article.category._id, articleId:article._id})" title="{{article.title}}">{{article.title}}</a>

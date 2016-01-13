@@ -14,12 +14,9 @@ router
             } else {
                 filter.title = new RegExp(filter.title, "i");
             }
-            if (filter.category == 0) {
-                delete filter.category;
-            }
-            if (filter.tags == 0){
-                delete filter.tags;
-            }
+
+            filter.category? filter.category = parseInt(filter.category) : delete filter.category;
+            filter.tags? filter.tags = parseInt(filter.tags) : delete filter.tags;
         }
         var options = {
             filter: filter,
@@ -77,7 +74,6 @@ router
         var modify = req.body;
         if (modify.publish) {
             modify["time.publish"] = Date.now();
-            delete modify.publish;
         }
         if (modify.meta != undefined) {
             if (modify.meta.author != undefined) {
@@ -91,6 +87,8 @@ router
             }
             delete modify.meta;
         }
+        delete modify.comments;
+
         Article.update2(req.params.id, modify, function (err) {
             if (err)
                 return res.send(err);

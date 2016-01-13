@@ -1,6 +1,6 @@
 "use strict";
 angular.module('app.article')
-    .controller('PostCtrl', ['$rootScope', '$scope', '$stateParams', '$sce', 'ArticleService', 'CommentService', 'Tool', function ($rootScope, $scope, $stateParams, $sce, ArticleService, CommentService, Tool) {
+    .controller('PostCtrl', ['$rootScope', '$scope', '$stateParams', '$sce', '$state', '$anchorScroll', '$location', 'SweetAlert', 'ArticleService', 'CommentService', function ($rootScope, $scope, $stateParams, $sce, $state, $anchorScroll, $location, SweetAlert, ArticleService, CommentService) {
         $scope.model = {};
 
         $scope.initController = function () {
@@ -18,6 +18,15 @@ angular.module('app.article')
             });
         };
 
+        $scope.gotoAnchor = function(x) {
+            var newHash = 'anchor-' + x;
+            if ($location.hash() !== newHash) {
+                $location.hash('anchor-' + x);
+            } else {
+                $anchorScroll();
+            }
+        };
+
         $scope.reply = function (id, userName) {
             $scope.model.reply = id;
             $scope.replyKey = "回复" + userName + ":";
@@ -26,7 +35,8 @@ angular.module('app.article')
 
         $scope.delete = function (id) {
             CommentService.delete(id, function (res) {
-                alert('delete successFully');
+                SweetAlert.deleteSuccessfully();
+                $state.reload();
             })
         };
 
@@ -36,7 +46,8 @@ angular.module('app.article')
                 $scope.model.content = $scope.model.content.replace($scope.replyKey, '');
             }
             CommentService.insert($scope.model, function (res) {
-                alert('submit successFully');
+                SweetAlert.submitSuccessfully();
+                $state.reload();
             })
         };
 

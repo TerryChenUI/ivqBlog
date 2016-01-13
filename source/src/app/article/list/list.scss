@@ -11,6 +11,13 @@
         width: 30%;
         float: right;
         text-align: right;
+        margin: 2px 0 0 0;
+        li {
+          display: inline-block;
+          span {
+            padding: 0 5px 0 0;
+          }
+        }
       }
     }
 

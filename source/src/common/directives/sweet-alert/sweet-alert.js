@@ -37,6 +37,9 @@ angular.module('ngSweetAlert', [])
                     });
                 }, arg2);
             },
+            submitSuccessfully: function(){
+                this.success('提交成功');
+            },
             addSuccessfully: function(){
                 this.success('新增成功');
             },

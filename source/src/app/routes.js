@@ -54,6 +54,35 @@ angular.module('app')
                     author: 'ivqBlog'
                 }
             })
+            .state('tag', {
+                url: '/tag/:tagId',
+                views: {
+                    '': {
+                        templateUrl: 'layout/master.tpl.html'
+                    },
+                    'articleList@tag': {
+                        templateUrl: 'article/list/list.tpl.html',
+                        controller: 'ListCtrl'
+                    }
+                },
+                resolve: {
+                    tag: function (TagService, $stateParams) {
+                        return TagService.getTagById($stateParams.tagId);
+                    }
+                },
+                metaTags: {
+                    title: function (tag) {
+                        return tag.name;
+                    },
+                    description: function (tag) {
+                        return tag.name;
+                    },
+                    keywords: function (tag) {
+                        return tag.name;
+                    },
+                    author: 'ivqBlog'
+                }
+            })
             .state('post', {
                 url: '/post/:categoryId/:articleId',
                 templateUrl: 'article/post/post.tpl.html',

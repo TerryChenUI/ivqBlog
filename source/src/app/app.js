@@ -11,6 +11,7 @@ angular.module('app.article', ['ui.bootstrap', 'common.services']);
 
 var app = angular.module('app', [
     'ngCookies',
+    'ngSweetAlert',
     'ui.router',
     'ui.router.metatags',
     'ui.bootstrap',

@@ -1,8 +1,9 @@
 (function () {
     var CommentService = (function () {
-        function CommentService($log, $http, ServerConfig, appHttp) {
+        function CommentService($log, $http, $cookies, ServerConfig, appHttp) {
             this.$log = $log;
             this.$http = $http;
+            this.$cookies = $cookies;
             this.appHttp = appHttp;
             this.serviceEndpoint = ServerConfig.apiUrl;
         }
@@ -45,8 +46,13 @@
         CommentService.prototype.delete = function (id, successCB, errorCB) {
             var config = {
                 method: 'DELETE',
-                url: this.serviceEndpoint + "comments/" + id
+                url: this.serviceEndpoint + "comments/" + id,
+                headers: {}
             };
+            var globals = this.$cookies.getObject('globals');
+            if (globals && globals.currentUser) {
+                config.headers.Authorization = globals.currentUser.token;
+            }
             return this.$http(config).then(function (res) {
                 return successCB(res);
             }, function (res) {
@@ -59,8 +65,8 @@
 
 
     angular.module('common.services')
-        .factory('CommentService', ['$log', '$http', 'ServerConfig', 'appHttp', function ($log, $http, ServerConfig, appHttp) {
-            return new CommentService($log, $http, ServerConfig, appHttp);
+        .factory('CommentService', ['$log', '$http', '$cookies', 'ServerConfig', 'appHttp', function ($log, $http, $cookies, ServerConfig, appHttp) {
+            return new CommentService($log, $http, $cookies, ServerConfig, appHttp);
         }]);
 
 })();

@@ -17,7 +17,7 @@ angular.module('app.nav')
                     var tagObj = $(".nav-tag");
                     var position = tagObj.position();
                     if (position.left == 0) {
-                        tagObj.css({left: -100});
+                        tagObj.css({left: -120});
                     } else {
                         tagObj.css({left: 0});
                     }

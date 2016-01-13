@@ -3,7 +3,8 @@
     <div class="tag-list">
         <ul>
             <li ng-repeat="tag in tags">
-                <a href="#">{{tag.name}}({{tag.articles.lengths}})</a>
+                <a ui-sref="tag({tagId:tag._id})">{{tag.name}}</a>
+                <!--({{tag.articles.lengths}})-->
             </li>
         </ul>
     </div>
