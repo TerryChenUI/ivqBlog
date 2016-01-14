@@ -1,11 +1,9 @@
 <div class="nav-tag">
-    <a class="tag-btn" ng-click="switchTag()">标签</a>
-    <div class="tag-list">
-        <ul>
-            <li ng-repeat="tag in tags">
-                <a ui-sref="tag({tagId:tag._id})">{{tag.name}}</a>
-                <!--({{tag.articles.lengths}})-->
-            </li>
-        </ul>
-    </div>
+    <h1>标签</h1>
+    <ul class=="tag-list">
+        <li ng-repeat="tag in tags">
+            <a ui-sref="tag({tagId:tag._id})">{{tag.name}}</a>
+            <!--({{tag.articles.lengths}})-->
+        </li>
+    </ul>
 </div>

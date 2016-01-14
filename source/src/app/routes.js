@@ -88,7 +88,7 @@ angular.module('app')
                 controller: 'PostCtrl',
                 resolve: {
                     article: function (ArticleService, $stateParams) {
-                        return ArticleService.getById($stateParams.articleId);
+                        return ArticleService.getById($stateParams.articleId, {action: 'updateView'});
                     }
                 },
                 metaTags: {

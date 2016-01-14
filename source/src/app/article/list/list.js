@@ -35,7 +35,7 @@ angular.module('app.article')
             }
             ArticleService.loadList(paramsObj).then(function (res) {
                 var data = res.data;
-                $scope.totalItems =data.pagination.size;
+                $scope.totalItems = data.pagination.size;
                 $scope.articles = data.rows;
                 $scope.totalItems = data.pagination.size;
             });

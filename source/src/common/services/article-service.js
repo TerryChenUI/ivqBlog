@@ -16,10 +16,11 @@ angular.module('common.services')
                 };
                 return appHttp.request(config);
             },
-            getById: function (id) {
+            getById: function (id, params) {
                 var config = {
                     method: 'GET',
-                    url: ServerConfig.apiUrl + "articles/" + id
+                    url: ServerConfig.apiUrl + "articles/" + id,
+                    params: params
                 };
                 return appHttp.request(config);
             },
