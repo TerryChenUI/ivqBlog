@@ -15,7 +15,7 @@ router
             ]
         }, function (err, user) {
             if (err)
-                return res.send(err);
+                return res.send({error: err});
 
             if (!user)
                 return res.send({error: '账号或密码不正确'});
@@ -27,7 +27,7 @@ router
             res.send({
                 expires: jt.expires,
                 token: jt.token,
-                data: user
+                user: user
             });
         });
     })
@@ -35,13 +35,13 @@ router
         var modify = req.body;
         User.updateAndReturnNew(req.params.id, modify, function (err, user) {
             if (err)
-                return res.send(err);
+                return res.send({error: err});
 
             var jt = new jwtToken(user.id);
             res.send({
                 expires: jt.expires,
                 token: jt.token,
-                data: user
+                user: user
             });
 
         });
@@ -50,7 +50,7 @@ router
         var modify = req.body;
         User.getById(req.params.id, function (err, user) {
             if (err)
-                return res.send(err);
+                return res.send({error: err});
 
             if (modify.password != undefined)
                 modify.password = md5(modify.password);
@@ -71,7 +71,7 @@ router
                 res.send({
                     expires: jt.expires,
                     token: jt.token,
-                    data: user
+                    user: user
                 });
 
             });

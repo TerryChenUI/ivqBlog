@@ -14,7 +14,6 @@ router
             } else {
                 filter.title = new RegExp(filter.title, "i");
             }
-
             filter.category? filter.category = parseInt(filter.category) : delete filter.category;
             filter.tags? filter.tags = parseInt(filter.tags) : delete filter.tags;
         }
@@ -25,14 +24,18 @@ router
             count: req.query.count
         };
         Article.list(options, function (err, articles) {
+            if (err)
+                return res.send({error: err});
             Article.count({}, function (err, total) {
+                if (err)
+                    return res.send({error: err});
                 res.send({
                     rows: articles,
-                    pagination: {
+                        pagination: {
                         count: parseInt(req.query.count),
-                        page: parseInt(req.query.page),
-                        pages: Math.round(total / req.query.count),
-                        size: total
+                            page: parseInt(req.query.page),
+                            pages: Math.round(total / req.query.count),
+                            size: total
                     }
                 });
             });
@@ -43,23 +46,16 @@ router
         Article.getById(req.params.id, function (err, article) {
             if (err)
                 return res.send({error: err});
-
             if (action == 'updateView') {
                 article.views += 1;
                 article.save(function (err, article) {
                     if (err)
                         return res.send({error: err});
-
-                    res.send({
-                        data: article
-                    });
+                    res.send(article);
                 });
             } else {
-                res.send({
-                    data: article
-                });
+                res.send(article);
             }
-
         });
     })
     .post('/api/articles', jwtAuth, function (req, res, next) {

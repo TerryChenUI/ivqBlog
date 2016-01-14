@@ -4,7 +4,7 @@ angular.module('app.article')
         $scope.model = {};
 
         $scope.initController = function () {
-            ArticleService.getArticleById($stateParams.articleId, {action: 'updateView'}).then(function (data) {
+            ArticleService.getById($stateParams.articleId, {action: 'updateView'}).then(function (data) {
                 $scope.article = data;
                 $scope.article.content = $sce.trustAsHtml($scope.article.content);
 
@@ -15,10 +15,12 @@ angular.module('app.article')
                     $scope.model.userName = 'ivqBlog';
                     $scope.model.email = $rootScope.currentUser.email;
                 }
+
+                SyntaxHighlighter.all();
             });
         };
 
-        $scope.gotoAnchor = function(x) {
+        $scope.gotoAnchor = function (x) {
             var newHash = 'anchor-' + x;
             if ($location.hash() !== newHash) {
                 $location.hash('anchor-' + x);
@@ -34,7 +36,7 @@ angular.module('app.article')
         };
 
         $scope.delete = function (id) {
-            CommentService.delete(id, function (res) {
+            CommentService.delete(id).then(function (data) {
                 SweetAlert.deleteSuccessfully();
                 $state.reload();
             })
@@ -45,7 +47,7 @@ angular.module('app.article')
             if ($scope.model.content.indexOf($scope.replyKey) == 0) {
                 $scope.model.content = $scope.model.content.replace($scope.replyKey, '');
             }
-            CommentService.insert($scope.model, function (res) {
+            CommentService.insert($scope.model).then(function (data) {
                 SweetAlert.submitSuccessfully();
                 $state.reload();
             })

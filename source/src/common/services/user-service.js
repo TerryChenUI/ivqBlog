@@ -1,71 +1,50 @@
-(function () {
-    var UserService = (function () {
-        function UserService($log, $http, ServerConfig, appHttp) {
-            this.$log = $log;
-            this.$http = $http;
-            this.appHttp = appHttp;
-            this.serviceEndpoint = ServerConfig.apiUrl;
-        }
-
-        UserService.prototype.getUsers = function () {
-            var config = {
-                method: 'GET',
-                url: this.serviceEndpoint + "users"
-            };
-            return this.appHttp.request(config);
+angular.module('common.services')
+    .factory('UserService', ['$http', 'ServerConfig', 'appHttp', function ($http, ServerConfig, appHttp) {
+        return {
+            loadList: function (params) {
+                var config = {
+                    method: 'GET',
+                    url: ServerConfig.apiUrl + "users",
+                    params: params
+                };
+                return $http(config);
+            },
+            getAll: function () {
+                var config = {
+                    method: 'GET',
+                    url: ServerConfig.apiUrl + "users/all"
+                };
+                return appHttp.request(config);
+            },
+            getById: function (id) {
+                var config = {
+                    method: 'GET',
+                    url: ServerConfig.apiUrl + "users/" + id
+                };
+                return appHttp.request(config);
+            },
+            insert: function (data) {
+                var config = {
+                    method: 'POST',
+                    url: ServerConfig.apiUrl + "users",
+                    data: data
+                };
+                return appHttp.request(config);
+            },
+            update: function (id, data) {
+                var config = {
+                    method: 'PUT',
+                    url: ServerConfig.apiUrl + "users/" + id,
+                    data: data
+                };
+                return appHttp.request(config);
+            },
+            delete: function (id) {
+                var config = {
+                    method: 'DELETE',
+                    url: ServerConfig.apiUrl + "users/" + id
+                };
+                return appHttp.request(config);
+            }
         };
-
-        UserService.prototype.getUserById = function (id) {
-            var config = {
-                method: 'GET',
-                url: this.serviceEndpoint + "users/" + id
-            };
-            return this.appHttp.request(config);
-        };
-
-        UserService.prototype.insert = function (user, successCB, errorCB) {
-            var config = {
-                method: 'POST',
-                url: this.serviceEndpoint + "users",
-                data: user
-            };
-            return this.$http(config).then(function (res) {
-                return successCB(res);
-            }, function (res) {
-                return errorCB(res);
-            });
-        };
-
-        UserService.prototype.update = function (id, user, successCB, errorCB) {
-            var config = {
-                method: 'PUT',
-                url: this.serviceEndpoint + "users/" + id,
-                data: user
-            };
-            return this.$http(config).then(function (res) {
-                return successCB(res);
-            }, function (res) {
-                return errorCB(res);
-            });
-        };
-
-        UserService.prototype.delete = function (id, successCB, errorCB) {
-            var config = {
-                method: 'DELETE',
-                url: this.serviceEndpoint + "users/" + id
-            };
-            return this.$http(config).then(function (res) {
-                return successCB(res);
-            }, function (res) {
-                return errorCB(res);
-            });
-        };
-
-        return UserService;
-    })();
-
-    angular.module('common.services')
-        .factory('UserService', ['$log', '$http', 'ServerConfig', 'appHttp', function ($log, $http, ServerConfig, appHttp) {
-            return new UserService($log, $http, ServerConfig, appHttp);
-        }]);
-})();
+    }]);

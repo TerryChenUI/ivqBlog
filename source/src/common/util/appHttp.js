@@ -6,16 +6,15 @@ angular.module('common.util')
                 var deferred = $q.defer();
                 $http(config).success(function(response, status) {
                     if (response.error != null) {
-                        return deferred.reject(response.error);
+                        deferred.reject(response.error);
                     } else {
-                        return deferred.resolve(response.data);
+                        deferred.resolve(response);
                     }
                 }).error(function(response, status) {
-                    return deferred.reject(response.error);
+                    deferred.reject(response.error);
                 });
                 return deferred.promise;
             }
-
         };
     }
 ]);

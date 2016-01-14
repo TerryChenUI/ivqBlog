@@ -37,10 +37,6 @@ app.use(function (req, res, next) {
     next();
 });
 
-//app.get('/', function (req, res) {
-//    res.render('index.html');
-//});
-
 //routes
 app.use(accounts);
 app.use(articles);
@@ -49,6 +45,18 @@ app.use(users);
 app.use(tags);
 app.use(comments);
 app.use(plugins);
+
+app.use(function (req, res) {
+    if (req.path.indexOf('/admin/login') >= 0) {
+        res.sendfile(__dirname + '/ui/admin/login.html');
+    }
+    else if (req.path.indexOf('/admin') >= 0) {
+        res.sendfile(__dirname + '/ui/admin/index.html');
+    }
+    else {
+        res.sendfile(__dirname + '/ui/index.html');
+    }
+});
 
 // catch 404 and forward to error handler
 //app.use(function (req, res, next) {

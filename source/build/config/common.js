@@ -3,7 +3,8 @@ module.exports = {
     front: {
         css: [
             './lib/bootstrap/css/bootstrap.min.css',
-            './lib/sweetalert/sweetalert.css'
+            './lib/sweetalert/sweetalert.css',
+            './lib/ueditor/third-party/SyntaxHighlighter/shCoreDefault.css'
         ],
         js: [
             './lib/jquery/jquery.min.js',
@@ -16,14 +17,16 @@ module.exports = {
             './lib/angular-bootstrap/ui-bootstrap.min.js',
             './lib/angular-bootstrap/ui-bootstrap-tpls.min.js',
             './lib/underscore/underscore-min.js',
-            './lib/moment/moment.js'
+            './lib/moment/moment.js',
+            './lib/ueditor/third-party/SyntaxHighlighter/shCore.js'
         ]
     },
     admin: {
         css: [
             './src/plugins/font-awesome/css/font-awesome.min.css',
             './lib/bootstrap/css/bootstrap.min.css',
-            './lib/sweetalert/sweetalert.css'
+            './lib/sweetalert/sweetalert.css',
+            './lib/ueditor/third-party/SyntaxHighlighter/shCoreDefault.css'
         ],
         js: [
             './lib/jquery/jquery.min.js',
@@ -40,7 +43,8 @@ module.exports = {
             './lib/ueditor/ueditor.config.js',
             './lib/ueditor/ueditor.all.min.js',
             './lib/ueditor/angular-ueditor.min.js',
-            './lib/checklist-model/checklist-model.js'
+            './lib/checklist-model/checklist-model.js',
+            './lib/ueditor/third-party/SyntaxHighlighter/shCore.js'
         ]
     }
 };

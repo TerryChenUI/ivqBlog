@@ -10,9 +10,9 @@ angular.module('app.admin.common')
                 return;
             }
 
-            AuthService.Login($scope.model.username, $scope.model.password, function (response) {
-                if(response.token){
-                    AuthService.setCredentials(response, $scope.model.isRemember);
+            AuthService.Login($scope.model.username, $scope.model.password).then(function (data) {
+                if(data.token){
+                    AuthService.setCredentials(data, $scope.model.isRemember);
                     $window.location.href = "/admin";
                 } else {
                     $scope.errorMessage = response.error;

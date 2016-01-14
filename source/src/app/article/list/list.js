@@ -33,10 +33,11 @@ angular.module('app.article')
             if ($stateParams.tagId) {
                 paramsObj.filters.tags = $stateParams.tagId;
             }
-            ArticleService.getArticles(paramsObj).then(function (res) {
-                $scope.totalItems = res.data.pagination.size;
-                $scope.articles = res.data.rows;
-                $scope.totalItems = res.data.pagination.size;
+            ArticleService.loadList(paramsObj).then(function (res) {
+                var data = res.data;
+                $scope.totalItems =data.pagination.size;
+                $scope.articles = data.rows;
+                $scope.totalItems = data.pagination.size;
             });
         }
 

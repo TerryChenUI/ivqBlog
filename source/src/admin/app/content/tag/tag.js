@@ -1,7 +1,7 @@
 angular.module('app.admin.content')
     .controller('ListTagCtrl', ['$scope', '$state', 'SweetAlert', 'TagService', function ($scope, $state, SweetAlert, TagService) {
         $scope.getResource = function (params, paramsObj) {
-            return TagService.getTags(paramsObj).then(function (response) {
+            return TagService.loadList(paramsObj).then(function (response) {
                 response.data.rows = _.each(response.data.rows, function (data) {
                     data.status = data.enabled ? "已启用" : "禁用";
                 });
@@ -20,7 +20,7 @@ angular.module('app.admin.content')
             SweetAlert.deleteConfirm(
                 function (isConfirm) {
                     if (isConfirm) {
-                        TagService.delete(id, function () {
+                        TagService.delete(id).then(function () {
                             SweetAlert.deleteSuccessfully();
                             $state.reload();
                         });
@@ -36,7 +36,7 @@ angular.module('app.admin.content')
 
         $scope.initController = function () {
             if (id > 0) {
-                TagService.getTagById(id).then(function (data) {
+                TagService.getById(id).then(function (data) {
                     $scope.model = data;
                     $scope.originModel = Tool.deepCopy($scope.model);
                 });
@@ -46,12 +46,12 @@ angular.module('app.admin.content')
         $scope.saveTag = function () {
             if (id > 0) {
                 var modifyModel = Tool.trimSameProperties($scope.originModel, $scope.model);
-                TagService.update(id, modifyModel, function () {
+                TagService.update(id, modifyModel).then(function () {
                     SweetAlert.updateSuccessfully();
                     $state.go('tag');
                 });
             } else {
-                TagService.insert($scope.model, function () {
+                TagService.insert($scope.model).then(function () {
                     SweetAlert.addSuccessfully();
                     $state.go('tag');
                 });

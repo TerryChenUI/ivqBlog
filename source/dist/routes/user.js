@@ -33,6 +33,8 @@ router
     })
     .get('/api/users/:id', function (req, res, next) {
         User.get(req.params.id, function (err, user) {
+            if (err)
+                return res.send({error: err});
             res.send(user);
         });
     })
@@ -41,7 +43,7 @@ router
         user.password = md5(user.password);
         user.save(function (err) {
             if (err)
-                return res.send(err);
+                return res.send({error: err});
             res.sendStatus(200);
         });
     })
@@ -49,14 +51,14 @@ router
         var modify = req.body;
         User.update2(req.params.id, modify, function (err, user) {
             if (err)
-                return res.send(err);
+                return res.send({error: err});
             res.sendStatus(200);
         });
     })
     .delete('/api/users/:id', jwtAuth, function (req, res, next) {
         User.delete(req.params.id, function (err) {
             if (err)
-                return res.send(err);
+                return res.send({error: err});
             res.sendStatus(200);
         });
     });

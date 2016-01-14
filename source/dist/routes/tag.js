@@ -12,7 +12,11 @@ router
             count: req.query.count
         };
         Tag.list(options, function (err, tags) {
+            if (err)
+                return res.send({error: err});
             Tag.count({}, function (err, total) {
+                if (err)
+                    return res.send({error: err});
                 res.send({
                     rows: tags,
                     pagination: {
@@ -32,18 +36,16 @@ router
             sortBy: {displayOrder: 1}
         };
         Tag.getAllByFilters(options, function (err, tags) {
-            res.send({
-                error: err,
-                data: tags
-            });
+            if (err)
+                return res.send({error: err});
+            res.send(tags);
         });
     })
     .get('/api/tags/:id', function (req, res, next) {
         Tag.getById(req.params.id, function (err, tag) {
-            res.send({
-                error: err,
-                data: tag
-            });
+            if (err)
+                return res.send({error: err});
+            res.send(tag);
         });
     })
     .post('/api/tags', jwtAuth, function (req, res, next) {

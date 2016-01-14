@@ -5,16 +5,16 @@ angular.module('app.admin.content')
         $scope.allTags = [{name: '--请选择--', value: 0}];
 
         $scope.initController = function () {
-            CategoryService.getAllCategories().then(function (data) {
-                data.forEach(function (obj) {
+            CategoryService.getAll().then(function (data) {
+                _.each(data, function (obj) {
                     $scope.categories.push({
                         name: obj.name,
                         value: obj._id
                     });
                 });
             });
-            TagService.getAllTags().then(function (data) {
-                data.forEach(function (obj) {
+            TagService.getAll().then(function (data) {
+                _.each(data, function (obj) {
                     $scope.allTags.push({
                         name: obj.name,
                         value: obj._id
@@ -25,7 +25,7 @@ angular.module('app.admin.content')
 
         $scope.getResource = function (params, paramsObj) {
             paramsObj.sortBy = {'_id': -1};
-            return ArticleService.getArticles(paramsObj).then(function (response) {
+            return ArticleService.loadList(paramsObj).then(function (response) {
                 response.data.rows = _.each(response.data.rows, function (data) {
                     data.status = data.publish ? "已发布" : "未发布";
                     data.time.create = Tool.convertTime(data.time.create);
@@ -45,7 +45,7 @@ angular.module('app.admin.content')
             SweetAlert.deleteConfirm(
                 function (isConfirm) {
                     if (isConfirm) {
-                        ArticleService.delete(id, function () {
+                        ArticleService.delete(id).then(function () {
                             SweetAlert.deleteSuccessfully();
                             $state.reload();
                         });
@@ -66,19 +66,19 @@ angular.module('app.admin.content')
         $scope.categories = [{name: '--请选择--', value: 0}];
 
         $scope.initController = function () {
-            CategoryService.getAllCategories().then(function (data) {
-                data.forEach(function (obj) {
+            CategoryService.getAll().then(function (data) {
+                _.each(data, function (obj) {
                     $scope.categories.push({
                         name: obj.name,
                         value: obj._id
                     });
                 });
             });
-            TagService.getAllTags().then(function (data) {
+            TagService.getAll().then(function (data) {
                 $scope.tags = data;
             });
             if (id > 0) {
-                ArticleService.getArticleById(id).then(function (data) {
+                ArticleService.getById(id).then(function (data) {
                     data.time.create = Tool.convertTime(data.time.create);
                     data.time.update = Tool.convertTime(data.time.update);
                     if (data.time.publish)
@@ -104,13 +104,13 @@ angular.module('app.admin.content')
                 } else if (modifyModel.tags.length) {
                     modifyModel.tags = selectedTags;
                 }
-                ArticleService.update(id, modifyModel, function () {
+                ArticleService.update(id, modifyModel).then(function () {
                     SweetAlert.updateSuccessfully();
                     $state.go('article');
                 });
 
             } else {
-                ArticleService.insert($scope.model, function () {
+                ArticleService.insert($scope.model).then(function () {
                     SweetAlert.addSuccessfully();
                     $state.go('article');
                 });

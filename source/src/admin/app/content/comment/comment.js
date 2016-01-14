@@ -2,7 +2,7 @@ angular.module('app.admin.content')
     .controller('ListCommentCtrl', ['$scope', '$state', 'SweetAlert', 'CategoryService', 'CommentService', 'TagService', 'Tool', function ($scope, $state, SweetAlert, CategoryService, CommentService, TagService, Tool) {
         $scope.getResource = function (params, paramsObj) {
             paramsObj.sortBy = {'_id': -1};
-            return CommentService.getComments(paramsObj).then(function (response) {
+            return CommentService.loadList(paramsObj).then(function (response) {
                 response.data.rows = _.each(response.data.rows, function (data) {
                     data.createTime = Tool.convertTime(data.createTime);
                 });
@@ -20,7 +20,7 @@ angular.module('app.admin.content')
             SweetAlert.deleteConfirm(
                 function (isConfirm) {
                     if (isConfirm) {
-                        CommentService.delete(id, function () {
+                        CommentService.delete(id).then(function () {
                             SweetAlert.deleteSuccessfully();
                             $state.reload();
                         });

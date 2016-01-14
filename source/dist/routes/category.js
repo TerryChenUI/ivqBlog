@@ -12,7 +12,11 @@ router
             count: req.query.count
         };
         Category.list(options, function (err, categories) {
+            if (err)
+                return res.send({error:err});
             Category.count({}, function (err, total) {
+                if (err)
+                    return res.send({error: err});
                 res.send({
                     rows: categories,
                     pagination: {
@@ -31,25 +35,23 @@ router
             sortBy: {displayOrder:1}
         };
         Category.getAllByFilters(options, function (err, categories) {
-            res.send({
-                error: err,
-                data: categories
-            });
+            if (err)
+                return res.send({error: err});
+            res.send(categories);
         });
     })
     .get('/api/categories/:id', function (req, res, next) {
         Category.getById(req.params.id, function (err, category) {
-            res.send({
-                error: err,
-                data: category
-            });
+            if (err)
+                return res.send({error:err});
+            res.send(category);
         });
     })
     .post('/api/categories', jwtAuth, function (req, res, next) {
         var category = new Category(req.body);
         category.save(function (err) {
             if (err)
-                return res.send(error);
+                return res.send({error: err});
             res.sendStatus(200);
         });
     })
@@ -57,14 +59,14 @@ router
         var modify = req.body;
         Category.update2(req.params.id, modify, function (err) {
             if (err)
-                return res.send(error);
+                return res.send({error: err});
             res.sendStatus(200);
         });
     })
     .delete('/api/categories/:id', jwtAuth, function (req, res, next) {
         Category.delete(req.params.id, function (err) {
             if (err)
-                return res.send(error);
+                return res.send({error: err});
             res.sendStatus(200);
         });
     });

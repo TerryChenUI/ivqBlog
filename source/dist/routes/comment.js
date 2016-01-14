@@ -13,39 +13,42 @@ router
             count: req.query.count
         };
         Comment.list(options, function (err, comments) {
+            if (err)
+                return res.send({error: err});
             Comment.count({}, function (err, total) {
-                    res.send({
-                        rows: comments,
-                        pagination: {
-                            count: parseInt(req.query.count),
-                            page: parseInt(req.query.page),
-                            pages: Math.round(total / req.query.count),
-                            size: total
-                        }
-                    });
+                if (err)
+                    return res.send({error: err});
+                res.send({
+                    rows: comments,
+                    pagination: {
+                        count: parseInt(req.query.count),
+                        page: parseInt(req.query.page),
+                        pages: Math.round(total / req.query.count),
+                        size: total
+                    }
+                });
             });
         });
     })
     .get('/api/comments/:id', function (req, res, next) {
         Comment.getById(req.params.id, function (err, comment) {
-            res.send({
-                error: err,
-                data: comment
-            });
+            if (err)
+                return res.send({error: err});
+            res.send(comment);
         });
     })
     .post('/api/comments', function (req, res, next) {
         var comment = new Comment(req.body);
         comment.save(function (err, newComment) {
             if (err)
-                return res.send(err);
-
-            Article.getById(newComment.article, function(error, article){
+                return res.send({error: err});
+            Article.getById(newComment.article, function(err, article){
+                if (err)
+                    return res.send({error: err});
                 article.comments.push(newComment._id);
-                article.save(function(error){
+                article.save(function(err){
                     if (err)
                         return res.send(err);
-
                     res.sendStatus(200);
                 })
             });
@@ -56,14 +59,14 @@ router
         var modify = req.body;
         Comment.update2(req.params.id, modify, function (err) {
             if (err)
-                return res.send(error);
+                return res.send({error: err});
             res.sendStatus(200);
         });
     })
     .delete('/api/comments/:id', jwtAuth, function (req, res, next) {
         Comment.delete(req.params.id, function (err) {
             if (err)
-                return res.send(error);
+                return res.send({error: err});
             res.sendStatus(200);
         });
     });

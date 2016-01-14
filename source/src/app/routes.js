@@ -1,8 +1,7 @@
 'use strict';
 angular.module('app')
     .config(["$locationProvider", '$stateProvider', '$urlRouterProvider', function ($locationProvider, $stateProvider, $urlRouterProvider, UIRouterMetatagsProvider) {
-        //$locationProvider.html5Mode(true);
-        //$locationProvider.hashPrefix('!');
+        $locationProvider.html5Mode(true).hashPrefix('!');
 
         $urlRouterProvider.otherwise('/home');
 
@@ -38,7 +37,7 @@ angular.module('app')
                 },
                 resolve: {
                     category: function (CategoryService, $stateParams) {
-                        return CategoryService.getCategoryById($stateParams.categoryId);
+                        return CategoryService.getById($stateParams.categoryId);
                     }
                 },
                 metaTags: {
@@ -67,7 +66,7 @@ angular.module('app')
                 },
                 resolve: {
                     tag: function (TagService, $stateParams) {
-                        return TagService.getTagById($stateParams.tagId);
+                        return TagService.getById($stateParams.tagId);
                     }
                 },
                 metaTags: {
@@ -89,7 +88,7 @@ angular.module('app')
                 controller: 'PostCtrl',
                 resolve: {
                     article: function (ArticleService, $stateParams) {
-                        return ArticleService.getArticleById($stateParams.articleId);
+                        return ArticleService.getById($stateParams.articleId);
                     }
                 },
                 metaTags: {

@@ -1,7 +1,7 @@
 angular.module('app.admin.content')
     .controller('ListCategoryCtrl', ['$scope', '$state', 'SweetAlert', 'CategoryService', function ($scope, $state, SweetAlert, CategoryService) {
         $scope.getResource = function (params, paramsObj) {
-            return CategoryService.getCategories(paramsObj).then(function (response) {
+            return CategoryService.loadList(paramsObj).then(function (response) {
                 response.data.rows = _.each(response.data.rows, function (data) {
                     data.status = data.enabled ? "已启用" : "禁用";
                 });
@@ -19,7 +19,7 @@ angular.module('app.admin.content')
             SweetAlert.deleteConfirm(
                 function (isConfirm) {
                     if (isConfirm) {
-                        CategoryService.delete(id, function () {
+                        CategoryService.delete(id).then(function () {
                             SweetAlert.deleteSuccessfully();
                             $state.reload();
                         });
@@ -35,7 +35,7 @@ angular.module('app.admin.content')
 
         $scope.initController = function () {
             if (id > 0) {
-                CategoryService.getCategoryById(id).then(function (data) {
+                CategoryService.getById(id).then(function (data) {
                     $scope.model = data;
                     $scope.originModel = Tool.deepCopy($scope.model);
                 });
@@ -45,12 +45,12 @@ angular.module('app.admin.content')
         $scope.saveCategory = function () {
             if (id > 0) {
                 var modifyModel = Tool.trimSameProperties($scope.originModel, $scope.model);
-                CategoryService.update(id, modifyModel, function () {
+                CategoryService.update(id, modifyModel).then(function () {
                     SweetAlert.updateSuccessfully();
                     $state.go('category');
                 });
             } else {
-                CategoryService.insert($scope.model, function () {
+                CategoryService.insert($scope.model).then(function () {
                     SweetAlert.addSuccessfully();
                     $state.go('category');
                 });
