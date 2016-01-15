@@ -13,8 +13,8 @@
             </li>
         </ul>
         <div class="title">
-            <span>[{{article.time.publish | convertTime}}]</span>
             <a ui-sref="post({categoryId:article.category._id, articleId:article._id})" title="{{article.title}}">{{article.title}}</a>
+            <span>({{article.time.publish | fromNow}})</span>
         </div>
     </div>
     <div class="page-container">

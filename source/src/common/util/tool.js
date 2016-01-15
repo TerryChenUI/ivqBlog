@@ -24,6 +24,9 @@ angular.module('common.util')
                     format = 'YYYY-MM-DD HH:mm:ss';
                 }
                 return moment(originTime).format(format);
+            },
+            relativeTime: function(originTime) {
+                return moment(originTime).fromNow();
             }
         };
     }

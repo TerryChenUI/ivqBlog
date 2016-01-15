@@ -18,6 +18,7 @@ module.exports = {
             './lib/angular-bootstrap/ui-bootstrap-tpls.min.js',
             './lib/underscore/underscore-min.js',
             './lib/moment/moment.js',
+            './lib/moment/zh-cn.js',
             './lib/ueditor/third-party/SyntaxHighlighter/shCore.js'
         ]
     },
