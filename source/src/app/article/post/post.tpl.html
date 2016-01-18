@@ -4,22 +4,22 @@
             <div class="col-sm-12">
                 <div class="row post-detail">
                     <h2 class="post-title">{{article.title}}</h2>
-
                     <p class="post-meta">{{article.time.publish | convertTime}} | 分类：<a
                             ui-sref="list({categoryId:article.category._id})">{{article.category.name}}</a> |
                         作者：{{article.author}} | 浏览：{{article.views}} | 评论：<a
-                                href="" ng-click="gotoAnchor('comments')">{{article.comments.length}}</a></p>
+                                href="#comments">{{article.comments.length}}</a></p>
                     <div class="post-description">
                         {{article.description}}
                     </div>
                     <div class="post-content" ng-bind-html="article.content">
                     </div>
                 </div>
-                <div id="anchor-comments" class="row post-comments">
+                <a name="comments"></a>
+                <div class="row post-comments">
                     <div class="comment-title">发表评论</div>
                     <div class="comment-item" ng-repeat="comment in article.comments">
                         <div class="comment-sub-title">
-                            <span><a id="anchor-{{$index}}">#{{$index + 1}}楼</a></span> |
+                            <span><a name="{{$index}}">#{{$index + 1}}楼</a></span> |
                             <span>{{comment.createTime | convertTime}}</span> |
                             <span>{{comment.userName}}</span> |
                             <span><a href="javascript:void(0)"

@@ -1,8 +1,7 @@
 "use strict";
 angular.module('app.article')
-    .controller('PostCtrl', ['$rootScope', '$scope', '$stateParams', '$sce', '$state', '$anchorScroll', '$location', 'SweetAlert', 'ArticleService', 'CommentService', 'article', function ($rootScope, $scope, $stateParams, $sce, $state, $anchorScroll, $location, SweetAlert, ArticleService, CommentService, article) {
+    .controller('PostCtrl', ['$rootScope', '$scope', '$stateParams', '$sce', '$state', '$timeout', 'SweetAlert', 'ArticleService', 'CommentService', 'article', function ($rootScope, $scope, $stateParams, $sce, $state, $timeout, SweetAlert, ArticleService, CommentService, article) {
         $scope.model = {};
-
 
         $scope.initController = function () {
             $scope.article = article;
@@ -14,17 +13,9 @@ angular.module('app.article')
                 $scope.model.userName = 'ivqBlog';
                 $scope.model.email = $rootScope.currentUser.email;
             }
-
-            SyntaxHighlighter.all();
-        };
-
-        $scope.gotoAnchor = function (x) {
-            var newHash = 'anchor-' + x;
-            if ($location.hash() !== newHash) {
-                $location.hash('anchor-' + x);
-            } else {
-                $anchorScroll();
-            }
+            $timeout(function(){
+                SyntaxHighlighter.all();
+            }, 0);
         };
 
         $scope.reply = function (id, userName) {

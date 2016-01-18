@@ -10,7 +10,7 @@ angular.module('common.interceptors')
                 return config;
             },
             responseError: function (response) {
-                if (response.status === 403) {
+                if (response.status === 401) {
                     $window.location.href = 'login.html';
                 }
                 return $q.reject(response);

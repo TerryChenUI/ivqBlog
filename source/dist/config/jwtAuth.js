@@ -6,14 +6,14 @@ module.exports = function(req, res, next) {
     if (token) {
         var decoded = jwt.decode(token, setting.jwtTokenSecret);
         if (!decoded) {
-            res.status(403).send({error: 'Failed to authenticate token.'});
+            res.status(401).send({error: 'Failed to authenticate token.'});
         }
         if (decoded.exp <= Date.now()) {
-            res.status(403).send({error: 'Failed to authenticate token.'});
+            res.status(401).send({error: 'Failed to authenticate token.'});
         }
         next();
     } else {
-        res.status(403).send({
+        res.status(401).send({
             error: 'No token provided.'
         });
     }

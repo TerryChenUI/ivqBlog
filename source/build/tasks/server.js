@@ -8,6 +8,7 @@ var gulp = require("gulp"),
 gulp.task("server", function () {
     runSequence(
         ['prod'],
+        ['nodemon'],
         ['browser-sync']
     );
 });

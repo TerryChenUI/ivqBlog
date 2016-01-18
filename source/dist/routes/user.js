@@ -18,18 +18,18 @@ router
         //User.list(options, function (err, users) {
         //    res.send(users);
         //});
-        var user = new User({
-            userName: 'admin',
-            password: 'admin',
-            email: 'admin@ivq.com',
-            enabled: true,
-            createTime: Date.now(),
-            lastLoginTime: Date.now()
-        });
-        user.password = md5(user.password);
-        user.save(function (err) {
-			res.send('successfully');
-        });
+        //var user = new User({
+        //    userName: 'admin',
+        //    password: 'admin',
+        //    email: 'admin@ivq.com',
+        //    enabled: true,
+        //    createTime: Date.now(),
+        //    lastLoginTime: Date.now()
+        //});
+        //user.password = md5(user.password);
+        //user.save(function (err) {
+			//res.send('successfully');
+        //});
     })
     .get('/api/users/:id', function (req, res, next) {
         User.get(req.params.id, function (err, user) {

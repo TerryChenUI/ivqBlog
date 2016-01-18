@@ -48,13 +48,13 @@ app.use(plugins);
 
 app.use(function (req, res) {
     if (req.path.indexOf('/admin/login') >= 0) {
-        res.sendfile(__dirname + '/ui/admin/login.html');
+        res.sendFile(__dirname + '/ui/admin/login.html');
     }
     else if (req.path.indexOf('/admin') >= 0) {
-        res.sendfile(__dirname + '/ui/admin/index.html');
+        res.sendFile(__dirname + '/ui/admin/index.html');
     }
     else {
-        res.sendfile(__dirname + '/ui/index.html');
+        res.sendFile(__dirname + '/ui/index.html');
     }
 });
 
