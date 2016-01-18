@@ -1,6 +1,6 @@
 'use strict';
 angular.module('app')
-    .config(["$locationProvider", '$stateProvider', '$urlRouterProvider', function ($locationProvider, $stateProvider, $urlRouterProvider, UIRouterMetatagsProvider) {
+    .config(["$locationProvider", '$stateProvider', '$urlRouterProvider', function ($locationProvider, $stateProvider, $urlRouterProvider) {
         $locationProvider.html5Mode(true).hashPrefix('!');
 
         $urlRouterProvider.otherwise('/home');
@@ -36,9 +36,9 @@ angular.module('app')
                     }
                 },
                 resolve: {
-                    category: function (CategoryService, $stateParams) {
+                    category: ['$stateParams', 'CategoryService', function ($stateParams, CategoryService) {
                         return CategoryService.getById($stateParams.categoryId);
-                    }
+                    }]
                 },
                 metaTags: {
                     title: function (category) {
@@ -65,9 +65,9 @@ angular.module('app')
                     }
                 },
                 resolve: {
-                    tag: function (TagService, $stateParams) {
+                    tag: ['$stateParams', 'TagService', function ($stateParams, TagService) {
                         return TagService.getById($stateParams.tagId);
-                    }
+                    }]
                 },
                 metaTags: {
                     title: function (tag) {
@@ -87,9 +87,9 @@ angular.module('app')
                 templateUrl: 'article/post/post.tpl.html',
                 controller: 'PostCtrl',
                 resolve: {
-                    article: function (ArticleService, $stateParams) {
+                    article: ['$stateParams', 'ArticleService', function ($stateParams, ArticleService) {
                         return ArticleService.getById($stateParams.articleId, {action: 'updateView'});
-                    }
+                    }]
                 },
                 metaTags: {
                     title: function (article) {
