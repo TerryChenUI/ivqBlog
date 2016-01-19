@@ -50,14 +50,20 @@ angular.module('app.admin.layout')
                     },
                     {
                         "title": "设置管理",
-                        "route": "account",
+                        "route": "account, site",
                         "icon": "",
                         "active": false,
                         "expanded": false,
                         "childs": [
                             {
-                                "title": "个人设置",
+                                "title": "账号设置",
                                 "route": "account",
+                                "icon": "",
+                                "active": false
+                            },
+                            {
+                                "title": "网站设置",
+                                "route": "site",
                                 "icon": "",
                                 "active": false
                             }

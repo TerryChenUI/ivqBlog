@@ -6,6 +6,7 @@ var commentSchema = new mongoose.Schema({
     email: String,
     content: String,
     createTime: {type: Date, default: Date.now()},
+    ipAddress: String,
     article: {type: Number, ref: 'Article'},
     reply: {type: Number, ref: 'Comment'}
 }, {versionKey: false});

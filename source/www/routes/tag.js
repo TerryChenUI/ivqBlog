@@ -1,8 +1,7 @@
 var express = require('express'),
     router = express.Router(),
     Tag = require('../models/tag'),
-    jwtAuth = require('../config/jwtAuth.js'),
-    setting = require('../config/setting.js');
+    jwtAuth = require('../config/jwtAuth.js');
 
 router
     .get('/api/tags', function (req, res, next) {

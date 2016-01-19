@@ -1,8 +1,7 @@
 var express = require('express'),
     router = express.Router(),
     Category = require('../models/category'),
-    jwtAuth = require('../config/jwtAuth.js'),
-    setting = require('../config/setting.js');
+    jwtAuth = require('../config/jwtAuth.js');
 
 router
     .get('/api/categories', function (req, res, next) {

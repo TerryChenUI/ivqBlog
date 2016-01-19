@@ -12,12 +12,8 @@ settingSchema.methods = {};
 
 settingSchema.statics = {
 
-    list: function (options, cb) {
-        var filter = options.filter || {};
-
-        this.find(filter)
-            .limit(options.count)
-            .skip(options.page * options.count)
+    list: function (cb) {
+        this.find()
             .exec(cb);
     },
 
@@ -26,7 +22,7 @@ settingSchema.statics = {
             .exec(cb);
     },
 
-    update: function (id, setting, cb) {
+    update2: function (id, setting, cb) {
         this.update({_id: id}, {$set: setting})
             .exec(cb);
     },

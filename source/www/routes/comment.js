@@ -3,12 +3,14 @@ var express = require('express'),
     Article = require('../models/article'),
     Comment = require('../models/comment'),
     jwtAuth = require('../config/jwtAuth.js'),
-    setting = require('../config/setting.js');
+    setting = require('../config/setting.js'),
+    email 	= require("emailjs"),
+    server = email.server.connect(setting.emailConfig);
 
 router
     .get('/api/comments', function (req, res, next) {
         var options = {
-            sortBy: {_id:-1},
+            sortBy: {_id: -1},
             page: req.query.page - 1,
             count: req.query.count
         };
@@ -42,17 +44,28 @@ router
         comment.save(function (err, newComment) {
             if (err)
                 return res.send({error: err});
-            Article.getById(newComment.article, function(err, article){
+            Article.getById(newComment.article, function (err, article) {
                 if (err)
                     return res.send({error: err});
                 article.comments.push(newComment._id);
-                article.save(function(err){
+                article.save(function (err) {
                     if (err)
                         return res.send(err);
+
+                    //var message = {
+                    //    text: newComment.content,
+                    //    from: "ivqBlog <terrychen.ui@outlook.com>",
+                    //    to: newComment.userName + " <" + newComment.email + ">",
+                    //    subject: "你有新的博客回复"
+                    //};
+                    //
+                    //server.send(message, function (err, message) {
+                    //    console.log(err || message);
+                    //});
+
                     res.sendStatus(200);
                 })
             });
-
         });
     })
     .put('/api/comments/:id', jwtAuth, function (req, res, next) {

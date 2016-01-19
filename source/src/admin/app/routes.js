@@ -18,17 +18,6 @@ angular.module('app.admin')
                     label: '首页'
                 }
             })
-            .state('account', {
-                url: '/account',
-                templateUrl: 'app/setting/account/account.tpl.html',
-                controller: 'AccountCtrl',
-                ncyBreadcrumb: {
-                    parent: function ($scope) {
-                        return 'home';
-                    },
-                    label: '账号设置'
-                }
-            })
             .state('category', {
                 url: '/category/list',
                 templateUrl: 'app/content/category/list.tpl.html',
@@ -104,6 +93,28 @@ angular.module('app.admin')
                         return 'home';
                     },
                     label: '评论管理'
+                }
+            })
+            .state('account', {
+                url: '/setting/account',
+                templateUrl: 'app/setting/account/account.tpl.html',
+                controller: 'AccountCtrl',
+                ncyBreadcrumb: {
+                    parent: function ($scope) {
+                        return 'home';
+                    },
+                    label: '账号设置'
+                }
+            })
+            .state('site', {
+                url: '/setting/site',
+                templateUrl: 'app/setting/site/site.tpl.html',
+                controller: 'SiteCtrl',
+                ncyBreadcrumb: {
+                    parent: function ($scope) {
+                        return 'home';
+                    },
+                    label: '网站设置'
                 }
             })
     }]);

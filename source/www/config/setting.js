@@ -3,6 +3,12 @@ module.exports = {
     prefixUrl: '/api/',
     jwtTokenSecret: 'ivqBlogTC',
     rootPath: 'ui/',
-    ueImagesPath : 'assets/upload/ue/images/',
-    coverPath : 'assets/upload/images/'
+    ueImagesPath: 'assets/upload/ue/images/',
+    coverPath: 'assets/upload/images/',
+    emailConfig: {
+        user: "terrychen.ui@outlook.com",
+        password: "****",
+        host: "smtp-mail.outlook.com",
+        ssl: true
+    }
 };
