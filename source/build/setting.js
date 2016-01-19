@@ -2,11 +2,11 @@
 
 module.exports = {
     dest: {
-        server: 'dist/',
-        rootOg: 'dist/ui',
-        root: 'dist/ui/',
-        lib: 'dist/ui/lib/',
-        admin: 'dist/ui/admin/'
+        server: 'www/',
+        rootOg: 'www/ui',
+        root: 'www/ui/',
+        lib: 'www/ui/lib/',
+        admin: 'www/ui/admin/'
     },
     path: {
         js: {

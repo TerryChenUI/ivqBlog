@@ -6,9 +6,7 @@ angular.module('app.article')
         $scope.initController = function () {
             $scope.article = article;
             $scope.article.content = $sce.trustAsHtml($scope.article.content);
-            $scope.model = {
-                article: $scope.article._Id
-            };
+            $scope.model.article = $scope.article._Id;
             if ($rootScope.currentUser) {
                 $scope.model.userName = 'ivqBlog';
                 $scope.model.email = $rootScope.currentUser.email;
