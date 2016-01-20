@@ -1,3 +1,4 @@
+'use strict';
 angular.module('app.admin.content')
     .controller('ListArticleCtrl', ['$scope', '$state', 'SweetAlert', 'CategoryService', 'ArticleService', 'TagService', 'Tool', function ($scope, $state, SweetAlert, CategoryService, ArticleService, TagService, Tool) {
         $scope.filterBy = {'title': '', 'category': 0, 'tags': 0};

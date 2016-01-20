@@ -1,3 +1,4 @@
+'use strict';
 angular.module('app.admin.content')
     .controller('ListCommentCtrl', ['$scope', '$state', 'SweetAlert', 'CategoryService', 'CommentService', 'TagService', 'Tool', function ($scope, $state, SweetAlert, CategoryService, CommentService, TagService, Tool) {
         $scope.getResource = function (params, paramsObj) {

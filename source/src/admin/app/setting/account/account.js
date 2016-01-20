@@ -1,3 +1,4 @@
+'use strict';
 angular.module('app.admin.setting')
     .controller('AccountCtrl', ['$rootScope', '$scope', '$state', 'SweetAlert', 'AccountService', 'AuthService', 'Tool', function ($rootScope, $scope, $state, SweetAlert, AccountService, AuthService, Tool) {
         $scope.model = $rootScope.globals.currentUser.data;

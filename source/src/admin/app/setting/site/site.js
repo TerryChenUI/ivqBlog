@@ -1,3 +1,4 @@
+'use strict';
 angular.module('app.admin.setting')
     .controller('SiteCtrl', ['$rootScope', '$scope', '$state', 'SweetAlert', 'SettingService', 'Tool', function ($rootScope, $scope, $state, SweetAlert, SettingService, Tool) {
         $scope.model = {};

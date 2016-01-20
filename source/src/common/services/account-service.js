@@ -1,3 +1,4 @@
+'use strict';
 angular.module('common.services')
     .factory('AccountService', ['$log', '$http', 'ServerConfig', 'appHttp', function ($log, $http, ServerConfig, appHttp) {
         return {

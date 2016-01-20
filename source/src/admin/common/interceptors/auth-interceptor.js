@@ -1,3 +1,4 @@
+'use strict';
 angular.module('common.interceptors')
     .factory('AuthInterceptor', ['$q', '$cookies', '$window', function ($q, $cookies, $window) {
         return {

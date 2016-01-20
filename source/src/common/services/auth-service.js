@@ -1,3 +1,4 @@
+'use strict';
 angular.module('common.services')
     .factory('AuthService', ['$rootScope', '$cookies', '$http', 'AccountService', function ($rootScope, $cookies, $http, AccountService) {
         return {

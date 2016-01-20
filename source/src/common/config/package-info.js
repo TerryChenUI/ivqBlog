@@ -1,3 +1,4 @@
+'use strict';
 angular.module('common.config')
     .constant('PackageInfo', {
         name: 'ivqBlog',

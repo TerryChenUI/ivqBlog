@@ -1,3 +1,4 @@
+'use strict';
 angular.module('app.admin.common')
     .controller('LoginCtrl', ["$scope", "$window", "AuthService", function ($scope, $window, AuthService) {
         $scope.model = {

@@ -12,7 +12,7 @@ angular.module('app.article')
                 $scope.model.email = $rootScope.currentUser.email;
             }
             $timeout(function(){
-                SyntaxHighlighter.all();
+                SyntaxHighlighter.highlight();
             }, 0);
         };
 

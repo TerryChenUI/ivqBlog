@@ -8,15 +8,18 @@
 
   ul {
     li {
+      padding: 10px 10px 0 10px;
       a {
-        width: 100%;
-        display: block;
-        padding: 10px 10px 0 10px;
-
         &:hover {
           text-decoration: none;
         }
       }
     }
+  }
+}
+
+@media (max-width: 480px) {
+  .nav-tag {
+    display: none;
   }
 }

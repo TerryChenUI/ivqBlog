@@ -1,3 +1,4 @@
+'use strict';
 angular.module('app.admin.content')
     .controller('ListTagCtrl', ['$scope', '$state', 'SweetAlert', 'TagService', function ($scope, $state, SweetAlert, TagService) {
         $scope.getResource = function (params, paramsObj) {

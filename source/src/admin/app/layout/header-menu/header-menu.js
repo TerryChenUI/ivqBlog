@@ -1,3 +1,4 @@
+'use strict';
 angular.module('app.admin.layout')
     .directive('headerMenu', function () {
         return {

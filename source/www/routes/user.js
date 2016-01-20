@@ -31,7 +31,7 @@ router
 			//res.send('successfully');
         //});
     })
-    .get('/api/users/:id', function (req, res, next) {
+    .get('/api/users/:id', jwtAuth, function (req, res, next) {
         User.get(req.params.id, function (err, user) {
             if (err)
                 return res.send({error: err});

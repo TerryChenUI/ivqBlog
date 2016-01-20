@@ -41,6 +41,10 @@ router
     })
     .post('/api/comments', function (req, res, next) {
         var comment = new Comment(req.body);
+        comment.ipAddress = req.headers['x-forwarded-for'] ||
+            req.connection.remoteAddress ||
+            req.socket.remoteAddress ||
+            req.connection.socket.remoteAddress;
         comment.save(function (err, newComment) {
             if (err)
                 return res.send({error: err});

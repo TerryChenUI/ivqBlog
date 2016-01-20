@@ -1,6 +1,3 @@
-/**
- * Created by tchen on 7/3/2015.
- */
 'use strict';
 angular.module('app.admin')
     .config(["$locationProvider", '$stateProvider', '$urlRouterProvider', function ($locationProvider, $stateProvider, $urlRouterProvider) {

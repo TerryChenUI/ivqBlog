@@ -1,3 +1,4 @@
+'use strict';
 angular.module('common.services')
     .factory('CategoryService', ['$http', 'ServerConfig', 'appHttp', function ($http, ServerConfig, appHttp) {
         return {

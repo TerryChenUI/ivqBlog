@@ -1,3 +1,4 @@
+'use strict';
 angular.module('common.directives').directive('equals', function () {
     return {
         restrict: 'A',

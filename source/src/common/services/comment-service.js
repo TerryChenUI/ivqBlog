@@ -1,3 +1,4 @@
+'use strict';
 angular.module('common.services')
     .factory('CommentService', ['$http', '$cookies', 'ServerConfig', 'appHttp', function ($http, $cookies, ServerConfig, appHttp) {
         return {

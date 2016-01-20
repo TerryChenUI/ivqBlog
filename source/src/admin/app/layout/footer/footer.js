@@ -1,6 +1,4 @@
-/**
- * Created by tchen on 2015/7/16.
- */
+'use strict';
 angular.module('app.admin.layout')
     .directive('footer', function () {
         return {

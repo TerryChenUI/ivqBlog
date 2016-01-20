@@ -1,5 +1,4 @@
 'use strict';
-
 angular.module('ngSweetAlert', [])
     .factory('SweetAlert', ['$rootScope', function ($rootScope) {
 
