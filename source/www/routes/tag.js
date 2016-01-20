@@ -1,5 +1,7 @@
 var express = require('express'),
     router = express.Router(),
+    async = require('async'),
+    Article = require('../models/article'),
     Tag = require('../models/tag'),
     jwtAuth = require('../config/jwtAuth.js');
 
@@ -38,6 +40,33 @@ router
             if (err)
                 return res.send({error: err});
             res.send(tags);
+        });
+    })
+    .get('/api/tags/articleCount', function (req, res, next) {
+        var options = {
+            fields: '_id, name',
+            filter: {enabled: true},
+            sortBy: {displayOrder: 1}
+        };
+        var resTags = [];
+        Tag.getAllByFilters(options, function (err, tags) {
+            if (err)
+                return res.send({error: err});
+            async.forEach(tags, function (tag, callback) {
+                var options = {
+                    filter: {tags: tag._id}
+                };
+                Article.getAllByFilters(options, function (err, articles) {
+                    var tagObj = tag.toObject();
+                    tagObj.articleCount = articles.length;
+                    resTags.push(tagObj);
+                    callback();
+                });
+            }, function (err) {
+                if (err)
+                    return res.send({error: err});
+                res.send(resTags);
+            });
         });
     })
     .get('/api/tags/:id', function (req, res, next) {

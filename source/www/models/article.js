@@ -51,6 +51,15 @@ articleSchema.statics = {
             .exec(cb);
     },
 
+    getAllByFilters: function (options, cb) {
+        var filter = options.filter || {};
+        var sortBy = options.sortBy || {};
+
+        this.find(filter)
+            .sort(sortBy)
+            .exec(cb);
+    },
+
     getById: function (id, cb) {
         return this.findOne({_id: id})
             .populate('category', '_id name')

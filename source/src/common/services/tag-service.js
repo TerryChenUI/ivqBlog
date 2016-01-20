@@ -17,6 +17,13 @@ angular.module('common.services')
                 };
                 return appHttp.request(config);
             },
+            getAllArticleCount: function () {
+                var config = {
+                    method: 'GET',
+                    url: ServerConfig.apiUrl + "tags/articleCount"
+                };
+                return appHttp.request(config);
+            },
             getById: function (id) {
                 var config = {
                     method: 'GET',
