@@ -15,7 +15,7 @@ router
         var modify = req.body;
         Setting.update2(req.params.id, modify, function (err) {
             if (err)
-                return res.send(error);
+                return res.send({error: err});
             res.sendStatus(200);
         });
     });

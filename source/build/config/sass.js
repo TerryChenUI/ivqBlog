@@ -13,7 +13,7 @@ var gulp = require('gulp'),
 gulp.task('sass', ['sass:front', 'sass:admin']);
 
 gulp.task('sass:front', function () {
-    gulp.src('src/app.scss')
+    gulp.src('webui/app.scss')
         .pipe(gulpif(!isProductVersion, sourcemaps.init()))
         .pipe(sass().on('error', sass.logError))
         .pipe(gulpif(!isProductVersion, sourcemaps.write()))
@@ -24,7 +24,7 @@ gulp.task('sass:front', function () {
 });
 
 gulp.task('sass:admin', function () {
-    gulp.src('src/admin/app.scss')
+    gulp.src('webui/admin/app.scss')
         .pipe(gulpif(!isProductVersion, sourcemaps.init()))
         .pipe(sass().on('error', sass.logError))
         .pipe(gulpif(!isProductVersion, sourcemaps.write()))

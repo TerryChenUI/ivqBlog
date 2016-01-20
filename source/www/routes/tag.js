@@ -80,7 +80,7 @@ router
         var tag = new Tag(req.body);
         tag.save(function (err) {
             if (err)
-                return res.send(error);
+                return res.send({error: err});
             res.sendStatus(200);
         });
     })
@@ -88,14 +88,14 @@ router
         var modify = req.body;
         Tag.update2(req.params.id, modify, function (err) {
             if (err)
-                return res.send(error);
+                return res.send({error: err});
             res.sendStatus(200);
         });
     })
     .delete('/api/tags/:id', jwtAuth, function (req, res, next) {
         Tag.delete(req.params.id, function (err) {
             if (err)
-                return res.send(error);
+                return res.send({error: err});
             res.sendStatus(200);
         });
     });

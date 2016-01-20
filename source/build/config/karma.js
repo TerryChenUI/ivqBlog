@@ -23,7 +23,7 @@ gulp.task('karma:unit', function (done) {
             setting.dest.root + 'admin/templates.js',
             setting.dest.root + 'admin/app/**/*.js',
             setting.dest.root + 'admin/common/**/*.js',
-            './src/**/*.spec.js'
+            './webui/**/*.spec.js'
         ]),
         configFile: __dirname + unitPath
     }, done);
@@ -41,7 +41,7 @@ gulp.task('karma:unit_run', function (done) {
             setting.dest.root + 'templates-*.js',
             setting.dest.root + 'admin/app-*.js',
             setting.dest.root + 'admin/templates-*.js',
-            setting.dest.root + './src/**/*.spec.js'
+            setting.dest.root + './webui/**/*.spec.js'
         ]),
         configFile: __dirname + unitPath
     }, done);

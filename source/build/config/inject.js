@@ -16,12 +16,11 @@ var injectConfig = [
                     setting.dest.root + 'app.css'
                 ]),
                 js: libraries.front.js.concat([
-                    'src/app/app.js',
+                    'webui/app/app.js',
                     setting.dest.root + 'templates.js',
-                    'src/app/**/*.js',
-                    'src/common/**/*.js',
-                    '!src/app/**/*.spec.js',
-                    '!src/app/**/*.scenario.js'
+                    'webui/app/**/*.js',
+                    'webui/common/**/*.js',
+                    '!webui/app/**/*.spec.js'
                 ])
             }
         },
@@ -30,7 +29,7 @@ var injectConfig = [
                 {"pattern": "/" + setting.dest.rootOg, "replaceStr": ""}
             ],
             js: [
-                {"pattern": "/src", "replaceStr": ""},
+                {"pattern": "/webui", "replaceStr": ""},
                 {"pattern": "/" + setting.dest.rootOg, "replaceStr": ""}
             ]
         }
@@ -45,24 +44,23 @@ var injectConfig = [
                     setting.dest.root + 'admin/app.css'
                 ]),
                 js: libraries.admin.js.concat([
-                    'src/admin/app/app.js',
+                    'webui/admin/app/app.js',
                     setting.dest.root + 'admin/templates.js',
-                    'src/admin/app/**/*.js',
-                    'src/admin/common/**/*.js',
-                    'src/common/**/*.js',
-                    '!src/app/**/*.spec.js',
-                    '!src/app/**/*.scenario.js'
+                    'webui/admin/app/**/*.js',
+                    'webui/admin/common/**/*.js',
+                    'webui/common/**/*.js',
+                    '!webui/app/**/*.spec.js'
                 ])
             }
         },
         filters: {
             css: [
-                {"pattern": "/src", "replaceStr": ""},
+                {"pattern": "/webui", "replaceStr": ""},
                 {"pattern": "/" + setting.dest.rootOg, "replaceStr": ""}
             ],
             js: [
-                {"pattern": "/src/common", "replaceStr": "../common"},
-                {"pattern": "/src", "replaceStr": ""},
+                {"pattern": "/webui/common", "replaceStr": "../common"},
+                {"pattern": "/webui", "replaceStr": ""},
                 {"pattern": "/" + setting.dest.rootOg, "replaceStr": ""}
             ]
         }
@@ -77,24 +75,23 @@ var injectConfig = [
                     setting.dest.root + 'admin/app.css'
                 ]),
                 js: libraries.admin.js.concat([
-                    'src/admin/app/app.js',
+                    'webui/admin/app/app.js',
                     setting.dest.root + 'admin/templates.js',
-                    'src/admin/app/login/login.js',
-                    'src/admin/common/**/*.js',
-                    'src/common/**/*.js',
-                    '!src/app/**/*.spec.js',
-                    '!src/app/**/*.scenario.js'
+                    'webui/admin/app/login/login.js',
+                    'webui/admin/common/**/*.js',
+                    'webui/common/**/*.js',
+                    '!webui/app/**/*.spec.js'
                 ])
             }
         },
         filters: {
             css: [
-                {"pattern": "/src/plugins", "replaceStr": "/plugins"},
+                {"pattern": "/webui/plugins", "replaceStr": "/plugins"},
                 {"pattern": "/" + setting.dest.rootOg, "replaceStr": ""}
             ],
             js: [
-                {"pattern": "/src/common", "replaceStr": "../common"},
-                {"pattern": "/src", "replaceStr": ""},
+                {"pattern": "/webui/common", "replaceStr": "../common"},
+                {"pattern": "/webui", "replaceStr": ""},
                 {"pattern": "/" + setting.dest.rootOg, "replaceStr": ""}
             ]
         }
@@ -140,7 +137,7 @@ var injectConfig = [
         },
         filters: {
             css: [
-                {"pattern": "/src/plugins/", "replaceStr": "/plugins/"},
+                {"pattern": "/webui/plugins/", "replaceStr": "/plugins/"},
                 {"pattern": "/" + setting.dest.rootOg, "replaceStr": ""}
             ],
             js: [
@@ -165,7 +162,7 @@ var injectConfig = [
         },
         filters: {
             css: [
-                {"pattern": "/src/plugins/", "replaceStr": "/plugins/"},
+                {"pattern": "/webui/plugins/", "replaceStr": "/plugins/"},
                 {"pattern": "/" + setting.dest.rootOg, "replaceStr": ""}
             ],
             js: [

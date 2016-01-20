@@ -64,7 +64,7 @@ router
         var article = new Article(req.body);
         article.save(function (err) {
             if (err)
-                return res.send(err);
+                return res.send({error: err});
             res.sendStatus(200);
         });
     })
@@ -89,14 +89,14 @@ router
 
         Article.update2(req.params.id, modify, function (err) {
             if (err)
-                return res.send(err);
+                return res.send({error: err});
             res.sendStatus(200);
         });
     })
     .delete('/api/articles/:id', jwtAuth, function (req, res, next) {
         Article.delete(req.params.id, function (err) {
             if (err)
-                return res.send(error);
+                return res.send({error: err});
             res.sendStatus(200);
         });
     });

@@ -10,8 +10,8 @@ gulp.task('watch', function () {
     gulp.watch(setting.templateCache.front.src, ['templateCache:front']);
     gulp.watch(setting.templateCache.admin.src, ['templateCache:admin']);
 
-    gulp.watch(['src/**/*.scss', '!src/admin/**/*.scss'], ['sass:front']);
-    gulp.watch('src/admin/**/*.scss', ['sass:admin']);
+    gulp.watch(['webui/**/*.scss', '!webui/admin/**/*.scss'], ['sass:front']);
+    gulp.watch('webui/admin/**/*.scss', ['sass:admin']);
 
     gulp.watch(setting.path.js.common, ['copy:js_common']);
     gulp.watch(setting.path.js.front, ['copy:js_front']);

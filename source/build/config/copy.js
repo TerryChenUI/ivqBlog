@@ -7,22 +7,22 @@ var gulp = require('gulp'),
 gulp.task('copy', ['copy:favicon', 'copy:lib', 'copy:plugins', 'copy:assets', 'copy:js']);
 
 gulp.task('copy:favicon', function () {
-    return gulp.src('src/favicon.ico', {base: 'src'})
+    return gulp.src('webui/favicon.ico', {base: 'webui'})
         .pipe(gulp.dest(setting.dest.root));
 });
 
 gulp.task('copy:lib', function () {
-    return gulp.src('lib/**/*', {base: 'src'})
+    return gulp.src('lib/**/*', {base: 'webui'})
         .pipe(gulp.dest(setting.dest.lib));
 });
 
 gulp.task('copy:plugins', function () {
-    gulp.src('src/plugins/**', {base: 'src'})
+    gulp.src('webui/plugins/**', {base: 'webui'})
         .pipe(gulp.dest(setting.dest.root));
 });
 
 gulp.task('copy:assets', function () {
-    gulp.src('src/**/assets/**', {base: 'src'})
+    gulp.src('webui/**/assets/**', {base: 'webui'})
         .pipe(gulp.dest(setting.dest.root));
 });
 
@@ -30,29 +30,29 @@ gulp.task('copy:assets', function () {
 //gulp.task('copy:sass', ['copy:sass_front', 'copy:sass_admin']);
 //
 //gulp.task('copy:sass_front', function () {
-//    gulp.src(['src/**/*.scss', '!src/admin/**/*.scss'], {base: 'src'})
+//    gulp.src(['webui/**/*.scss', '!webui/admin/**/*.scss'], {base: 'webui'})
 //        .pipe(gulp.dest('dist/'));
 //});
 //
 //gulp.task('copy:sass_admin', function () {
-//    gulp.src('src/admin/**/*.scss', {base: 'src/admin'})
+//    gulp.src('webui/admin/**/*.scss', {base: 'webui/admin'})
 //        .pipe(gulp.dest('dist/admin/'))'
 //});
 
 gulp.task('copy:js', ['copy:js_common', 'copy:js_front', 'copy:js_admin']);
 
 gulp.task('copy:js_common', function () {
-    gulp.src(setting.path.js.common, {base: 'src'})
+    gulp.src(setting.path.js.common, {base: 'webui'})
         .pipe(gulp.dest(setting.dest.root))
         .pipe(browserSync.reload({ stream: true }));
 });
 gulp.task('copy:js_front', function () {
-    gulp.src(setting.path.js.front, {base: 'src'})
+    gulp.src(setting.path.js.front, {base: 'webui'})
         .pipe(gulp.dest(setting.dest.root))
         .pipe(browserSync.reload({ stream: true }));
 });
 gulp.task('copy:js_admin', function () {
-    gulp.src(setting.path.js.admin, {base: 'src/admin'})
+    gulp.src(setting.path.js.admin, {base: 'webui/admin'})
         .pipe(gulp.dest(setting.dest.admin))
         .pipe(browserSync.reload({ stream: true }));
 });

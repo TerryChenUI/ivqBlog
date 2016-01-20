@@ -8,7 +8,7 @@ var gulp = require('gulp'),
 gulp.task('concat', ['contact:front', 'contact:admin']);
 
 gulp.task('contact:front', function () {
-    return gulp.src(['src/app/app.js', 'src/app/**/*.js', 'src/common/**/*.js', '!src/app/admin/*.js', '!src/app/**/*.spec.js'])
+    return gulp.src(['webui/app/app.js', 'webui/app/**/*.js', 'webui/common/**/*.js', '!webui/app/admin/*.js', '!webui/app/**/*.spec.js'])
         .pipe(concat('app.js'))
         .pipe(uglify())
         .pipe(rev())
@@ -16,7 +16,7 @@ gulp.task('contact:front', function () {
 });
 
 gulp.task('contact:admin', function () {
-    return gulp.src(['src/admin/app/app.js', 'src/admin/app/**/*.js', 'src/common/**/*.js', 'src/admin/common/**/*.js', '!src/admin/app/**/*.spec.js'])
+    return gulp.src(['webui/admin/app/app.js', 'webui/admin/app/**/*.js', 'webui/common/**/*.js', 'webui/admin/common/**/*.js', '!webui/admin/app/**/*.spec.js'])
         .pipe(concat('app.js'))
         .pipe(uglify())
         .pipe(rev())

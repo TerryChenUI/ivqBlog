@@ -65,7 +65,7 @@ router
 
             User.updateAndReturnNew(req.params.id, modify, function (err, user) {
                 if (err)
-                    return res.send(err);
+                    return res.send({error: err});
 
                 var jt = new jwtToken(user.id);
                 res.send({

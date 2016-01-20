@@ -10,23 +10,23 @@ module.exports = {
     },
     path: {
         js: {
-            common: ['src/common/**/*.js', '!src/**/*.spec.js', '!src/**/*.scenario.js'],
-            front: ['src/app/**/*.js', '!src/**/*.spec.js', '!src/**/*.scenario.js'],
-            admin: ['src/admin/app/**/*.js', 'src/admin/common/**/*.js', '!src/**/*.spec.js', '!src/**/*.scenario.js']
+            common: ['webui/common/**/*.js', '!webui/**/*.spec.js', '!webui/**/*.scenario.js'],
+            front: ['webui/app/**/*.js', '!webui/**/*.spec.js', '!webui/**/*.scenario.js'],
+            admin: ['webui/admin/app/**/*.js', 'webui/admin/common/**/*.js', '!webui/**/*.spec.js']
         }
     },
     templateCache: {
         front: {
-            src: 'src/app/**/*.tpl.html'
+            src: 'webui/app/**/*.tpl.html'
         },
         admin: {
-            src: ['src/admin/**/*.tpl.html', 'src/admin/common/**/*.tpl.html']
+            src: ['webui/admin/**/*.tpl.html', 'webui/admin/common/**/*.tpl.html']
         }
     },
     html: {
-        index: 'src/index.html',
-        admin_index: 'src/admin/index.html',
-        login: 'src/admin/login.html'
+        index: 'webui/index.html',
+        admin_index: 'webui/admin/index.html',
+        login: 'webui/admin/login.html'
     },
     port: {
         express: 'http://localhost:3000',
