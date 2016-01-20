@@ -32,41 +32,41 @@ router
     })
     .get('/api/tags/all', function (req, res, next) {
         var options = {
-            fields: '_id, name',
             filter: {enabled: true},
             sortBy: {displayOrder: 1}
         };
+        if (req.query.fields) {
+            options.fields = req.query.fields.split(',').join(' ');
+        }
         Tag.getAllByFilters(options, function (err, tags) {
             if (err)
                 return res.send({error: err});
-            res.send(tags);
-        });
-    })
-    .get('/api/tags/articleCount', function (req, res, next) {
-        var options = {
-            fields: '_id, name',
-            filter: {enabled: true},
-            sortBy: {displayOrder: 1}
-        };
-        var resTags = [];
-        Tag.getAllByFilters(options, function (err, tags) {
-            if (err)
-                return res.send({error: err});
-            async.forEach(tags, function (tag, callback) {
-                var options = {
-                    filter: {tags: tag._id}
-                };
-                Article.getAllByFilters(options, function (err, articles) {
-                    var tagObj = tag.toObject();
-                    tagObj.articleCount = articles.length;
-                    resTags.push(tagObj);
-                    callback();
+
+            if (req.query.action != undefined && req.query.action == 'getArticleCount') {
+                var resTags = [];
+                Tag.getAllByFilters(options, function (err, tags) {
+                    if (err)
+                        return res.send({error: err});
+                    async.forEach(tags, function (tag, callback) {
+                        var options = {
+                            filter: {tags: tag._id}
+                        };
+                        Article.getAllByFilters(options, function (err, articles) {
+                            var tagObj = tag.toObject();
+                            tagObj.articleCount = articles.length;
+                            resTags.push(tagObj);
+                            callback();
+                        });
+                    }, function (err) {
+                        if (err)
+                            return res.send({error: err});
+                        res.send(resTags);
+                    });
                 });
-            }, function (err) {
-                if (err)
-                    return res.send({error: err});
-                res.send(resTags);
-            });
+            }
+            else {
+                res.send(tags);
+            }
         });
     })
     .get('/api/tags/:id', function (req, res, next) {

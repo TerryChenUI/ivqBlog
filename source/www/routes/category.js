@@ -33,6 +33,9 @@ router
             filter: {enabled: true},
             sortBy: {displayOrder:1}
         };
+        if(req.query.fields){
+            options.fields = req.query.fields.split(',').join(' ');
+        }
         Category.getAllByFilters(options, function (err, categories) {
             if (err)
                 return res.send({error: err});

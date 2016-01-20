@@ -14,8 +14,8 @@ router
             } else {
                 filter.title = new RegExp(filter.title, "i");
             }
-            filter.category? filter.category = parseInt(filter.category) : delete filter.category;
-            filter.tags? filter.tags = parseInt(filter.tags) : delete filter.tags;
+            filter.category ? filter.category = parseInt(filter.category) : delete filter.category;
+            filter.tags ? filter.tags = parseInt(filter.tags) : delete filter.tags;
         }
         var options = {
             filter: filter,
@@ -23,6 +23,9 @@ router
             page: req.query.page - 1,
             count: req.query.count
         };
+        if (req.query.fields) {
+            options.fields = req.query.fields.split(',').join(' ');
+        }
         Article.list(options, function (err, articles) {
             if (err)
                 return res.send({error: err});
@@ -31,22 +34,21 @@ router
                     return res.send({error: err});
                 res.send({
                     rows: articles,
-                        pagination: {
+                    pagination: {
                         count: parseInt(req.query.count),
-                            page: parseInt(req.query.page),
-                            pages: Math.round(total / req.query.count),
-                            size: total
+                        page: parseInt(req.query.page),
+                        pages: Math.round(total / req.query.count),
+                        size: total
                     }
                 });
             });
         });
     })
     .get('/api/articles/:id', function (req, res, next) {
-        var action = req.query.action;
         Article.getById(req.params.id, function (err, article) {
             if (err)
                 return res.send({error: err});
-            if (action == 'updateView') {
+            if (req.query.action != undefined && req.query.action == 'updateView') {
                 article.views += 1;
                 article.save(function (err, article) {
                     if (err)

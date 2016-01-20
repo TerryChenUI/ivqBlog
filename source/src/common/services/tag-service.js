@@ -10,17 +10,11 @@ angular.module('common.services')
                 };
                 return $http(config);
             },
-            getAll: function () {
+            getAll: function (params) {
                 var config = {
                     method: 'GET',
-                    url: ServerConfig.apiUrl + "tags/all"
-                };
-                return appHttp.request(config);
-            },
-            getAllArticleCount: function () {
-                var config = {
-                    method: 'GET',
-                    url: ServerConfig.apiUrl + "tags/articleCount"
+                    url: ServerConfig.apiUrl + "tags/all",
+                    params: params
                 };
                 return appHttp.request(config);
             },

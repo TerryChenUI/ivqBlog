@@ -10,10 +10,11 @@ angular.module('common.services')
                 };
                 return $http(config);
             },
-            getAll: function () {
+            getAll: function (params) {
                 var config = {
                     method: 'GET',
-                    url: ServerConfig.apiUrl + "categories/all"
+                    url: ServerConfig.apiUrl + "categories/all",
+                    params: params
                 };
                 return appHttp.request(config);
             },

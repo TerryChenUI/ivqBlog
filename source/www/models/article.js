@@ -42,7 +42,10 @@ articleSchema.statics = {
 
     list: function (options, cb) {
         var filter = options.filter || {};
+        var fields = options.fields || {};
+
         this.find(filter)
+            .select(fields)
             .populate('category', '_id name')
             .populate('comments')
             .sort(options.sortBy)

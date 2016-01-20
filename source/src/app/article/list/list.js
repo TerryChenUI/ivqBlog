@@ -18,12 +18,9 @@ angular.module('app.article')
 
         function getData() {
             var paramsObj = {
-                filters: {
-                    publish: true
-                },
-                sortBy: {
-                    'time.publish': -1
-                },
+                filters: {publish: true},
+                fields: '_id, title, author, views, time.publish, category, tags, comments',
+                sortBy: {'time.publish': -1},
                 page: $scope.currentPage,
                 count: $scope.itemsPerPage
             };

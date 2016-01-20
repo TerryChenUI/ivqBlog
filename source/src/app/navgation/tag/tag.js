@@ -8,7 +8,11 @@ angular.module('app.nav')
             templateUrl: 'navgation/tag/tag.tpl.html',
             controller: ['$scope', 'TagService', function ($scope, TagService) {
                 $scope.initController = function () {
-                    TagService.getAllArticleCount().then(function (data) {
+                    var params = {
+                        fields: '_id,name',
+                        action: 'getArticleCount'
+                    };
+                    TagService.getAll(params).then(function (data) {
                         $scope.tags = data;
                     });
                 };

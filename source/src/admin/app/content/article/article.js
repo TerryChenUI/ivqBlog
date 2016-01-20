@@ -6,7 +6,10 @@ angular.module('app.admin.content')
         $scope.allTags = [{name: '--请选择--', value: 0}];
 
         $scope.initController = function () {
-            CategoryService.getAll().then(function (data) {
+            var params = {
+                fields: '_id,name'
+            };
+            CategoryService.getAll(params).then(function (data) {
                 _.each(data, function (obj) {
                     $scope.categories.push({
                         name: obj.name,
@@ -14,7 +17,7 @@ angular.module('app.admin.content')
                     });
                 });
             });
-            TagService.getAll().then(function (data) {
+            TagService.getAll(params).then(function (data) {
                 _.each(data, function (obj) {
                     $scope.allTags.push({
                         name: obj.name,
@@ -67,7 +70,10 @@ angular.module('app.admin.content')
         $scope.categories = [{name: '--请选择--', value: 0}];
 
         $scope.initController = function () {
-            CategoryService.getAll().then(function (data) {
+            var params = {
+                fields: '_id,name'
+            };
+            CategoryService.getAll(params).then(function (data) {
                 _.each(data, function (obj) {
                     $scope.categories.push({
                         name: obj.name,
@@ -75,7 +81,7 @@ angular.module('app.admin.content')
                     });
                 });
             });
-            TagService.getAll().then(function (data) {
+            TagService.getAll(params).then(function (data) {
                 $scope.tags = data;
             });
             if (id > 0) {

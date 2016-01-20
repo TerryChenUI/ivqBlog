@@ -26,9 +26,11 @@ categorySchema.statics = {
 
     getAllByFilters: function (options, cb) {
         var filter = options.filter || {};
+        var fields = options.fields || {};
         var sortBy = options.sortBy || {};
 
         this.find(filter)
+            .select(fields)
             .sort(sortBy)
             .exec(cb);
     },
