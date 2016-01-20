@@ -10,7 +10,7 @@ angular.module('app.nav')
                 $scope.initController = function () {
                     var params = {
                         fields: '_id,name',
-                        action: 'getArticleCount'
+                        action: 'getArticlesCount'
                     };
                     TagService.getAll(params).then(function (data) {
                         $scope.tags = data;

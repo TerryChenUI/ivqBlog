@@ -38,10 +38,13 @@
                                     <label class="control-label col-md-2">标签</label>
 
                                     <div class="col-md-8">
-                                        <label ng-repeat="tag in tags">
-                                            <input type="checkbox" checklist-model="model.tags" checklist-value="tag">
-                                            {{tag.name}}
-                                        </label>
+                                        <div class="form-text">
+                                            <label ng-repeat="tag in tags">
+                                                <input type="checkbox" checklist-model="model.tags"
+                                                       checklist-value="tag">
+                                                {{tag.name}}
+                                            </label>
+                                        </div>
                                     </div>
                                 </div>
                                 <div class="form-group">

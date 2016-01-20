@@ -42,7 +42,7 @@ router
             if (err)
                 return res.send({error: err});
 
-            if (req.query.action != undefined && req.query.action == 'getArticleCount') {
+            if (req.query.action != undefined && req.query.action == 'getArticlesCount') {
                 var resTags = [];
                 Tag.getAllByFilters(options, function (err, tags) {
                     if (err)
@@ -53,7 +53,7 @@ router
                         };
                         Article.getAllByFilters(options, function (err, articles) {
                             var tagObj = tag.toObject();
-                            tagObj.articleCount = articles.length;
+                            tagObj.articlesCount = articles.length;
                             resTags.push(tagObj);
                             callback();
                         });
