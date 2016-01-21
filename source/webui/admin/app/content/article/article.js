@@ -60,13 +60,13 @@ angular.module('app.admin.content')
         $scope.initController();
     }])
     .controller('EditArticleCtrl', ['$scope', '$stateParams', '$state', '$timeout', 'SweetAlert', 'CategoryService', 'ArticleService', 'TagService', 'Upload', 'Tool', function ($scope, $stateParams, $state, $timeout, SweetAlert, CategoryService, ArticleService, TagService, Upload, Tool) {
-        var id = ($stateParams.id) ? parseInt($stateParams.id) : 0;
+        var id = $stateParams.id ? $stateParams.id : '';
         $scope.originModel = {};
         $scope.model = {
             author: 'ivqBlog'
         };
         $scope.ueConfig = {};
-        $scope.title = id > 0 ? '编辑文章' : '添加文章';
+        $scope.title = id != '' ? '编辑文章' : '添加文章';
         $scope.categories = [{name: '--请选择--', value: 0}];
 
         $scope.initController = function () {
@@ -84,7 +84,7 @@ angular.module('app.admin.content')
             TagService.getAll(params).then(function (data) {
                 $scope.tags = data;
             });
-            if (id > 0) {
+            if (id) {
                 ArticleService.getById(id).then(function (data) {
                     data.time.create = Tool.convertTime(data.time.create);
                     data.time.update = Tool.convertTime(data.time.update);
@@ -101,7 +101,7 @@ angular.module('app.admin.content')
         };
 
         $scope.save = function () {
-            if (id > 0) {
+            if (id) {
                 var selectedTags = _.map($scope.model.tags, function (data) {
                     return data._id;
                 });

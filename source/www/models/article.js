@@ -1,5 +1,4 @@
-var mongoose = require('mongoose'),
-    autoIncrement = require('mongoose-auto-increment');
+var mongoose = require('mongoose');
 
 var articleSchema = new mongoose.Schema({
     title: String,
@@ -19,12 +18,10 @@ var articleSchema = new mongoose.Schema({
         update: {type: Date, default: Date.now()},
         publish: Date
     },
-    category: {type: Number, ref: 'Category'},
-    tags: [{type: Number, ref: 'Tag'}],
-    comments: [{type: Number, ref: 'Comment'}]
+    category: {type: mongoose.Schema.Types.ObjectId, ref: 'Category'},
+    tags: [{type: mongoose.Schema.Types.ObjectId, ref: 'Tag'}],
+    comments: [{type: mongoose.Schema.Types.ObjectId, ref: 'Comment'}]
 }, {versionKey: false});
-
-articleSchema.plugin(autoIncrement.plugin, {model: 'Article', startAt: 1});
 
 articleSchema.pre('save', function (next) {
     if (this.isNew) {

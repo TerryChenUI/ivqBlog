@@ -13,18 +13,36 @@
                             <div class="form-body">
                                 <div class="form-group">
                                     <label class="control-label col-md-2">类别</label>
+
                                     <div class="col-md-4">
                                         <input type="text" name="name" class="form-control" ng-model="model.name"
                                                required=""/>
+
                                         <div ng-show="form.$submitted || form.name.$touched">
                                             <span ng-show="form.name.$error.required" class="help-block">请填写类别</span>
                                         </div>
                                     </div>
                                 </div>
                                 <div class="form-group">
-                                    <label class="control-label col-md-2">排序</label>
+                                    <label class="control-label col-md-2">route</label>
+
                                     <div class="col-md-4">
-                                        <input type="text" name="displayOrder" class="form-control" ng-model="model.displayOrder"/>
+                                        <input type="text" name="name" class="form-control" ng-model="model.route"
+                                               required=""/>
+
+                                        <div ng-show="form.$submitted || form.route.$touched">
+                                            <span ng-show="form.route.$error.required"
+                                                  class="help-block">请填写route</span>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    <label class="control-label col-md-2">排序</label>
+
+                                    <div class="col-md-4">
+                                        <input type="text" name="displayOrder" class="form-control"
+                                               ng-model="model.displayOrder"/>
+
                                         <div ng-show="form.$submitted || form.displayOrder.$touched">
                                             <span ng-show="form.displayOrder.$error.required"
                                                   class="help-block">请填写排序</span>
@@ -33,12 +51,15 @@
                                 </div>
                                 <div class="form-group">
                                     <label class="control-label col-md-2">描述</label>
+
                                     <div class="col-md-4">
-                                        <textarea class="form-control" ng-model="model.description"  rows="4" cols="20" name="description"></textarea>
+                                        <textarea class="form-control" ng-model="model.description" rows="4" cols="20"
+                                                  name="description"></textarea>
                                     </div>
                                 </div>
                                 <div class="form-group">
                                     <label class="control-label col-md-2">已启用</label>
+
                                     <div class="col-md-4">
                                         <label class="form-checkbox">
                                             <input type="checkbox" ng-model="model.enabled"/>
@@ -53,7 +74,8 @@
             <div class="form-actions fluid">
                 <div class="col-md-offset-2 col-md-9">
                     <input type="button" name="cancel" class="btn dark" value="取消" ui-sref="category"/>
-                    <input type="submit" name="save" ng-disabled="form.$pristine || form.$invalid" class="btn blue" value="保存"
+                    <input type="submit" name="save" ng-disabled="form.$pristine || form.$invalid" class="btn blue"
+                           value="保存"
                            ng-click="save()"/>
                 </div>
             </div>

@@ -14,8 +14,8 @@ router
             } else {
                 filter.title = new RegExp(filter.title, "i");
             }
-            filter.category ? filter.category = parseInt(filter.category) : delete filter.category;
-            filter.tags ? filter.tags = parseInt(filter.tags) : delete filter.tags;
+            filter.category ? filter.category = filter.category : delete filter.category;
+            filter.tags ? filter.tags = filter.tags : delete filter.tags;
         }
         var options = {
             filter: filter,

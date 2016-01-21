@@ -1,5 +1,4 @@
-var mongoose = require('mongoose'),
-    autoIncrement = require('mongoose-auto-increment');
+var mongoose = require('mongoose');
 
 var commentSchema = new mongoose.Schema({
     userName: String,
@@ -7,11 +6,9 @@ var commentSchema = new mongoose.Schema({
     content: String,
     ipAddress: String,
     createTime: {type: Date, default: Date.now()},
-    article: {type: Number, ref: 'Article'},
-    reply: {type: Number, ref: 'Comment'}
+    article: {type: mongoose.Schema.Types.ObjectId, ref: 'Article'},
+    reply: {type: mongoose.Schema.Types.ObjectId, ref: 'Comment'}
 }, {versionKey: false});
-
-commentSchema.plugin(autoIncrement.plugin, {model: 'Comment', startAt: 1});
 
 commentSchema.methods = {};
 

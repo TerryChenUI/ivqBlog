@@ -1,5 +1,4 @@
-var mongoose = require('mongoose'),
-    autoIncrement = require('mongoose-auto-increment');
+var mongoose = require('mongoose');
 
 var userSchema = new mongoose.Schema({
     userName: String,
@@ -9,8 +8,6 @@ var userSchema = new mongoose.Schema({
     createTime: {type: Date, default: Date.now()},
     lastLoginTime: Date
 }, {versionKey: false});
-
-userSchema.plugin(autoIncrement.plugin, {model: 'User', startAt: 1});
 
 userSchema.methods = {
     //validPassword: function (password) {

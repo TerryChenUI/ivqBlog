@@ -1,14 +1,12 @@
-var mongoose = require('mongoose'),
-    autoIncrement = require('mongoose-auto-increment');
+var mongoose = require('mongoose');
 
 var categorySchema = new mongoose.Schema({
     name: String,
+    route: String,
     description: String,
     displayOrder: Number,
     enabled: Boolean
 }, {versionKey: false});
-
-categorySchema.plugin(autoIncrement.plugin, {model: 'Category', startAt: 1});
 
 categorySchema.methods = {};
 
