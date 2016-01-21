@@ -6,6 +6,7 @@ var cookieParser = require('cookie-parser');
 var bodyParser = require('body-parser');
 var db = require('./db');
 var jwt = require('jwt-simple');
+var uiFolder = "/ui";
 
 //routes
 var accounts = require('./routes/account'),
@@ -30,10 +31,10 @@ app.use(logger('dev'));
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({extended: false}));
 app.use(cookieParser());
-app.use(express.static(path.join(__dirname, '/ui')));//TODO:屏蔽访问后端文件
+app.use(express.static(path.join(__dirname, uiFolder)));//TODO:屏蔽访问后端文件
 app.use(function (req, res, next) {
     res.setHeader('Access-Control-Allow-Origin', '*');
-    res.setHeader('Access-Control-Allow-Methods', 'GET, POST, PUT, DELETE');
+    res.setHeader('Access-Control-Allow-Methods', 'GET, POST, PUT, DELETE, OPTIONS');
     res.setHeader('Access-Control-Allow-Headers', 'X-Requested-With,content-type, Authorization');
     next();
 });
@@ -50,45 +51,39 @@ app.use(settings);
 
 app.use(function (req, res) {
     if (req.path.indexOf('/admin/login') >= 0) {
-        res.sendFile(__dirname + '/ui/admin/login.html');
+        res.sendFile(__dirname + uiFolder + '/admin/login.html');
     }
     else if (req.path.indexOf('/admin') >= 0) {
-        res.sendFile(__dirname + '/ui/admin/index.html');
+        res.sendFile(__dirname + uiFolder + '/admin/index.html');
     }
     else {
-        res.sendFile(__dirname + '/ui/index.html');
+        res.sendFile(__dirname + uiFolder + '/index.html');
     }
 });
 
 // catch 404 and forward to error handler
-//app.use(function (req, res, next) {
-//    var err = new Error('Not Found');
-//    err.status = 404;
-//    next(err);
-//});
+app.use(function (req, res, next) {
+    var err = new Error('Not Found');
+    err.status = 404;
+    next(err);
+});
 
 // error handlers
 
 // development error handler
 // will print stacktrace
-//if (app.get('env') === 'development') {
-//    app.use(function (err, req, res, next) {
-//        res.status(err.status || 500);
-//        res.render('error', {
-//            message: err.message,
-//            error: err
-//        });
-//    });
-//}
+if (app.get('env') === 'development') {
+    app.use(function (err, req, res, next) {
+        res.status(err.status || 500);
+        res.send({error: err.message});
+    });
+}
 
 // production error handler
 // no stacktraces leaked to user
-//app.use(function (err, req, res, next) {
-//    res.status(err.status || 500);
-//    res.render('error', {
-//        message: err.message,
-//        error: {}
-//    });
-//});
+app.use(function (err, req, res, next) {
+    res.status(err.status || 500);
+    res.send({error: err.message});
+});
 
 module.exports = app;
