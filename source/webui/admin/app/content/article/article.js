@@ -100,7 +100,7 @@ angular.module('app.admin.content')
             }
         };
 
-        $scope.saveArticle = function () {
+        $scope.save = function () {
             if (id > 0) {
                 var selectedTags = _.map($scope.model.tags, function (data) {
                     return data._id;

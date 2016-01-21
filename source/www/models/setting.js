@@ -3,7 +3,7 @@ var mongoose = require('mongoose'),
 
 var settingSchema = new mongoose.Schema({
     key: String,
-    value: String
+    value: {type: mongoose.Schema.Types.Mixed}
 }, {versionKey: false});
 
 settingSchema.plugin(autoIncrement.plugin, {model: 'Setting', startAt: 1});
@@ -17,18 +17,15 @@ settingSchema.statics = {
             .exec(cb);
     },
 
-    getById: function (id, cb) {
-        this.findOne({_id: id})
+    getAllByFilters: function (options, cb) {
+        var filter = options.filter || {};
+
+        this.find(filter)
             .exec(cb);
     },
 
-    update2: function (id, setting, cb) {
-        this.update({_id: id}, {$set: setting})
-            .exec(cb);
-    },
-
-    delete: function (id, cb) {
-        this.remove({_id: id})
+    update2: function (query, update, cb) {
+        this.update(query, update)
             .exec(cb);
     }
 };

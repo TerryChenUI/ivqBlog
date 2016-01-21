@@ -1,5 +1,6 @@
 var express = require('express'),
     router = express.Router(),
+    async = require('async'),
     Setting = require('../models/setting'),
     jwtAuth = require('../config/jwtAuth.js');
 
@@ -11,12 +12,17 @@ router
             res.send(settings);
         });
     })
-    .put('/api/settings/:id', jwtAuth, function (req, res, next) {
+    .put('/api/settings', jwtAuth, function (req, res, next) {
         var modify = req.body;
-        Setting.update2(req.params.id, modify, function (err) {
+        var keys = Object.keys(modify);
+        async.forEach(keys, function (key, callback) {
+            Setting.update2({key: key}, {value: modify[key]}, function (err) {
+                callback();
+            });
+        }, function (err) {
             if (err)
                 return res.send({error: err});
-            res.sendStatus(200);
+            res.sendStatus(200)
         });
     });
 

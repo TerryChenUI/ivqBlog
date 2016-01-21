@@ -44,7 +44,7 @@ angular.module('app.admin.content')
             }
         };
 
-        $scope.saveTag = function () {
+        $scope.save = function () {
             if (id > 0) {
                 var modifyModel = Tool.trimSameProperties($scope.originModel, $scope.model);
                 TagService.update(id, modifyModel).then(function () {

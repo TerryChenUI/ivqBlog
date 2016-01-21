@@ -9,10 +9,10 @@ angular.module('common.services')
                 };
                 return appHttp.request(config);
             },
-            update: function (id, data) {
+            update: function (data) {
                 var config = {
                     method: 'PUT',
-                    url: ServerConfig.apiUrl + "settings/" + id,
+                    url: ServerConfig.apiUrl + "settings",
                     data: data
                 };
                 return appHttp.request(config);

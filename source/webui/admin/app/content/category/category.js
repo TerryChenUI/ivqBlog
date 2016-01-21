@@ -43,7 +43,7 @@ angular.module('app.admin.content')
             }
         };
 
-        $scope.saveCategory = function () {
+        $scope.save = function () {
             if (id > 0) {
                 var modifyModel = Tool.trimSameProperties($scope.originModel, $scope.model);
                 CategoryService.update(id, modifyModel).then(function () {
