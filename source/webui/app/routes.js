@@ -23,13 +23,23 @@ angular.module('app')
                     },
                     tag: function () {
                         return null;
-                    }
+                    },
+                    setting: ['SettingService', function (SettingService) {
+                        var params = {key: 'setting.meta'};
+                        return SettingService.getByKey(params);
+                    }]
                 },
                 metaTags: {
-                    title: 'ivqBlog - show you code',
-                    description: 'This is the ivqBlog blog',
-                    keywords: 'ivqLimitBlog blog develop',
-                    author: 'ivqBlog'
+                    title: 'ivqBlog：分享我的前端开发历程',
+                    author: function (setting) {
+                        return setting['setting.meta.author'];
+                    },
+                    description: function (setting) {
+                        return setting['setting.meta.description']
+                    },
+                    keywords: function (setting) {
+                        return setting['setting.meta.keyword']
+                    }
                 }
             })
             .state('category', {
@@ -49,7 +59,11 @@ angular.module('app')
                     }],
                     tag: function () {
                         return null;
-                    }
+                    },
+                    setting: ['SettingService', function (SettingService) {
+                        var params = {key: 'setting.meta'};
+                        return SettingService.getByKey(params);
+                    }]
                 },
                 metaTags: {
                     title: function (category) {
@@ -81,6 +95,10 @@ angular.module('app')
                     },
                     tag: ['$stateParams', 'TagService', function ($stateParams, TagService) {
                         return TagService.getByRoute($stateParams.route);
+                    }],
+                    setting: ['SettingService', function (SettingService) {
+                        var params = {key: 'setting.meta'};
+                        return SettingService.getByKey(params);
                     }]
                 },
                 metaTags: {
@@ -103,6 +121,10 @@ angular.module('app')
                 resolve: {
                     article: ['$stateParams', 'ArticleService', function ($stateParams, ArticleService) {
                         return ArticleService.getById($stateParams.articleId, {action: 'updateView'});
+                    }],
+                    setting: ['SettingService', function (SettingService) {
+                        var params = {key: 'setting.meta'};
+                        return SettingService.getByKey(params);
                     }]
                 },
                 metaTags: {

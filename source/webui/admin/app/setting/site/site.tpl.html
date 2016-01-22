@@ -20,7 +20,7 @@
                                 <label class="control-label col-md-2">博客名称</label>
 
                                 <div class="col-md-4">
-                                    <input type="text" name="title" class="form-control"
+                                    <input type="text" class="form-control"
                                            ng-model="model['setting.blog.title']"/>
                                 </div>
                             </div>
@@ -36,35 +36,35 @@
                         </div>
                         <div class="tab-pane" id="tab_2">
                             <div class="form-group">
-                                <label class="control-label col-md-2">meta 前缀</label>
+                                <label class="control-label col-md-2">Meta 前缀</label>
 
                                 <div class="col-md-4">
-                                    <input type="text" name="title" class="form-control"
+                                    <input type="text" class="form-control"
                                            ng-model="model['setting.meta.prefix']"/>
                                 </div>
                             </div>
                             <div class="form-group">
-                                <label class="control-label col-md-2">meta title</label>
+                                <label class="control-label col-md-2">Meta Keyword</label>
 
                                 <div class="col-md-4">
-                                    <input type="text" name="title" class="form-control"
-                                           ng-model="model['setting.meta.title']"/>
+                                    <input type="text" class="form-control"
+                                           ng-model="model['setting.meta.keyword']"/>
                                 </div>
                             </div>
                             <div class="form-group">
-                                <label class="control-label col-md-2">meta author</label>
+                                <label class="control-label col-md-2">Meta Author</label>
 
                                 <div class="col-md-4">
-                                    <input type="text" name="title" class="form-control"
+                                    <input type="text" class="form-control"
                                            ng-model="model['setting.meta.author']"/>
                                 </div>
                             </div>
                             <div class="form-group">
-                                <label class="control-label col-md-2">meta description</label>
+                                <label class="control-label col-md-2">Meta Description</label>
 
                                 <div class="col-md-4">
-                                    <input type="text" name="title" class="form-control"
-                                           ng-model="model['setting.meta.description']"/>
+                                    <textarea class="form-control" ng-model="model['setting.meta.description']" rows="4" cols="20"
+                                              name="description"></textarea>
                                 </div>
                             </div>
                         </div>
@@ -82,7 +82,7 @@
                                 <label class="control-label col-md-2">邮箱用户名</label>
 
                                 <div class="col-md-4">
-                                    <input type="text" name="title" class="form-control"
+                                    <input type="text" class="form-control"
                                            ng-model="model['setting.email.user']"/>
                                 </div>
                             </div>
@@ -90,7 +90,7 @@
                                 <label class="control-label col-md-2">邮箱密码</label>
 
                                 <div class="col-md-4">
-                                    <input type="password" name="title" class="form-control"
+                                    <input type="password" class="form-control"
                                            ng-model="model['setting.email.password']"/>
                                 </div>
                             </div>
@@ -98,7 +98,7 @@
                                 <label class="control-label col-md-2">邮箱服务器</label>
 
                                 <div class="col-md-4">
-                                    <input type="text" name="title" class="form-control"
+                                    <input type="text" class="form-control"
                                            ng-model="model['setting.email.host']"/>
                                 </div>
                             </div>

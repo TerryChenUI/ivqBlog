@@ -9,8 +9,10 @@ settingSchema.methods = {};
 
 settingSchema.statics = {
 
-    list: function (cb) {
-        this.find()
+    list: function (options, cb) {
+        var filter = options.filter || {};
+
+        this.find(filter)
             .exec(cb);
     },
 
@@ -18,6 +20,11 @@ settingSchema.statics = {
         var filter = options.filter || {};
 
         this.find(filter)
+            .exec(cb);
+    },
+
+    getByKey: function (key, cb) {
+        this.findOne({key: key})
             .exec(cb);
     },
 

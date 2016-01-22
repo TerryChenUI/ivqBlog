@@ -9,6 +9,14 @@ angular.module('common.services')
                 };
                 return appHttp.request(config);
             },
+            getByKey: function (params) {
+                var config = {
+                    method: 'GET',
+                    url: ServerConfig.apiUrl + "settings/getByKey",
+                    params: params
+                };
+                return appHttp.request(config);
+            },
             update: function (data) {
                 var config = {
                     method: 'PUT',
