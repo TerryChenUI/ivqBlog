@@ -39,6 +39,11 @@ tagSchema.statics = {
             .exec(cb);
     },
 
+    getByRoute: function (route, cb) {
+        this.findOne({route: route})
+            .exec(cb);
+    },
+
     update2: function (id, tag, cb) {
         this.update({_id: id}, {$set: tag})
             .exec(cb);

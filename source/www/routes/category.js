@@ -49,6 +49,13 @@ router
             res.send(category);
         });
     })
+    .get('/api/categories/getByRoute/:route', function (req, res, next) {
+        Category.getByRoute(req.params.route, function (err, category) {
+            if (err)
+                return res.send({error:err});
+            res.send(category);
+        });
+    })
     .post('/api/categories', jwtAuth, function (req, res, next) {
         var category = new Category(req.body);
         category.save(function (err) {

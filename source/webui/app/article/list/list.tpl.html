@@ -1,23 +1,29 @@
 <a name="post-top"></a>
 <div class="post-list">
     <div class="post-item" ng-repeat="article in articles">
-        <ul class="info">
-            <li>
-                <span class="glyphicon glyphicon glyphicon-tags" aria-hidden="true"></span><a
-                    ui-sref="list({categoryId:article.category._id})">{{article.category.name}}</a> |
-            </li>
-            <li><span class="glyphicon glyphicon-user" aria-hidden="true"></span>{{article.author}} |</li>
-            <li><span class="glyphicon glyphicon-heart-empty" aria-hidden="true"></span>{{article.views}} |</li>
-            <li><span class="glyphicon glyphicon-thumbs-up"
-                      aria-hidden="true"></span> {{article.comments.length}}
-            </li>
-            <!--<li ng-if="$root.currentUser"><a href="/admin/article/edit/{{article._id}}">编辑</a>-->
-            <!--</li>-->
-        </ul>
-        <div class="title">
-            <a ui-sref="post({categoryId:article.category._id, articleId:article._id})" title="{{article.title}}">{{article.title}}</a>
-            <span>({{article.time.publish | fromNow}})</span>
+        <!--<ul class="info">-->
+        <!--<li>-->
+        <!--<span class="glyphicon glyphicon glyphicon-tags" aria-hidden="true"></span><a-->
+        <!--ui-sref="list({categoryId:article.category._id})">{{article.category.name}}</a> |-->
+        <!--</li>-->
+        <!--<li><span class="glyphicon glyphicon-user" aria-hidden="true"></span>{{article.author}} |</li>-->
+        <!--<li><span class="glyphicon glyphicon-heart-empty" aria-hidden="true"></span>{{article.views}} |</li>-->
+        <!--<li><span class="glyphicon glyphicon-thumbs-up"-->
+        <!--aria-hidden="true"></span> {{article.comments.length}}-->
+        <!--</li>-->
+        <!--&lt;!&ndash;<li ng-if="$root.currentUser"><a href="/admin/article/edit/{{article._id}}">编辑</a>&ndash;&gt;-->
+        <!--&lt;!&ndash;</li>&ndash;&gt;-->
+        <!--</ul>-->
+        <!--<div class="title">-->
+        <!--<a ui-sref="post({route:article.category.route, articleId:article._id})" title="{{article.title}}">{{article.title}}</a>-->
+        <!--<span>({{article.time.publish | fromNow}})</span>-->
+        <!--</div>-->
+        <div class="info">
+            <span>({{article.comments.length}}/{{article.views}})</span>
+            <a class="category" ui-sref="list({categoryId:article.category._id})">{{article.category.name}}</a>
+            <a ui-sref="post({route:article.category.route, articleId:article._id})" title="{{article.title}}">{{article.title}}</a>
         </div>
+        <div class="time"><span>{{article.time.publish | fromNow}}</span></div>
     </div>
     <div class="page-container">
         <pagination

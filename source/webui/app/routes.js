@@ -17,6 +17,14 @@ angular.module('app')
                         controller: 'ListCtrl'
                     }
                 },
+                resolve: {
+                    category: function () {
+                        return null;
+                    },
+                    tag: function () {
+                        return null;
+                    }
+                },
                 metaTags: {
                     title: 'ivqBlog - show you code',
                     description: 'This is the ivqBlog blog',
@@ -24,21 +32,24 @@ angular.module('app')
                     author: 'ivqBlog'
                 }
             })
-            .state('list', {
-                url: '/list/:categoryId',
+            .state('category', {
+                url: '/category/:route',
                 views: {
                     '': {
                         templateUrl: 'layout/master.tpl.html'
                     },
-                    'articleList@list': {
+                    'articleList@category': {
                         templateUrl: 'article/list/list.tpl.html',
                         controller: 'ListCtrl'
                     }
                 },
                 resolve: {
                     category: ['$stateParams', 'CategoryService', function ($stateParams, CategoryService) {
-                        return CategoryService.getById($stateParams.categoryId);
-                    }]
+                        return CategoryService.getByRoute($stateParams.route);
+                    }],
+                    tag: function () {
+                        return null;
+                    }
                 },
                 metaTags: {
                     title: function (category) {
@@ -54,7 +65,7 @@ angular.module('app')
                 }
             })
             .state('tag', {
-                url: '/tag/:tagId',
+                url: '/tag/:route',
                 views: {
                     '': {
                         templateUrl: 'layout/master.tpl.html'
@@ -65,8 +76,11 @@ angular.module('app')
                     }
                 },
                 resolve: {
+                    category: function () {
+                        return null;
+                    },
                     tag: ['$stateParams', 'TagService', function ($stateParams, TagService) {
-                        return TagService.getById($stateParams.tagId);
+                        return TagService.getByRoute($stateParams.route);
                     }]
                 },
                 metaTags: {
@@ -83,7 +97,7 @@ angular.module('app')
                 }
             })
             .state('post', {
-                url: '/post/:categoryId/:articleId',
+                url: '/post/:route/:articleId',
                 templateUrl: 'article/post/post.tpl.html',
                 controller: 'PostCtrl',
                 resolve: {

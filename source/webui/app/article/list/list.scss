@@ -2,22 +2,29 @@
   .post-list {
     .post-item {
       border-bottom: 1px #ddd solid;
-      padding: 10px 0;
+      padding: 7px 0;
       font-size: 14px;
-      .title {
-        margin-right: 30%;
-      }
+      overflow: hidden;
       .info {
-        width: 40%;
+        float:left;
+        span {
+          margin: 0 3px 0 0;
+          text-align: center;
+        }
+        .category {
+          background: #eee;
+          margin: 0 3px 0 0;
+          padding: 2px 5px;
+          font-size: 12px;
+          &:hover {
+            text-decoration: none;
+          }
+        }
+      }
+      .time {
         float: right;
         text-align: right;
         margin: 2px 0 0 0;
-        li {
-          display: inline-block;
-          span {
-            padding: 0 5px 0 0;
-          }
-        }
       }
     }
 
@@ -29,7 +36,7 @@
 
 @media (max-width: 768px) {
   .main .post-list .post-item {
-    .info {
+    .time {
       display: none;
     }
   }

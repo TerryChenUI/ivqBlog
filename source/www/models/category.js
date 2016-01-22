@@ -38,6 +38,11 @@ categorySchema.statics = {
             .exec(cb);
     },
 
+    getByRoute: function (route, cb) {
+        this.findOne({route: route})
+            .exec(cb);
+    },
+
     update2: function (id, modify, cb) {
         this.update({_id: id}, {$set: modify})
             .exec(cb);

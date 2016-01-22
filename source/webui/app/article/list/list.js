@@ -1,6 +1,6 @@
 "use strict";
 angular.module('app.article')
-    .controller('ListCtrl', ['$scope', '$stateParams', 'ArticleService', 'Tool', function ($scope, $stateParams, ArticleService) {
+    .controller('ListCtrl', ['$scope', '$stateParams', 'ArticleService', 'category', 'tag', function ($scope, $stateParams, ArticleService, category, tag) {
         $scope.articles = [];
         $scope.currentPage = 1;
         $scope.itemsPerPage = 15;
@@ -24,11 +24,11 @@ angular.module('app.article')
                 page: $scope.currentPage,
                 count: $scope.itemsPerPage
             };
-            if ($stateParams.categoryId) {
-                paramsObj.filters.category = $stateParams.categoryId;
+            if (category) {
+                paramsObj.filters.category = category._id;
             }
-            if ($stateParams.tagId) {
-                paramsObj.filters.tags = $stateParams.tagId;
+            if (tag) {
+                paramsObj.filters.tags = tag._id;
             }
             ArticleService.loadList(paramsObj).then(function (res) {
                 var data = res.data;

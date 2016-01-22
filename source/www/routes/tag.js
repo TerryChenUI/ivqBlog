@@ -76,6 +76,13 @@ router
             res.send(tag);
         });
     })
+    .get('/api/tags/getByRoute/:route', function (req, res, next) {
+        Tag.getByRoute(req.params.route, function (err, tag) {
+            if (err)
+                return res.send({error: err});
+            res.send(tag);
+        });
+    })
     .post('/api/tags', jwtAuth, function (req, res, next) {
         var tag = new Tag(req.body);
         tag.save(function (err) {

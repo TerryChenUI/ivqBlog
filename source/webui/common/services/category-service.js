@@ -25,6 +25,13 @@ angular.module('common.services')
                 };
                 return appHttp.request(config);
             },
+            getByRoute: function (route) {
+                var config = {
+                    method: 'GET',
+                    url: ServerConfig.apiUrl + "categories/getByRoute/" + route
+                };
+                return appHttp.request(config);
+            },
             insert: function (data) {
                 var config = {
                     method: 'POST',

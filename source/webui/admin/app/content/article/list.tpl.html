@@ -35,9 +35,6 @@
     <table class="table datatable table-striped table-bordered table-hover">
         <thead>
         <tr>
-            <th width="50">
-                序号
-            </th>
             <th>
                 标题
             </th>
@@ -66,8 +63,7 @@
         </thead>
         <tbody>
         <tr ng-repeat="row in rows">
-            <td>{{row._id}}</td>
-            <td><a href="/post/{{row.category._id}}/{{row._id}}">{{row.title}}</a></td>
+            <td><a href="/post/{{row.category.route}}/{{row._id}}">{{row.title}}</a></td>
             <td>{{row.status}}</td>
             <td>{{row.views}}</td>
             <td>{{row.comments.length}}</td>

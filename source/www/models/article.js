@@ -43,7 +43,7 @@ articleSchema.statics = {
 
         this.find(filter)
             .select(fields)
-            .populate('category', '_id name')
+            .populate('category', '_id name route')
             .populate('comments')
             .sort(options.sortBy)
             .limit(options.count)
