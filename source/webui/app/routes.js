@@ -18,12 +18,12 @@ angular.module('app')
                     }
                 },
                 resolve: {
-                    category: function () {
+                    category: [function () {
                         return null;
-                    },
-                    tag: function () {
+                    }],
+                    tag: [function () {
                         return null;
-                    },
+                    }],
                     setting: ['SettingService', function (SettingService) {
                         var params = {key: 'setting.meta'};
                         return SettingService.getByKey(params);
@@ -57,9 +57,9 @@ angular.module('app')
                     category: ['$stateParams', 'CategoryService', function ($stateParams, CategoryService) {
                         return CategoryService.getByRoute($stateParams.route);
                     }],
-                    tag: function () {
+                    tag: [function () {
                         return null;
-                    },
+                    }],
                     setting: ['SettingService', function (SettingService) {
                         var params = {key: 'setting.meta'};
                         return SettingService.getByKey(params);
@@ -90,9 +90,9 @@ angular.module('app')
                     }
                 },
                 resolve: {
-                    category: function () {
+                    category: [function () {
                         return null;
-                    },
+                    }],
                     tag: ['$stateParams', 'TagService', function ($stateParams, TagService) {
                         return TagService.getByRoute($stateParams.route);
                     }],
