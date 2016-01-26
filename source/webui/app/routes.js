@@ -1,6 +1,16 @@
 'use strict';
 angular.module('app')
-    .config(["$locationProvider", '$stateProvider', '$urlRouterProvider', function ($locationProvider, $stateProvider, $urlRouterProvider) {
+    .config(["$locationProvider", '$stateProvider', '$urlRouterProvider', 'UIRouterMetatagsProvider', function ($locationProvider, $stateProvider, $urlRouterProvider, UIRouterMetatagsProvider) {
+
+        //TODO:
+        UIRouterMetatagsProvider
+            .setTitlePrefix('')
+            .setTitleSuffix(' | ivqBlog')
+            .setDefaultTitle('ivqBlog：分享我的前端开发历程')
+            .setDefaultDescription('ivqBlog 技术博客, 分享我的世界')
+            .setDefaultKeywords('html, css, javascript, mongodb, nodejs, node, express,sql')
+            .setOGURL(true);
+
         $locationProvider.html5Mode(true).hashPrefix('!');
 
         $urlRouterProvider.otherwise('/home');
@@ -23,23 +33,7 @@ angular.module('app')
                     }],
                     tag: [function () {
                         return null;
-                    }],
-                    setting: ['SettingService', function (SettingService) {
-                        var params = {key: 'setting.meta'};
-                        return SettingService.getByKey(params);
                     }]
-                },
-                metaTags: {
-                    title: 'ivqBlog：分享我的前端开发历程',
-                    author: function (setting) {
-                        return setting['setting.meta.author'];
-                    },
-                    description: function (setting) {
-                        return setting['setting.meta.description']
-                    },
-                    keywords: function (setting) {
-                        return setting['setting.meta.keyword']
-                    }
                 }
             })
             .state('category', {
@@ -61,8 +55,7 @@ angular.module('app')
                         return null;
                     }],
                     setting: ['SettingService', function (SettingService) {
-                        var params = {key: 'setting.meta'};
-                        return SettingService.getByKey(params);
+                        return SettingService.getByKey({key: 'setting.meta'});
                     }]
                 },
                 metaTags: {
@@ -74,8 +67,7 @@ angular.module('app')
                     },
                     keywords: function (category) {
                         return category.name;
-                    },
-                    author: 'ivqBlog'
+                    }
                 }
             })
             .state('tag', {
@@ -95,10 +87,6 @@ angular.module('app')
                     }],
                     tag: ['$stateParams', 'TagService', function ($stateParams, TagService) {
                         return TagService.getByRoute($stateParams.route);
-                    }],
-                    setting: ['SettingService', function (SettingService) {
-                        var params = {key: 'setting.meta'};
-                        return SettingService.getByKey(params);
                     }]
                 },
                 metaTags: {
@@ -110,8 +98,7 @@ angular.module('app')
                     },
                     keywords: function (tag) {
                         return tag.name;
-                    },
-                    author: 'ivqBlog'
+                    }
                 }
             })
             .state('post', {
@@ -121,24 +108,26 @@ angular.module('app')
                 resolve: {
                     article: ['$stateParams', 'ArticleService', function ($stateParams, ArticleService) {
                         return ArticleService.getById($stateParams.articleId, {action: 'updateView'});
-                    }],
-                    setting: ['SettingService', function (SettingService) {
-                        var params = {key: 'setting.meta'};
-                        return SettingService.getByKey(params);
                     }]
                 },
                 metaTags: {
                     title: function (article) {
-                        return article.title;
+                        return (!_.isUndefined(article.meta) && !_.isUndefined(article.meta.title)) ? article.meta.title : article.title;
                     },
                     description: function (article) {
                         return (!_.isUndefined(article.meta) && !_.isUndefined(article.meta.description)) ? article.meta.description : article.title;
                     },
                     keywords: function (article) {
                         return (!_.isUndefined(article.meta) && !_.isUndefined(article.meta.keyword)) ? article.meta.keyword : article.title;
-                    },
-                    author: function (article) {
-                        return (!_.isUndefined(article.meta) && !_.isUndefined(article.meta.author)) ? article.title : article.meta.keyword;
+                    }
+                }
+            })
+            .state('about', {
+                url: '/about',
+                templateUrl: 'page/about/about.tpl.html',
+                metaTags: {
+                    title: function () {
+                        return '关于'
                     }
                 }
             });

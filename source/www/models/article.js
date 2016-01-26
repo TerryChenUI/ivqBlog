@@ -4,7 +4,7 @@ var articleSchema = new mongoose.Schema({
     title: String,
     description: String,
     meta: {
-        author: String,
+        title: String,
         description: String,
         keyword: String
     },
