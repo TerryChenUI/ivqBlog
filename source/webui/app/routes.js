@@ -13,16 +13,16 @@ angular.module('app')
 
         $locationProvider.html5Mode(true).hashPrefix('!');
 
-        $urlRouterProvider.otherwise('/home');
+        $urlRouterProvider.otherwise('/');
 
         $stateProvider
-            .state('home', {
-                url: '/home',
+            .state('/', {
+                url: '/',
                 views: {
                     '': {
                         templateUrl: 'layout/master.tpl.html'
                     },
-                    'articleList@home': {
+                    'articleList@/': {
                         templateUrl: 'article/list/list.tpl.html',
                         controller: 'ListCtrl'
                     }

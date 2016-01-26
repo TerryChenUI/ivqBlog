@@ -7,7 +7,7 @@ var gulp = require("gulp"),
  */
 gulp.task("prod", ['clean'], function (cb) {
     runSequence(
-        ['copy:lib', 'copy:plugins', 'copy:assets', 'sass', 'concat', 'templateCache'],
+        ['copy:plugins', 'copy:assets', 'sass', 'concat', 'templateCache'],
         ['inject:prod_index', 'inject:prod_admin_index', 'inject:prod_login'],
         cb);
 });

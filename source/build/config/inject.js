@@ -102,13 +102,15 @@ var injectConfig = [
         dest: setting.dest.root,
         config: {
             src: {
-                css: libraries.front.css.concat([
+                css: [
+                    setting.dest.root + 'third-party-*.css',
                     setting.dest.root + 'app-*.css'
-                ]),
-                js: libraries.front.js.concat([
+                ],
+                js: [
+                    setting.dest.root + 'third-party-*.js',
                     setting.dest.root + 'app-*.js',
                     setting.dest.root + 'templates-*.js'
-                ])
+                ]
             }
         },
         filters: {
@@ -126,13 +128,15 @@ var injectConfig = [
         dest: setting.dest.admin,
         config: {
             src: {
-                css: libraries.admin.css.concat([
+                css: [
+                    setting.dest.root + 'third-party-*.css',
                     setting.dest.root + 'admin/app-*.css'
-                ]),
-                js: libraries.admin.js.concat([
+                ],
+                js: [
+                    setting.dest.root + 'admin/third-party-*.js',
                     setting.dest.root + 'admin/app-*.js',
                     setting.dest.root + 'admin/templates-*.js'
-                ])
+                ]
             }
         },
         filters: {
@@ -151,13 +155,15 @@ var injectConfig = [
         dest: setting.dest.admin,
         config: {
             src: {
-                css: libraries.admin.css.concat([
+                css: [
+                    setting.dest.root + 'third-party-*.css',
                     setting.dest.root + 'admin/app-*.css'
-                ]),
-                js: libraries.admin.js.concat([
+                ],
+                js: [
+
                     setting.dest.root + 'admin/app-*.js',
                     setting.dest.root + 'admin/templates-*.js'
-                ])
+                ]
             }
         },
         filters: {
