@@ -59,15 +59,15 @@ angular.module('app')
                     }]
                 },
                 metaTags: {
-                    title: function (category) {
+                    title: ['category', function (category) {
                         return category.name;
-                    },
-                    description: function (category) {
+                    }],
+                    description: ['category', function (category) {
                         return category.name;
-                    },
-                    keywords: function (category) {
+                    }],
+                    keywords: ['category', function (category) {
                         return category.name;
-                    }
+                    }]
                 }
             })
             .state('tag', {
@@ -90,15 +90,15 @@ angular.module('app')
                     }]
                 },
                 metaTags: {
-                    title: function (tag) {
+                    title: ['tag', function (tag) {
                         return tag.name;
-                    },
-                    description: function (tag) {
+                    }],
+                    description: ['tag', function (tag) {
                         return tag.name;
-                    },
-                    keywords: function (tag) {
+                    }],
+                    keywords: ['tag', function (tag) {
                         return tag.name;
-                    }
+                    }]
                 }
             })
             .state('post', {
@@ -111,24 +111,22 @@ angular.module('app')
                     }]
                 },
                 metaTags: {
-                    title: function (article) {
+                    title: ['article', function (article) {
                         return (!_.isUndefined(article.meta) && !_.isUndefined(article.meta.title)) ? article.meta.title : article.title;
-                    },
-                    description: function (article) {
+                    }],
+                    description: ['article', function (article) {
                         return (!_.isUndefined(article.meta) && !_.isUndefined(article.meta.description)) ? article.meta.description : article.title;
-                    },
-                    keywords: function (article) {
+                    }],
+                    keywords: ['article', function (article) {
                         return (!_.isUndefined(article.meta) && !_.isUndefined(article.meta.keyword)) ? article.meta.keyword : article.title;
-                    }
+                    }]
                 }
             })
             .state('about', {
                 url: '/about',
                 templateUrl: 'page/about/about.tpl.html',
                 metaTags: {
-                    title: function () {
-                        return '关于'
-                    }
+                    title: '关于'
                 }
             });
     }]);

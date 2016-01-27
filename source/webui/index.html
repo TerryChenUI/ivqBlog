@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html ng-app="app" ng-controller="AppCtrl">
 <head>
-    <title>{{metaTags.title}}</title>
+    <title ng-bind="metaTags.title"></title>
     <meta charset="UTF-8">
     <meta name="keywords" content="{{metaTags.keywords}}">
     <meta name="description" content="{{metaTags.description}}">
@@ -17,8 +17,7 @@
 <footer class="footer">
     <div class="container">
         <div class="row">
-            <p>{{$root.packageInfo.copyrightYear}} &copy; <a ui-sref="home">{{$root.packageInfo.name}}</a> by
-                {{$root.packageInfo.author}}.</p>
+            <p><span ng-bind="$root.packageInfo.copyrightYear"></span> &copy; <a ui-sref="home" ng-bind="$root.packageInfo.name"></a> by <span ng-bind="$root.packageInfo.author"></span>.</p>
         </div>
     </div>
 </footer>
