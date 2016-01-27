@@ -160,7 +160,7 @@ var injectConfig = [
                     setting.dest.root + 'admin/app-*.css'
                 ],
                 js: [
-
+                    setting.dest.root + 'admin/third-party-*.js',
                     setting.dest.root + 'admin/app-*.js',
                     setting.dest.root + 'admin/templates-*.js'
                 ]
