@@ -102,15 +102,13 @@ var injectConfig = [
         dest: setting.dest.root,
         config: {
             src: {
-                css: [
-                    setting.dest.root + 'third-party-*.css',
+                css: libraries.front.css.concat([
                     setting.dest.root + 'app-*.css'
-                ],
-                js: [
-                    setting.dest.root + 'third-party-*.js',
+                ]),
+                js: libraries.front.js.concat([
                     setting.dest.root + 'app-*.js',
                     setting.dest.root + 'templates-*.js'
-                ]
+                ])
             }
         },
         filters: {
@@ -128,15 +126,13 @@ var injectConfig = [
         dest: setting.dest.admin,
         config: {
             src: {
-                css: [
-                    setting.dest.root + 'third-party-*.css',
+                css: libraries.admin.css.concat([
                     setting.dest.root + 'admin/app-*.css'
-                ],
-                js: [
-                    setting.dest.root + 'admin/third-party-*.js',
+                ]),
+                js: libraries.admin.js.concat([
                     setting.dest.root + 'admin/app-*.js',
                     setting.dest.root + 'admin/templates-*.js'
-                ]
+                ])
             }
         },
         filters: {
@@ -155,15 +151,13 @@ var injectConfig = [
         dest: setting.dest.admin,
         config: {
             src: {
-                css: [
-                    setting.dest.root + 'third-party-*.css',
+                css: libraries.admin.css.concat([
                     setting.dest.root + 'admin/app-*.css'
-                ],
-                js: [
-                    setting.dest.root + 'admin/third-party-*.js',
+                ]),
+                js: libraries.admin.js.concat([
                     setting.dest.root + 'admin/app-*.js',
                     setting.dest.root + 'admin/templates-*.js'
-                ]
+                ])
             }
         },
         filters: {

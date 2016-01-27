@@ -24,7 +24,7 @@ module.exports = {
     },
     admin: {
         css: [
-            './lib/font-awesome/font-awesome.min.css',
+            './webui/plugins/font-awesome/font-awesome.min.css',
             './lib/bootstrap/css/bootstrap.min.css',
             './lib/sweetalert/sweetalert.css',
             './lib/ueditor/third-party/SyntaxHighlighter/shCoreDefault.css'
