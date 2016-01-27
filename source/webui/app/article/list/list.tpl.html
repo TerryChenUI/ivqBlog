@@ -4,7 +4,7 @@
         <div class="info">
             <div class="reply-view"><span class="reply">{{article.comments.length}}</span><span
                     ckass="seperator">/</span><span class="view">{{article.views}}</span></div>
-            <a class="category" ui-sref="list({categoryId:article.category._id})">{{article.category.name}}</a>
+            <a class="category" ui-sref="category({categoryId:article.category._id})">{{article.category.name}}</a>
             <a class="title" ui-sref="post({route:article.category.route, articleId:article._id})" title="{{article.title}}">{{article.title}}</a>
         </div>
         <div class="time"><span>{{article.time.publish | fromNow}}</span></div>
