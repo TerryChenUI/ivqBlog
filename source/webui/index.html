@@ -17,7 +17,9 @@
 <footer class="footer">
     <div class="container">
         <div class="row">
-            <p><span ng-bind="$root.packageInfo.copyrightYear"></span> &copy; <a ui-sref="home" ng-bind="$root.packageInfo.name"></a> by <span ng-bind="$root.packageInfo.author"></span>.</p>
+            <p><span ng-bind="$root.packageInfo.copyrightYear"></span> <span ng-bind-html="$root.copysymbol"></span> <a
+                    ui-sref="home" ng-bind="$root.packageInfo.name"></a> <span
+                    ng-bind="$root.author"></span></p>
         </div>
     </div>
 </footer>

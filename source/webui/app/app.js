@@ -26,11 +26,14 @@ var app = angular.module('app', [
     'app.article'
 ]);
 
-app.controller('AppCtrl', ['$rootScope', 'PackageInfo', function ($rootScope, PackageInfo) {
+app.controller('AppCtrl', ['$rootScope', '$sce', 'PackageInfo', function ($rootScope, $sce, PackageInfo) {
     $rootScope.packageInfo = PackageInfo;
+    $rootScope.copysymbol = '&copy;';
+    $rootScope.copysymbol = $sce.trustAsHtml($rootScope.copysymbol);
+    $rootScope.author = 'by' + $rootScope.packageInfo.author + '.';
 }]);
 
-app.run(['$rootScope', '$state', '$stateParams', '$cookies', 'MetaTags', function($rootScope, $state, $stateParams, $cookies, MetaTags){
+app.run(['$rootScope', '$state', '$stateParams', '$cookies', 'MetaTags', function ($rootScope, $state, $stateParams, $cookies, MetaTags) {
     $rootScope.metaTags = MetaTags;
     $rootScope.$state = $state;
     $rootScope.$stateParams = $stateParams;

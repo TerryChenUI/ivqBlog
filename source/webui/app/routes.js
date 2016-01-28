@@ -34,7 +34,8 @@ angular.module('app')
                     tag: [function () {
                         return null;
                     }]
-                }
+                },
+                metaTags: {}
             })
             .state('category', {
                 url: '/category/:route',
