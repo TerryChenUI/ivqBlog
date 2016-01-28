@@ -15,13 +15,13 @@ router
             ]
         }, function (err, user) {
             if (err)
-                return res.send({error: err});
+                return res.status(500).send(err);
 
             if (!user)
-                return res.send({error: '账号或密码不正确'});
+                return res.send({errors: '账号或密码不正确'});
 
             if (!user.enabled)
-                return res.send({error: '用户账号被禁用'});
+                return res.send({errors: '用户账号被禁用'});
 
             var jt = new jwtToken(user.id);
             res.send({
@@ -35,7 +35,7 @@ router
         var modify = req.body;
         User.updateAndReturnNew(req.params.id, modify, function (err, user) {
             if (err)
-                return res.send({error: err});
+                return res.status(500).send(err);
 
             var jt = new jwtToken(user.id);
             res.send({
@@ -50,13 +50,13 @@ router
         var modify = req.body;
         User.getById(req.params.id, function (err, user) {
             if (err)
-                return res.send({error: err});
+                return res.status(500).send(err);
 
             if (modify.password != undefined)
                 modify.password = md5(modify.password);
 
             if (user.password != modify.password)
-                return res.send({error: '旧密码不正确'});
+                return res.send({errors: '旧密码不正确'});
 
             if (modify.newPassword != undefined) {
                 modify.password = md5(modify.newPassword);
@@ -65,7 +65,7 @@ router
 
             User.updateAndReturnNew(req.params.id, modify, function (err, user) {
                 if (err)
-                    return res.send({error: err});
+                    return res.status(500).send(err);
 
                 var jt = new jwtToken(user.id);
                 res.send({

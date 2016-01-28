@@ -2,7 +2,7 @@
 angular.module('common.services')
     .factory('AuthService', ['$rootScope', '$cookies', '$http', 'AccountService', function ($rootScope, $cookies, $http, AccountService) {
         return {
-            Login: function (userName, password, callback) {
+            Login: function (userName, password) {
                 return AccountService.authenticate({userName: userName, password: password});
             },
             setCredentials: function (data, isRemember) {

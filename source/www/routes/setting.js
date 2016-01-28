@@ -10,7 +10,7 @@ router
         var options = {filter:{}};
         Setting.list(options, function (err, settings) {
             if (err)
-                return res.send({error: err});
+                return res.status(500).send(err);
             res.send(settings);
         });
     })
@@ -22,7 +22,7 @@ router
         };
         Setting.list(options, function (err, settings) {
             if (err)
-                return res.send({error: err});
+                return res.status(500).send(err);
             var settingObj = {};
             _und.each(settings, function(setting){
                 settingObj[setting.key] = setting.value;
@@ -36,7 +36,7 @@ router
         async.forEach(keys, function (key, callback) {
             Setting.getByKey(key, function (err, setting) {
                 if (err)
-                    return res.send({error: err});
+                    return res.status(500).send(err);
 
                 if (setting) {
                     Setting.update2({key: key}, {value: modify[key]}, function (err) {
@@ -49,14 +49,14 @@ router
                     });
                     newSetting.save(function (err) {
                         if (err)
-                            return res.send({error: err});
+                            return res.status(500).send(err);
                         callback();
                     });
                 }
             });
         }, function (err) {
             if (err)
-                return res.send({error: err});
+                return res.status(500).send(err);
             res.sendStatus(200)
         });
     });

@@ -16,10 +16,10 @@ router
         };
         Comment.list(options, function (err, comments) {
             if (err)
-                return res.send({error: err});
+                return res.status(500).send(err);
             Comment.count({}, function (err, total) {
                 if (err)
-                    return res.send({error: err});
+                    return res.status(500).send(err);
                 res.send({
                     rows: comments,
                     pagination: {
@@ -35,7 +35,7 @@ router
     .get('/api/comments/:id', function (req, res, next) {
         Comment.getById(req.params.id, function (err, comment) {
             if (err)
-                return res.send({error: err});
+                return res.status(500).send(err);
             res.send(comment);
         });
     })
@@ -47,15 +47,15 @@ router
             req.connection.socket.remoteAddress;
         comment.save(function (err, newComment) {
             if (err)
-                return res.send({error: err});
+                return res.status(500).send(err);
 
             Article.getById(newComment.article, function (err, article) {
                 if (err)
-                    return res.send({error: err});
+                    return res.status(500).send(err);
                 article.comments.push(newComment._id);
                 article.save(function (err) {
                     if (err)
-                        return res.send(err);
+                        return res.status(500).send(err);
 
                     var filter = {
                         key: new RegExp("setting.email", "i")
@@ -97,14 +97,14 @@ router
         var modify = req.body;
         Comment.update2(req.params.id, modify, function (err) {
             if (err)
-                return res.send({error: err});
+                return res.status(500).send(err);
             res.sendStatus(200);
         });
     })
     .delete('/api/comments/:id', jwtAuth, function (req, res, next) {
         Comment.delete(req.params.id, function (err) {
             if (err)
-                return res.send({error: err});
+                return res.status(500).send(err);
             res.sendStatus(200);
         });
     });

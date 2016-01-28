@@ -28,10 +28,10 @@ router
         }
         Article.list(options, function (err, articles) {
             if (err)
-                return res.send({error: err});
+                return res.status(500).send(err);
             Article.count({}, function (err, total) {
                 if (err)
-                    return res.send({error: err});
+                    return res.status(500).send(err);
                 res.send({
                     rows: articles,
                     pagination: {
@@ -47,12 +47,12 @@ router
     .get('/api/articles/:id', function (req, res, next) {
         Article.getById(req.params.id, function (err, article) {
             if (err)
-                return res.send({error: err});
+                return res.status(500).send(err);
             if (req.query.action != undefined && req.query.action == 'updateView') {
                 article.views += 1;
                 article.save(function (err, article) {
                     if (err)
-                        return res.send({error: err});
+                        return res.status(500).send(err);
                     res.send(article);
                 });
             } else {
@@ -64,7 +64,7 @@ router
         var article = new Article(req.body);
         article.save(function (err) {
             if (err)
-                return res.send({error: err});
+                return res.status(500).send(err);
             res.sendStatus(200);
         });
     })
@@ -89,14 +89,14 @@ router
 
         Article.update2(req.params.id, modify, function (err) {
             if (err)
-                return res.send({error: err});
+                return res.status(500).send(err);
             res.sendStatus(200);
         });
     })
     .delete('/api/articles/:id', jwtAuth, function (req, res, next) {
         Article.delete(req.params.id, function (err) {
             if (err)
-                return res.send({error: err});
+                return res.status(500).send(err);
             res.sendStatus(200);
         });
     });

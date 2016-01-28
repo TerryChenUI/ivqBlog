@@ -115,8 +115,9 @@ angular.module('app.admin.content')
                     SweetAlert.updateSuccessfully();
                     $state.go('article');
                 });
-
             } else {
+                if($scope.model.category == 0)
+                    delete $scope.model.category;
                 ArticleService.insert($scope.model).then(function () {
                     SweetAlert.addSuccessfully();
                     $state.go('article');

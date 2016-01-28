@@ -20,9 +20,7 @@
 
         <div class="alert alert-danger" ng-if="errorMessage">
             <button class="close" data-close="alert"></button>
-                <span>
-                    {{errorMessage}}
-                </span>
+                <span ng-bind="errorMessage"></span>
         </div>
 
         <div class="form-group">
