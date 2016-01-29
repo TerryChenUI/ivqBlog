@@ -10,7 +10,7 @@ var express = require('express'),
 router
     .get('/api/comments', function (req, res, next) {
         var options = {
-            sortBy: {_id: -1},
+            sortBy: {createTime: -1},
             page: req.query.page - 1,
             count: req.query.count
         };
@@ -68,7 +68,7 @@ router
                         });
 
                         if (!emailSetting['setting.email.enabled'])
-                            res.sendStatus(200);
+                            return res.sendStatus(200);
 
                         var message = {
                             text: newComment.content,
@@ -86,7 +86,7 @@ router
 
                         server.send(message, function (err, message) {
                             console.log(err || message);
-                            res.sendStatus(200);
+                            return res.sendStatus(200);
                         });
                     });
                 })

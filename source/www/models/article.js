@@ -44,7 +44,7 @@ articleSchema.statics = {
         this.find(filter)
             .select(fields)
             .populate('category', '_id name route')
-            .populate('comments')
+            .populate('comments', '_id')
             .sort(options.sortBy)
             .limit(options.count)
             .skip(options.page * options.count)

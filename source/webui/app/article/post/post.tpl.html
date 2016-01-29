@@ -19,7 +19,7 @@
                     <div class="comment-title">发表评论</div>
                     <div class="comment-item" ng-repeat="comment in article.comments">
                         <div class="comment-sub-title">
-                            <span><a name="{{$index}}">#{{$index + 1}}楼</a></span> |
+                            <span><a name="{{$index + 1}}">#{{$index + 1}}楼</a></span> |
                             <span>{{comment.createTime | convertTime}}</span> |
                             <span>{{comment.userName}}</span> |
                             <span><a href="javascript:void(0)"
