@@ -12,10 +12,10 @@ router
         };
         Category.list(options, function (err, categories) {
             if (err)
-                return res.send({error:err});
+                return res.status(500).send(err);
             Category.count({}, function (err, total) {
                 if (err)
-                    return res.send({error: err});
+                    return res.status(500).send(err);
                 res.send({
                     rows: categories,
                     pagination: {
@@ -38,14 +38,21 @@ router
         }
         Category.getAllByFilters(options, function (err, categories) {
             if (err)
-                return res.send({error: err});
+                return res.status(500).send(err);
             res.send(categories);
         });
     })
     .get('/api/categories/:id', function (req, res, next) {
         Category.getById(req.params.id, function (err, category) {
             if (err)
-                return res.send({error:err});
+                return res.status(500).send(err);
+            res.send(category);
+        });
+    })
+    .get('/api/categories/getByRoute/:route', function (req, res, next) {
+        Category.getByRoute(req.params.route, function (err, category) {
+            if (err)
+                return res.status(500).send(err);
             res.send(category);
         });
     })
@@ -53,7 +60,7 @@ router
         var category = new Category(req.body);
         category.save(function (err) {
             if (err)
-                return res.send({error: err});
+                return res.status(500).send(err);
             res.sendStatus(200);
         });
     })
@@ -61,14 +68,14 @@ router
         var modify = req.body;
         Category.update2(req.params.id, modify, function (err) {
             if (err)
-                return res.send({error: err});
+                return res.status(500).send(err);
             res.sendStatus(200);
         });
     })
     .delete('/api/categories/:id', jwtAuth, function (req, res, next) {
         Category.delete(req.params.id, function (err) {
             if (err)
-                return res.send({error: err});
+                return res.status(500).send(err);
             res.sendStatus(200);
         });
     });

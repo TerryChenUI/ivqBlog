@@ -30,13 +30,13 @@ angular.module('app.admin.content')
         };
     }])
     .controller('EditTagCtrl', ['$scope', '$stateParams', '$state', 'SweetAlert', 'TagService', 'Tool', function ($scope, $stateParams, $state, SweetAlert, TagService, Tool) {
-        var id = ($stateParams.id) ? parseInt($stateParams.id) : 0;
+        var id = $stateParams.id ? $stateParams.id : '';
         $scope.originModel = {};
         $scope.model = {};
-        $scope.title = id > 0 ? '编辑标签' : '添加标签';
+        $scope.title = id != '' ? '编辑标签' : '添加标签';
 
         $scope.initController = function () {
-            if (id > 0) {
+            if (id) {
                 TagService.getById(id).then(function (data) {
                     $scope.model = data;
                     $scope.originModel = Tool.deepCopy($scope.model);
@@ -44,8 +44,8 @@ angular.module('app.admin.content')
             }
         };
 
-        $scope.saveTag = function () {
-            if (id > 0) {
+        $scope.save = function () {
+            if (id) {
                 var modifyModel = Tool.trimSameProperties($scope.originModel, $scope.model);
                 TagService.update(id, modifyModel).then(function () {
                     SweetAlert.updateSuccessfully();

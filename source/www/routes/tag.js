@@ -14,10 +14,10 @@ router
         };
         Tag.list(options, function (err, tags) {
             if (err)
-                return res.send({error: err});
+                return res.status(500).send(err);
             Tag.count({}, function (err, total) {
                 if (err)
-                    return res.send({error: err});
+                    return res.status(500).send(err);
                 res.send({
                     rows: tags,
                     pagination: {
@@ -40,26 +40,26 @@ router
         }
         Tag.getAllByFilters(options, function (err, tags) {
             if (err)
-                return res.send({error: err});
+                return res.status(500).send(err);
 
-            if (req.query.action != undefined && req.query.action == 'getArticleCount') {
+            if (req.query.action != undefined && req.query.action == 'getArticlesCount') {
                 var resTags = [];
                 Tag.getAllByFilters(options, function (err, tags) {
                     if (err)
-                        return res.send({error: err});
+                        return res.status(500).send(err);
                     async.forEach(tags, function (tag, callback) {
                         var options = {
                             filter: {tags: tag._id}
                         };
                         Article.getAllByFilters(options, function (err, articles) {
                             var tagObj = tag.toObject();
-                            tagObj.articleCount = articles.length;
+                            tagObj.articlesCount = articles.length;
                             resTags.push(tagObj);
                             callback();
                         });
                     }, function (err) {
                         if (err)
-                            return res.send({error: err});
+                            return res.status(500).send(err);
                         res.send(resTags);
                     });
                 });
@@ -72,7 +72,14 @@ router
     .get('/api/tags/:id', function (req, res, next) {
         Tag.getById(req.params.id, function (err, tag) {
             if (err)
-                return res.send({error: err});
+                return res.status(500).send(err);
+            res.send(tag);
+        });
+    })
+    .get('/api/tags/getByRoute/:route', function (req, res, next) {
+        Tag.getByRoute(req.params.route, function (err, tag) {
+            if (err)
+                return res.status(500).send(err);
             res.send(tag);
         });
     })
@@ -80,7 +87,7 @@ router
         var tag = new Tag(req.body);
         tag.save(function (err) {
             if (err)
-                return res.send({error: err});
+                return res.status(500).send(err);
             res.sendStatus(200);
         });
     })
@@ -88,14 +95,14 @@ router
         var modify = req.body;
         Tag.update2(req.params.id, modify, function (err) {
             if (err)
-                return res.send({error: err});
+                return res.status(500).send(err);
             res.sendStatus(200);
         });
     })
     .delete('/api/tags/:id', jwtAuth, function (req, res, next) {
         Tag.delete(req.params.id, function (err) {
             if (err)
-                return res.send({error: err});
+                return res.status(500).send(err);
             res.sendStatus(200);
         });
     });

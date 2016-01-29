@@ -29,13 +29,13 @@ angular.module('app.admin.content')
         };
     }])
     .controller('EditCategoryCtrl', ['$scope', '$stateParams', '$state', 'SweetAlert', 'CategoryService', 'Tool', function ($scope, $stateParams, $state, SweetAlert, CategoryService, Tool) {
-        var id = ($stateParams.id) ? parseInt($stateParams.id) : 0;
+        var id = $stateParams.id ? $stateParams.id : '';
         $scope.originModel = {};
         $scope.model = {};
-        $scope.title = id > 0 ? '编辑类别' : '添加类别';
+        $scope.title = id != '' ? '编辑类别' : '添加类别';
 
         $scope.initController = function () {
-            if (id > 0) {
+            if (id) {
                 CategoryService.getById(id).then(function (data) {
                     $scope.model = data;
                     $scope.originModel = Tool.deepCopy($scope.model);
@@ -43,8 +43,8 @@ angular.module('app.admin.content')
             }
         };
 
-        $scope.saveCategory = function () {
-            if (id > 0) {
+        $scope.save = function () {
+            if (id) {
                 var modifyModel = Tool.trimSameProperties($scope.originModel, $scope.model);
                 CategoryService.update(id, modifyModel).then(function () {
                     SweetAlert.updateSuccessfully();

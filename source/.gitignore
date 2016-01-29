@@ -2,8 +2,7 @@
 
 # 
 node_modules/
-www/
-!www/ui/
+www/ui/
 vendor/
 test_out/
 

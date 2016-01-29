@@ -1,9 +1,8 @@
 <!DOCTYPE html>
 <html ng-app="app" ng-controller="AppCtrl">
 <head>
-    <title>{{metaTags.title}}</title>
+    <title ng-bind="metaTags.title"></title>
     <meta charset="UTF-8">
-    <meta name="author" content="{{metaTags.author}}">
     <meta name="keywords" content="{{metaTags.keywords}}">
     <meta name="description" content="{{metaTags.description}}">
     <base href="/">
@@ -18,8 +17,9 @@
 <footer class="footer">
     <div class="container">
         <div class="row">
-            <p>{{$root.packageInfo.copyrightYear}} &copy; <a ui-sref="home">{{$root.packageInfo.name}}</a> by
-                {{$root.packageInfo.author}}.</p>
+            <p><span ng-bind="$root.packageInfo.copyrightYear"></span> <span ng-bind-html="$root.copysymbol"></span> <a
+                    ui-sref="home" ng-bind="$root.packageInfo.name"></a> <span
+                    ng-bind="$root.author"></span></p>
         </div>
     </div>
 </footer>

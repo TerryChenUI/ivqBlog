@@ -1,60 +1,78 @@
 'use strict';
 angular.module('app')
-    .config(["$locationProvider", '$stateProvider', '$urlRouterProvider', function ($locationProvider, $stateProvider, $urlRouterProvider) {
+    .config(["$locationProvider", '$stateProvider', '$urlRouterProvider', 'UIRouterMetatagsProvider', function ($locationProvider, $stateProvider, $urlRouterProvider, UIRouterMetatagsProvider) {
+
+        //TODO:
+        UIRouterMetatagsProvider
+            .setTitlePrefix('')
+            .setTitleSuffix(' | ivqBlog')
+            .setDefaultTitle('ivqBlog：分享我的前端开发历程')
+            .setDefaultDescription('ivqBlog 技术博客, 分享我的世界')
+            .setDefaultKeywords('html, css, javascript, mongodb, nodejs, node, express,sql')
+            .setOGURL(true);
+
         $locationProvider.html5Mode(true).hashPrefix('!');
 
-        $urlRouterProvider.otherwise('/home');
+        $urlRouterProvider.otherwise('/');
 
         $stateProvider
-            .state('home', {
-                url: '/home',
+            .state('/', {
+                url: '/',
                 views: {
                     '': {
                         templateUrl: 'layout/master.tpl.html'
                     },
-                    'articleList@home': {
+                    'articleList@/': {
                         templateUrl: 'article/list/list.tpl.html',
                         controller: 'ListCtrl'
                     }
                 },
-                metaTags: {
-                    title: 'ivqBlog - show you code',
-                    description: 'This is the ivqBlog blog',
-                    keywords: 'ivqLimitBlog blog develop',
-                    author: 'ivqBlog'
-                }
+                resolve: {
+                    category: [function () {
+                        return null;
+                    }],
+                    tag: [function () {
+                        return null;
+                    }]
+                },
+                metaTags: {}
             })
-            .state('list', {
-                url: '/list/:categoryId',
+            .state('category', {
+                url: '/category/:route',
                 views: {
                     '': {
                         templateUrl: 'layout/master.tpl.html'
                     },
-                    'articleList@list': {
+                    'articleList@category': {
                         templateUrl: 'article/list/list.tpl.html',
                         controller: 'ListCtrl'
                     }
                 },
                 resolve: {
                     category: ['$stateParams', 'CategoryService', function ($stateParams, CategoryService) {
-                        return CategoryService.getById($stateParams.categoryId);
+                        return CategoryService.getByRoute($stateParams.route);
+                    }],
+                    tag: [function () {
+                        return null;
+                    }],
+                    setting: ['SettingService', function (SettingService) {
+                        return SettingService.getByKey({key: 'setting.meta'});
                     }]
                 },
                 metaTags: {
-                    title: function (category) {
+                    title: ['category', function (category) {
                         return category.name;
-                    },
-                    description: function (category) {
+                    }],
+                    description: ['category', function (category) {
                         return category.name;
-                    },
-                    keywords: function (category) {
+                    }],
+                    keywords: ['category', function (category) {
                         return category.name;
-                    },
-                    author: 'ivqBlog'
+                    }]
                 }
             })
             .state('tag', {
-                url: '/tag/:tagId',
+                url: '/tag/:route',
                 views: {
                     '': {
                         templateUrl: 'layout/master.tpl.html'
@@ -65,25 +83,27 @@ angular.module('app')
                     }
                 },
                 resolve: {
+                    category: [function () {
+                        return null;
+                    }],
                     tag: ['$stateParams', 'TagService', function ($stateParams, TagService) {
-                        return TagService.getById($stateParams.tagId);
+                        return TagService.getByRoute($stateParams.route);
                     }]
                 },
                 metaTags: {
-                    title: function (tag) {
+                    title: ['tag', function (tag) {
                         return tag.name;
-                    },
-                    description: function (tag) {
+                    }],
+                    description: ['tag', function (tag) {
                         return tag.name;
-                    },
-                    keywords: function (tag) {
+                    }],
+                    keywords: ['tag', function (tag) {
                         return tag.name;
-                    },
-                    author: 'ivqBlog'
+                    }]
                 }
             })
             .state('post', {
-                url: '/post/:categoryId/:articleId',
+                url: '/post/:route/:articleId',
                 templateUrl: 'article/post/post.tpl.html',
                 controller: 'PostCtrl',
                 resolve: {
@@ -92,18 +112,22 @@ angular.module('app')
                     }]
                 },
                 metaTags: {
-                    title: function (article) {
-                        return article.title;
-                    },
-                    description: function (article) {
+                    title: ['article', function (article) {
+                        return (!_.isUndefined(article.meta) && !_.isUndefined(article.meta.title)) ? article.meta.title : article.title;
+                    }],
+                    description: ['article', function (article) {
                         return (!_.isUndefined(article.meta) && !_.isUndefined(article.meta.description)) ? article.meta.description : article.title;
-                    },
-                    keywords: function (article) {
+                    }],
+                    keywords: ['article', function (article) {
                         return (!_.isUndefined(article.meta) && !_.isUndefined(article.meta.keyword)) ? article.meta.keyword : article.title;
-                    },
-                    author: function (article) {
-                        return (!_.isUndefined(article.meta) && !_.isUndefined(article.meta.author)) ? article.title : article.meta.keyword;
-                    }
+                    }]
+                }
+            })
+            .state('about', {
+                url: '/about',
+                templateUrl: 'page/about/about.tpl.html',
+                metaTags: {
+                    title: '关于'
                 }
             });
     }]);

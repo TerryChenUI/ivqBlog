@@ -557,68 +557,6 @@ Page title
   color: #888;
 }
 
-/***
-Footer
-***/
-
-.footer {
-  padding: 8px 20px 5px 20px;
-  font-size: 12px;
-}
-
-.footer:after,
-.footer:before {
-  content: "";
-  display: table;
-  line-height: 0;
-}
-
-.footer:after {
-  clear: both;
-}
-
-.footer .footer-inner {
-  float: left;
-  display: inline-block;
-}
-
-.footer .footer-tools {
-  float: right;
-  display: inline-block;
-}
-
-.footer .footer-tools .go-top {
-  display: block;
-  text-decoration: none;
-  cursor: pointer;
-  margin-top: -2px;
-  margin-right: 0px;
-  margin-bottom: 0px;
-  font-size: 16px;
-  padding: 0px 6px 0px 6px;
-}
-
-.footer .footer-tools .go-top i {
-  font-size: 22px;
-  margin-bottom: 5px;
-}
-
-.footer .footer-inner {
-  color: #999999;
-}
-
-.footer .footer-tools .go-top {
-  background-color: #4f4f4f;
-}
-
-.footer .footer-tools .go-top:hover {
-  opacity: 0.7;
-  filter: alpha(opacity=70);
-}
-
-.footer .footer-tools .go-top i {
-  color: #8a8a8a;
-}
 
 /********************
  GENERAL UI ELEMENTS 

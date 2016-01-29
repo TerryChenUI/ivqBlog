@@ -9,7 +9,7 @@ angular.module('app.nav')
             controller: ['$scope', 'CategoryService', function ($scope, CategoryService) {
                 $scope.initController = function () {
                     var params = {
-                        fields: '_id,name'
+                        fields: '_id,name,route'
                     };
                     CategoryService.getAll(params).then(function (data) {
                         $scope.categories = data;

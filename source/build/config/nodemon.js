@@ -6,12 +6,12 @@ var gulp = require("gulp"),
 
 
 gulp.task('nodemon', function () {
-
     nodemon({
         script: setting.dest.server + 'bin/www',
         ext: 'html css js',
         watch: [
             setting.dest.server + 'bin',
+            setting.dest.server + 'config',
             setting.dest.server + 'models',
             setting.dest.server + 'routes',
             setting.dest.server + 'app.js',

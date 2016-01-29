@@ -1,1 +1,126 @@
-test
+<div class="portlet box">
+    <div class="portlet-body form">
+        <form class="form-horizontal" name="form">
+            <div class="form-body">
+                <div class="tabtable table-custom table-full-width">
+                    <ul class="nav nav-tabs">
+                        <li class="active">
+                            <a href="#tab_1" data-toggle="tab">博客设置</a>
+                        </li>
+                        <li>
+                            <a href="#tab_2" data-toggle="tab">seo设置</a>
+                        </li>
+                        <li>
+                            <a href="#tab_3" data-toggle="tab">邮箱设置</a>
+                        </li>
+                    </ul>
+                    <div class="tab-content">
+                        <div class="tab-pane active" id="tab_1">
+                            <div class="form-group">
+                                <label class="control-label col-md-2">博客名称</label>
+
+                                <div class="col-md-4">
+                                    <input type="text" class="form-control"
+                                           ng-model="model['setting.blog.title']"/>
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <label class="control-label col-md-2">允许评论</label>
+
+                                <div class="col-md-4">
+                                    <label class="form-checkbox">
+                                        <input type="checkbox" ng-model="model['setting.blog.comment.enabled']"/>
+                                    </label>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="tab-pane" id="tab_2">
+                            <div class="form-group">
+                                <label class="control-label col-md-2">Meta 前缀</label>
+
+                                <div class="col-md-4">
+                                    <input type="text" class="form-control"
+                                           ng-model="model['setting.meta.prefix']"/>
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <label class="control-label col-md-2">Meta Title</label>
+
+                                <div class="col-md-4">
+                                    <input type="text" class="form-control"
+                                           ng-model="model['setting.meta.title']"/>
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <label class="control-label col-md-2">Meta Keyword</label>
+
+                                <div class="col-md-4">
+                                    <input type="text" class="form-control"
+                                           ng-model="model['setting.meta.keyword']"/>
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <label class="control-label col-md-2">Meta Description</label>
+
+                                <div class="col-md-4">
+                                    <textarea class="form-control" ng-model="model['setting.meta.description']" rows="4" cols="20"
+                                              name="description"></textarea>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="tab-pane" id="tab_3">
+                            <div class="form-group">
+                                <label class="control-label col-md-2">启用邮箱</label>
+
+                                <div class="col-md-4">
+                                    <label class="form-checkbox">
+                                        <input type="checkbox" ng-model="model['setting.email.enabled']"/>
+                                    </label>
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <label class="control-label col-md-2">邮箱用户名</label>
+
+                                <div class="col-md-4">
+                                    <input type="text" class="form-control"
+                                           ng-model="model['setting.email.user']"/>
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <label class="control-label col-md-2">邮箱密码</label>
+
+                                <div class="col-md-4">
+                                    <input type="password" class="form-control"
+                                           ng-model="model['setting.email.password']"/>
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <label class="control-label col-md-2">邮箱服务器</label>
+
+                                <div class="col-md-4">
+                                    <input type="text" class="form-control"
+                                           ng-model="model['setting.email.host']"/>
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <label class="control-label col-md-2">SSL</label>
+
+                                <div class="col-md-4">
+                                    <label class="form-checkbox">
+                                        <input type="checkbox" ng-model="model['setting.email.ssl']"/>
+                                    </label>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </form>
+    </div>
+    <div class="form-actions fluid">
+        <div class="col-md-offset-2 col-md-9">
+            <input type="submit" name="save" ng-disabled="form.$pristine || form.$invalid" class="btn blue"
+                   value="保存" ng-click="save()"/>
+        </div>
+    </div>
+</div>

@@ -1,6 +1,6 @@
 'use strict';
 angular.module('common.interceptors')
-    .factory('AuthInterceptor', ['$q', '$cookies', '$window', function ($q, $cookies, $window) {
+    .factory('AuthInterceptor', ['$q', '$cookies', '$window', 'SweetAlert', function ($q, $cookies, $window, SweetAlert) {
         return {
             request: function (config) {
                 config.headers = config.headers || {};
@@ -13,6 +13,9 @@ angular.module('common.interceptors')
             responseError: function (response) {
                 if (response.status === 401) {
                     $window.location.href = 'login.html';
+                }
+                if (response.status === 500) {
+                    SweetAlert.error('服务器错误', response.data.message);
                 }
                 return $q.reject(response);
             }

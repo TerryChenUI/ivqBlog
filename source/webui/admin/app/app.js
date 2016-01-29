@@ -55,7 +55,7 @@ appAdmin.run(['$rootScope', '$window', '$location', '$cookies', '$http', functio
         var restrictedPage = $.inArray($location.path(), ['/login', '/register']) === -1;
         var loggedIn = $rootScope.globals.currentUser;
         if (restrictedPage && !loggedIn) {
-            //$window.location.href = 'login.html';
+            $window.location.href = 'login.html';
         }
     });
 

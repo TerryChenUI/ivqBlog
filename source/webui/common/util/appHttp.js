@@ -5,13 +5,13 @@ angular.module('common.util')
             request: function(config) {
                 var deferred = $q.defer();
                 $http(config).success(function(response, status) {
-                    if (response.error != null) {
-                        deferred.reject(response.error);
+                    if (response.errors != null) {
+                        deferred.reject(response);
                     } else {
                         deferred.resolve(response);
                     }
                 }).error(function(response, status) {
-                    deferred.reject(response.error);
+                    deferred.reject(response.errors);
                 });
                 return deferred.promise;
             }

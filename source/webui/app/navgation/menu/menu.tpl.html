@@ -12,11 +12,14 @@
         </div>
         <div id="navbar" class="navbar-collapse collapse">
             <ul class="nav navbar-nav">
-                <li ng-class="$state.current.name == 'home' ? 'active' : ''">
-                    <a class="blog-nav-item" ui-sref="home">首页</a>
+                <li ng-class="$state.current.name == '/' ? 'active' : ''">
+                    <a class="blog-nav-item" ui-sref="/">首页</a>
                 </li>
-                <li ng-class="($state.current.name == 'list' || $state.current.name == 'post') && $stateParams.categoryId == category._id ? 'active' : ''" ng-repeat="category in categories">
-                    <a class="blog-nav-item" ui-sref="list({categoryId:category._id})">{{category.name}}</a>
+                <li ng-class="($state.current.name == 'category' || $state.current.name == 'post') && $stateParams.route == category.route ? 'active' : ''" ng-repeat="category in categories">
+                    <a class="blog-nav-item" ui-sref="category({route:category.route})">{{category.name}}</a>
+                </li>
+                <li ng-class="$state.current.name == 'about' ? 'active' : ''">
+                    <a class="blog-nav-item" ui-sref="about">关于</a>
                 </li>
             </ul>
             <ul class="nav navbar-nav navbar-right" ng-if="$root.currentUser">

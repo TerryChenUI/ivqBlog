@@ -1,15 +1,13 @@
-var mongoose = require('mongoose'),
-    autoIncrement = require('mongoose-auto-increment');
+var mongoose = require('mongoose');
 
 var tagSchema = new mongoose.Schema({
     name: String,
+    route: String,
     description: String,
     displayOrder: Number,
     enabled: Boolean,
-    articles: [{type: Number, ref: 'Article'}]
+    articles: [{type: mongoose.Schema.Types.ObjectId, ref: 'Article'}]
 }, {versionKey: false});
-
-tagSchema.plugin(autoIncrement.plugin, {model: 'Tag', startAt: 1});
 
 tagSchema.methods = {};
 
@@ -38,6 +36,11 @@ tagSchema.statics = {
 
     getById: function (id, cb) {
         this.findOne({_id: id})
+            .exec(cb);
+    },
+
+    getByRoute: function (route, cb) {
+        this.findOne({route: route})
             .exec(cb);
     },
 

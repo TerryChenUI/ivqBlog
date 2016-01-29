@@ -1,0 +1,14 @@
+{
+  "apps": [
+    {
+      "name": "ivqBlog",
+      "script": "bin/www",
+      "log_date_format": "YYYY-MM-DD HH:mm:SS",
+      "log_file": "logs/ivqBlog.log",
+      "error_file": "logs/ivqBlog-err.log",
+      "out_file": "logs/ivqBlog-out.log",
+      "pid_file": "logs/ivqBlog.pid",
+      "watch": true
+    }
+  ]
+}

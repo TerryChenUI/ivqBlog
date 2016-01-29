@@ -15,9 +15,9 @@ angular.module('app.admin.common')
                 if(data.token){
                     AuthService.setCredentials(data, $scope.model.isRemember);
                     $window.location.href = "/admin";
-                } else {
-                    $scope.errorMessage = response.error;
                 }
+            }, function(data){
+                $scope.errorMessage = data.errors;
             });
         };
     }]);
