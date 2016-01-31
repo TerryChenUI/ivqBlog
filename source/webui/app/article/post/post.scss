@@ -38,6 +38,11 @@
 
     form {
       padding: 20px 0 0 0;
+
+      .error-tip {
+        display: block;
+        padding-top: 7px;
+      }
     }
   }
 }
