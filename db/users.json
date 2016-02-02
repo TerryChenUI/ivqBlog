@@ -1,0 +1,9 @@
+{
+  "_id" : ObjectId("56a08b5ad95c8520244e9c7c"),
+  "userName" : "admin",
+  "password" : "21232f297a57a5a743894a0e4a801fc3",
+  "email" : "admin@ivq.com",
+  "enabled" : true,
+  "lastLoginTime" : ISODate("2016-01-26T07:40:10Z"),
+  "createTime" : ISODate("2016-01-26T07:40:10Z")
+}
