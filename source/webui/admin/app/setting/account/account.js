@@ -11,11 +11,11 @@ angular.module('app.admin.setting')
                 password: $scope.model.pwd,
                 newPassword: $scope.model.newPassword
             };
-            AccountService.updatePassword($scope.model._id, modifyModel, function (response) {
-                AuthService.setCredentials(response.data);
+            AccountService.updatePassword($scope.model._id, modifyModel).then(function (data) {
+                AuthService.setCredentials(data);
                 SweetAlert.updateSuccessfully();
             }, function(response){
-                $scope.wrongPassword = true;
+                $scope.wrongPassword = response.errors;
             });
         };
 
@@ -24,9 +24,12 @@ angular.module('app.admin.setting')
             if ($scope.originModel.enabled != $scope.model.enabled) {
                 modifyModel["enabled"] = $scope.model.enabled;
             }
+            if($scope.originModel.email != $scope.model.email){
+                modifyModel["email"] = $scope.model.email;
+            }
             if (Object.keys(modifyModel).length) {
-                AccountService.update($scope.model._id, modifyModel, function (response) {
-                    AuthService.setCredentials(response.data);
+                AccountService.update($scope.model._id, modifyModel).then(function (data) {
+                    AuthService.setCredentials(data);
                     SweetAlert.updateSuccessfully();
                 });
             }

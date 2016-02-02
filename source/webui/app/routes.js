@@ -6,9 +6,9 @@ angular.module('app')
         UIRouterMetatagsProvider
             .setTitlePrefix('')
             .setTitleSuffix(' | ivqBlog')
-            .setDefaultTitle('ivqBlog：分享我的前端开发历程')
+            .setDefaultTitle('ivqBlog：分享我的开发历程')
             .setDefaultDescription('ivqBlog 技术博客, 分享我的世界')
-            .setDefaultKeywords('html, css, javascript, mongodb, nodejs, node, express,sql')
+            .setDefaultKeywords('html, css, javascript, mongodb, nodejs, node, express, sql')
             .setOGURL(true);
 
         $locationProvider.html5Mode(true).hashPrefix('!');
