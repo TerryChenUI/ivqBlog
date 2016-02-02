@@ -1,5 +1,11 @@
 .main {
   .post-list {
+    h1 {
+      color: #d66c54;
+      font-size: 20px;
+      padding: 0;
+      margin: 0 0 5px 0;
+    }
     .post-item {
       border-bottom: 1px #ddd solid;
       padding: 7px 0;
@@ -10,6 +16,9 @@
         .reply-view {
           float: left;
           margin: 0 7px 0 0;
+          min-width:40px;
+          text-align: center;
+          display: inline-block;
           .reply {
             color: #9e78c0;
           }

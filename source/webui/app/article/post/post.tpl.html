@@ -5,7 +5,7 @@
                 <div class="row post-detail">
                     <h2 class="post-title">{{article.title}}</h2>
                     <p class="post-meta">{{article.time.publish | convertTime}} | 分类：<a
-                            ui-sref="category({categoryId:article.category._id})">{{article.category.name}}</a> |
+                            ui-sref="category({route:article.category.route})">{{article.category.name}}</a> |
                         作者：{{article.author}} | 浏览：{{article.views}} | 评论：<a
                                 href="#comments">{{article.comments.length}}</a></p>
                     <!--<div class="post-description">-->
