@@ -16,7 +16,7 @@
         .reply-view {
           float: left;
           margin: 0 7px 0 0;
-          min-width:40px;
+          min-width: 40px;
           text-align: center;
           display: inline-block;
           .reply {
@@ -36,7 +36,7 @@
           float: left;
           color: #FFFFFF;
           background: #80bd01;
-          margin: 0 7px 0 0;
+          margin: -2px 7px 0 0;
           padding: 2px 5px;
           font-size: 10px;
           border-radius: 5px;
@@ -45,9 +45,9 @@
           }
         }
         a.title {
-          &:visited {
-            color: #888888;
-          }
+          overflow: hidden;
+          white-space: nowrap;
+          text-overflow: ellipsis;
         }
       }
       .time {
@@ -65,17 +65,29 @@
 }
 
 @media (max-width: 768px) {
-  .main .post-list .post-item {
-    .info {
-      .reply-view {
-        display: none;
+  .jumbotron {
+    display: none;
+  }
+  .main {
+    margin: 15px 0 0 0;
+    .post-list {
+      .post-item {
+        .info {
+          float: none;
+          .reply-view {
+            display: none;
+          }
+          a.category {
+            display: none;
+          }
+          a.title {
+            display: block;
+          }
+        }
+        .time {
+          display: none;
+        }
       }
-      .category {
-        display: none;
-      }
-    }
-    .time {
-      display: none;
     }
   }
 }

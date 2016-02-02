@@ -35,13 +35,26 @@
         padding: 10px;
       }
     }
-
     form {
       padding: 20px 0 0 0;
-
       .error-tip {
         display: block;
         padding-top: 7px;
+      }
+    }
+  }
+}
+
+@media (max-width: 768px) {
+  .main {
+    .post-detail {
+      .post-title {
+        text-align: left;
+        font-size: 20px;
+        line-height: 25px;
+      }
+      .post-meta {
+        padding-top: 10px;
       }
     }
   }
