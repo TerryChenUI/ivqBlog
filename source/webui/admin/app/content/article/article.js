@@ -28,7 +28,7 @@ angular.module('app.admin.content')
         };
 
         $scope.getResource = function (params, paramsObj) {
-            paramsObj.sortBy = {'_id': -1};
+            paramsObj.sortBy = {'time.publish': -1}
             return ArticleService.loadList(paramsObj).then(function (response) {
                 response.data.rows = _.each(response.data.rows, function (data) {
                     data.status = data.publish ? "已发布" : "未发布";
@@ -59,7 +59,7 @@ angular.module('app.admin.content')
 
         $scope.initController();
     }])
-    .controller('EditArticleCtrl', ['$scope', '$stateParams', '$state', '$timeout', 'SweetAlert', 'CategoryService', 'ArticleService', 'TagService', 'Upload', 'Tool', function ($scope, $stateParams, $state, $timeout, SweetAlert, CategoryService, ArticleService, TagService, Upload, Tool) {
+    .controller('EditArticleCtrl', ['$scope', '$stateParams', '$state', '$timeout', '$window', 'SweetAlert', 'CategoryService', 'ArticleService', 'TagService', 'Upload', 'Tool', function ($scope, $stateParams, $state, $timeout, $window, SweetAlert, CategoryService, ArticleService, TagService, Upload, Tool) {
         var id = $stateParams.id ? $stateParams.id : '';
         $scope.originModel = {};
         $scope.model = {
@@ -68,18 +68,18 @@ angular.module('app.admin.content')
         $scope.ueConfig = {
             toolbars: [
                 [
-                'fullscreen', 'source', '|', 'undo', 'redo', '|',
-                'bold', 'italic', 'underline', 'fontborder', 'strikethrough', 'superscript', 'subscript', 'removeformat', 'formatmatch', 'autotypeset', 'blockquote', 'pasteplain', '|', 'forecolor', 'backcolor', 'insertorderedlist', 'insertunorderedlist', 'selectall', 'cleardoc', '|',
-                'rowspacingtop', 'rowspacingbottom', 'lineheight', '|',
-                'customstyle', 'paragraph', 'fontfamily', 'fontsize', '|',
-                'directionalityltr', 'directionalityrtl', 'indent', '|',
-                'justifyleft', 'justifycenter', 'justifyright', 'justifyjustify', '|', 'touppercase', 'tolowercase', '|',
-                'link', 'unlink', 'anchor', '|', 'imagenone', 'imageleft', 'imageright', 'imagecenter', '|',
-                'simpleupload', 'insertimage', 'emotion', 'scrawl', 'insertvideo', 'music', 'attachment', 'map', 'gmap', 'insertframe', 'insertcode', 'webapp', 'pagebreak', 'template', 'background', '|',
-                'horizontal', 'date', 'time', 'spechars', 'snapscreen', 'wordimage', '|',
-                'inserttable', 'deletetable', 'insertparagraphbeforetable', 'insertrow', 'deleterow', 'insertcol', 'deletecol', 'mergecells', 'mergeright', 'mergedown', 'splittocells', 'splittorows', 'splittocols', 'charts', '|',
-                'print', 'preview', 'searchreplace', 'help', 'drafts'
-            ]],
+                    'fullscreen', 'source', '|', 'undo', 'redo', '|',
+                    'bold', 'italic', 'underline', 'fontborder', 'strikethrough', 'superscript', 'subscript', 'removeformat', 'formatmatch', 'autotypeset', 'blockquote', 'pasteplain', '|', 'forecolor', 'backcolor', 'insertorderedlist', 'insertunorderedlist', 'selectall', 'cleardoc', '|',
+                    'rowspacingtop', 'rowspacingbottom', 'lineheight', '|',
+                    'customstyle', 'paragraph', 'fontfamily', 'fontsize', '|',
+                    'directionalityltr', 'directionalityrtl', 'indent', '|',
+                    'justifyleft', 'justifycenter', 'justifyright', 'justifyjustify', '|', 'touppercase', 'tolowercase', '|',
+                    'link', 'unlink', 'anchor', '|', 'imagenone', 'imageleft', 'imageright', 'imagecenter', '|',
+                    'simpleupload', 'insertimage', 'emotion', 'scrawl', 'insertvideo', 'music', 'attachment', 'map', 'gmap', 'insertframe', 'insertcode', 'webapp', 'pagebreak', 'template', 'background', '|',
+                    'horizontal', 'date', 'time', 'spechars', 'snapscreen', 'wordimage', '|',
+                    'inserttable', 'deletetable', 'insertparagraphbeforetable', 'insertrow', 'deleterow', 'insertcol', 'deletecol', 'mergecells', 'mergeright', 'mergedown', 'splittocells', 'splittorows', 'splittocols', 'charts', '|',
+                    'print', 'preview', 'searchreplace', 'help', 'drafts'
+                ]],
             initialFrameHeight: 350,
             autoHeightEnabled: false
         };
@@ -103,17 +103,20 @@ angular.module('app.admin.content')
             });
             if (id) {
                 ArticleService.getById(id).then(function (data) {
+                    data = Tool.transformArticleUrl(data);
                     data.time.create = Tool.convertTime(data.time.create);
                     data.time.update = Tool.convertTime(data.time.update);
                     if (data.time.publish)
                         data.time.publish = Tool.convertTime(data.time.publish);
                     $scope.model = data;
+                    $scope.model.categoryRoute = data.category != null ? data.category.route : '';
                     $scope.model.category = data.category != null ? data.category._id : 0;
                     $scope.originModel = Tool.deepCopy($scope.model);
                     $scope.originModel.category = data.category != null ? data.category._id : 0;
                 });
             } else {
                 $scope.model.category = $scope.categories[0].value;
+                $scope.model.content = Tool.getArticleTpl();
             }
         };
 
@@ -133,7 +136,7 @@ angular.module('app.admin.content')
                     $state.go('article');
                 });
             } else {
-                if($scope.model.category == 0)
+                if ($scope.model.category == 0)
                     delete $scope.model.category;
                 ArticleService.insert($scope.model).then(function () {
                     SweetAlert.addSuccessfully();

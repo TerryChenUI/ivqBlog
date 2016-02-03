@@ -26,11 +26,11 @@ app.set('view engine', 'html');
 app.set('view engine', 'jade');
 
 // uncomment after placing your favicon in /public
-//app.use(favicon(__dirname + '/ui/favicon.ico'));
 app.use(logger('dev'));
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({extended: false}));
 app.use(cookieParser());
+app.use(favicon(__dirname + uiFolder + '/favicon.ico'));
 app.use(express.static(path.join(__dirname, uiFolder)));//TODO:屏蔽访问后端文件
 app.use(function (req, res, next) {
     res.setHeader('Access-Control-Allow-Origin', '*');
