@@ -21,6 +21,7 @@ commentSchema.statics = {
             .populate('article')
             .limit(options.count)
             .skip(options.page * options.count)
+            .sort(options.sortBy)
             .exec(cb);
     },
 

@@ -5,11 +5,11 @@
                 <div class="row post-detail">
                     <h2 class="post-title">{{article.title}}</h2>
                     <p class="post-meta">{{article.time.publish | convertTime}} | 分类：<a
-                            ui-sref="category({categoryId:article.category._id})">{{article.category.name}}</a> |
+                            ui-sref="category({route:article.category.route})">{{article.category.name}}</a> |
                         作者：{{article.author}} | 浏览：{{article.views}} | 评论：<a
                                 href="#comments">{{article.comments.length}}</a></p>
                     <!--<div class="post-description">-->
-                        <!--{{article.description}}-->
+                    <!--{{article.description}}-->
                     <!--</div>-->
                     <div class="post-content" ng-bind-html="article.content">
                     </div>
@@ -19,7 +19,7 @@
                     <div class="comment-title">发表评论</div>
                     <div class="comment-item" ng-repeat="comment in article.comments">
                         <div class="comment-sub-title">
-                            <span><a name="{{$index}}">#{{$index + 1}}楼</a></span> |
+                            <span><a name="{{$index + 1}}">#{{$index + 1}}楼</a></span> |
                             <span>{{comment.createTime | convertTime}}</span> |
                             <span>{{comment.userName}}</span> |
                             <span><a href="javascript:void(0)"
@@ -41,10 +41,9 @@
                                 <div class="col-sm-6">
                                     <input type="text" class="form-control" name="userName" ng-model="model.userName"
                                            required=""/>
-
-                                    <div ng-show="form.$submitted || form.userName.$touched">
-                                        <span ng-show="form.userName.$error.required" class="error-block">请填写昵称</span>
-                                    </div>
+                                </div>
+                                <div class="col-sm-2" ng-show="form.$submitted || form.userName.$touched">
+                                    <span class="error-tip" ng-show="form.userName.$error.required" class="error-block">请填写昵称</span>
                                 </div>
                             </div>
                             <div class="form-group">
@@ -53,22 +52,22 @@
                                 <div class="col-sm-6">
                                     <input type="email" class="form-control" name="email" ng-model="model.email"
                                            required=""/>
-
-                                    <div ng-show="form.$submitted || form.email.$touched">
-                                        <span ng-show="form.email.$error.required" class="error-block">请填写邮箱</span>
-                                        <span ng-show="form.email.$error.email" class="error-block">邮箱格式不正确</span>
-                                    </div>
+                                </div>
+                                <div class="col-sm-2" ng-show="form.$submitted || form.email.$touched">
+                                    <span class="error-tip" ng-show="form.email.$error.required" class="error-block">请填写邮箱</span>
+                                    <span class="error-tip" ng-show="form.email.$error.email" class="error-block">邮箱格式不正确</span>
                                 </div>
                             </div>
                             <div class="form-group">
                                 <label class="col-sm-2 control-label">评论内容*</label>
 
                                 <div class="col-sm-6">
-                                    <textarea class="form-control" rows="5" name="content" ng-model="model.content" required="">
+                                    <textarea class="form-control" rows="5" name="content" ng-model="model.content"
+                                              required="">
                                     </textarea>
-                                    <div ng-show="form.$submitted || form.content.$touched">
-                                        <span ng-show="form.content.$error.required" class="error-block">请填写内容</span>
-                                    </div>
+                                </div>
+                                <div class="col-sm-2" ng-show="form.$submitted || form.content.$touched">
+                                    <span class="error-tip" ng-show="form.content.$error.required" class="error-block">请填写内容</span>
                                 </div>
                             </div>
                             <div class="form-group">

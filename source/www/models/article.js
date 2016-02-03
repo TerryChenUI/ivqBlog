@@ -44,7 +44,7 @@ articleSchema.statics = {
         this.find(filter)
             .select(fields)
             .populate('category', '_id name route')
-            .populate('comments')
+            .populate('comments', '_id')
             .sort(options.sortBy)
             .limit(options.count)
             .skip(options.page * options.count)
@@ -62,8 +62,8 @@ articleSchema.statics = {
 
     getById: function (id, cb) {
         return this.findOne({_id: id})
-            .populate('category', '_id name')
-            .populate('tags', '_id name')
+            .populate('category', '_id name route')
+            .populate('tags', '_id name route')
             .populate({
                 path: 'comments',
                 model: 'Comment',

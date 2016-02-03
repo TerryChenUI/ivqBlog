@@ -85,6 +85,9 @@ router
             }
             delete modify.meta;
         }
+        if(modify.category != undefined && modify.category == 0) {
+            modify.category = undefined;
+        }
         delete modify.comments;
 
         Article.update2(req.params.id, modify, function (err) {

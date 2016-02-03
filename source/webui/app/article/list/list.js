@@ -26,9 +26,11 @@ angular.module('app.article')
             };
             if (category) {
                 paramsObj.filters.category = category._id;
+                $scope.listName = category.name;
             }
             if (tag) {
                 paramsObj.filters.tags = tag._id;
+                $scope.listName = tag.name;
             }
             ArticleService.loadList(paramsObj).then(function (res) {
                 var data = res.data;

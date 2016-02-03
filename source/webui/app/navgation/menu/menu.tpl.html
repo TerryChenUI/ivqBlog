@@ -8,22 +8,22 @@
                 <span class="icon-bar"></span>
                 <span class="icon-bar"></span>
             </button>
-            <a class="navbar-brand" ui-sref="home">ivqBlog</a>
+            <a class="navbar-brand" ui-sref="/">ivqBlog</a>
         </div>
         <div id="navbar" class="navbar-collapse collapse">
             <ul class="nav navbar-nav">
                 <li ng-class="$state.current.name == '/' ? 'active' : ''">
-                    <a class="blog-nav-item" ui-sref="/">首页</a>
+                    <a title="首页" class="blog-nav-item" ui-sref="/">首页</a>
                 </li>
                 <li ng-class="($state.current.name == 'category' || $state.current.name == 'post') && $stateParams.route == category.route ? 'active' : ''" ng-repeat="category in categories">
-                    <a class="blog-nav-item" ui-sref="category({route:category.route})">{{category.name}}</a>
+                    <a title="{{category.name}}" class="blog-nav-item" ui-sref="category({route:category.route})">{{category.name}}</a>
                 </li>
                 <li ng-class="$state.current.name == 'about' ? 'active' : ''">
-                    <a class="blog-nav-item" ui-sref="about">关于</a>
+                    <a title="关于" class="blog-nav-item" ui-sref="about">关于</a>
                 </li>
             </ul>
             <ul class="nav navbar-nav navbar-right" ng-if="$root.currentUser">
-                <li><a class="blog-nav-item admin-link" target="_blank" href="/admin">管理后台</a></li>
+                <li><a title="管理后台" class="blog-nav-item admin-link" target="_blank" href="/admin">管理后台</a></li>
             </ul>
             <!--<form class="navbar-form navbar-right">-->
                 <!--<div class="form-group">-->
