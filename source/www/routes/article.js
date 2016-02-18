@@ -19,7 +19,7 @@ router
         }
         var options = {
             filter: filter,
-            sortBy: req.query.sortBy,
+            sortBy: JSON.parse(req.query.sortBy),
             page: req.query.page - 1,
             count: req.query.count
         };

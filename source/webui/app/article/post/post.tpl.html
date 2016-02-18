@@ -7,7 +7,8 @@
                     <p class="post-meta">{{article.time.publish | convertTime}} | 分类：<a
                             ui-sref="category({route:article.category.route})">{{article.category.name}}</a> |
                         作者：{{article.author}} | 浏览：{{article.views}} | 评论：<a
-                                href="#comments">{{article.comments.length}}</a></p>
+                                href="#comments">{{article.comments.length}}</a>
+                        <a class='action' href='javascript:void(0)' ng-if="$root.currentUser" ng-click="redirect()">编辑</a></p>
                     <!--<div class="post-description">-->
                     <!--{{article.description}}-->
                     <!--</div>-->
@@ -15,6 +16,7 @@
                     </div>
                 </div>
                 <a name="comments"></a>
+
                 <div class="row post-comments">
                     <div class="comment-title">发表评论</div>
                     <div class="comment-item" ng-repeat="comment in article.comments">

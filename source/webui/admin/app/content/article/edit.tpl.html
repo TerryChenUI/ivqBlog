@@ -24,6 +24,9 @@
                                             <span ng-show="form.title.$error.required" class="help-block">请填写标题</span>
                                         </div>
                                     </div>
+                                    <div class="col-md-2" ng-if="model._id">
+                                        <label class="form-text"><a href="/post/{{model.categoryRoute}}/{{model._id}}">预览</a></label>
+                                    </div>
                                 </div>
                                 <div class="form-group">
                                     <label class="control-label col-md-2">类别</label>

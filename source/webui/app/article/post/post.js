@@ -1,9 +1,10 @@
 "use strict";
 angular.module('app.article')
-    .controller('PostCtrl', ['$rootScope', '$scope', '$stateParams', '$sce', '$state', '$timeout', 'SweetAlert', 'ArticleService', 'CommentService', 'article', function ($rootScope, $scope, $stateParams, $sce, $state, $timeout, SweetAlert, ArticleService, CommentService, article) {
+    .controller('PostCtrl', ['$rootScope', '$scope', '$stateParams', '$sce', '$state', '$timeout', '$window', 'SweetAlert', 'ArticleService', 'CommentService', 'Tool', 'article', function ($rootScope, $scope, $stateParams, $sce, $state, $timeout, $window, SweetAlert, ArticleService, CommentService, Tool, article) {
         $scope.model = {};
 
         $scope.initController = function () {
+            article = Tool.transformArticleUrl(article);
             $scope.article = article;
             $scope.article.content = $sce.trustAsHtml($scope.article.content);
             $scope.model.article = $scope.article._Id;
@@ -14,6 +15,11 @@ angular.module('app.article')
             $timeout(function(){
                 SyntaxHighlighter.highlight();
             }, 0);
+        };
+
+        $scope.redirect = function(){
+            var url = "http://" + $window.location.host + "/admin/article/edit/" + article._id;
+            $window.location.href = url;
         };
 
         $scope.reply = function (id, userName) {
