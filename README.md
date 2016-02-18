@@ -1,10 +1,8 @@
 # ivqBlog
 
-个人博客网站
-
-入门级别
+入门级别个人博客网站
 
 Angularjs + NodeJS + Express + MongoDB
 
-前后端分离开发
+具体介绍：http://www.ivqblog.com/post/openproject/56c53f046d50552808b224b1
 
