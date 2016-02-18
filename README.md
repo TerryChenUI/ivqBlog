@@ -1,6 +1,6 @@
 # ivqBlog
 
-入门级别个人博客网站
+个人博客网站，入门级别
 
 Angularjs + NodeJS + Express + MongoDB
 
