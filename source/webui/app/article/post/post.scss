@@ -11,8 +11,8 @@
       color: #777777;
       text-align: center;
       border-bottom: 1px #ddd solid;
-      .action{
-        margin:0 0 0 10px;
+      .action {
+        margin: 0 0 0 10px;
         font-weight: bold;
       }
     }
@@ -21,13 +21,16 @@
       h3 {
         font-size: 16px;
         margin: 0 0 10px 0;
-        color:#434343;
+        color: #434343;
       }
       p {
         margin: 0 0 5px;
       }
       ol, ul {
         padding: 0 0 0 30px;
+      }
+      .syntaxhighlighter td.code {
+        padding: 9.5px 0 9.5px 0 !important;
       }
     }
   }
