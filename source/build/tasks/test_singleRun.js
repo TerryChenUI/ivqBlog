@@ -1,12 +1,12 @@
-"use strict";
-var gulp = require("gulp"),
-	runSequence = require('run-sequence').use(gulp);
+import gulp from 'gulp';
+import rs from 'run-sequence';
+let runSequence = rs.use(gulp);
 
 /**
  * gulp test_singleRun --env production
  */
-gulp.task("test_singleRun", function () {
-	runSequence(
+gulp.task("test_singleRun", () => {
+    runSequence(
         ['prod'],
         ['karma:unit_run', 'karma:e2e_run']
     );

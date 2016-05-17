@@ -1,9 +1,8 @@
-"use strict";
-var gulp = require('gulp'),
-    del = require('del'),
-    setting = require('../setting');
+import gulp from 'gulp';
+import del from 'del';
+import setting from '../setting';
 
-gulp.task('clean', function () {
+gulp.task('clean', () => {
     return del(
         [
             setting.dest.root,

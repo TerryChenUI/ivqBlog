@@ -1,18 +1,17 @@
-'use strict';
-var gulp = require('gulp'),
-    server = require('karma').Server,
-    _und = require('underscore'),
-    libraries = require('./common'),
-    setting = require('../setting');
+import gulp from 'gulp';
+import {Server} from 'karma';
+import _und from 'underscore';
+import libraries from './common';
+import setting from '../setting';
 
-var jsLibraries = _und.uniq(libraries.front.js.concat(libraries.admin.js));
-var unitPath = '/../../test/config/unit.js';
+const jsLibraries = _und.uniq(libraries.front.js.concat(libraries.admin.js));
+const unitPath = '/../../test/config/unit.js';
 
 /**
  * Run test for debug
  */
-gulp.task('karma:unit', function (done) {
-    var karma = new server({
+gulp.task('karma:unit', (done) => {
+    var karma = new Server({
         singleRun: false,
         files: jsLibraries.concat([
             setting.dest.root + 'app/app.js',
@@ -33,8 +32,8 @@ gulp.task('karma:unit', function (done) {
 /**
  * Run single test
  */
-gulp.task('karma:unit_run', function (done) {
-    var karma = new server({
+gulp.task('karma:unit_run', (done) => {
+    var karma = new Server({
         singleRun: true,
         files: jsLibraries.concat([
             setting.dest.root + 'app-*.js',

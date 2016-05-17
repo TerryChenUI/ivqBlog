@@ -1,8 +1,7 @@
-"use strict";
-var gulp = require('gulp'),
-    setting = require('../setting');
+import gulp from 'gulp';
+import setting from '../setting';
 
-gulp.task('watch', function () {
+gulp.task('watch', () => {
     gulp.watch(setting.html.index, ['inject:dev_index']);
     gulp.watch(setting.html.admin_index, ['inject:dev_admin_index']);
     gulp.watch(setting.html.login, ['inject:dev_login']);

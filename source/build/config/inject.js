@@ -1,11 +1,10 @@
-'use strict';
-var gulp = require("gulp"),
-    inject = require('gulp-inject'),
-    browserSync = require('browser-sync'),
-    libraries = require('./common'),
-    setting = require('../setting');
+import gulp from 'gulp';
+import inject from 'gulp-inject';
+import browserSync from 'browser-sync';
+import libraries from './common';
+import setting from '../setting';
 
-var injectConfig = [
+const injectConfig = [
     {
         name: 'inject:dev_index',
         src: setting.html.index,
@@ -175,23 +174,23 @@ var injectConfig = [
 for (var i = 0; i < injectConfig.length; i++) {
     (function (i) {
         var task = injectConfig[i];
-        gulp.task(task.name, function () {
+        gulp.task(task.name, () => {
             var target = gulp.src(task.src);
             var cssSources = gulp.src(task.config.src.css, {read: false});
             var jsSources = gulp.src(task.config.src.js, {read: false});
 
             return target.pipe(inject(cssSources, {
-                transform: function (filePath) {
-                    return '<link rel="stylesheet" type="text/css" href="' + getPath(filePath, task.filters.css) + '" />';
-                }
-            }))
+                    transform: (filePath) => {
+                        return '<link rel="stylesheet" type="text/css" href="' + getPath(filePath, task.filters.css) + '" />';
+                    }
+                }))
                 .pipe(inject(jsSources, {
-                    transform: function (filePath) {
+                    transform: (filePath) => {
                         return '<script type="text/javascript" src="' + getPath(filePath, task.filters.js) + '"></script>';
                     }
                 }))
                 .pipe(gulp.dest(task.dest))
-                .pipe(browserSync.reload({ stream: true }));
+                .pipe(browserSync.reload({stream: true}));
         });
 
         function getPath(filePath, filters) {

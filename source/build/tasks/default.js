@@ -1,6 +1,6 @@
-"use strict";
-var gulp = require("gulp"),
-    runSequence = require('run-sequence').use(gulp);
+import gulp from 'gulp';
+import rs from 'run-sequence';
+let runSequence = rs.use(gulp);
 
 /**
  * gulp default

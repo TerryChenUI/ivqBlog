@@ -1,11 +1,10 @@
-"use strict";
-var gulp = require("gulp"),
-    browserSync = require('browser-sync'),
-    setting = require('../setting');
+import gulp from 'gulp';
+import browserSync from 'browser-sync';
+import setting from '../setting';
 
-gulp.task('browser-sync', function() {
+gulp.task('browser-sync', () => {
     browserSync.init(null, {
-        proxy: setting.port.express, //express 端口
+        proxy: setting.port.express,
         port: setting.port.browserPort,
         browser: "google chrome"
     });

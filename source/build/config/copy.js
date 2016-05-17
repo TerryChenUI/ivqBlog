@@ -1,27 +1,26 @@
-"use strict";
-var gulp = require('gulp'),
-    jshint = require('gulp-jshint'),
-    browserSync = require('browser-sync'),
-    setting = require('../setting');
+import gulp from 'gulp';
+import jshint from 'gulp-jshint';
+import browserSync from 'browser-sync';
+import setting from '../setting';
 
 gulp.task('copy', ['copy:favicon', 'copy:lib', 'copy:plugins', 'copy:assets', 'copy:js']);
 
-gulp.task('copy:favicon', function () {
+gulp.task('copy:favicon', () => {
     return gulp.src('webui/favicon.ico', {base: 'webui'})
         .pipe(gulp.dest(setting.dest.root));
 });
 
-gulp.task('copy:lib', function () {
+gulp.task('copy:lib', () => {
     return gulp.src('lib/**/*', {base: 'webui'})
         .pipe(gulp.dest(setting.dest.lib));
 });
 
-gulp.task('copy:plugins', function () {
+gulp.task('copy:plugins', () => {
     gulp.src('webui/plugins/**', {base: 'webui'})
         .pipe(gulp.dest(setting.dest.root));
 });
 
-gulp.task('copy:assets', function () {
+gulp.task('copy:assets', () => {
     gulp.src('webui/**/assets/**', {base: 'webui'})
         .pipe(gulp.dest(setting.dest.root));
 });
@@ -41,18 +40,18 @@ gulp.task('copy:assets', function () {
 
 gulp.task('copy:js', ['copy:js_common', 'copy:js_front', 'copy:js_admin']);
 
-gulp.task('copy:js_common', function () {
+gulp.task('copy:js_common', () => {
     gulp.src(setting.path.js.common, {base: 'webui'})
         .pipe(gulp.dest(setting.dest.root))
-        .pipe(browserSync.reload({ stream: true }));
+        .pipe(browserSync.reload({stream: true}));
 });
-gulp.task('copy:js_front', function () {
+gulp.task('copy:js_front', () => {
     gulp.src(setting.path.js.front, {base: 'webui'})
         .pipe(gulp.dest(setting.dest.root))
-        .pipe(browserSync.reload({ stream: true }));
+        .pipe(browserSync.reload({stream: true}));
 });
-gulp.task('copy:js_admin', function () {
+gulp.task('copy:js_admin', () => {
     gulp.src(setting.path.js.admin, {base: 'webui/admin'})
         .pipe(gulp.dest(setting.dest.admin))
-        .pipe(browserSync.reload({ stream: true }));
+        .pipe(browserSync.reload({stream: true}));
 });
