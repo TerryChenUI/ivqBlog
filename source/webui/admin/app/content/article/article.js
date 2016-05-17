@@ -28,7 +28,7 @@ angular.module('app.admin.content')
         };
 
         $scope.getResource = function (params, paramsObj) {
-            paramsObj.sortBy = {'time.publish': -1}
+            paramsObj.sortBy = {'time.create': -1};
             return ArticleService.loadList(paramsObj).then(function (response) {
                 response.data.rows = _.each(response.data.rows, function (data) {
                     data.status = data.publish ? "已发布" : "未发布";

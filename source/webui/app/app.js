@@ -31,6 +31,7 @@ app.controller('AppCtrl', ['$rootScope', '$sce', 'PackageInfo', function ($rootS
     $rootScope.copysymbol = '&copy;';
     $rootScope.copysymbol = $sce.trustAsHtml($rootScope.copysymbol);
     $rootScope.author = 'by' + $rootScope.packageInfo.author + '.';
+    $rootScope.record = '粤ICP备16012938号-1'
 }]);
 
 app.run(['$rootScope', '$state', '$stateParams', '$cookies', 'MetaTags', function ($rootScope, $state, $stateParams, $cookies, MetaTags) {

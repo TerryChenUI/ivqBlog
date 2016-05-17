@@ -7,8 +7,7 @@
       "log_file": "logs/ivqBlog.log",
       "error_file": "logs/ivqBlog-err.log",
       "out_file": "logs/ivqBlog-out.log",
-      "pid_file": "logs/ivqBlog.pid",
-      "watch": true
+      "pid_file": "logs/ivqBlog.pid"
     }
   ]
 }

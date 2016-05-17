@@ -33,7 +33,7 @@ app.use(cookieParser());
 app.use(favicon(__dirname + uiFolder + '/favicon.ico'));
 app.use(express.static(path.join(__dirname, uiFolder)));//TODO:屏蔽访问后端文件
 app.use(function (req, res, next) {
-    res.setHeader('Access-Control-Allow-Origin', '*');
+    res.setHeader('Access-Control-Allow-Origin', 'http://www.ivqblog.com');
     res.setHeader('Access-Control-Allow-Methods', 'GET, POST, PUT, DELETE, OPTIONS');
     res.setHeader('Access-Control-Allow-Headers', 'X-Requested-With,content-type, Authorization');
     next();

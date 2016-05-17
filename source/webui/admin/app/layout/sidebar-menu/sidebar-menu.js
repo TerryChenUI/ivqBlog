@@ -18,7 +18,7 @@ angular.module('app.admin.layout')
                     },
                     {
                         "title": "内容管理",
-                        "route": "article, category",
+                        "route": "article, tag, category, comment",
                         "icon": "",
                         "active": false,
                         "expanded": false,

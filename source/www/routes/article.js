@@ -89,6 +89,7 @@ router
             modify.category = undefined;
         }
         delete modify.comments;
+        modify["time.update"] = Date.now();
 
         Article.update2(req.params.id, modify, function (err) {
             if (err)
