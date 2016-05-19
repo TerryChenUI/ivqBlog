@@ -1,12 +1,12 @@
 'use strict';
 angular.module('app.admin.layout')
-    .directive('sidebarMenu', function () {
+    .directive('sidebarMenu', () => {
         return {
             restrict: 'E',
             transclude: true,
             replace: true,
             templateUrl: 'app/layout/sidebar-menu/sidebar-menu.tpl.html',
-            controller: ['$rootScope', '$scope', '$location', function ($rootScope, $scope, $location) {
+            controller: ['$rootScope', '$scope', '$location', ($rootScope, $scope, $location) => {
                 $scope.tabs = [
                     {
                         "title": "首页",
@@ -72,15 +72,15 @@ angular.module('app.admin.layout')
                     }
                 ];
 
-                $scope.initTabs = function () {
-                    var path = $location.url();
-                    $scope.tabs = _.each($scope.tabs, function (tab) {
+                $scope.initTabs = () => {
+                    let path = $location.url();
+                    $scope.tabs = angular.forEach($scope.tabs, (tab) => {
                         tab.active = path.indexOf(tab.route) > -1 ? true : false;
-                        return _.each(tab.childs, function (child) {
+                        return angular.forEach(tab.childs, (child) => {
                             if (path.indexOf(child.route) > -1) {
                                 tab.active = true;
                                 child.active = true;
-                            }else{
+                            } else {
                                 child.active = false;
                             }
                             return tab;
@@ -88,8 +88,8 @@ angular.module('app.admin.layout')
                     });
                 };
 
-                $scope.expandTab = function (selectedTab) {
-                    $scope.tabs = _.each($scope.tabs, function (tab) {
+                $scope.expandTab = (selectedTab) => {
+                    $scope.tabs = angular.forEach($scope.tabs, (tab) => {
                         if (selectedTab == tab) {
                             tab.expanded = !tab.expanded;
                             tab.active = !tab.active;
@@ -100,7 +100,7 @@ angular.module('app.admin.layout')
                     });
                 };
 
-                $rootScope.$on('$stateChangeSuccess', function () {
+                $rootScope.$on('$stateChangeSuccess', () => {
                     $scope.initTabs();
                 });
             }]

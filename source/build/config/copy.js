@@ -3,7 +3,7 @@ import jshint from 'gulp-jshint';
 import browserSync from 'browser-sync';
 import setting from '../setting';
 
-gulp.task('copy', ['copy:favicon', 'copy:lib', 'copy:plugins', 'copy:assets', 'copy:js']);
+gulp.task('copy', ['copy:favicon', 'copy:lib', 'copy:fonts', 'copy:assets']);
 
 gulp.task('copy:favicon', () => {
     return gulp.src('webui/favicon.ico', {base: 'webui'})
@@ -15,8 +15,8 @@ gulp.task('copy:lib', () => {
         .pipe(gulp.dest(setting.dest.lib));
 });
 
-gulp.task('copy:plugins', () => {
-    gulp.src('webui/plugins/**', {base: 'webui'})
+gulp.task('copy:fonts', () => {
+    gulp.src('webui/fonts/**', {base: 'webui'})
         .pipe(gulp.dest(setting.dest.root));
 });
 
@@ -38,20 +38,20 @@ gulp.task('copy:assets', () => {
 //        .pipe(gulp.dest('dist/admin/'))'
 //});
 
-gulp.task('copy:js', ['copy:js_common', 'copy:js_front', 'copy:js_admin']);
-
-gulp.task('copy:js_common', () => {
-    gulp.src(setting.path.js.common, {base: 'webui'})
-        .pipe(gulp.dest(setting.dest.root))
-        .pipe(browserSync.reload({stream: true}));
-});
-gulp.task('copy:js_front', () => {
-    gulp.src(setting.path.js.front, {base: 'webui'})
-        .pipe(gulp.dest(setting.dest.root))
-        .pipe(browserSync.reload({stream: true}));
-});
-gulp.task('copy:js_admin', () => {
-    gulp.src(setting.path.js.admin, {base: 'webui/admin'})
-        .pipe(gulp.dest(setting.dest.admin))
-        .pipe(browserSync.reload({stream: true}));
-});
+//gulp.task('copy:js', ['copy:js_common', 'copy:js_front', 'copy:js_admin']);
+//
+//gulp.task('copy:js_common', () => {
+//    gulp.src(setting.path.js.common, {base: 'webui'})
+//        .pipe(gulp.dest(setting.dest.root))
+//        .pipe(browserSync.reload({stream: true}));
+//});
+//gulp.task('copy:js_front', () => {
+//    gulp.src(setting.path.js.front, {base: 'webui'})
+//        .pipe(gulp.dest(setting.dest.root))
+//        .pipe(browserSync.reload({stream: true}));
+//});
+//gulp.task('copy:js_admin', () => {
+//    gulp.src(setting.path.js.admin, {base: 'webui/admin'})
+//        .pipe(gulp.dest(setting.dest.admin))
+//        .pipe(browserSync.reload({stream: true}));
+//});

@@ -1,6 +1,6 @@
 'use strict';
 angular.module('app')
-    .config(["$locationProvider", '$stateProvider', '$urlRouterProvider', 'UIRouterMetatagsProvider', function ($locationProvider, $stateProvider, $urlRouterProvider, UIRouterMetatagsProvider) {
+    .config(["$locationProvider", '$stateProvider', '$urlRouterProvider', 'UIRouterMetatagsProvider', ($locationProvider, $stateProvider, $urlRouterProvider, UIRouterMetatagsProvider) => {
 
         //TODO:
         UIRouterMetatagsProvider
@@ -26,10 +26,10 @@ angular.module('app')
                     }
                 },
                 resolve: {
-                    category: [function () {
+                    category: [() => {
                         return null;
                     }],
-                    tag: [function () {
+                    tag: [() => {
                         return null;
                     }]
                 },
@@ -47,24 +47,24 @@ angular.module('app')
                     }
                 },
                 resolve: {
-                    category: ['$stateParams', 'CategoryService', function ($stateParams, CategoryService) {
+                    category: ['$stateParams', 'CategoryService', ($stateParams, CategoryService) => {
                         return CategoryService.getByRoute($stateParams.route);
                     }],
-                    tag: [function () {
+                    tag: [() => {
                         return null;
                     }],
-                    setting: ['SettingService', function (SettingService) {
+                    setting: ['SettingService', (SettingService) => {
                         return SettingService.getByKey({key: 'setting.meta'});
                     }]
                 },
                 metaTags: {
-                    title: ['category', function (category) {
+                    title: ['category', (category) => {
                         return category.name;
                     }],
-                    description: ['category', function (category) {
+                    description: ['category', (category) => {
                         return category.name;
                     }],
-                    keywords: ['category', function (category) {
+                    keywords: ['category', (category) => {
                         return category.name;
                     }]
                 }
@@ -81,21 +81,21 @@ angular.module('app')
                     }
                 },
                 resolve: {
-                    category: [function () {
+                    category: [() => {
                         return null;
                     }],
-                    tag: ['$stateParams', 'TagService', function ($stateParams, TagService) {
+                    tag: ['$stateParams', 'TagService', ($stateParams, TagService) => {
                         return TagService.getByRoute($stateParams.route);
                     }]
                 },
                 metaTags: {
-                    title: ['tag', function (tag) {
+                    title: ['tag', (tag) => {
                         return tag.name;
                     }],
-                    description: ['tag', function (tag) {
+                    description: ['tag', (tag) => {
                         return tag.name;
                     }],
-                    keywords: ['tag', function (tag) {
+                    keywords: ['tag', (tag) => {
                         return tag.name;
                     }]
                 }
@@ -105,18 +105,18 @@ angular.module('app')
                 templateUrl: 'article/post/post.tpl.html',
                 controller: 'PostCtrl',
                 resolve: {
-                    article: ['$stateParams', 'ArticleService', function ($stateParams, ArticleService) {
+                    article: ['$stateParams', 'ArticleService', ($stateParams, ArticleService) => {
                         return ArticleService.getById($stateParams.articleId, {action: 'updateView'});
                     }]
                 },
                 metaTags: {
-                    title: ['article', function (article) {
+                    title: ['article', (article) => {
                         return (!_.isUndefined(article.meta) && !_.isUndefined(article.meta.title)) ? article.meta.title : article.title;
                     }],
-                    description: ['article', function (article) {
+                    description: ['article', (article) => {
                         return (!_.isUndefined(article.meta) && !_.isUndefined(article.meta.description)) ? article.meta.description : article.title;
                     }],
-                    keywords: ['article', function (article) {
+                    keywords: ['article', (article) => {
                         return (!_.isUndefined(article.meta) && !_.isUndefined(article.meta.keyword)) ? article.meta.keyword : article.title;
                     }]
                 }

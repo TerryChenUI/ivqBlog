@@ -1,6 +1,5 @@
-'use strict';
 angular.module('app.admin.layout')
-    .directive('footer', function () {
+    .directive('footer', () => {
         return {
             restrict: 'E',
             transclude: true,

@@ -6,6 +6,8 @@ import uglify from 'gulp-uglify';
 import rev from 'gulp-rev';
 import setting from '../setting';
 
+gulp.task('es6:watch', ['es6:dev'], browserSync.reload);
+
 gulp.task('es6:dev', () => {
     gulp.src(['webui/**/*.js', '!webui/**/*.spec.js'])
         .pipe(babel())
@@ -30,5 +32,5 @@ gulp.task('es6:admin', () => {
         .pipe(concat('app.js'))
         .pipe(uglify())
         .pipe(rev())
-        .pipe(gulp.dest(setting.dest.root));
+        .pipe(gulp.dest(setting.dest.admin));
 });

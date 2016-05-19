@@ -1,6 +1,6 @@
 'use strict';
 angular.module('app.admin')
-    .config(["$locationProvider", '$stateProvider', '$urlRouterProvider', function ($locationProvider, $stateProvider, $urlRouterProvider) {
+    .config(["$locationProvider", '$stateProvider', '$urlRouterProvider', ($locationProvider, $stateProvider, $urlRouterProvider) => {
         $locationProvider.html5Mode(true).hashPrefix('!');
 
         $urlRouterProvider.otherwise('/home');
@@ -20,7 +20,7 @@ angular.module('app.admin')
                 templateUrl: 'app/content/category/list.tpl.html',
                 controller: 'ListCategoryCtrl',
                 ncyBreadcrumb: {
-                    parent: function ($scope) {
+                    parent: ($scope) => {
                         return 'home';
                     },
                     label: '类别管理'
@@ -31,7 +31,7 @@ angular.module('app.admin')
                 templateUrl: 'app/content/category/edit.tpl.html',
                 controller: 'EditCategoryCtrl',
                 ncyBreadcrumb: {
-                    parent: function ($scope) {
+                    parent: ($scope) => {
                         return 'category';
                     },
                     label: '{{title}}'
@@ -42,7 +42,7 @@ angular.module('app.admin')
                 templateUrl: 'app/content/article/list.tpl.html',
                 controller: 'ListArticleCtrl',
                 ncyBreadcrumb: {
-                    parent: function ($scope) {
+                    parent: ($scope) => {
                         return 'home';
                     },
                     label: '文章管理'
@@ -53,7 +53,7 @@ angular.module('app.admin')
                 templateUrl: 'app/content/article/edit.tpl.html',
                 controller: 'EditArticleCtrl',
                 ncyBreadcrumb: {
-                    parent: function ($scope) {
+                    parent: ($scope) => {
                         return 'article';
                     },
                     label: '{{title}}'
@@ -64,7 +64,7 @@ angular.module('app.admin')
                 templateUrl: 'app/content/tag/list.tpl.html',
                 controller: 'ListTagCtrl',
                 ncyBreadcrumb: {
-                    parent: function ($scope) {
+                    parent: ($scope) => {
                         return 'home';
                     },
                     label: '标签管理'
@@ -75,7 +75,7 @@ angular.module('app.admin')
                 templateUrl: 'app/content/tag/edit.tpl.html',
                 controller: 'EditTagCtrl',
                 ncyBreadcrumb: {
-                    parent: function ($scope) {
+                    parent: ($scope) => {
                         return 'tag';
                     },
                     label: '{{title}}'
@@ -86,7 +86,7 @@ angular.module('app.admin')
                 templateUrl: 'app/content/comment/list.tpl.html',
                 controller: 'ListCommentCtrl',
                 ncyBreadcrumb: {
-                    parent: function ($scope) {
+                    parent: ($scope) => {
                         return 'home';
                     },
                     label: '评论管理'
@@ -97,7 +97,7 @@ angular.module('app.admin')
                 templateUrl: 'app/setting/account/account.tpl.html',
                 controller: 'AccountCtrl',
                 ncyBreadcrumb: {
-                    parent: function ($scope) {
+                    parent: ($scope) => {
                         return 'home';
                     },
                     label: '账号设置'
@@ -108,7 +108,7 @@ angular.module('app.admin')
                 templateUrl: 'app/setting/site/site.tpl.html',
                 controller: 'SiteCtrl',
                 ncyBreadcrumb: {
-                    parent: function ($scope) {
+                    parent: ($scope) => {
                         return 'home';
                     },
                     label: '网站设置'

@@ -1,20 +1,20 @@
 'use strict';
 angular.module('common.util')
-    .factory('appHttp', ['$http', '$q', function($http, $q) {
+    .factory('appHttp', ['$http', '$q', ($http, $q) => {
         return {
-            request: function(config) {
-                var deferred = $q.defer();
-                $http(config).success(function(response, status) {
+            request: (config) => {
+                let deferred = $q.defer();
+                $http(config).success((response, status) => {
                     if (response.errors != null) {
                         deferred.reject(response);
                     } else {
                         deferred.resolve(response);
                     }
-                }).error(function(response, status) {
+                }).error((response, status) => {
                     deferred.reject(response.errors);
                 });
                 return deferred.promise;
             }
         };
     }
-]);
+    ]);

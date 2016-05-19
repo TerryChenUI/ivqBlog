@@ -1,17 +1,17 @@
 "use strict";
 angular.module('app.nav')
-    .directive('navMenu', function () {
+    .directive('navMenu', () => {
         return {
             restrict: 'E',
             transclude: true,
             replace: true,
             templateUrl: 'navgation/menu/menu.tpl.html',
-            controller: ['$scope', 'CategoryService', function ($scope, CategoryService) {
-                $scope.initController = function () {
-                    var params = {
+            controller: ['$scope', 'CategoryService', ($scope, CategoryService) => {
+                $scope.initController = () => {
+                    let params = {
                         fields: '_id,name,route'
                     };
-                    CategoryService.getAll(params).then(function (data) {
+                    CategoryService.getAll(params).then((data) => {
                         $scope.categories = data;
                     });
                 };

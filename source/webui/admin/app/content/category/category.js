@@ -1,9 +1,9 @@
 'use strict';
 angular.module('app.admin.content')
-    .controller('ListCategoryCtrl', ['$scope', '$state', 'SweetAlert', 'CategoryService', function ($scope, $state, SweetAlert, CategoryService) {
-        $scope.getResource = function (params, paramsObj) {
-            return CategoryService.loadList(paramsObj).then(function (response) {
-                response.data.rows = _.each(response.data.rows, function (data) {
+    .controller('ListCategoryCtrl', ['$scope', '$state', 'SweetAlert', 'CategoryService', ($scope, $state, SweetAlert, CategoryService) => {
+        $scope.getResource = (params, paramsObj) => {
+            return CategoryService.loadList(paramsObj).then((response) => {
+                response.data.rows = angular.forEach(response.data.rows, (data) => {
                     data.status = data.enabled ? "已启用" : "禁用";
                 });
                 return {
@@ -16,11 +16,11 @@ angular.module('app.admin.content')
             });
         };
 
-        $scope.remove = function (id) {
+        $scope.remove = (id) => {
             SweetAlert.deleteConfirm(
-                function (isConfirm) {
+                (isConfirm) => {
                     if (isConfirm) {
-                        CategoryService.delete(id).then(function () {
+                        CategoryService.delete(id).then(() => {
                             SweetAlert.deleteSuccessfully();
                             $state.reload();
                         });
@@ -28,30 +28,30 @@ angular.module('app.admin.content')
                 });
         };
     }])
-    .controller('EditCategoryCtrl', ['$scope', '$stateParams', '$state', 'SweetAlert', 'CategoryService', 'Tool', function ($scope, $stateParams, $state, SweetAlert, CategoryService, Tool) {
-        var id = $stateParams.id ? $stateParams.id : '';
+    .controller('EditCategoryCtrl', ['$scope', '$stateParams', '$state', 'SweetAlert', 'CategoryService', 'Tool', ($scope, $stateParams, $state, SweetAlert, CategoryService, Tool) => {
+        let id = $stateParams.id ? $stateParams.id : '';
         $scope.originModel = {};
         $scope.model = {};
         $scope.title = id != '' ? '编辑类别' : '添加类别';
 
-        $scope.initController = function () {
+        $scope.initController = () => {
             if (id) {
-                CategoryService.getById(id).then(function (data) {
+                CategoryService.getById(id).then((data) => {
                     $scope.model = data;
                     $scope.originModel = Tool.deepCopy($scope.model);
                 });
             }
         };
 
-        $scope.save = function () {
+        $scope.save = () => {
             if (id) {
-                var modifyModel = Tool.trimSameProperties($scope.originModel, $scope.model);
-                CategoryService.update(id, modifyModel).then(function () {
+                let modifyModel = Tool.trimSameProperties($scope.originModel, $scope.model);
+                CategoryService.update(id, modifyModel).then(() => {
                     SweetAlert.updateSuccessfully();
                     $state.go('category');
                 });
             } else {
-                CategoryService.insert($scope.model).then(function () {
+                CategoryService.insert($scope.model).then(() => {
                     SweetAlert.addSuccessfully();
                     $state.go('category');
                 });

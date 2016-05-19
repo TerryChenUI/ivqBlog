@@ -1,52 +1,52 @@
 'use strict';
 angular.module('common.services')
-    .factory('CommentService', ['$http', '$cookies', 'ServerConfig', 'appHttp', function ($http, $cookies, ServerConfig, appHttp) {
+    .factory('CommentService', ['$http', '$cookies', 'ServerConfig', 'appHttp', ($http, $cookies, ServerConfig, appHttp) => {
         return {
-            loadList: function (params) {
-                var config = {
+            loadList: (params) => {
+                let config = {
                     method: 'GET',
                     url: ServerConfig.apiUrl + "comments",
                     params: params
                 };
                 return $http(config);
             },
-            getAll: function () {
-                var config = {
+            getAll: () => {
+                let config = {
                     method: 'GET',
                     url: ServerConfig.apiUrl + "comments/all"
                 };
                 return appHttp.request(config);
             },
-            getById: function (id) {
-                var config = {
+            getById: (id) => {
+                let config = {
                     method: 'GET',
                     url: ServerConfig.apiUrl + "comments/" + id
                 };
                 return appHttp.request(config);
             },
-            insert: function (data) {
-                var config = {
+            insert: (data) => {
+                let config = {
                     method: 'POST',
                     url: ServerConfig.apiUrl + "comments",
                     data: data
                 };
                 return appHttp.request(config);
             },
-            update: function (id, data) {
-                var config = {
+            update: (id, data) => {
+                let config = {
                     method: 'PUT',
                     url: ServerConfig.apiUrl + "comments/" + id,
                     data: data
                 };
                 return appHttp.request(config);
             },
-            delete: function (id) {
-                var config = {
+            delete: (id) => {
+                let config = {
                     method: 'DELETE',
                     url: ServerConfig.apiUrl + "comments/" + id,
                     headers: {}
                 };
-                var globals = $cookies.getObject('globals');
+                let globals = $cookies.getObject('globals');
                 if (globals && globals.currentUser) {
                     config.headers.Authorization = globals.currentUser.token;
                 }

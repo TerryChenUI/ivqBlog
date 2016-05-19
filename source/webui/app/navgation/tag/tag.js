@@ -1,18 +1,18 @@
 "use strict";
 angular.module('app.nav')
-    .directive('navTag', function () {
+    .directive('navTag', () => {
         return {
             restrict: 'E',
             transclude: true,
             replace: true,
             templateUrl: 'navgation/tag/tag.tpl.html',
-            controller: ['$scope', 'TagService', function ($scope, TagService) {
-                $scope.initController = function () {
-                    var params = {
+            controller: ['$scope', 'TagService', ($scope, TagService) => {
+                $scope.initController = () => {
+                    let params = {
                         fields: '_id,name,route',
                         action: 'getArticlesCount'
                     };
-                    TagService.getAll(params).then(function (data) {
+                    TagService.getAll(params).then((data) => {
                         $scope.tags = data;
                     });
                 };

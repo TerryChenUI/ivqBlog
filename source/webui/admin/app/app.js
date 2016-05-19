@@ -11,7 +11,7 @@ angular.module('app.admin.layout', ['common.services']);
 angular.module('app.admin.content', ['common.services']);
 angular.module('app.admin.setting', ['common.services']);
 
-var appAdmin = angular.module('app.admin', [
+let appAdmin = angular.module('app.admin', [
     'ngCookies',
     'ngFileUpload',
     'ng.ueditor',
@@ -33,10 +33,10 @@ var appAdmin = angular.module('app.admin', [
     'app.admin.setting'
 ]);
 
-appAdmin.run(['$rootScope', '$window', '$location', '$cookies', '$http', function ($rootScope, $window, $location, $cookies, $http) {
-    //pagination setting
+appAdmin.run(['$rootScope', '$window', '$location', '$cookies', '$http', ($rootScope, $window, $location, $cookies, $http) => {
+    //paginationSetting
     $rootScope.paginationSetting = {
-        'count': 15,
+        'count': 10,
         'page': 1,
         'sortBy': '',
         'sortOrder': ''
@@ -47,13 +47,13 @@ appAdmin.run(['$rootScope', '$window', '$location', '$cookies', '$http', functio
     if ($rootScope.globals.currentUser) {
         $http.defaults.headers.common['Authorization'] = $rootScope.globals.currentUser.token;
     }
-    $rootScope.$on('$locationChangeStart', function (event, next, current) {
+    $rootScope.$on('$locationChangeStart', (event, next, current) => {
         if ($window.location.href.indexOf('login') > -1) {
             return;
         }
         // redirect to login page if not logged in and trying to access a restricted page
-        var restrictedPage = $.inArray($location.path(), ['/login', '/register']) === -1;
-        var loggedIn = $rootScope.globals.currentUser;
+        let restrictedPage = $.inArray($location.path(), ['/login', '/register']) === -1;
+        let loggedIn = $rootScope.globals.currentUser;
         if (restrictedPage && !loggedIn) {
             $window.location.href = 'login.html';
         }
@@ -61,6 +61,6 @@ appAdmin.run(['$rootScope', '$window', '$location', '$cookies', '$http', functio
 
 }]);
 
-appAdmin.controller('AppAdminCtrl', ['$rootScope', '$scope', '$window', 'PackageInfo', function ($rootScope, $scope, $window, PackageInfo) {
+appAdmin.controller('AppAdminCtrl', ['$rootScope', '$scope', '$window', 'PackageInfo', ($rootScope, $scope, $window, PackageInfo) => {
     $rootScope.packageInfo = PackageInfo;
 }]);

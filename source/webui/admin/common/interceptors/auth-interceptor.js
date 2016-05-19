@@ -1,16 +1,16 @@
 'use strict';
 angular.module('common.interceptors')
-    .factory('AuthInterceptor', ['$q', '$cookies', '$window', 'SweetAlert', function ($q, $cookies, $window, SweetAlert) {
+    .factory('AuthInterceptor', ['$q', '$cookies', '$window', 'SweetAlert', ($q, $cookies, $window, SweetAlert) => {
         return {
-            request: function (config) {
+            request: (config) => {
                 config.headers = config.headers || {};
-                var globals = $cookies.getObject('globals');
+                let globals = $cookies.getObject('globals');
                 if (globals && globals.currentUser) {
                     config.headers.Authorization = globals.currentUser.token;
                 }
                 return config;
             },
-            responseError: function (response) {
+            responseError: (response) => {
                 if (response.status === 401) {
                     $window.location.href = 'login.html';
                 }
@@ -21,6 +21,6 @@ angular.module('common.interceptors')
             }
         };
     }])
-    .config(['$httpProvider', function ($httpProvider) {
+    .config(['$httpProvider', ($httpProvider) => {
         $httpProvider.interceptors.push('AuthInterceptor');
     }]);

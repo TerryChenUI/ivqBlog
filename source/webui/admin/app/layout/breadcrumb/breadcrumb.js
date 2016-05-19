@@ -1,8 +1,5 @@
-/**
- * Created by tchen on 2015/7/16.
- */
 angular.module('app.admin.layout')
-    .directive('breadcrumb', function () {
+    .directive('breadcrumb', () => {
         return {
             restrict: 'E',
             transclude: true,

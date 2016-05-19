@@ -1,21 +1,21 @@
 'use strict';
-angular.module('common.directives').directive('equals', function () {
+angular.module('common.directives').directive('equals', () => {
     return {
         restrict: 'A',
         require: '?ngModel',
-        link: function (scope, elem, attrs, ngModel) {
+        link: (scope, elem, attrs, ngModel) => {
             if (!ngModel) return;
-            scope.$watch(attrs.ngModel, function () {
+            scope.$watch(attrs.ngModel, () => {
                 validate();
             });
 
-            attrs.$observe('equals', function (val) {
+            attrs.$observe('equals', (val) => {
                 validate();
             });
 
-            var validate = function () {
-                var val1 = ngModel.$viewValue;
-                var val2 = attrs.equals;
+            let validate = () => {
+                let val1 = ngModel.$viewValue;
+                let val2 = attrs.equals;
 
                 ngModel.$setValidity('equals', !val1 || !val2 || val1 === val2);
             };

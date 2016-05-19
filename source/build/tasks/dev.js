@@ -7,7 +7,7 @@ let runSequence = rs.use(gulp);
  */
 gulp.task("dev", ['clean'], (cb) => {
     runSequence(
-        ['copy', 'sass', 'templateCache'],
+        ['copy', 'es6:dev', 'sass', 'templateCache'],
         ['inject:dev_index', 'inject:dev_admin_index', 'inject:dev_login'],
         cb);
 });

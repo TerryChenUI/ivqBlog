@@ -1,55 +1,55 @@
 'use strict';
 angular.module('common.services')
-    .factory('TagService', ['$http', 'ServerConfig', 'appHttp', function ($http, ServerConfig, appHttp) {
+    .factory('TagService', ['$http', 'ServerConfig', 'appHttp', ($http, ServerConfig, appHttp) => {
         return {
-            loadList: function (params) {
-                var config = {
+            loadList: (params) => {
+                let config = {
                     method: 'GET',
                     url: ServerConfig.apiUrl + "tags",
                     params: params
                 };
                 return $http(config);
             },
-            getAll: function (params) {
-                var config = {
+            getAll: (params) => {
+                let config = {
                     method: 'GET',
                     url: ServerConfig.apiUrl + "tags/all",
                     params: params
                 };
                 return appHttp.request(config);
             },
-            getById: function (id) {
-                var config = {
+            getById: (id) => {
+                let config = {
                     method: 'GET',
                     url: ServerConfig.apiUrl + "tags/" + id
                 };
                 return appHttp.request(config);
             },
-            getByRoute: function (route) {
-                var config = {
+            getByRoute: (route) => {
+                let config = {
                     method: 'GET',
                     url: ServerConfig.apiUrl + "tags/getByRoute/" + route
                 };
                 return appHttp.request(config);
             },
-            insert: function (data) {
-                var config = {
+            insert: (data) => {
+                let config = {
                     method: 'POST',
                     url: ServerConfig.apiUrl + "tags",
                     data: data
                 };
                 return appHttp.request(config);
             },
-            update: function (id, data) {
-                var config = {
+            update: (id, data) => {
+                let config = {
                     method: 'PUT',
                     url: ServerConfig.apiUrl + "tags/" + id,
                     data: data
                 };
                 return appHttp.request(config);
             },
-            delete: function (id) {
-                var config = {
+            delete: (id) => {
+                let config = {
                     method: 'DELETE',
                     url: ServerConfig.apiUrl + "tags/" + id
                 };

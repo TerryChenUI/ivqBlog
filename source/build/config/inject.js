@@ -25,6 +25,7 @@ const injectConfig = [
         },
         filters: {
             css: [
+                {"pattern": "/webui/ui", "replaceStr": ""},
                 {"pattern": "/" + setting.dest.rootOg, "replaceStr": ""}
             ],
             js: [
@@ -54,10 +55,12 @@ const injectConfig = [
         },
         filters: {
             css: [
+                {"pattern": "/webui/ui", "replaceStr": ""},
                 {"pattern": "/webui", "replaceStr": ""},
                 {"pattern": "/" + setting.dest.rootOg, "replaceStr": ""}
             ],
             js: [
+                {"pattern": "/webui/ui", "replaceStr": ""},
                 {"pattern": "/webui/common", "replaceStr": "../common"},
                 {"pattern": "/webui", "replaceStr": ""},
                 {"pattern": "/" + setting.dest.rootOg, "replaceStr": ""}
@@ -85,10 +88,12 @@ const injectConfig = [
         },
         filters: {
             css: [
-                {"pattern": "/webui/plugins", "replaceStr": "/plugins"},
+                {"pattern": "/webui/ui", "replaceStr": ""},
+                {"pattern": "/webui/fonts", "replaceStr": "/fonts"},
                 {"pattern": "/" + setting.dest.rootOg, "replaceStr": ""}
             ],
             js: [
+                {"pattern": "/webui/ui", "replaceStr": ""},
                 {"pattern": "/webui/common", "replaceStr": "../common"},
                 {"pattern": "/webui", "replaceStr": ""},
                 {"pattern": "/" + setting.dest.rootOg, "replaceStr": ""}
@@ -136,7 +141,7 @@ const injectConfig = [
         },
         filters: {
             css: [
-                {"pattern": "/webui/plugins/", "replaceStr": "/plugins/"},
+                {"pattern": "/webui/fonts/", "replaceStr": "/fonts/"},
                 {"pattern": "/" + setting.dest.rootOg, "replaceStr": ""}
             ],
             js: [
@@ -161,7 +166,7 @@ const injectConfig = [
         },
         filters: {
             css: [
-                {"pattern": "/webui/plugins/", "replaceStr": "/plugins/"},
+                {"pattern": "/webui/fonts/", "replaceStr": "/fonts/"},
                 {"pattern": "/" + setting.dest.rootOg, "replaceStr": ""}
             ],
             js: [
@@ -174,18 +179,20 @@ const injectConfig = [
 for (var i = 0; i < injectConfig.length; i++) {
     (function (i) {
         var task = injectConfig[i];
-        gulp.task(task.name, () => {
+        gulp.task(task.name, ['concat:lib'], () => {
             var target = gulp.src(task.src);
             var cssSources = gulp.src(task.config.src.css, {read: false});
             var jsSources = gulp.src(task.config.src.js, {read: false});
 
             return target.pipe(inject(cssSources, {
                     transform: (filePath) => {
+                        console.log(filePath);
                         return '<link rel="stylesheet" type="text/css" href="' + getPath(filePath, task.filters.css) + '" />';
                     }
                 }))
                 .pipe(inject(jsSources, {
                     transform: (filePath) => {
+                        console.log(filePath);
                         return '<script type="text/javascript" src="' + getPath(filePath, task.filters.js) + '"></script>';
                     }
                 }))

@@ -1,17 +1,17 @@
 'use strict';
 angular.module('ngSweetAlert', [])
-    .factory('SweetAlert', ['$rootScope', function ($rootScope) {
+    .factory('SweetAlert', ['$rootScope', ($rootScope) => {
 
-        var swal = window.swal;
+        let swal = window.swal;
 
         //public methods
-        var self = {
+        let self = {
 
-            swal: function (arg1, arg2, arg3) {
-                $rootScope.$evalAsync(function () {
+            swal: (arg1, arg2, arg3) => {
+                $rootScope.$evalAsync(() => {
                     if (typeof(arg2) === 'function') {
-                        swal(arg1, function (isConfirm) {
-                            $rootScope.$evalAsync(function () {
+                        swal(arg1, (isConfirm) => {
+                            $rootScope.$evalAsync(() => {
                                 arg2(isConfirm);
                             });
                         }, arg3);
@@ -20,7 +20,7 @@ angular.module('ngSweetAlert', [])
                     }
                 });
             },
-            deleteConfirm: function(arg1, arg2){
+            deleteConfirm: (arg1, arg2)=> {
                 swal({
                     title: "你确认要删除此数据?",
                     type: "warning",
@@ -30,50 +30,50 @@ angular.module('ngSweetAlert', [])
                     cancelButtonText: "取消",
                     closeOnConfirm: false,
                     closeOnCancel: true
-                }, function (isConfirm) {
-                    $rootScope.$evalAsync(function () {
+                }, (isConfirm) => {
+                    $rootScope.$evalAsync(() => {
                         arg1(isConfirm);
                     });
                 }, arg2);
             },
-            submitSuccessfully: function(){
+            submitSuccessfully: ()=> {
                 this.success('提交成功');
             },
-            addSuccessfully: function(){
+            addSuccessfully: ()=> {
                 this.success('新增成功');
             },
-            addFail: function(){
+            addFail: ()=> {
                 this.error('新增失败');
             },
-            updateSuccessfully: function(){
+            updateSuccessfully: ()=> {
                 this.success('更新成功');
             },
-            updateFail: function(){
+            updateFail: ()=> {
                 this.error('更新失败');
             },
-            deleteSuccessfully: function(){
+            deleteSuccessfully: ()=> {
                 this.success('删除成功');
             },
-            deleteFail: function(){
+            deleteFail: ()=> {
                 this.error('删除失败');
             },
-            success: function (title, message) {
-                $rootScope.$evalAsync(function () {
+            success: (title, message) => {
+                $rootScope.$evalAsync(() => {
                     swal(title, message, 'success');
                 });
             },
-            error: function (title, message) {
-                $rootScope.$evalAsync(function () {
+            error: (title, message) => {
+                $rootScope.$evalAsync(() => {
                     swal(title, message, 'error');
                 });
             },
-            warning: function (title, message) {
-                $rootScope.$evalAsync(function () {
+            warning: (title, message) => {
+                $rootScope.$evalAsync(() => {
                     swal(title, message, 'warning');
                 });
             },
-            info: function (title, message) {
-                $rootScope.$evalAsync(function () {
+            info: (title, message) => {
+                $rootScope.$evalAsync(() => {
                     swal(title, message, 'info');
                 });
             }
