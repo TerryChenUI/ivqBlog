@@ -186,13 +186,11 @@ for (var i = 0; i < injectConfig.length; i++) {
 
             return target.pipe(inject(cssSources, {
                     transform: (filePath) => {
-                        console.log(filePath);
                         return '<link rel="stylesheet" type="text/css" href="' + getPath(filePath, task.filters.css) + '" />';
                     }
                 }))
                 .pipe(inject(jsSources, {
                     transform: (filePath) => {
-                        console.log(filePath);
                         return '<script type="text/javascript" src="' + getPath(filePath, task.filters.js) + '"></script>';
                     }
                 }))

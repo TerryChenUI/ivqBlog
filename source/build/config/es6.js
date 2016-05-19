@@ -4,12 +4,15 @@ import concat from 'gulp-concat';
 import browserSync from 'browser-sync';
 import uglify from 'gulp-uglify';
 import rev from 'gulp-rev';
+import eslint from 'gulp-eslint';
 import setting from '../setting';
 
 gulp.task('es6:watch', ['es6:dev'], browserSync.reload);
 
 gulp.task('es6:dev', () => {
     gulp.src(['webui/**/*.js', '!webui/**/*.spec.js'])
+        //.pipe(eslint())
+        //.pipe(eslint.format())
         .pipe(babel())
         .pipe(gulp.dest(setting.dest.root))
         .pipe(browserSync.reload({stream: true}));
