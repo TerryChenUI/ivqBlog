@@ -1,12 +1,13 @@
 "use strict";
 angular.module('app.article')
-    .controller('ListCtrl', ['$scope', '$stateParams', 'ArticleService', 'category', 'tag', ($scope, $stateParams, ArticleService, category, tag) => {
+    .controller('ListCtrl', ['$scope', '$stateParams', 'ArticleService', 'category', 'tag', 'cfpLoadingBar', ($scope, $stateParams, ArticleService, category, tag, cfpLoadingBar) => {
         $scope.articles = [];
         $scope.currentPage = 1;
         $scope.itemsPerPage = 15;
         //$scope.maxSize = 5;
 
         $scope.initController = () => {
+            cfpLoadingBar.start();
             getData();
         };
 
@@ -36,7 +37,7 @@ angular.module('app.article')
                 let data = res.data;
                 $scope.totalItems = data.pagination.size;
                 $scope.articles = data.rows;
-                $scope.totalItems = data.pagination.size;
+                cfpLoadingBar.complete();
             });
         }
 

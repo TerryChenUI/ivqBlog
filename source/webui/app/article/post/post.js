@@ -1,10 +1,12 @@
 "use strict";
 angular.module('app.article')
-    .controller('PostCtrl', ['$rootScope', '$scope', '$stateParams', '$sce', '$state', '$timeout', '$window', 'SweetAlert', 'ArticleService', 'CommentService', 'Tool', 'article', ($rootScope, $scope, $stateParams, $sce, $state, $timeout, $window, SweetAlert, ArticleService, CommentService, Tool, article) => {
+    .controller('PostCtrl', ['$rootScope', '$scope', '$stateParams', '$sce', '$state', '$timeout', '$window', 'SweetAlert', 'ArticleService', 'CommentService', 'Tool', 'article', 'cfpLoadingBar', ($rootScope, $scope, $stateParams, $sce, $state, $timeout, $window, SweetAlert, ArticleService, CommentService, Tool, article, cfpLoadingBar) => {
         $scope.model = {};
 
         $scope.initController = () => {
+            cfpLoadingBar.start();
             article = Tool.transformArticleUrl(article);
+            cfpLoadingBar.complete();
             $scope.article = article;
             $scope.article.content = $sce.trustAsHtml($scope.article.content);
             $scope.model.article = $scope.article._Id;

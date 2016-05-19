@@ -3,7 +3,7 @@
     <h1 ng-if="listName">
         {{listName}}
     </h1>
-    <div class="post-item" ng-repeat="article in articles">
+    <div class="post-item" ng-repeat="article in articles" ng-if="articles.length">
         <div class="info">
             <div class="reply-view">
                 <span class="reply" title="回复数">{{article.comments.length}}</span>
@@ -15,7 +15,7 @@
         </div>
         <div class="time"><span>{{article.time.publish | fromNow}}</span></div>
     </div>
-    <div class="page-container">
+    <div class="page-container" ng-if="articles.length">
         <pagination
                 boundary-links="true"
                 total-items="totalItems"

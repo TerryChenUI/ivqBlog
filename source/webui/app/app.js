@@ -10,6 +10,7 @@ angular.module('app.nav', []);
 angular.module('app.article', ['ui.bootstrap', 'common.services']);
 
 let app = angular.module('app', [
+    'angular-loading-bar',
     'ngCookies',
     'ngSweetAlert',
     'ui.router',
@@ -25,6 +26,13 @@ let app = angular.module('app', [
     'app.nav',
     'app.article'
 ]);
+
+angular.module('app')
+    .config(['cfpLoadingBarProvider', (cfpLoadingBarProvider) => {
+        cfpLoadingBarProvider.includeBar = true;
+        cfpLoadingBarProvider.includeSpinner = true;
+        cfpLoadingBarProvider.latencyThreshold = 500;
+    }]);
 
 app.controller('AppCtrl', ['$rootScope', '$sce', 'PackageInfo', ($rootScope, $sce, PackageInfo) => {
     $rootScope.packageInfo = PackageInfo;

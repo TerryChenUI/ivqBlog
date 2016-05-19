@@ -12,6 +12,7 @@ gulp.task('lib:css', () => {
     return gulp.src([
             './lib/bootstrap/css/bootstrap.min.css',
             './lib/sweetalert/sweetalert.css',
+            './lib/angular-loading-bar/loading-bar.min.css',
             './lib/ueditor/third-party/SyntaxHighlighter/shCoreDefault.css'
         ])
         .pipe(concat('common.min.css'))
@@ -32,7 +33,8 @@ gulp.task('lib:js', () => {
             './lib/bootstrap/js/bootstrap.min.js',
             './lib/moment/moment.min.js',
             './lib/moment/zh-cn.js',
-            './lib/ueditor/third-party/SyntaxHighlighter/shCore.js'
+            './lib/ueditor/third-party/SyntaxHighlighter/shCore.js',
+            './lib/angular-loading-bar/loading-bar.min.js'
         ])
         .pipe(concat('common.min.js'))
         .pipe(gulp.dest(setting.dest.root));

@@ -5,9 +5,8 @@ angular.module('ngSweetAlert', [])
         let swal = window.swal;
 
         //public methods
-        let self = {
-
-            swal: (arg1, arg2, arg3) => {
+        class self {
+            swal(arg1, arg2, arg3) {
                 $rootScope.$evalAsync(() => {
                     if (typeof(arg2) === 'function') {
                         swal(arg1, (isConfirm) => {
@@ -19,8 +18,9 @@ angular.module('ngSweetAlert', [])
                         swal(arg1, arg2, arg3);
                     }
                 });
-            },
-            deleteConfirm: (arg1, arg2)=> {
+            }
+
+            deleteConfirm(arg1, arg2) {
                 swal({
                     title: "你确认要删除此数据?",
                     type: "warning",
@@ -35,49 +35,60 @@ angular.module('ngSweetAlert', [])
                         arg1(isConfirm);
                     });
                 }, arg2);
-            },
-            submitSuccessfully: ()=> {
+            }
+
+            submitSuccessfully() {
                 this.success('提交成功');
-            },
-            addSuccessfully: ()=> {
+            }
+
+            addSuccessfully() {
                 this.success('新增成功');
-            },
-            addFail: ()=> {
+            }
+
+            addFail() {
                 this.error('新增失败');
-            },
-            updateSuccessfully: ()=> {
+            }
+
+            updateSuccessfully() {
                 this.success('更新成功');
-            },
-            updateFail: ()=> {
+            }
+
+            updateFail() {
                 this.error('更新失败');
-            },
-            deleteSuccessfully: ()=> {
+            }
+
+            deleteSuccessfully() {
                 this.success('删除成功');
-            },
-            deleteFail: ()=> {
+            }
+
+            deleteFail() {
                 this.error('删除失败');
-            },
-            success: (title, message) => {
+            }
+
+            success(title, message) {
                 $rootScope.$evalAsync(() => {
                     swal(title, message, 'success');
                 });
-            },
-            error: (title, message) => {
+            }
+
+            error(title, message) {
                 $rootScope.$evalAsync(() => {
                     swal(title, message, 'error');
                 });
-            },
-            warning: (title, message) => {
+            }
+
+            warning(title, message) {
                 $rootScope.$evalAsync(() => {
                     swal(title, message, 'warning');
                 });
-            },
-            info: (title, message) => {
+            }
+
+            info(title, message) {
                 $rootScope.$evalAsync(() => {
                     swal(title, message, 'info');
                 });
             }
-        };
-
-        return self;
+        }
+        //let self = {};
+        return new self();
     }]);

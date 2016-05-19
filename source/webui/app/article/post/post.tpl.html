@@ -1,6 +1,6 @@
 <div class="container">
     <div class="row">
-        <div class="main">
+        <div class="main" ng-if="article">
             <div class="col-sm-12">
                 <div class="row post-detail">
                     <h2 class="post-title">{{article.title}}</h2>
@@ -16,7 +16,6 @@
                     </div>
                 </div>
                 <a name="comments"></a>
-
                 <div class="row post-comments">
                     <div class="comment-title">发表评论</div>
                     <div class="comment-item" ng-repeat="comment in article.comments">
