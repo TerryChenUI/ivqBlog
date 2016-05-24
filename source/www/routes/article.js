@@ -70,8 +70,10 @@ router
     })
     .put('/api/articles/:id', jwtAuth, function (req, res, next) {
         var modify = req.body;
+        var nowTime = Date.now();
+        modify["time.update"] = nowTime;
         if (modify.publish) {
-            modify["time.publish"] = Date.now();
+            modify["time.publish"] = nowTime;
         }
         if (modify.meta != undefined) {
             if (modify.meta.author != undefined) {
@@ -88,8 +90,6 @@ router
         if(modify.category != undefined && modify.category == 0) {
             modify.category = undefined;
         }
-        delete modify.comments;
-        modify["time.update"] = Date.now();
 
         Article.update2(req.params.id, modify, function (err) {
             if (err)

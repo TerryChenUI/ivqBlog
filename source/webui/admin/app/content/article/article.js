@@ -1,4 +1,3 @@
-'use strict';
 angular.module('app.admin.content')
     .controller('ListArticleCtrl', ['$scope', '$state', 'SweetAlert', 'CategoryService', 'ArticleService', 'TagService', 'Tool', ($scope, $state, SweetAlert, CategoryService, ArticleService, TagService, Tool) => {
         $scope.filterBy = {'title': '', 'category': 0, 'tags': 0};
@@ -131,6 +130,7 @@ angular.module('app.admin.content')
                 } else if (modifyModel.tags.length) {
                     modifyModel.tags = selectedTags;
                 }
+                delete modifyModel.comments;
                 ArticleService.update(id, modifyModel).then(() => {
                     SweetAlert.updateSuccessfully();
                     $state.go('article');
