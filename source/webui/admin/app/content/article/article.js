@@ -108,6 +108,11 @@ angular.module('app.admin.content')
                     if (data.time.publish)
                         data.time.publish = Tool.convertTime(data.time.publish);
                     $scope.model = data;
+                    $scope.model.tags = _.uniq(data.tags.map((t) => {
+                        if(t){
+                            return t._id;
+                        }
+                    }));
                     $scope.model.categoryRoute = data.category != null ? data.category.route : '';
                     $scope.model.category = data.category != null ? data.category._id : 0;
                     $scope.originModel = Tool.deepCopy($scope.model);
@@ -121,15 +126,9 @@ angular.module('app.admin.content')
 
         $scope.save = () => {
             if (id) {
-                let selectedTags = _.map($scope.model.tags, (data) => {
-                    return data._id;
-                });
+                let selectedTags = angular.copy($scope.model.tags);
                 let modifyModel = Tool.trimSameProperties($scope.originModel, $scope.model);
-                if (_.isUndefined(modifyModel.tags) && selectedTags.length == 0) {
-                    modifyModel.tags = []
-                } else if (modifyModel.tags.length) {
-                    modifyModel.tags = selectedTags;
-                }
+                modifyModel.tags = selectedTags;
                 delete modifyModel.comments;
                 ArticleService.update(id, modifyModel).then(() => {
                     SweetAlert.updateSuccessfully();

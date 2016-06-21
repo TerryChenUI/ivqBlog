@@ -29,7 +29,7 @@ router
         Article.list(options, function (err, articles) {
             if (err)
                 return res.status(500).send(err);
-            Article.count({}, function (err, total) {
+            Article.count(filter, function (err, total) {
                 if (err)
                     return res.status(500).send(err);
                 res.send({

@@ -2,9 +2,11 @@
 angular.module('app.article')
     .controller('ListCtrl', ['$scope', '$stateParams', 'ArticleService', 'category', 'tag', 'cfpLoadingBar', ($scope, $stateParams, ArticleService, category, tag, cfpLoadingBar) => {
         $scope.articles = [];
-        $scope.currentPage = 1;
-        $scope.itemsPerPage = 15;
-        //$scope.maxSize = 5;
+        $scope.pageSetting = {
+            currentPage: 1,
+            itemsPerPage: 15,
+            totalItems: 0
+        };
 
         $scope.initController = () => {
             cfpLoadingBar.start();
@@ -22,8 +24,8 @@ angular.module('app.article')
                 filters: {publish: true},
                 fields: '_id, title, author, views, time.publish, category, tags, comments',
                 sortBy: {'time.publish': -1},
-                page: $scope.currentPage,
-                count: $scope.itemsPerPage
+                page: $scope.pageSetting.currentPage,
+                count: $scope.pageSetting.itemsPerPage
             };
             if (category) {
                 paramsObj.filters.category = category._id;
@@ -35,7 +37,7 @@ angular.module('app.article')
             }
             ArticleService.loadList(paramsObj).then((res) => {
                 let data = res.data;
-                $scope.totalItems = data.pagination.size;
+                $scope.pageSetting.totalItems = data.pagination.size;
                 $scope.articles = data.rows;
                 cfpLoadingBar.complete();
             });

@@ -16,17 +16,17 @@
         <div class="time"><span>{{article.time.publish | fromNow}}</span></div>
     </div>
     <div class="page-container" ng-if="articles.length">
-        <pagination
+        <uib-pagination
+                items-per-page="pageSetting.itemsPerPage"
                 boundary-links="true"
-                total-items="totalItems"
-                ng-model="currentPage"
-                items-per-page="itemsPerPage"
+                total-items="pageSetting.totalItems"
+                ng-model="pageSetting.currentPage"
                 class="pagination-sm"
-                ng-change="pageChanged()"
                 previous-text="&lsaquo;"
                 next-text="&rsaquo;"
                 first-text="&laquo;"
-                last-text="&raquo;">
-        </pagination>
+                last-text="&raquo;"
+                ng-change="pageChanged()">
+        </uib-pagination>
     </div>
 </div>
