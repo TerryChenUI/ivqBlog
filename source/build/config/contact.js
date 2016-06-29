@@ -13,7 +13,8 @@ gulp.task('lib:css', () => {
             './lib/bootstrap/css/bootstrap.min.css',
             './lib/sweetalert/sweetalert.css',
             './lib/angular-loading-bar/loading-bar.min.css',
-            './lib/ueditor/third-party/SyntaxHighlighter/shCoreDefault.css'
+            // './lib/ueditor/third-party/SyntaxHighlighter/shCoreDefault.css',
+            './lib/highlight/styles/default.css'
         ])
         .pipe(concat('common.min.css'))
         .pipe(gulp.dest(setting.dest.root));
@@ -33,8 +34,10 @@ gulp.task('lib:js', () => {
             './lib/bootstrap/js/bootstrap.min.js',
             './lib/moment/moment.min.js',
             './lib/moment/zh-cn.js',
-            './lib/ueditor/third-party/SyntaxHighlighter/shCore.js',
-            './lib/angular-loading-bar/loading-bar.min.js'
+            // './lib/ueditor/third-party/SyntaxHighlighter/shCore.js',
+            './lib/angular-loading-bar/loading-bar.min.js',
+            './lib/showdown/showdown.min.js',
+            './lib/highlight/highlight.pack.js'
         ])
         .pipe(concat('common.min.js'))
         .pipe(gulp.dest(setting.dest.root));
