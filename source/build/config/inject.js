@@ -118,6 +118,8 @@ const injectConfig = [
         },
         filters: {
             css: [
+                {"pattern": "/webui/ui", "replaceStr": ""},
+                {"pattern": "/webui", "replaceStr": ""},
                 {"pattern": "/" + setting.dest.rootOg, "replaceStr": ""}
             ],
             js: [
