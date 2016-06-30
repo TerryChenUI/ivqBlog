@@ -1,27 +1,39 @@
 "use strict";
 angular.module('app.article')
-    .controller('PostCtrl', ['$rootScope', '$scope', '$stateParams', '$sce', '$state', '$timeout', '$window', 'SweetAlert', 'ArticleService', 'CommentService', 'Tool', 'article', 'cfpLoadingBar', ($rootScope, $scope, $stateParams, $sce, $state, $timeout, $window, SweetAlert, ArticleService, CommentService, Tool, article, cfpLoadingBar) => {
+    .controller('PostCtrl', ['$rootScope', '$scope', '$stateParams', '$sce', '$state', '$timeout', '$window', '$location', '$anchorScroll', 'SweetAlert', 'ArticleService', 'CommentService', 'Tool', 'article', 'cfpLoadingBar', ($rootScope, $scope, $stateParams, $sce, $state, $timeout, $window, $location, $anchorScroll, SweetAlert, ArticleService, CommentService, Tool, article, cfpLoadingBar) => {
         $scope.model = {};
+        $scope.showScrollUp = false;
 
         $scope.initController = () => {
             cfpLoadingBar.start();
             article = Tool.transformArticleUrl(article);
             cfpLoadingBar.complete();
             $scope.article = article;
-            let convert = new showdown.Converter();
+            var convert = new showdown.Converter({headerLevelStart: 1, prefixHeaderId: 'ivq', extensions: ['toc']});
             $scope.article.content = $sce.trustAsHtml(convert.makeHtml($scope.article.content));
             $scope.model.article = $scope.article._Id;
             if ($rootScope.currentUser) {
                 $scope.model.userName = 'ivqBlog';
                 $scope.model.email = $rootScope.currentUser.email;
             }
-            $timeout(() => {
-                // SyntaxHighlighter.highlight();
-                hljs.initHighlightingOnLoad();
-            }, 0);
+            $scope.$on('$viewContentLoaded', function () {
+                $timeout(() => {
+                    hljs.initHighlightingOnLoad();
+                }, 100);
+            });
         };
 
-        $scope.redirect = ()=> {
+        angular.element($window).bind('scroll', function() {
+            $scope.showScrollUp = angular.element($window).scrollTop() > 100 ? true : false
+            $scope.$apply();
+        });
+
+        $scope.goToTop = () => {
+            $location.hash('top');
+            $anchorScroll();
+        };
+
+        $scope.redirect = () => {
             let url = "http://" + $window.location.host + "/admin/article/edit/" + article._id;
             $window.location.href = url;
         };

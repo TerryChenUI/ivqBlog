@@ -37,6 +37,7 @@ gulp.task('lib:js', () => {
             // './lib/ueditor/third-party/SyntaxHighlighter/shCore.js',
             './lib/angular-loading-bar/loading-bar.min.js',
             './lib/showdown/showdown.min.js',
+            './lib/showdown/showdown-toc.js',
             './lib/highlight/highlight.pack.js'
         ])
         .pipe(concat('common.min.js'))

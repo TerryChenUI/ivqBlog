@@ -1,4 +1,5 @@
 <div class="container">
+    <a id="top"></a>
     <div class="row">
         <div class="main" ng-if="article">
             <div class="col-sm-12">
@@ -14,9 +15,10 @@
                     <!--</div>-->
                     <div class="post-content markdown-body" ng-bind-html="article.content">
                     </div>
+                    <a class="scrollUp" ng-show="showScrollUp" ng-click="goToTop()"><i class="fa fa-angle-up"></i></a>
                 </div>
                 <a name="comments"></a>
-                <div class="row post-comments">
+                <div class="row post-comments" ng-if="false">
                     <div class="comment-title">发表评论</div>
                     <div class="comment-item" ng-repeat="comment in article.comments">
                         <div class="comment-sub-title">

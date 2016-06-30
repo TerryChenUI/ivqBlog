@@ -1,7 +1,8 @@
 module.exports = {
     front: {
         css: [
-            './www/ui/common.min.css'
+            './www/ui/common.min.css',
+            './webui/fonts/font-awesome/font-awesome.min.css'
             //'./lib/sweetalert/sweetalert.css',
             //'./lib/ueditor/third-party/SyntaxHighlighter/shCoreDefault.css'
         ],

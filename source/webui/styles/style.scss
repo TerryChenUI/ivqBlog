@@ -20,6 +20,14 @@ h6, .h6 {
   padding: 0;
 }
 
+#top {
+  position: relative;
+  top: -70px;
+  display: block;
+  height: 0;
+  overflow: hidden;
+}
+
 @media (min-width: 1200px) {
   .container {
     width: 1050px;

@@ -1,11 +1,18 @@
 .markdown-body {
-  font-family: Helvetica,"Hiragino Sans GB","å¾®è½¯é›…é»‘","Microsoft YaHei UI",SimSun,SimHei,arial,sans-serif;
+  font-family: Helvetica, "Hiragino Sans GB", "Microsoft YaHei UI", SimSun, SimHei, arial, sans-serif;
   line-height: 1.6;
   margin: 0;
-  padding: 20px 36px
+  padding: 10px 5px;
 }
 
-.markdown-body,.markdown-body div,.markdown-body p {
+.markdown-body .showdown-toc {
+  background: #F9F9F5;
+  padding: 20px 25px;
+  list-style: none;
+  margin: 0 0 15px 0;
+}
+
+.markdown-body, .markdown-body div, .markdown-body p {
   font-size: 15px
 }
 
@@ -13,12 +20,12 @@
   padding: 0
 }
 
-.markdown-body>:first-child {
-  margin-top: 0!important
+.markdown-body > :first-child {
+  margin-top: 0 !important
 }
 
-.markdown-body>:last-child {
-  margin-bottom: 0!important
+.markdown-body > :last-child {
+  margin-bottom: 0 !important
 }
 
 .markdown-body a {
@@ -40,7 +47,7 @@
   bottom: 0
 }
 
-.markdown-body h1,.markdown-body h2,.markdown-body h3,.markdown-body h4,.markdown-body h5,.markdown-body h6 {
+.markdown-body h1, .markdown-body h2, .markdown-body h3, .markdown-body h4, .markdown-body h5, .markdown-body h6 {
   margin: 20px 0 10px;
   padding: 0;
   font-weight: 700;
@@ -48,12 +55,12 @@
   position: relative
 }
 
-.markdown-body h1:hover a.anchor,.markdown-body h2:hover a.anchor,.markdown-body h3:hover a.anchor,.markdown-body h4:hover a.anchor,.markdown-body h5:hover a.anchor,.markdown-body h6:hover a.anchor {
+.markdown-body h1:hover a.anchor, .markdown-body h2:hover a.anchor, .markdown-body h3:hover a.anchor, .markdown-body h4:hover a.anchor, .markdown-body h5:hover a.anchor, .markdown-body h6:hover a.anchor {
   background: url(data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABAAAAAQCAYAAAAf8/9hAAAAGXRFWHRTb2Z0d2FyZQBBZG9iZSBJbWFnZVJlYWR5ccllPAAAA09pVFh0WE1MOmNvbS5hZG9iZS54bXAAAAAAADw/eHBhY2tldCBiZWdpbj0i77u/IiBpZD0iVzVNME1wQ2VoaUh6cmVTek5UY3prYzlkIj8+IDx4OnhtcG1ldGEgeG1sbnM6eD0iYWRvYmU6bnM6bWV0YS8iIHg6eG1wdGs9IkFkb2JlIFhNUCBDb3JlIDUuMy1jMDExIDY2LjE0NTY2MSwgMjAxMi8wMi8wNi0xNDo1NjoyNyAgICAgICAgIj4gPHJkZjpSREYgeG1sbnM6cmRmPSJodHRwOi8vd3d3LnczLm9yZy8xOTk5LzAyLzIyLXJkZi1zeW50YXgtbnMjIj4gPHJkZjpEZXNjcmlwdGlvbiByZGY6YWJvdXQ9IiIgeG1sbnM6eG1wPSJodHRwOi8vbnMuYWRvYmUuY29tL3hhcC8xLjAvIiB4bWxuczp4bXBNTT0iaHR0cDovL25zLmFkb2JlLmNvbS94YXAvMS4wL21tLyIgeG1sbnM6c3RSZWY9Imh0dHA6Ly9ucy5hZG9iZS5jb20veGFwLzEuMC9zVHlwZS9SZXNvdXJjZVJlZiMiIHhtcDpDcmVhdG9yVG9vbD0iQWRvYmUgUGhvdG9zaG9wIENTNiAoMTMuMCAyMDEyMDMwNS5tLjQxNSAyMDEyLzAzLzA1OjIxOjAwOjAwKSAgKE1hY2ludG9zaCkiIHhtcE1NOkluc3RhbmNlSUQ9InhtcC5paWQ6OUM2NjlDQjI4ODBGMTFFMTg1ODlEODNERDJBRjUwQTQiIHhtcE1NOkRvY3VtZW50SUQ9InhtcC5kaWQ6OUM2NjlDQjM4ODBGMTFFMTg1ODlEODNERDJBRjUwQTQiPiA8eG1wTU06RGVyaXZlZEZyb20gc3RSZWY6aW5zdGFuY2VJRD0ieG1wLmlpZDo5QzY2OUNCMDg4MEYxMUUxODU4OUQ4M0REMkFGNTBBNCIgc3RSZWY6ZG9jdW1lbnRJRD0ieG1wLmRpZDo5QzY2OUNCMTg4MEYxMUUxODU4OUQ4M0REMkFGNTBBNCIvPiA8L3JkZjpEZXNjcmlwdGlvbj4gPC9yZGY6UkRGPiA8L3g6eG1wbWV0YT4gPD94cGFja2V0IGVuZD0iciI/PsQhXeAAAABfSURBVHjaYvz//z8DJYCRUgMYQAbAMBQIAvEqkBQWXI6sHqwHiwG70TTBxGaiWwjCTGgOUgJiF1J8wMRAIUA34B4Q76HUBelAfJYSA0CuMIEaRP8wGIkGMA54bgQIMACAmkXJi0hKJQAAAABJRU5ErkJggg==) 10px center no-repeat;
   text-decoration: none
 }
 
-.markdown-body h1 code,.markdown-body h1 tt,.markdown-body h2 code,.markdown-body h2 tt,.markdown-body h3 code,.markdown-body h3 tt,.markdown-body h4 code,.markdown-body h4 tt,.markdown-body h5 code,.markdown-body h5 tt,.markdown-body h6 code,.markdown-body h6 tt {
+.markdown-body h1 code, .markdown-body h1 tt, .markdown-body h2 code, .markdown-body h2 tt, .markdown-body h3 code, .markdown-body h3 tt, .markdown-body h4 code, .markdown-body h4 tt, .markdown-body h5 code, .markdown-body h5 tt, .markdown-body h6 code, .markdown-body h6 tt {
   font-size: inherit
 }
 
@@ -85,7 +92,7 @@
   margin: 1em 0
 }
 
-.markdown-body blockquote,.markdown-body dl,.markdown-body ol,.markdown-body p,.markdown-body pre,.markdown-body table,.markdown-body ul {
+.markdown-body blockquote, .markdown-body dl, .markdown-body ol, .markdown-body p, .markdown-body pre, .markdown-body table, .markdown-body ul {
   margin: 10px 0
 }
 
@@ -93,11 +100,11 @@
   margin: 5px 0
 }
 
-.markdown-body ol p,.markdown-body pre li,.markdown-body ul p {
+.markdown-body ol p, .markdown-body pre li, .markdown-body ul p {
   margin: 0
 }
 
-.markdown-body h1 p,.markdown-body h2 p,.markdown-body h3 p,.markdown-body h4 p,.markdown-body h5 p,.markdown-body h6 p,.markdown-body ol :first-child,.markdown-body ul :first-child {
+.markdown-body h1 p, .markdown-body h2 p, .markdown-body h3 p, .markdown-body h4 p, .markdown-body h5 p, .markdown-body h6 p, .markdown-body ol :first-child, .markdown-body ul :first-child {
   margin-top: 0
 }
 
@@ -109,7 +116,7 @@
   padding: 0
 }
 
-.markdown-body a:first-child h1,.markdown-body a:first-child h2,.markdown-body a:first-child h3,.markdown-body a:first-child h4,.markdown-body a:first-child h5,.markdown-body a:first-child h6,.markdown-body>h1:first-child,.markdown-body>h1:first-child+h2,.markdown-body>h2:first-child,.markdown-body>h3:first-child,.markdown-body>h4:first-child,.markdown-body>h5:first-child,.markdown-body>h6:first-child {
+.markdown-body a:first-child h1, .markdown-body a:first-child h2, .markdown-body a:first-child h3, .markdown-body a:first-child h4, .markdown-body a:first-child h5, .markdown-body a:first-child h6, .markdown-body > h1:first-child, .markdown-body > h1:first-child + h2, .markdown-body > h2:first-child, .markdown-body > h3:first-child, .markdown-body > h4:first-child, .markdown-body > h5:first-child, .markdown-body > h6:first-child {
   margin-top: 0;
   padding-top: 0
 }
@@ -118,11 +125,11 @@
   display: inline-block
 }
 
-.markdown-body ol,.markdown-body ul {
+.markdown-body ol, .markdown-body ul {
   padding-left: 32px
 }
 
-.markdown-body dl,.markdown-body dl dt:first-child {
+.markdown-body dl, .markdown-body dl dt:first-child {
   padding: 0
 }
 
@@ -134,11 +141,11 @@
   margin: 8px 0 5px
 }
 
-.markdown-body dl dt>:first-child {
+.markdown-body dl dt > :first-child {
   margin-top: 0
 }
 
-.markdown-body dl dt>:last-child {
+.markdown-body dl dt > :last-child {
   margin-bottom: 0
 }
 
@@ -147,11 +154,11 @@
   padding: 0 15px
 }
 
-.markdown-body blockquote>:first-child,.markdown-body dl dd>:first-child,.markdown-body table tr td :first-child,.markdown-body table tr th :first-child {
+.markdown-body blockquote > :first-child, .markdown-body dl dd > :first-child, .markdown-body table tr td :first-child, .markdown-body table tr th :first-child {
   margin-top: 0
 }
 
-.markdown-body blockquote>:last-child,.markdown-body dl dd>:last-child,.markdown-body table tr td :last-child,.markdown-body table tr th :last-child {
+.markdown-body blockquote > :last-child, .markdown-body dl dd > :last-child, .markdown-body table tr td :last-child, .markdown-body table tr th :last-child {
   margin-bottom: 0
 }
 
@@ -173,7 +180,7 @@
   padding: 0
 }
 
-.markdown-body table tr td,.markdown-body table tr th {
+.markdown-body table tr td, .markdown-body table tr th {
   border: 1px solid #ccc;
   margin: 0;
   padding: 6px 13px;
@@ -197,7 +204,7 @@
   overflow: hidden
 }
 
-.markdown-body span.frame>span {
+.markdown-body span.frame > span {
   border: 1px solid #ddd;
   display: block;
   float: left;
@@ -225,7 +232,7 @@
   clear: both
 }
 
-.markdown-body span.align-center>span {
+.markdown-body span.align-center > span {
   display: block;
   overflow: hidden;
   margin: 13px auto 0;
@@ -243,7 +250,7 @@
   clear: both
 }
 
-.markdown-body span.align-right>span {
+.markdown-body span.align-right > span {
   display: block;
   overflow: hidden;
   margin: 13px 0 0;
@@ -273,14 +280,14 @@
   float: right
 }
 
-.markdown-body span.float-right>span {
+.markdown-body span.float-right > span {
   display: block;
   overflow: hidden;
   margin: 13px auto 0;
   text-align: right
 }
 
-.markdown-body code,.markdown-body tt {
+.markdown-body code, .markdown-body tt {
   margin: 0 2px;
   padding: 0 5px;
   border: 1px solid #eaeaea;
@@ -308,19 +315,19 @@
   border-radius: 3px
 }
 
-.markdown-body pre code,.markdown-body pre tt {
+.markdown-body pre code, .markdown-body pre tt {
   background-color: transparent;
   border: none
 }
 
 @media screen {
-  .markdown-body code,.markdown-body pre {
+  .markdown-body code, .markdown-body pre {
     word-wrap: break-word
   }
 }
 
 @media print {
-  .markdown-body pre,.markdown-body table {
+  .markdown-body pre, .markdown-body table {
     page-break-inside: avoid
   }
 
@@ -329,8 +336,8 @@
   }
 }
 
-.markdown-body code,.markdown-body pre {
-  font-family: Consolas,"Liberation Mono",Menlo,Courier,monospace
+.markdown-body code, .markdown-body pre {
+  font-family: Consolas, "Liberation Mono", Menlo, Courier, monospace
 }
 
 .markdown-body .pln {
@@ -357,7 +364,7 @@
   color: #195F91
 }
 
-.markdown-body .clo,.markdown-body .opn,.markdown-body .pun {
+.markdown-body .clo, .markdown-body .opn, .markdown-body .pun {
   color: #93A1A1
 }
 
@@ -373,7 +380,7 @@
   color: #D14
 }
 
-.markdown-body .dec,.markdown-body .var {
+.markdown-body .dec, .markdown-body .var {
   color: teal
 }
 
@@ -388,12 +395,12 @@
 }
 
 .markdown-body pre.prettyprint.linenums {
-  box-shadow: 40px 0 0 #FBFBFC inset,41px 0 0 #ECECF0 inset
+  box-shadow: 40px 0 0 #FBFBFC inset, 41px 0 0 #ECECF0 inset
 }
 
 .markdown-body pre.prettyprint.linenums ol.linenums {
   color: #1E347B;
-  padding-left: 30px!important;
+  padding-left: 30px !important;
   margin-top: 0;
   margin-bottom: 0
 }
@@ -401,26 +408,26 @@
 .markdown-body pre.prettyprint.linenums ol.linenums li {
   color: #BEBEC5;
   line-height: 18px;
-  padding-left: 12px!important
+  padding-left: 12px !important
 }
 
-.markdown-body pre.prettyprint.linenums ol.linenums li.L0,.markdown-body pre.prettyprint.linenums ol.linenums li.L1,.markdown-body pre.prettyprint.linenums ol.linenums li.L2,.markdown-body pre.prettyprint.linenums ol.linenums li.L3,.markdown-body pre.prettyprint.linenums ol.linenums li.L4,.markdown-body pre.prettyprint.linenums ol.linenums li.L5,.markdown-body pre.prettyprint.linenums ol.linenums li.L6,.markdown-body pre.prettyprint.linenums ol.linenums li.L7,.markdown-body pre.prettyprint.linenums ol.linenums li.L8,.markdown-body pre.prettyprint.linenums ol.linenums li.L9 {
-  list-style-type: decimal!important
+.markdown-body pre.prettyprint.linenums ol.linenums li.L0, .markdown-body pre.prettyprint.linenums ol.linenums li.L1, .markdown-body pre.prettyprint.linenums ol.linenums li.L2, .markdown-body pre.prettyprint.linenums ol.linenums li.L3, .markdown-body pre.prettyprint.linenums ol.linenums li.L4, .markdown-body pre.prettyprint.linenums ol.linenums li.L5, .markdown-body pre.prettyprint.linenums ol.linenums li.L6, .markdown-body pre.prettyprint.linenums ol.linenums li.L7, .markdown-body pre.prettyprint.linenums ol.linenums li.L8, .markdown-body pre.prettyprint.linenums ol.linenums li.L9 {
+  list-style-type: decimal !important
 }
 
 @media screen and (max-width: 660px) {
   .markdown-body {
-    padding:20px 18px
+    padding: 20px 18px
   }
 }
 
-@media only screen and (-webkit-max-device-width: 1024px),only screen and (-o-max-device-width:1024px),only screen and (max-device-width:1024px),only screen and (-webkit-min-device-pixel-ratio:3),only screen and (-o-min-device-pixel-ratio:3),only screen and (min-device-pixel-ratio:3) {
+@media only screen and (-webkit-max-device-width: 1024px), only screen and (-o-max-device-width: 1024px), only screen and (max-device-width: 1024px), only screen and (-webkit-min-device-pixel-ratio: 3), only screen and (-o-min-device-pixel-ratio: 3), only screen and (min-device-pixel-ratio: 3) {
   .markdown-body {
-    padding:12px 15px;
+    padding: 12px 15px;
     color: #353c47
   }
 
-  .markdown-body,.markdown-body div,.markdown-body p {
+  .markdown-body, .markdown-body div, .markdown-body p {
     font-size: 17px;
     line-height: 1.7
   }
@@ -449,7 +456,7 @@
     color: inherit
   }
 
-  .markdown-body ol,.markdown-body ul {
+  .markdown-body ol, .markdown-body ul {
     padding-left: 40px
   }
 

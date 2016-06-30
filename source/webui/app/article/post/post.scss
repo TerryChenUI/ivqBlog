@@ -16,22 +16,25 @@
         font-weight: bold;
       }
     }
-    .post-content {
-      //font-size: 14px;
-      //h3 {
-      //  font-size: 16px;
-      //  margin: 0 0 10px 0;
-      //  color: #434343;
-      //}
-      //p {
-      //  margin: 0 0 5px;
-      //}
-      //ol, ul {
-      //  padding: 0 0 0 30px;
-      //}
-      //.syntaxhighlighter td.code {
-      //  padding: 9.5px 0 9.5px 0 !important;
-      //}
+
+    .scrollUp {
+      position: fixed;
+      background: #555;
+      color: #eee;
+      font-size: 40px;
+      line-height: 1;
+      text-align: center;
+      text-decoration: none;
+      bottom: 100px;
+      right: 100px;
+      overflow: hidden;
+      width: 46px;
+      height: 46px;
+      border: none;
+      opacity: .8;
+    }
+    .scrollUp:hover {
+      background: #222;
     }
   }
 
