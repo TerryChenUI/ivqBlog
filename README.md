@@ -1,4 +1,4 @@
-# ivqBlog
+### ivqBlog
 
 转向做全职前端差不多一年的时间了，其中学习了构建工具grunt，gulp，angularjs，coffeescript，less，sass，自己想要做全栈开发，所以自学了mongodb，nodejs，express后端开发。
 这个博客是对前段时间的学习做一个总结，整理需求，架构，开发，测试，部署大概花了一个半月的时间，代码水平是入门级别。
@@ -17,7 +17,7 @@
 ####安装
 MongoDB官网下载后，修改ivqBlog\scripts\mongodb目录下的配置项，安装MongoDB服务并启动。
 创建ivqBlog数据库，创建users数据表，并且导入ivqBlog\db\users.json数据，账号和密码都为admin。
-webui和www目录下执行npm run prebuild安装相关包。(若相关的包安装失败，请将它删掉再重新安装。gulp-sass总是安装失败，有解决办法请指教)
+webui和www目录下执行npm run prebuild安装相关包。
  
 ####启动
 在webui目录下执行gulp命令即可启动项目。
@@ -55,9 +55,9 @@ browser-sync，设置proxy端口与express的保持一致，自动打开浏览�
  
 ###身份验证
 nodejs使用jwt-simple生成token输出到客户端，根据这个token作身份验证，相关使用请查看以下链接。
-http://www.sitepoint.com/using-json-web-tokens-node-js/
-https://www.npmjs.com/package/jwt-simple
-https://cnodejs.org/topic/53c652bfc9507b404446ee40
+* http://www.sitepoint.com/using-json-web-tokens-node-js/
+* https://www.npmjs.com/package/jwt-simple
+* https://cnodejs.org/topic/53c652bfc9507b404446ee40
  
 ###调试
 使用webstrom调试nodejs，如下图配置，执行gulp debug即可调试。
