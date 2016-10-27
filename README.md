@@ -1,6 +1,5 @@
 # ivqBlog
 
-[TOC]
 转向做全职前端差不多一年的时间了，其中学习了构建工具grunt，gulp，angularjs，coffeescript，less，sass，自己想要做全栈开发，所以自学了mongodb，nodejs，express后端开发。
 这个博客是对前段时间的学习做一个总结，整理需求，架构，开发，测试，部署大概花了一个半月的时间，代码水平是入门级别。
 线上地址：http://www.ivqblog.com/
